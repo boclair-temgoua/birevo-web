@@ -1,0 +1,9 @@
+export const API_DEFAULT = '/';
+export const API_LOGIN = '/login';
+export const API_REGISTER = '/register';
+export const API_FORGOT_PASSWORD = '/forgot_password/new';
+export const API_CHANGE_PASSWORD_TOKEN = '/change_password/:token';
+export const API_RESET_PASSWORD_TOKEN = '/reset_password/:token';
+export const API_ABOUT = '/about';
+export const API_CONTACT = '/contact';
+export const API_DASHBOARD = '/dashboard/home';
