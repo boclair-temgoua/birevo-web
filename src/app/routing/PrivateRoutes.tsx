@@ -11,6 +11,7 @@ const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
   const OrganizationsPage = lazy(() => import('../modules/organizations/OrganizationsPage'))
+  const VouchersPage = lazy(() => import('../modules/vouchers/VouchersPage'))
   const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
   const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
@@ -20,7 +21,7 @@ const PrivateRoutes = () => {
   type Props = {
     children?: React.ReactNode
   }
-  
+
   const SuspensedView: FC<Props> = ({ children }) => {
     const baseColor = getCSSVariableValue('--bs-primary')
     TopBarProgress.config({
@@ -49,6 +50,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <OrganizationsPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='vouchers/*'
+          element={
+            <SuspensedView>
+              <VouchersPage />
             </SuspensedView>
           }
         />

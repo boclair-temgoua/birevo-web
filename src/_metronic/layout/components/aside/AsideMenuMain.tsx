@@ -29,6 +29,15 @@ export function AsideMenuMain() {
         </div>
       </div>
       <AsideMenuItemWithSub
+        to='/vouchers'
+        title='Vouchers'
+        icon='/media/icons/duotune/finance/fin001.svg'
+        fontIcon='bi-person'
+      >
+        <AsideMenuItem to='/vouchers/coupons' title='Coupons' hasBullet={true} />
+        <AsideMenuItem to='/vouchers/vouchers' title='Vouchers' hasBullet={true} />
+      </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub
         to='/organizations'
         title='Organizations'
         icon='/media/icons/duotune/communication/com006.svg'

@@ -5,14 +5,15 @@ import { KTSVG } from '../../../../_metronic/helpers';
 import queryString from 'query-string';
 import { useQueryClient, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { getOrganizationsUserSubscribe } from '../../subscribes/api/index';
 import { useDebounce } from '../../../utility/commons/useDebounce';
-import { OneSubscribeResponse } from '../../subscribes/core/_models';
-import { OrganizationSubscribeTable } from '../hook/OrganizationSubscribeTable';
+// import { OrganizationSubscribeTable } from '../hook/OrganizationSubscribeTable';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
-import { pluralName } from '../../../utility/commons/plural-name';
+import { getVouchers } from '../api';
+import { OneVoucherResponse } from '../core/_moduls';
+import { CouponVoucherTable } from '../hook/CouponVoucherTable';
+import { SearchInput } from '../../forms/SearchInput';
 
-const OrganizationsTables: FC = () => {
+const VouchersTables: FC = () => {
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
@@ -23,8 +24,9 @@ const OrganizationsTables: FC = () => {
   const debouncedFilter = useDebounce(filter, 500);
   const isEnabled = Boolean(debouncedFilter)
   const fetchUserOrg = async (pageItem = 1, debouncedFilter: string) => await
-    getOrganizationsUserSubscribe({
+    getVouchers({
       filterQuery: debouncedFilter,
+      type: 'VOUCHER',
       limit: 10,
       page: Number(pageItem || 1)
     })
@@ -34,7 +36,7 @@ const OrganizationsTables: FC = () => {
     error,
     data,
     isPreviousData,
-  } = useQuery(['organizationsSubscribes', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
+  } = useQuery(['voucherVouchers', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
     enabled: filter ? isEnabled : !isEnabled,
     keepPreviousData: true,
     refetchOnMount: false,
@@ -45,7 +47,7 @@ const OrganizationsTables: FC = () => {
   // Prefetch the next page!
   useEffect(() => {
     if (data?.data?.total_pages !== pageItem) {
-      queryClient.prefetchQuery(['organizationsSubscribes', pageItem + 1], () =>
+      queryClient.prefetchQuery(['voucherVouchers', pageItem + 1], () =>
         fetchUserOrg(pageItem + 1, debouncedFilter)
       )
     }
@@ -59,19 +61,19 @@ const OrganizationsTables: FC = () => {
     isError ? (<tr><>Error: {error}</></tr>) :
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
-          data?.data?.data?.map((item: OneSubscribeResponse, index: number) => (
-            <OrganizationSubscribeTable subscribeUserItem={item} key={index} />
+          data?.data?.data?.map((item: OneVoucherResponse, index: number) => (
+            <CouponVoucherTable voucher={item} key={index} />
           )))
 
   return (
     <>
-      <HelmetSite title={`Organizations - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      <HelmetSite title={`Vouchers - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>
-            <span className='card-label fw-bolder fs-3 mb-1'>Organizations - {userItem?.organization?.name}</span>
-            <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} {pluralName({ lengthItem: userItem?.organizationTotal, word: 'organizations' })}</span>
+            <span className='card-label fw-bolder fs-3 mb-1'>Vouchers - {userItem?.organization?.name}</span>
+            {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
           <div
             className='card-toolbar'
@@ -87,13 +89,19 @@ const OrganizationsTables: FC = () => {
             // data-bs-target='#kt_modal_invite_friends'
             >
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-              New Organization
+              New Voucher
             </a>
           </div>
         </div>
+
         {/* end::Header */}
         {/* begin::Body */}
         <div className='card-body py-3'>
+          <div className='w-100 position-relative'>
+            <SearchInput className='form-control form-control-solid px-15'
+              onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setFilter(e.target.value)}
+              placeholder='Search by code or amount...' />
+          </div>
           {/* begin::Table container */}
           <div className='table-responsive'>
             {/* begin::Table */}
@@ -101,8 +109,11 @@ const OrganizationsTables: FC = () => {
               {/* begin::Table head */}
               <thead>
                 <tr className='fw-bolder text-muted'>
-                  <th className='min-w-140px'>Company</th>
-                  {/* <th className='min-w-120px'>Progress</th> */}
+                  <th className='min-w-140px'>Code</th>
+                  <th className='min-w-120px'>Amount</th>
+                  <th className='min-w-120px'>Date Started</th>
+                  <th className='min-w-120px'>Date Expired</th>
+                  <th className='min-w-120px'>Status</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>
               </thead>
@@ -156,4 +167,4 @@ const OrganizationsTables: FC = () => {
   )
 }
 
-export { OrganizationsTables }
+export { VouchersTables }

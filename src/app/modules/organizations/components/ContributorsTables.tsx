@@ -13,6 +13,7 @@ import { getContributorsPaginateSubscribes } from '../../subscribes/api/index';
 import { useDebounce } from '../../../utility/commons/useDebounce';
 import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
+import { pluralName } from '../../../utility/commons/plural-name';
 
 const ContributorsTables: FC = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -87,8 +88,8 @@ const ContributorsTables: FC = () => {
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>
-            <span className='card-label fw-bolder fs-3 mb-1'>Contributors {userItem?.organization?.name}</span>
-            <span className='text-muted mt-1 fw-bold fs-7'>Over {organization?.contributorTotal} members</span>
+            <span className='card-label fw-bolder fs-3 mb-1'>Contributors - {userItem?.organization?.name || process.env.REACT_APP_NAME}</span>
+            <span className='text-muted mt-1 fw-bold fs-7'>Over {organization?.contributorTotal} {pluralName({ lengthItem: organization?.contributorTotal, word: 'members' })} </span>
           </h3>
           <div
             className='card-toolbar'
