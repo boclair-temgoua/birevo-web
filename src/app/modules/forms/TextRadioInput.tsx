@@ -1,8 +1,4 @@
 import { UseFormRegister, FieldError } from "react-hook-form";
-import {
-    Input,
-    FormLabel
-} from "@chakra-ui/react";
 import { InputType } from "./index";
 
 interface Props {
@@ -29,7 +25,7 @@ export const TextRadioInput: React.FC<Props> = ({
 }) => {
     return (
         <>
-            <Input
+            <input
                 className={className}
                 {...register(name, validation)}
                 id={name}

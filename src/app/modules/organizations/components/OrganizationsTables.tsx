@@ -37,8 +37,6 @@ const OrganizationsTables: FC = () => {
   } = useQuery(['organizationsSubscribes', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
     enabled: filter ? isEnabled : !isEnabled,
     keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
     staleTime: 5000
   })
 

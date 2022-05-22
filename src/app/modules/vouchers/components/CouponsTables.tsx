@@ -12,8 +12,11 @@ import { getVouchers } from '../api';
 import { OneVoucherResponse } from '../core/_moduls';
 import { CouponVoucherTable } from '../hook/CouponVoucherTable';
 import { SearchInput } from '../../forms/SearchInput';
+import { CouponCreateFormModal } from '../hook/CouponCreateFormModal';
 
 const CouponsTables: FC = () => {
+  const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState<boolean>(false)
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
@@ -39,8 +42,6 @@ const CouponsTables: FC = () => {
   } = useQuery(['voucherCoupons', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
     enabled: filter ? isEnabled : !isEnabled,
     keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
     staleTime: 5000
   })
 
@@ -75,22 +76,21 @@ const CouponsTables: FC = () => {
             <span className='card-label fw-bolder fs-3 mb-1'>Coupons - {userItem?.organization?.name}</span>
             {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
-          <div
-            className='card-toolbar'
-            data-bs-toggle='tooltip'
-            data-bs-placement='top'
-            data-bs-trigger='hover'
-            title='Click to add a user'
-          >
-            <a
-              href='#'
-              className='btn btn-sm btn-light-primary'
-            // data-bs-toggle='modal'
-            // data-bs-target='#kt_modal_invite_friends'
-            >
+          <div className="d-flex align-items-center py-1">
+            {/* <div className="me-4">
+              <button type='button'
+                onClick={() => { navigate('/vouchers/coupons/create') }}
+                className="btn btn-sm btn-flex btn-light-primary fw-bolder">
+                  <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+                  Create coupon
+              </button>
+            </div> */}
+            <button type='button'
+              onClick={() => { navigate('/vouchers/coupons/create') }}
+              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-              New Coupon
-            </a>
+              Create coupon
+            </button>
           </div>
         </div>
 
@@ -163,6 +163,7 @@ const CouponsTables: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
+      {openModal && (<CouponCreateFormModal setOpenModal={setOpenModal} />)}
     </>
   )
 }

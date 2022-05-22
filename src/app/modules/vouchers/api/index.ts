@@ -1,8 +1,9 @@
 import dyaxios from '../../../utility/commons/dyaxios'
-type typeVoucher = 'COUPON' | 'VOUCHER'
-// export const createOrUpdateOneCoupon = (data: VoucherFormRequest) => {
-//     return dyaxios.post(`/vouchers/c/create-or-update`, data);
-// };
+import {typeVoucher, VoucherFormRequest} from '../core/_moduls'
+
+export const createOrUpdateOneCoupon = (data: VoucherFormRequest) => {
+  return dyaxios.post(`/vouchers/c/create-or-update`, data)
+}
 
 export const getVouchers = (options: {
   filterQuery?: string

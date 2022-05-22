@@ -1,8 +1,4 @@
 import { UseFormRegister, FieldError } from "react-hook-form";
-import { InputType } from './index';
-import {
-    FormLabel
-} from "@chakra-ui/react";
 
 interface Props {
     register: UseFormRegister<any>;
@@ -17,7 +13,7 @@ interface Props {
     errors: { [key: string]: FieldError };
 }
 
-export const SelectVoucherInput: React.FC<Props> = ({
+export const SelectStatusInput: React.FC<Props> = ({
     register,
     name,
     label,
@@ -32,17 +28,17 @@ export const SelectVoucherInput: React.FC<Props> = ({
     return (
         <>
             {labelFlex && (
-                <FormLabel className="form-label fw-bolder text-dark fs-6 mb-0">
+                <label className="form-label fw-bolder text-dark fs-6 mb-2">
                     <span className={required}>{labelFlex}</span>
                     <i className="fas fa-exclamation-circle ms-2 fs-7"></i>
-                </FormLabel>
+                </label>
             )}
-            {label && (<FormLabel htmlFor={name} className={`${required} form-label`}>{label}</FormLabel>)}
+            {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}
             <select className={`${className} ${errors?.[name] ? "is-invalid" : ""
                 }`} {...register(name, validation)} required={isRequired}>
-                <option value="">Choose currency</option>
+                <option value="">Choose status</option>
                 {dataItem?.map((item: any, index: number) => (
-                    <option value={item?.code} key={index}>{item?.code}</option>
+                    <option value={item?.name} key={index}>{item?.name}</option>
                 ))}
             </select>
             {errors?.[name] && (

@@ -1,8 +1,4 @@
 import { UseFormRegister, FieldError } from "react-hook-form";
-import {
-    Textarea,
-    FormLabel
-} from "@chakra-ui/react";
 
 interface Props {
     register: UseFormRegister<any>;
@@ -27,8 +23,8 @@ export const TextareaInput: React.FC<Props> = ({
 }) => {
     return (
         <>
-            <FormLabel htmlFor={name} className={`${required} form-label fs-6 fw-bold mb-2`}>{label}</FormLabel>
-            <Textarea
+            <label htmlFor={name} className={`${required} form-label fs-6 fw-bold mb-2`}>{label}</label>
+            <textarea
                 className={`${className} ${errors?.[name] ? "is-invalid" : ""
                     }`}
                 {...register(name, validation)}

@@ -1,5 +1,6 @@
-import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../_metronic/layout/core'
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
+import { PageLink, PageTitle } from '../../../_metronic/layout/core'
+import { CouponCreateOrUpdate } from './components/CouponCreateOrUpdate'
 import { CouponsTables } from './components/CouponsTables'
 import { VouchersTables } from './components/VouchersTables'
 // import { ContributorsTables } from './components/ContributorsTables'
@@ -23,25 +24,34 @@ const vouchersBreadCrumbs: Array<PageLink> = [
 const VouchersPage = () => (
   <Routes>
     <Route element={<Outlet />}>
-    <Route
-          path='coupons'
-          element={
-            <>
-              <PageTitle breadcrumbs={vouchersBreadCrumbs}>Coupons</PageTitle>
-              <CouponsTables />
-            </>
-          }
-        />
-        
-         <Route
-          path='vouchers'
-          element={
-            <>
-              <PageTitle breadcrumbs={vouchersBreadCrumbs}>Vouchers</PageTitle>
-              <VouchersTables />
-            </>
-          }
-        />
+      <Route
+        path='coupons'
+        element={
+          <>
+            <PageTitle breadcrumbs={vouchersBreadCrumbs}>Coupons</PageTitle>
+            <CouponsTables />
+          </>
+        }
+      />
+
+      <Route
+        path='vouchers'
+        element={
+          <>
+            <PageTitle breadcrumbs={vouchersBreadCrumbs}>Vouchers</PageTitle>
+            <VouchersTables />
+          </>
+        }
+      />
+      <Route
+        path='coupons/create'
+        element={
+          <>
+            <PageTitle breadcrumbs={vouchersBreadCrumbs}>Coupon create</PageTitle>
+            <CouponCreateOrUpdate />
+          </>
+        }
+      />
       {/* <Route
         path='horizontal'
         element={

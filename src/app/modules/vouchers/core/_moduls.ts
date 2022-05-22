@@ -1,3 +1,11 @@
+export const optionsStatusVouchers = [
+  {id: 1, name: 'ACTIVE'},
+  {id: 2, name: 'PENDING'},
+  {id: 3, name: 'USED'},
+]
+
+export type typeVoucher = 'COUPON' | 'VOUCHER'
+
 export type VoucherFormRequest = {
   email: string
   name: string

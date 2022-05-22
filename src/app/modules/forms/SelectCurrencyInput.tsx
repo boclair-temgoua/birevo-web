@@ -1,36 +1,29 @@
 import { UseFormRegister, FieldError } from "react-hook-form";
-import { InputType } from './index';
 
 interface Props {
     register: UseFormRegister<any>;
     name: string;
+    dataItem: any;
     isRequired: boolean;
     label?: string;
     labelFlex?: string;
-    type: InputType;
     required?: string;
-    value?: string;
     className: string;
     validation?: { [key: string]: any };
     errors: { [key: string]: FieldError };
-    placeholder?: string;
-    autoComplete?: string;
 }
 
-export const TextInput: React.FC<Props> = ({
+export const SelectCurrencyInput: React.FC<Props> = ({
     register,
     name,
     label,
+    dataItem,
     labelFlex,
     isRequired,
     required,
-    type,
-    value,
     className,
     validation = {},
     errors,
-    placeholder = "",
-    autoComplete,
 }) => {
     return (
         <>
@@ -41,18 +34,13 @@ export const TextInput: React.FC<Props> = ({
                 </label>
             )}
             {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}
-            <input
-                className={`${className} ${errors?.[name] ? "is-invalid" : ""
-                    }`}
-                {...register(name, validation)}
-                id={name}
-                type={type}
-                value={value}
-                placeholder={placeholder}
-                autoComplete={autoComplete}
-                aria-invalid={errors?.[name] ? "true" : "false"}
-                required={isRequired}
-            />
+            <select className={`${className} ${errors?.[name] ? "is-invalid" : ""
+                }`} {...register(name, validation)} required={isRequired}>
+                <option value="">Choose currency</option>
+                {dataItem?.map((item: any, index: number) => (
+                    <option value={item?.code} key={index}>{item?.code}</option>
+                ))}
+            </select>
             {errors?.[name] && (
                 <span className='invalid-feedback'>
                     <strong>{errors?.[name].message}</strong>
