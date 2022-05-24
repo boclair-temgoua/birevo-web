@@ -17,7 +17,6 @@ export type VoucherFormRequest = {
 }
 
 export type OneVoucherResponse = {
-  createdAt: Date
   id: number
   usedAt: Date
   uuid: string
@@ -26,18 +25,21 @@ export type OneVoucherResponse = {
   status: string
   name: string
   email: string
+  currency: string
   description: null
   amount: number
   percent: number
   isExpired: boolean
   startedAt: Date
   expiredAt: Date
+  createdAt: Date
+  updatedAt: Date
   userTransactionId: number
   userId: number
   organizationId: number
   userCreatedId: number
   applicationId: number
-  currency: {
+  currencyItem: {
     code: string
     name: string
   }

@@ -16,6 +16,10 @@ const CouponVoucherTable: React.FC<Props> = ({ voucher }) => {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [copied, setCopied] = useState(false);
 
+  const handleCopiedClick = () => {
+    setCopied(true);
+    setTimeout(() => { setCopied(false) }, 1500);
+  }
 
   return (
     <>
@@ -23,7 +27,7 @@ const CouponVoucherTable: React.FC<Props> = ({ voucher }) => {
         <td>
           <div className='d-flex align-items-center'>
             <div className='symbol symbol-35px me-2'>
-            <img alt={`66`} src={toAbsoluteUrl(voucher?.qrCode?.image)} />
+              <img alt={`66`} src={toAbsoluteUrl(voucher?.qrCode?.image)} />
             </div>
             <div className='d-flex justify-content-start flex-column'>
               <CopyToClipboard text={`${voucher?.code}`}>
@@ -35,7 +39,7 @@ const CouponVoucherTable: React.FC<Props> = ({ voucher }) => {
             </div>
           </div>
         </td>
-        <td className='text-dark fw-bolder text-hover-primary fs-6'>{voucher?.amount} {voucher?.currency?.code}</td>
+        <td className='text-dark fw-bolder text-hover-primary fs-6'>{voucher?.amount} {voucher?.currencyItem?.code}</td>
         <td>
           <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
             {dayjs(voucher?.startedAt).format('DD/MM/YYYY')}
@@ -60,8 +64,7 @@ const CouponVoucherTable: React.FC<Props> = ({ voucher }) => {
         <td className='text-end'>
           <CopyToClipboard text={`${voucher?.code}`}>
             <button
-              onClick={() => setCopied(true)}
-              //gen054
+              onClick={() => handleCopiedClick()}
               className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
             >
               <KTSVG path={`/media/icons/duotune/general/${copied ? 'gen043' : 'gen054'}.svg`} className='svg-icon-3' />

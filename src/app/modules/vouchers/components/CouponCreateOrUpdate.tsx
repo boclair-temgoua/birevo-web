@@ -1,13 +1,21 @@
 import { FC } from 'react'
 import { HelmetSite } from '../../../utility/commons/helmet-site'
 import { useAuth } from '../../auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import { OrganizationSubscribeTable } from '../hook/OrganizationSubscribeTable';
 import { CouponCreateForm } from '../hook/CouponCreateForm';
+import { useQuery } from 'react-query';
+import { getOneVoucher } from '../api/index';
+import { OneVoucherResponse } from '../core/_moduls';
 
 const CouponCreateOrUpdate: FC = () => {
   const userItem = useAuth();
   const navigate = useNavigate();
+  const { voucher_code } = useParams<string>()
+
+  const fetchOneVoucher = async (voucher_code: any) => await getOneVoucher({ code: voucher_code })
+  const { data } = useQuery(['voucher', voucher_code], () => fetchOneVoucher(voucher_code))
+  const voucher: OneVoucherResponse = data?.data
 
 
   return (
@@ -35,9 +43,7 @@ const CouponCreateOrUpdate: FC = () => {
         {/* end::Header */}
         {/* begin::Body */}
         <div className='card-body py-3'>
-
-          <CouponCreateForm />
-
+          <CouponCreateForm voucher={voucher} />
         </div>
         {/* begin::Body */}
       </div>

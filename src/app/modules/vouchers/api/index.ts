@@ -5,6 +5,11 @@ export const createOrUpdateOneCoupon = (data: VoucherFormRequest) => {
   return dyaxios.post(`/vouchers/c/create-or-update`, data)
 }
 
+export const getOneVoucher = (options: {code: string}) => {
+  const {code} = options
+  return dyaxios.get(`/vouchers/show?code=${code}`)
+}
+
 export const getVouchers = (options: {
   filterQuery?: string
   type: typeVoucher
@@ -13,8 +18,8 @@ export const getVouchers = (options: {
 }) => {
   const {filterQuery, type, limit, page} = options
   return dyaxios.get(
-    `/vouchers?is_paginate=${true}&type=${type}&limit=${limit}&page=${page}${
-      filterQuery ? `&filterQuery=${filterQuery}` : ''
+    `/vouchers?is_paginate=${true}&type=${type}&limit=${limit}${
+      filterQuery ? `&filterQuery=${filterQuery}&page=${1}` : `&page=${page}`
     }`
   )
 }

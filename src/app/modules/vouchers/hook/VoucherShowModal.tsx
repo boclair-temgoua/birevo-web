@@ -42,7 +42,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
             <p>{voucherItem?.code}</p>
               {/* <UserEditModalFormWrapper /> */}
             </div>
-            <div className="modal-footer">
+            {/* <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-light"
@@ -54,7 +54,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
               <button type="button" className="btn btn-primary">
                 Save changes
               </button>
-            </div>
+            </div> */}
             {/* end::Modal body */}
           </div>
           {/* end::Modal content */}

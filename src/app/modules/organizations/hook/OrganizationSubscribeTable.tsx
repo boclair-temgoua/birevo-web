@@ -48,7 +48,7 @@ const OrganizationSubscribeTable: React.FC<Props> = ({ subscribeUserItem }) => {
             href='#'
             className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
           >
-            <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+            <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
           </a>
           <a
             href='#'

@@ -5,7 +5,7 @@ import TopBarProgress from 'react-topbar-progress-indicator'
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
 import { MenuTestPage } from '../pages/MenuTestPage'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
-import { ApplicationWrapper } from '../pages/applications/ApplicationWrapper'
+import { ApplicationIndex } from '../modules/applications/ApplicationIndex'
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
@@ -41,7 +41,7 @@ const PrivateRoutes = () => {
         <Route path='/*' element={<Navigate to='/dashboard' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
-        <Route path='applications' element={<ApplicationWrapper />} />
+        <Route path='applications' element={<ApplicationIndex />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}

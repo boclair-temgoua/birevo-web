@@ -14,7 +14,7 @@ import { TextareaInput } from '../../forms/TextareaInput';
 import { createOrUpdateOneCoupon } from '../api/index';
 
 
-const schema = yup
+const schemaCreate = yup
   .object({
     email: yup.string()
       .email('Wrong email format')
@@ -30,13 +30,29 @@ const schema = yup
   })
   .required();
 
-export const CouponCreateForm: FC = () => {
+const schemaUpdate = yup
+  .object({
+    email: yup.string()
+      .email('Wrong email format')
+      .min(3, 'Minimum 3 symbols')
+      .max(50, 'Maximum 50 symbols')
+      .required('Email is required'),
+    name: yup.string().min(3, 'Minimum 3 symbols').required(),
+    status: yup.string().min(3, 'Minimum 3 symbols').required(),
+    currency: yup.string().min(3, 'Minimum 3 symbols').required(),
+    amount: yup.number().required(),
+  })
+  .required();
+
+export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ voucher }) => {
+  const isAddMode = !voucher;
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const { register, handleSubmit, reset,
+    setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
-  } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
+  } = useForm<VoucherFormRequest>({ resolver: isAddMode ? yupResolver(schemaCreate) : yupResolver(schemaUpdate), mode: "onChange" });
 
   const currencies: OneCurrencyResponse = useSelector((state: any) => state?.currencies?.currencies)
   const dispatch = useDispatch<any>()
@@ -47,6 +63,13 @@ export const CouponCreateForm: FC = () => {
     }
     loadItems()
   }, [])
+
+  useEffect(() => {
+    if (voucher) {
+      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'startedAt', 'expiredAt'];
+      fields?.forEach((field: any) => setValue(field, voucher[field]));
+    }
+  }, [voucher]);
 
   const onSubmit = async (data: VoucherFormRequest) => {
     setLoading(true);
@@ -146,6 +169,7 @@ export const CouponCreateForm: FC = () => {
             />
           </div>
         </div>
+        {isAddMode && (
         <div className="row mb-5">
           <div className="col-md-6 fv-row fv-plugins-icon-container">
             <TextInput
@@ -177,7 +201,7 @@ export const CouponCreateForm: FC = () => {
               isRequired={true}
             />
           </div>
-        </div>
+        </div>)}
         <div className="d-flex flex-column mb-8">
           <TextareaInput
             label="Description"

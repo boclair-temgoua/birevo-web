@@ -23,7 +23,7 @@ export const TextareaInput: React.FC<Props> = ({
 }) => {
     return (
         <>
-            <label htmlFor={name} className={`${required} form-label fs-6 fw-bold mb-2`}>{label}</label>
+            <label htmlFor={name} className={`${required} form-label fs-6 fw-bold mb-2`}><strong>{label}</strong></label>
             <textarea
                 className={`${className} ${errors?.[name] ? "is-invalid" : ""
                     }`}

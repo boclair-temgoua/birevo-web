@@ -1,35 +1,37 @@
-import { FC, useEffect, useState } from 'react'
-import { HelmetSite } from '../../../utility/commons/helmet-site'
-import { useAuth } from '../../auth';
-import { KTSVG } from '../../../../_metronic/helpers';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { FC, useState, useEffect } from 'react'
+import { useIntl } from 'react-intl'
+import { KTSVG } from '../../../_metronic/helpers'
+import { PageTitle } from '../../../_metronic/layout/core'
+import {
+  TablesWidget5,
+} from '../../../_metronic/partials/widgets'
+import { ApplicationCreateOrUpdateFormModal } from './hook/ApplicationCreateOrUpdateFormModal'
 import queryString from 'query-string';
 import { useQueryClient, useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-import { useDebounce } from '../../../utility/commons/useDebounce';
-// import { OrganizationSubscribeTable } from '../hook/OrganizationSubscribeTable';
-import { EmptyTable } from '../../../utility/commons/EmptyTable';
-import { getVouchers } from '../api';
-import { OneVoucherResponse } from '../core/_moduls';
-import { CouponVoucherTable } from '../hook/CouponVoucherTable';
-import { SearchInput } from '../../forms/SearchInput';
-import { CouponCreateFormModal } from '../hook/CouponCreateFormModal';
+import { useDebounce } from '../../utility/commons/useDebounce';
+import { getApplications } from './api/index';
+import { EmptyTable } from '../../utility/commons/EmptyTable';
+import { ApplicationTable } from './hook/ApplicationTable'
+import { OneApplicationResponse } from './core/_moduls';
+import { useAuth } from '../auth'
 
-const CouponsTables: FC = () => {
-  const navigate = useNavigate();
+
+const ApplicationIndex: FC = () => {
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const intl = useIntl()
+  const userItem = useAuth();
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
   const [pageItem, setPageItem] = useState(Number(page) || 1)
   const [filter, setFilter] = useState<string>('')
-  const userItem = useAuth();
 
   const debouncedFilter = useDebounce(filter, 500);
   const isEnabled = Boolean(debouncedFilter)
   const fetchUserOrg = async (pageItem = 1, debouncedFilter: string) => await
-    getVouchers({
+    getApplications({
       filterQuery: debouncedFilter,
-      type: 'COUPON',
       limit: 10,
       page: Number(pageItem || 1)
     })
@@ -39,7 +41,7 @@ const CouponsTables: FC = () => {
     error,
     data,
     isPreviousData,
-  } = useQuery(['voucherCoupons', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
+  } = useQuery(['applications', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
     enabled: filter ? isEnabled : !isEnabled,
     keepPreviousData: true,
     staleTime: 5000
@@ -49,9 +51,9 @@ const CouponsTables: FC = () => {
   useEffect(() => {
     if (data?.data?.total_pages !== pageItem) {
       queryClient.prefetchQuery
-      (['voucherCoupons', pageItem + 1], () =>
-        fetchUserOrg(pageItem + 1, debouncedFilter)
-      )
+        (['applications', pageItem + 1], () =>
+          fetchUserOrg(pageItem + 1, debouncedFilter)
+        )
     }
   }, [data, pageItem, queryClient])
 
@@ -63,46 +65,33 @@ const CouponsTables: FC = () => {
     isError ? (<tr><>Error: {error}</></tr>) :
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
-          data?.data?.data?.map((item: OneVoucherResponse, index: number) => (
-            <CouponVoucherTable voucher={item} key={index} />
+          data?.data?.data?.map((item: OneApplicationResponse, index: number) => (
+            <ApplicationTable item={item} key={index} />
           )))
 
   return (
     <>
-      <HelmetSite title={`Coupons - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+
+      <PageTitle breadcrumbs={[]}>{intl.formatMessage({ id: 'MENU.APPS' })}</PageTitle>
       <div className={`card mb-5 mb-xl-8`}>
-        {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>
-            <span className='card-label fw-bolder fs-3 mb-1'>Coupons - {userItem?.organization?.name}</span>
+            <span className='card-label fw-bolder fs-3 mb-1'>Applications - {userItem?.organization?.name}</span>
             {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
           <div className="d-flex align-items-center py-1">
-            {/* <div className="me-4">
-              <button type='button'
-                onClick={() => { navigate('/vouchers/coupons/create') }}
-                className="btn btn-sm btn-flex btn-light-primary fw-bolder">
-                  <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-                  Create coupon
-              </button>
-            </div> */}
             <button type='button'
-              onClick={() => { navigate('/vouchers/coupons/create') }}
-              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
+              onClick={() => { setOpenModal(true) }}
+              className='btn btn-sm btn-flex btn-light-primary fw-bolder'
+            >
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-              Create coupon
+              Create Api Key
             </button>
           </div>
         </div>
-
         {/* end::Header */}
         {/* begin::Body */}
         <div className='card-body py-3'>
-          <div className='w-100 position-relative'>
-            <SearchInput className='form-control form-control-solid px-15'
-              onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setFilter(e.target.value)}
-              placeholder='Search by code or amount...' />
-          </div>
           {/* begin::Table container */}
           <div className='table-responsive'>
             {/* begin::Table */}
@@ -110,10 +99,8 @@ const CouponsTables: FC = () => {
               {/* begin::Table head */}
               <thead>
                 <tr className='fw-bolder text-muted'>
-                  <th className='min-w-140px'>Code</th>
-                  <th className='min-w-120px'>Amount</th>
-                  <th className='min-w-120px'>Date Started</th>
-                  <th className='min-w-120px'>Date Expired</th>
+                  <th className='min-w-140px'>Name</th>
+                  <th className='min-w-120px'>Date Creation</th>
                   <th className='min-w-120px'>Status</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>
@@ -164,9 +151,9 @@ const CouponsTables: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
-      {openModal && (<CouponCreateFormModal setOpenModal={setOpenModal} />)}
+      {openModal && (<ApplicationCreateOrUpdateFormModal setOpenModal={setOpenModal} />)}
     </>
   )
 }
 
-export { CouponsTables }
+export { ApplicationIndex }
