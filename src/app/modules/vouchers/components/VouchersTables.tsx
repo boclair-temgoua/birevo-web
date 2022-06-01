@@ -10,7 +10,7 @@ import { useDebounce } from '../../../utility/commons/useDebounce';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { getVouchers } from '../api';
 import { OneVoucherResponse } from '../core/_moduls';
-import { CouponVoucherTable } from '../hook/CouponVoucherTable';
+import { CouponVoucherTableList } from '../hook/CouponVoucherTableList';
 import { SearchInput } from '../../forms/SearchInput';
 
 const VouchersTables: FC = () => {
@@ -60,7 +60,7 @@ const VouchersTables: FC = () => {
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneVoucherResponse, index: number) => (
-            <CouponVoucherTable voucher={item} key={index} />
+            <CouponVoucherTableList voucher={item} key={index} />
           )))
 
   return (

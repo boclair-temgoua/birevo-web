@@ -10,7 +10,7 @@ import { useDebounce } from '../../../utility/commons/useDebounce';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { getVouchers } from '../api';
 import { OneVoucherResponse } from '../core/_moduls';
-import { CouponVoucherTable } from '../hook/CouponVoucherTable';
+import { CouponVoucherTableList } from '../hook/CouponVoucherTableList';
 import { SearchInput } from '../../forms/SearchInput';
 import { CouponCreateFormModal } from '../hook/CouponCreateFormModal';
 
@@ -49,9 +49,9 @@ const CouponsTables: FC = () => {
   useEffect(() => {
     if (data?.data?.total_pages !== pageItem) {
       queryClient.prefetchQuery
-      (['voucherCoupons', pageItem + 1], () =>
-        fetchUserOrg(pageItem + 1, debouncedFilter)
-      )
+        (['voucherCoupons', pageItem + 1], () =>
+          fetchUserOrg(pageItem + 1, debouncedFilter)
+        )
     }
   }, [data, pageItem, queryClient])
 
@@ -64,7 +64,7 @@ const CouponsTables: FC = () => {
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneVoucherResponse, index: number) => (
-            <CouponVoucherTable voucher={item} key={index} />
+            <CouponVoucherTableList voucher={item} key={index} />
           )))
 
   return (
@@ -87,7 +87,7 @@ const CouponsTables: FC = () => {
               </button>
             </div> */}
             <button type='button'
-              onClick={() => { navigate('/vouchers/coupons/create') }}
+              onClick={() => { navigate('/vouchers/coupons/create', { replace: true }) }}
               className="btn btn-sm btn-flex btn-light-primary fw-bolder">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               Create coupon

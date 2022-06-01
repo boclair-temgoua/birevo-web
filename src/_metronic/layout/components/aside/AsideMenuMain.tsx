@@ -74,15 +74,6 @@ export function AsideMenuMain() {
         </AsideMenuItemWithSub>
       </AsideMenuItemWithSub>
       <AsideMenuItemWithSub
-        to='/crafted/accounts'
-        title='Accounts'
-        icon='/media/icons/duotune/communication/com006.svg'
-        fontIcon='bi-person'
-      >
-        <AsideMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} />
-        <AsideMenuItem to='/crafted/account/settings' title='Settings' hasBullet={true} />
-      </AsideMenuItemWithSub>
-      <AsideMenuItemWithSub
         to='/error'
         title='Errors'
         fontIcon='bi-sticky'
@@ -130,12 +121,32 @@ export function AsideMenuMain() {
           <div className='separator mx-1 my-4'></div>
         </div>
       </div>
+    
+      <AsideMenuItemWithSub
+        to='/crafted/accounts'
+        title='Accounts'
+        icon='/media/icons/duotune/communication/com006.svg'
+        fontIcon='bi-person'
+      >
+        <AsideMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} />
+        <AsideMenuItem to='/crafted/account/settings' title='Settings' hasBullet={true} />
+      </AsideMenuItemWithSub>
+      <div className='menu-item'>
+        <Link className='menu-link'
+        to='/account/billing'
+        >
+          <span className='menu-icon'>
+            <KTSVG path='/media/icons/duotune/communication/com001.svg' className='svg-icon-2' />
+          </span>
+          <span className='menu-title'>Billing</span>
+        </Link>
+      </div>
       <div className='menu-item'>
         <Link className='menu-link'
         to='/applications'
         >
           <span className='menu-icon'>
-            <KTSVG path='/media/icons/duotune/general/gen005.svg' className='svg-icon-2' />
+            <KTSVG path='/media/icons/duotune/coding/cod003.svg' className='svg-icon-2' />
           </span>
           <span className='menu-title'>Api developers</span>
         </Link>

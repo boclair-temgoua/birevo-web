@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { KTSVG, toAbsoluteUrl } from '../../../../_metronic/helpers'
-// import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import { KTSVG } from '../../../../_metronic/helpers'
 import { OneSubscribeResponse } from '../../subscribes/core/_models';
 import { capitalizeOneFirstLetter } from '../../../utility/commons/capitalize-first-letter';
 

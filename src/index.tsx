@@ -19,7 +19,7 @@ import { MetronicI18nProvider } from './_metronic/i18n/Metronici18n'
  **/
 import './_metronic/assets/sass/style.scss'
 import './_metronic/assets/sass/style.react.scss'
-import 'react-toastify/dist/ReactToastify.css';
+import 'animate.css';
 import { AppRoutes } from './app/routing/AppRoutes'
 import { AuthProvider, setupAxios } from './app/modules/auth'
 import { store } from "./app/redux/store";

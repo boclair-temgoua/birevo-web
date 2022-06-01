@@ -7,12 +7,13 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { VoucherShowModal } from './VoucherShowModal';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
+import { Link } from 'react-router-dom';
 
 type Props = {
   voucher?: OneVoucherResponse | any;
 }
 
-const CouponVoucherTable: React.FC<Props> = ({ voucher }) => {
+const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [copied, setCopied] = useState(false);
 
@@ -67,12 +68,12 @@ const CouponVoucherTable: React.FC<Props> = ({ voucher }) => {
               onClick={() => handleCopiedClick()}
               className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
             >
-              <KTSVG path={`/media/icons/duotune/general/${copied ? 'gen043' : 'gen054'}.svg`} className='svg-icon-3' />
+              <KTSVG path={`/media/icons/duotune/${copied ? 'arrows/arr012' : 'general/gen054'}.svg`} className='svg-icon-3' />
             </button>
           </CopyToClipboard>
-          <button onClick={() => { setOpenModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+          <Link to={`/activities/${voucher?.uuid}?type=${(voucher?.voucherType).toLowerCase()}&code=${voucher?.code}`} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen032.svg' className='svg-icon-3' />
-          </button>
+          </Link>
 
           <button className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
@@ -84,4 +85,4 @@ const CouponVoucherTable: React.FC<Props> = ({ voucher }) => {
   )
 }
 
-export { CouponVoucherTable }
+export { CouponVoucherTableList }

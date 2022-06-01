@@ -33,7 +33,6 @@ const VouchersPage = () => (
           </>
         }
       />
-
       <Route
         path='vouchers'
         element={

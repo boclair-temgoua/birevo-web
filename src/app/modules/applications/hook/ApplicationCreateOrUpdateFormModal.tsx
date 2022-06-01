@@ -4,8 +4,9 @@ import { TextInput } from '../../forms/TextInput';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { ApplicationFormRequest, ApplicationMutation, OneApplicationResponse } from '../core/_moduls';
+import { ApplicationFormRequest, ApplicationMutation, OneApplicationResponse, optionsStatusOnline } from '../core/_moduls';
 // import { createOrUpdateOneCoupon } from '../api/index';
+import { SelectStatusInput } from '../../forms/SelectStatusInput';
 
 interface Props {
   setOpenModal: any,
@@ -27,7 +28,7 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
 
   useEffect(() => {
     if (applicationItem) {
-      const fields = ['name', 'description'];
+      const fields = ['name', 'statusOnline'];
       fields?.forEach((field: any) => setValue(field, applicationItem[field]));
     }
   }, [applicationItem]);
@@ -99,6 +100,19 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
                     validation={{ required: true }}
                     required="required"
                     isRequired={true}
+                  />
+                </div>
+                <div className="fv-row fv-plugins-icon-container">
+                  <SelectStatusInput
+                    dataItem={optionsStatusOnline}
+                    className="form-control form-select select2-hidden-accessible"
+                    labelFlex="Status"
+                    register={register}
+                    errors={errors}
+                    name="statusOnline"
+                    validation={{ required: true }}
+                    isRequired={true}
+                    required="required"
                   />
                 </div>
               </div>

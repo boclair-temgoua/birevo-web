@@ -38,7 +38,7 @@ export const SelectCurrencyInput: React.FC<Props> = ({
                 }`} {...register(name, validation)} required={isRequired}>
                 <option value="">Choose currency</option>
                 {dataItem?.map((item: any, index: number) => (
-                    <option value={item?.code} key={index}>{item?.code}</option>
+                    <option value={item?.code} key={index}>{item?.code} - {(item?.name)}</option>
                 ))}
             </select>
             {errors?.[name] && (

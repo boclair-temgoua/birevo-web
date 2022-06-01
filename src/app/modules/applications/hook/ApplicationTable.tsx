@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { KTSVG } from '../../../../_metronic/helpers'
 // import {KTSVG, toAbsoluteUrl} from '../../../helpers'
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { OneApplicationResponse } from '../core/_moduls';
+import { OneApplicationResponse, ApplicationDeleteMutation } from '../core/_moduls';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 // import { VoucherShowModal } from './VoucherShowModal';
-import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import { ApplicationCreateOrUpdateFormModal } from './ApplicationCreateOrUpdateFormModal';
+import Swal from 'sweetalert2';
+import { ApplicationShowModal } from './ApplicationShowModal';
 
 type Props = {
   item?: OneApplicationResponse;
@@ -15,11 +15,31 @@ type Props = {
 
 const ApplicationTable: React.FC<Props> = ({ item }) => {
   const [openModal, setOpenModal] = useState<boolean>(false)
-  const [copied, setCopied] = useState(false);
+  const [openShowModal, setOpenShowModal] = useState<boolean>(false)
 
-  const handleCopiedClick = () => {
-    setCopied(true);
-    setTimeout(() => { setCopied(false) }, 1500);
+  const actionDeleteMutation = ApplicationDeleteMutation({ onSuccess: () => { } });
+
+  const deleteItem = async (item: any) => {
+    Swal.fire({
+      title: 'Delete?',
+      text: 'Are you sure you want to perform this action?',
+      confirmButtonText: 'Yes, Deleted',
+      cancelButtonText: 'No, Cancel',
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-outline-default',
+      },
+      showCancelButton: true,
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.value) {
+        //Envoyer la requet au serve
+        const payloadSave = { application_uuid: item?.uuid }
+        actionDeleteMutation.mutateAsync(payloadSave)
+      }
+    });
+
   }
 
   return (
@@ -43,16 +63,20 @@ const ApplicationTable: React.FC<Props> = ({ item }) => {
           )}
         </td>
         <td className='text-end'>
+          <button onClick={() => { setOpenShowModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+            <KTSVG path='/media/icons/duotune/arrows/arr095.svg' className='svg-icon-3' />
+          </button>
           <button onClick={() => { setOpenModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
           </button>
 
-          <button className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+          <button onClick={() => { deleteItem(item) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
           </button>
         </td>
       </tr>
       {openModal && (<ApplicationCreateOrUpdateFormModal applicationItem={item} setOpenModal={setOpenModal} />)}
+      {openShowModal && (<ApplicationShowModal applicationItem={item} setOpenModal={setOpenShowModal} />)}
     </>
   )
 }

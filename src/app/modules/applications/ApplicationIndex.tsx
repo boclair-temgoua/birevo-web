@@ -15,6 +15,7 @@ import { EmptyTable } from '../../utility/commons/EmptyTable';
 import { ApplicationTable } from './hook/ApplicationTable'
 import { OneApplicationResponse } from './core/_moduls';
 import { useAuth } from '../auth'
+import { HelmetSite } from '../../utility/commons/helmet-site';
 
 
 const ApplicationIndex: FC = () => {
@@ -71,7 +72,7 @@ const ApplicationIndex: FC = () => {
 
   return (
     <>
-
+      <HelmetSite title={`Application - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
       <PageTitle breadcrumbs={[]}>{intl.formatMessage({ id: 'MENU.APPS' })}</PageTitle>
       <div className={`card mb-5 mb-xl-8`}>
         <div className='card-header border-0 pt-5'>

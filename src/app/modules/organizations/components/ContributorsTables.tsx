@@ -14,14 +14,16 @@ import { useDebounce } from '../../../utility/commons/useDebounce';
 import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { pluralName } from '../../../utility/commons/plural-name';
+import { ApplicationCreateOrUpdateFormModal } from '../../applications/hook/ApplicationCreateOrUpdateFormModal';
+import { InviteContributorModalForm } from '../hook/InviteContributorModalForm';
 
 const ContributorsTables: FC = () => {
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const userItem = useAuth();
   const organization = useSelector((state: any) => state?.organizations?.organization)
+  const [openModal, setOpenModal] = useState<boolean>(false)
   const dispatch = useDispatch<any>()
-  console.log('const { page } = queryString.parse(location.search);', page)
 
   useEffect(() => {
     const loadItems = async () => {
@@ -89,27 +91,26 @@ const ContributorsTables: FC = () => {
             <span className='card-label fw-bolder fs-3 mb-1'>Contributors - {userItem?.organization?.name || process.env.REACT_APP_NAME}</span>
             <span className='text-muted mt-1 fw-bold fs-7'>Over {organization?.contributorTotal} {pluralName({ lengthItem: organization?.contributorTotal, word: 'members' })} </span>
           </h3>
-          <div
-            className='card-toolbar'
-            data-bs-toggle='tooltip'
-            data-bs-placement='top'
-            data-bs-trigger='hover'
-            title='Click to add a user'
-          >
-            <a
-              href='#'
-              className='btn btn-sm btn-light-primary'
-            // data-bs-toggle='modal'
-            // data-bs-target='#kt_modal_invite_friends'
+          <div className="d-flex align-items-center py-1">
+            <button type='button'
+              onClick={() => { setOpenModal(true) }}
+              className='btn btn-sm btn-flex btn-light-primary fw-bolder'
             >
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               New Contributor
-            </a>
+            </button>
           </div>
         </div>
         {/* end::Header */}
         {/* begin::Body */}
         <div className='card-body py-3'>
+
+          {/* <div className="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
+            <div className="d-flex flex-column text-light pe-0 pe-sm-10">
+              <span>The alert component can be used to highlight certain parts of your page for higher content visibility.</span>
+            </div>
+          </div> */}
+
           {/* begin::Table container */}
           <div className='table-responsive'>
             {/* begin::Table */}
@@ -170,6 +171,7 @@ const ContributorsTables: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
+      {openModal && (<InviteContributorModalForm organization={organization} setOpenModal={setOpenModal} />)}
     </>
   )
 }

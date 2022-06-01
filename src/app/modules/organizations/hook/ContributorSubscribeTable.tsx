@@ -3,6 +3,8 @@ import { KTSVG, toAbsoluteUrl } from '../../../../_metronic/helpers'
 // import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
 import { capitalizeFirstLetter } from '../../../utility/commons/capitalize-first-letter';
+import Swal from 'sweetalert2';
+import { DeleteContributorMutation } from '../core/_models';
 
 type Props = {
   subscribeUserItem?: OneContributorSubscribeResponse;
@@ -12,6 +14,31 @@ const ContributorSubscribeTable: React.FC<Props> = ({ subscribeUserItem }) => {
 
   const lastNameItem = String(subscribeUserItem?.profile?.lastName)
   const firstNameItem = String(subscribeUserItem?.profile?.firstName)
+
+  const actionDeleteMutation = DeleteContributorMutation({ onSuccess: () => { } });
+
+  const deleteItem = async (subscribeUserItem: any) => {
+    Swal.fire({
+      title: 'Delete?',
+      text: 'Are you sure you want to perform this action?',
+      confirmButtonText: 'Yes, Deleted',
+      cancelButtonText: 'No, Cancel',
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-outline-default',
+      },
+      showCancelButton: true,
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.value) {
+        //Envoyer la requet au serve
+        const payloadSave = { subscribe_uuid: subscribeUserItem?.uuid }
+        actionDeleteMutation.mutateAsync(payloadSave)
+      }
+    });
+
+  }
   return (
     <tr key={subscribeUserItem?.id}>
       <td>
@@ -47,15 +74,9 @@ const ContributorSubscribeTable: React.FC<Props> = ({ subscribeUserItem }) => {
       </td> */}
       <td>
         <div className='d-flex justify-content-end flex-shrink-0'>
-          <a
-            href='#'
-            className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-          >
-            <KTSVG
-              path='/media/icons/duotune/general/gen027.svg'
-              className='svg-icon-3'
-            />
-          </a>
+          <button onClick={() => { deleteItem(subscribeUserItem) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+            <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+          </button>
         </div>
       </td>
     </tr>

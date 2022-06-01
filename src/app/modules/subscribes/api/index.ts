@@ -23,6 +23,11 @@ export const getContributorsPaginateSubscribes = (options: {
   )
 }
 
+export const deleteOneSubscribe = (options: {subscribe_uuid: string}) => {
+  const {subscribe_uuid} = options
+  return dyaxios.delete(`/subscribes/delete/${subscribe_uuid}`)
+}
+
 export const getOne = (options: {userId: number; subscribableId: number}) => {
   const {userId, subscribableId} = options
   return dyaxios.get(`/subscribes/show?userId=${userId}&subscribableId=${subscribableId}`)

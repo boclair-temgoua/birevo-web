@@ -6,6 +6,8 @@ import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
 import { MenuTestPage } from '../pages/MenuTestPage'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { ApplicationIndex } from '../modules/applications/ApplicationIndex'
+import { BillingIndex } from '../modules/billing/BillingIndex'
+import { VoucherActivityShow } from '../modules/activity/VoucherActivityShow'
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
@@ -42,6 +44,8 @@ const PrivateRoutes = () => {
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='applications' element={<ApplicationIndex />} />
+        <Route path='activities/:voucher_uuid' element={<VoucherActivityShow />} />
+        <Route path='account/billing' element={<BillingIndex />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}

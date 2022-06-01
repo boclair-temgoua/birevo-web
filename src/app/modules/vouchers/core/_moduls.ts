@@ -21,7 +21,7 @@ export type OneVoucherResponse = {
   usedAt: Date
   uuid: string
   code: string
-  voucherType: string
+  voucherType: typeVoucher
   status: string
   name: string
   email: string
@@ -42,6 +42,12 @@ export type OneVoucherResponse = {
   currencyItem: {
     code: string
     name: string
+  }
+  organization: {
+    name: string
+    slug: string
+    uuid: string
+    color: string
   }
   profileOwner: {
     uuid: string
