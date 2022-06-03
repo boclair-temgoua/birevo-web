@@ -12,7 +12,7 @@ import { useQueryClient, useQuery } from 'react-query';
 import { useDebounce } from '../../utility/commons/useDebounce';
 import { getApplications } from './api/index';
 import { EmptyTable } from '../../utility/commons/EmptyTable';
-import { ApplicationTable } from './hook/ApplicationTable'
+import { ApplicationTableList } from './hook/ApplicationTableList'
 import { OneApplicationResponse } from './core/_moduls';
 import { useAuth } from '../auth'
 import { HelmetSite } from '../../utility/commons/helmet-site';
@@ -67,7 +67,7 @@ const ApplicationIndex: FC = () => {
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneApplicationResponse, index: number) => (
-            <ApplicationTable item={item} key={index} />
+            <ApplicationTableList item={item} key={index} />
           )))
 
   return (

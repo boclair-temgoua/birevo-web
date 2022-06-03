@@ -105,7 +105,7 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
                 <div className="fv-row fv-plugins-icon-container">
                   <SelectStatusInput
                     dataItem={optionsStatusOnline}
-                    className="form-control form-select select2-hidden-accessible"
+                    className="form-control"
                     labelFlex="Status"
                     register={register}
                     errors={errors}

@@ -1,4 +1,4 @@
-import {createOrUpdateOneApplication} from './../api/index'
+import {createOrUpdateOneApplication} from '../api/index'
 import {useQueryClient, useMutation} from 'react-query'
 import {deleteOneApplication} from '../api/index'
 import Swal from 'sweetalert2'
@@ -122,7 +122,6 @@ export const ApplicationDeleteMutation = ({
           onSuccess()
         }
       },
-      onError: async () => {},
     }
   )
 

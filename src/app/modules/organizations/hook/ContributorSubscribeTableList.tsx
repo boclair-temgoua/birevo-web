@@ -10,7 +10,7 @@ type Props = {
   subscribeUserItem?: OneContributorSubscribeResponse;
 }
 
-const ContributorSubscribeTable: React.FC<Props> = ({ subscribeUserItem }) => {
+const ContributorSubscribeTableList: React.FC<Props> = ({ subscribeUserItem }) => {
 
   const lastNameItem = String(subscribeUserItem?.profile?.lastName)
   const firstNameItem = String(subscribeUserItem?.profile?.firstName)
@@ -83,4 +83,4 @@ const ContributorSubscribeTable: React.FC<Props> = ({ subscribeUserItem }) => {
   )
 }
 
-export { ContributorSubscribeTable }
+export { ContributorSubscribeTableList }

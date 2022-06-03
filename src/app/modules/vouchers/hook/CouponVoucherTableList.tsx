@@ -7,13 +7,15 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { VoucherShowModal } from './VoucherShowModal';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {
   voucher?: OneVoucherResponse | any;
 }
 
 const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
+  const navigate = useNavigate();
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false)
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [copied, setCopied] = useState(false);
 
@@ -31,11 +33,9 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
               <img alt={`66`} src={toAbsoluteUrl(voucher?.qrCode?.image)} />
             </div>
             <div className='d-flex justify-content-start flex-column'>
-              <CopyToClipboard text={`${voucher?.code}`}>
-                <a href={void (0)} onClick={() => setCopied(true)} style={{ cursor: 'pointer' }} className='text-dark fw-bolder text-hover-primary fs-6'>
-                  {voucher?.code}
-                </a>
-              </CopyToClipboard>
+              <a href={void (0)} onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }} className='text-dark fw-bolder text-hover-primary fs-6'>
+                {voucher?.code}
+              </a>
               <span className='text-muted fw-bold text-muted d-block fs-7'>Coupon: <span className={`fw-bolder text-${voucher?.isExpired ? 'danger' : 'success'} my-6`}>{voucher?.isExpired ? 'expired' : 'valid'}</span></span>
             </div>
           </div>
@@ -43,12 +43,7 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
         <td className='text-dark fw-bolder text-hover-primary fs-6'>{voucher?.amount} {voucher?.currencyItem?.code}</td>
         <td>
           <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
-            {dayjs(voucher?.startedAt).format('DD/MM/YYYY')}
-          </a>
-        </td>
-        <td>
-          <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
-            {dayjs(voucher?.expiredAt).format('DD/MM/YYYY')}
+            {voucher?.expiredAt ? dayjs(voucher?.expiredAt).format('DD/MM/YYYY') : 'Never'}
           </a>
         </td>
         <td>
@@ -71,6 +66,10 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
               <KTSVG path={`/media/icons/duotune/${copied ? 'arrows/arr012' : 'general/gen054'}.svg`} className='svg-icon-3' />
             </button>
           </CopyToClipboard>
+          
+          <button onClick={() => { navigate(`/vouchers/coupons/edit/${voucher?.uuid}`, { replace: true }) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+            <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
+          </button>
           <Link to={`/activities/${voucher?.uuid}?type=${(voucher?.voucherType).toLowerCase()}&code=${voucher?.code}`} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen032.svg' className='svg-icon-3' />
           </Link>

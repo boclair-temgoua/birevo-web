@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { getOrganizationsUserSubscribe } from '../../subscribes/api/index';
 import { useDebounce } from '../../../utility/commons/useDebounce';
 import { OneSubscribeResponse } from '../../subscribes/core/_models';
-import { OrganizationSubscribeTable } from '../hook/OrganizationSubscribeTable';
+import { OrganizationSubscribeTableList } from '../hook/OrganizationSubscribeTableList';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { pluralName } from '../../../utility/commons/plural-name';
 
@@ -58,7 +58,7 @@ const OrganizationsTables: FC = () => {
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneSubscribeResponse, index: number) => (
-            <OrganizationSubscribeTable subscribeUserItem={item} key={index} />
+            <OrganizationSubscribeTableList subscribeUserItem={item} key={index} />
           )))
 
   return (

@@ -7,7 +7,7 @@ type Props = {
   subscribeUserItem?: OneSubscribeResponse;
 }
 
-const OrganizationSubscribeTable: React.FC<Props> = ({ subscribeUserItem }) => {
+const OrganizationSubscribeTableList: React.FC<Props> = ({ subscribeUserItem }) => {
 
   return (
     <tr key={subscribeUserItem?.id}>
@@ -64,4 +64,4 @@ const OrganizationSubscribeTable: React.FC<Props> = ({ subscribeUserItem }) => {
   )
 }
 
-export { OrganizationSubscribeTable }
+export { OrganizationSubscribeTableList }

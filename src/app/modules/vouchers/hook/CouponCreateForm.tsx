@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { OneVoucherResponse, VoucherFormRequest, optionsStatusVouchers } from '../core/_moduls';
 import { TextInput } from '../../forms/TextInput';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SelectCurrencyInput, SelectStatusInput } from '../../forms';
@@ -13,24 +13,7 @@ import { loadAllCurrencies } from '../../../redux/actions/currencyAction';
 import { TextareaInput } from '../../forms/TextareaInput';
 import { createOrUpdateOneCoupon } from '../api/index';
 
-
-const schemaCreate = yup
-  .object({
-    email: yup.string()
-      .email('Wrong email format')
-      .min(3, 'Minimum 3 symbols')
-      .max(50, 'Maximum 50 symbols')
-      .required('Email is required'),
-    name: yup.string().min(3, 'Minimum 3 symbols').required(),
-    status: yup.string().min(3, 'Minimum 3 symbols').required(),
-    currency: yup.string().min(3, 'Minimum 3 symbols').required(),
-    amount: yup.number().required(),
-    startedAt: yup.date().min(new Date()).required(),
-    expiredAt: yup.date().min(yup.ref('startedAt')).required(),
-  })
-  .required();
-
-const schemaUpdate = yup
+const schema = yup
   .object({
     email: yup.string()
       .email('Wrong email format')
@@ -45,14 +28,13 @@ const schemaUpdate = yup
   .required();
 
 export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ voucher }) => {
-  const isAddMode = !voucher;
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const { register, handleSubmit, reset,
     setValue,
-    formState: { errors, isSubmitted, isDirty, isValid }
-  } = useForm<VoucherFormRequest>({ resolver: isAddMode ? yupResolver(schemaCreate) : yupResolver(schemaUpdate), mode: "onChange" });
+    formState: { errors, isSubmitted }
+  } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
   const currencies: OneCurrencyResponse = useSelector((state: any) => state?.currencies?.currencies)
   const dispatch = useDispatch<any>()
@@ -66,7 +48,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
 
   useEffect(() => {
     if (voucher) {
-      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'startedAt', 'expiredAt'];
+      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'expiredAt'];
       fields?.forEach((field: any) => setValue(field, voucher[field]));
     }
   }, [voucher]);
@@ -74,14 +56,12 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
   const onSubmit = async (data: VoucherFormRequest) => {
     setLoading(true);
     setHasErrors(undefined)
-    const payload = { ...data }
+    const payload = { ...data, voucherId: voucher?.id, }
     setTimeout(async () => {
       await createOrUpdateOneCoupon(payload)
         .then((response) => {
           setHasErrors(false);
           setLoading(false)
-          reset()
-
         })
         .catch((error) => {
           setHasErrors(true)
@@ -95,7 +75,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
     <>
       <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
         <div className="row mb-6">
-          <div className="col-md-6 fv-row fv-plugins-icon-container">
+          <div className="col-md-4 fv-row fv-plugins-icon-container">
             <TextInput
               className="form-control form-control-lg"
               labelFlex="Name"
@@ -110,7 +90,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
               isRequired={true}
             />
           </div>
-          <div className="col-md-6 fv-row fv-plugins-icon-container">
+          <div className="col-md-4 fv-row fv-plugins-icon-container">
             <TextInput
               className="form-control form-control-lg"
               labelFlex="Email"
@@ -123,6 +103,20 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
               validation={{ required: true }}
               required="required"
               isRequired={true}
+            />
+          </div>
+          <div className="col-md-4 fv-row fv-plugins-icon-container">
+            <TextInput
+              className="form-control form-control-lg"
+              labelFlex="Expired date"
+              register={register}
+              errors={errors}
+              name="expiredAt"
+              type="date"
+              autoComplete="one"
+              placeholder=""
+              validation={{ required: false }}
+              isRequired={false}
             />
           </div>
         </div>
@@ -169,39 +163,6 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
             />
           </div>
         </div>
-        {isAddMode && (
-        <div className="row mb-5">
-          <div className="col-md-6 fv-row fv-plugins-icon-container">
-            <TextInput
-              className="form-control form-control-lg"
-              labelFlex="Started date"
-              register={register}
-              errors={errors}
-              name="startedAt"
-              type="date"
-              autoComplete="one"
-              placeholder=""
-              validation={{ required: true }}
-              required="required"
-              isRequired={true}
-            />
-          </div>
-          <div className="col-md-6 fv-row fv-plugins-icon-container">
-            <TextInput
-              className="form-control form-control-lg"
-              labelFlex="Expired date"
-              register={register}
-              errors={errors}
-              name="expiredAt"
-              type="date"
-              autoComplete="one"
-              placeholder=""
-              validation={{ required: true }}
-              required="required"
-              isRequired={true}
-            />
-          </div>
-        </div>)}
         <div className="d-flex flex-column mb-8">
           <TextareaInput
             label="Description"
@@ -216,7 +177,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
         <div className="text-center">
           <button type="button" onClick={() => { navigate('/vouchers/coupons') }} className="btn btn-light me-3">Cancel</button>
           <button type='submit' className='btn btn-lg btn-primary fw-bolder'
-            disabled={!isDirty || !isValid || isSubmitted}
+            disabled={isSubmitted}
           >
             {!loading && <span className='indicator-label'>Submit</span>}
             {loading && (

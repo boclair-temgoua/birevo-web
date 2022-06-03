@@ -86,8 +86,14 @@ const CouponsTables: FC = () => {
                   Create coupon
               </button>
             </div> */}
-            <button type='button'
+            {/* <button type='button'
               onClick={() => { navigate('/vouchers/coupons/create', { replace: true }) }}
+              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
+              <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+              Create coupon
+            </button> */}
+            <button type='button'
+              onClick={() => { setOpenModal(true) }}
               className="btn btn-sm btn-flex btn-light-primary fw-bolder">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               Create coupon
@@ -112,7 +118,6 @@ const CouponsTables: FC = () => {
                 <tr className='fw-bolder text-muted'>
                   <th className='min-w-140px'>Code</th>
                   <th className='min-w-120px'>Amount</th>
-                  <th className='min-w-120px'>Date Started</th>
                   <th className='min-w-120px'>Date Expired</th>
                   <th className='min-w-120px'>Status</th>
                   <th className='min-w-100px text-end'>Actions</th>

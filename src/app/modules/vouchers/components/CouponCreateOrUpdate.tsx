@@ -5,17 +5,19 @@ import { useNavigate, useParams } from 'react-router-dom';
 // import { OrganizationSubscribeTable } from '../hook/OrganizationSubscribeTable';
 import { CouponCreateForm } from '../hook/CouponCreateForm';
 import { useQuery } from 'react-query';
-import { getOneVoucher } from '../api/index';
+import { getOneByUuidVoucher } from '../api/index';
 import { OneVoucherResponse } from '../core/_moduls';
 
 const CouponCreateOrUpdate: FC = () => {
   const userItem = useAuth();
   const navigate = useNavigate();
-  const { voucher_code } = useParams<string>()
+  const { voucher_uuid } = useParams<string>()
 
-  const fetchOneVoucher = async (voucher_code: any) => await getOneVoucher({ code: voucher_code })
-  const { data } = useQuery(['voucher', voucher_code], () => fetchOneVoucher(voucher_code))
+  const fetchOneVoucher = async (voucher_uuid: any) => await getOneByUuidVoucher({ uuid: voucher_uuid })
+  const { data } = useQuery(['voucher', voucher_uuid], () => fetchOneVoucher(voucher_uuid))
   const voucher: OneVoucherResponse = data?.data
+
+  console.log('voucher ====>',voucher)
 
 
   return (

@@ -15,10 +15,11 @@ import { AccountHeader } from '../accounts/AccountHeader';
 import { Dropdown1 } from '../../../_metronic/partials/content/dropdown/Dropdown1';
 import { toAbsoluteUrl } from '../../../_metronic/helpers/AssetHelpers';
 import dayjs from 'dayjs';
+import ContentLoader from 'react-content-loader'
 
 
 
-const VoucherActivityShow: FC = () => {
+const VoucherActivityShow: FC = (props) => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-restricted-globals
   const { type, code } = queryString.parse(location.search);
@@ -27,47 +28,45 @@ const VoucherActivityShow: FC = () => {
   const intl = useIntl()
 
   const fetchOneVoucher = async (code: any) => await getOneVoucher({ code })
-  const { data } = useQuery(['voucher', code], () => fetchOneVoucher(code))
+  const { data } = useQuery(['voucher', code], () => fetchOneVoucher(code), {
+    refetchOnWindowFocus: false,
+  })
   const voucher: OneVoucherResponse = data?.data
 
   return (
     <>
-      <HelmetSite title={`${type || ''} - ${voucher?.organization?.name || process.env.REACT_APP_NAME}`} />
+      <HelmetSite title={`${type} - ${voucher?.organization?.name || process.env.REACT_APP_NAME}`} />
 
       <div className='card mb-5 mb-xl-10'>
         <div className='card-body pt-9 pb-0'>
           <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
             <div className='me-7 mb-4'>
               <div className='symbol symbol-100px symbol-lg-160px symbol-fixed position-relative'>
-                <img src={toAbsoluteUrl(voucher?.qrCode?.image)} alt={voucher?.code} />
+                <img src={toAbsoluteUrl(voucher?.qrCode?.image || '/media/misc/qr.png')} alt={voucher?.code} />
               </div>
             </div>
-
             <div className='flex-grow-1'>
               <div className='d-flex justify-content-between align-items-start flex-wrap mb-2'>
                 <div className='d-flex flex-column'>
                   <div className='d-flex align-items-center mb-2'>
-                    <a href={void (0)} className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
+                    <div className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
                       {voucher?.code}
-                    </a>
-                    <a
-                      href={void (0)}
+                    </div>
+                    <div
                       className={`btn btn-sm btn-info fw-bolder ms-2 fs-8 py-1 px-3`}
                     >
-                      {voucher?.amount} {voucher?.currencyItem?.name}
-                    </a>
-                    <a
-                      href={void (0)}
+                      {voucher?.amount} {voucher?.currencyItem?.code}
+                    </div>
+                    <div
                       className={`btn btn-sm btn-light-primary fw-bolder ms-2 fs-8 py-1 px-3`}
                     >
                       {voucher?.voucherType}
-                    </a>
-                    <a
-                      href={void (0)}
+                    </div>
+                    <div
                       className={`btn btn-sm btn-light-${voucher?.isExpired ? 'danger' : 'success'} fw-bolder ms-2 fs-8 py-1 px-3`}
                     >
                       {voucher?.isExpired ? 'Expired' : 'Valid'}
-                    </a>
+                    </div>
                     {/* <a href='#'>
                       <KTSVG
                         path='/media/icons/duotune/general/gen026.svg'
@@ -85,8 +84,7 @@ const VoucherActivityShow: FC = () => {
                   </div>
 
                   <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                    <a
-                      href={void (0)}
+                    <div
                       className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
                     >
                       <KTSVG
@@ -94,9 +92,8 @@ const VoucherActivityShow: FC = () => {
                         className='svg-icon-4 me-1'
                       />
                       {voucher?.organization?.name}
-                    </a>
-                    <a
-                      href={void (0)}
+                    </div>
+                    <div
                       className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
                     >
                       <KTSVG
@@ -104,20 +101,10 @@ const VoucherActivityShow: FC = () => {
                         className='svg-icon-4 me-1'
                       />
                       {voucher?.email}
-                    </a>
+                    </div>
                   </div>
                   <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                    <a
-                      href={void (0)}
-                      className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen014.svg'
-                        className='svg-icon-4 me-1'
-                      />
-                      <span className='badge badge-light-danger'>{dayjs(voucher?.startedAt).format('DD/MM/YYYY')}</span>
-                    </a>
-                    <a href={void (0)}
+                    <div
                       className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
                     >
                       <KTSVG
@@ -126,8 +113,8 @@ const VoucherActivityShow: FC = () => {
                       />
                       <span className='badge badge-light-success'>{dayjs(voucher?.expiredAt).format('DD/MM/YYYY')}</span>
 
-                    </a>
-                    <a href={void (0)}
+                    </div>
+                    <div
                       className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
                     >
                       <KTSVG
@@ -143,7 +130,7 @@ const VoucherActivityShow: FC = () => {
                       {voucher?.status === 'USED' && (
                         <span className='badge badge-light-info'>{voucher?.status}</span>
                       )}
-                    </a>
+                    </div>
                   </div>
                 </div>
 

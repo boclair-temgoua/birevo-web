@@ -52,7 +52,7 @@ const VouchersPage = () => (
         }
       />
       <Route
-        path='coupons/:voucher_code/edit'
+        path='coupons/edit/:voucher_uuid'
         element={
           <>
             <PageTitle breadcrumbs={vouchersBreadCrumbs}>Coupon edit</PageTitle>

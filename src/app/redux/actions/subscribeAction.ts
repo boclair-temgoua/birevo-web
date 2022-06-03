@@ -8,6 +8,7 @@ import {
 // import 'react-toastify/dist/ReactToastify.css'
 import Swal from 'sweetalert2'
 import {getOrganizationsUserSubscribe} from '../../modules/subscribes/api'
+import {getContributorsPaginateSubscribes} from '../../modules/subscribes/api/index'
 
 // { type: 'increase-counter' }), []
 export const loadShowSubscribe =
@@ -39,16 +40,16 @@ export const loadOrganizationsUserSubscribes =
 export const loadUserNavContributorsSubscribes =
   (options: {is_paginate: boolean; limit: number; page: number}) => async (dispatch: any) => {
     const {is_paginate, limit, page} = {...options}
-    // await getContributorsPaginateSubscribes({
-    //     is_paginate,
-    //     limit,
-    //     page,
-    // })
-    //     .then((response) =>
-    //         dispatch({
-    //             type: GET_USER_NAV_SUBSCRIBE,
-    //             payload: response.data,
-    //         }),
-    //     )
-    //     .catch((error) => console.log('Error ---->', error.message));
+    await getContributorsPaginateSubscribes({
+      is_paginate,
+      limit,
+      page,
+    })
+      .then((response) =>
+        dispatch({
+          type: GET_USER_NAV_SUBSCRIBE,
+          payload: response.data,
+        })
+      )
+      .catch((error) => console.log('Error ---->', error.message))
   }

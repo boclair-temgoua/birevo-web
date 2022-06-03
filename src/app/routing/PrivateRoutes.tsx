@@ -7,6 +7,7 @@ import { MenuTestPage } from '../pages/MenuTestPage'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { ApplicationIndex } from '../modules/applications/ApplicationIndex'
 import { BillingIndex } from '../modules/billing/BillingIndex'
+import { NotificationIndex } from '../modules/notification/NotificationIndex'
 import { VoucherActivityShow } from '../modules/activity/VoucherActivityShow'
 
 const PrivateRoutes = () => {
@@ -46,6 +47,7 @@ const PrivateRoutes = () => {
         <Route path='applications' element={<ApplicationIndex />} />
         <Route path='activities/:voucher_uuid' element={<VoucherActivityShow />} />
         <Route path='account/billing' element={<BillingIndex />} />
+        <Route path='notifications' element={<NotificationIndex />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}

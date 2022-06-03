@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { HelmetSite } from '../../../utility/commons/helmet-site'
 import { useAuth } from '../../auth';
-import { ContributorSubscribeTable } from '../hook/ContributorSubscribeTable'
+import { ContributorSubscribeTableList } from '../hook/ContributorSubscribeTableList'
 import { useSelector, useDispatch } from 'react-redux';
 import { loadShowOrganization } from '../../../redux/actions/organizationAction';
 import { KTSVG } from '../../../../_metronic/helpers';
@@ -78,7 +78,7 @@ const ContributorsTables: FC = () => {
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneContributorSubscribeResponse, index: number) => (
-            <ContributorSubscribeTable subscribeUserItem={item} key={index} />
+            <ContributorSubscribeTableList subscribeUserItem={item} key={index} />
           )))
 
   return (

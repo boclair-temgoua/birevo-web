@@ -109,7 +109,6 @@ const VouchersTables: FC = () => {
                 <tr className='fw-bolder text-muted'>
                   <th className='min-w-140px'>Code</th>
                   <th className='min-w-120px'>Amount</th>
-                  <th className='min-w-120px'>Date Started</th>
                   <th className='min-w-120px'>Date Expired</th>
                   <th className='min-w-120px'>Status</th>
                   <th className='min-w-100px text-end'>Actions</th>

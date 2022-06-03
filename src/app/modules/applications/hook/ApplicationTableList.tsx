@@ -13,7 +13,7 @@ type Props = {
   item?: OneApplicationResponse;
 }
 
-const ApplicationTable: React.FC<Props> = ({ item }) => {
+const ApplicationTableList: React.FC<Props> = ({ item }) => {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [openShowModal, setOpenShowModal] = useState<boolean>(false)
 
@@ -81,4 +81,4 @@ const ApplicationTable: React.FC<Props> = ({ item }) => {
   )
 }
 
-export { ApplicationTable }
+export { ApplicationTableList }

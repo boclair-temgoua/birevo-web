@@ -5,12 +5,14 @@ export const optionsStatusVouchers = [
 ]
 
 export type typeVoucher = 'COUPON' | 'VOUCHER'
+export type statusOnline = 'ONLINE' | 'OFFLINE' | 'TEST'
+export type statusVoucher = 'ACTIVE' | 'PENDING' | 'USED'
 
 export type VoucherFormRequest = {
   email: string
   name: string
   currency: string
-  startedAt: Date
+  status?: statusVoucher
   expiredAt: Date
   amount: number
   description: Date
@@ -22,6 +24,7 @@ export type OneVoucherResponse = {
   uuid: string
   code: string
   voucherType: typeVoucher
+  statusOnline: statusOnline
   status: string
   name: string
   email: string
@@ -30,7 +33,6 @@ export type OneVoucherResponse = {
   amount: number
   percent: number
   isExpired: boolean
-  startedAt: Date
   expiredAt: Date
   createdAt: Date
   updatedAt: Date

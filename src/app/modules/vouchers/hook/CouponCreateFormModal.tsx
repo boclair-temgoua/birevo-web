@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
-import { OneVoucherResponse, VoucherFormRequest } from '../core/_moduls';
+import { OneVoucherResponse, VoucherFormRequest, optionsStatusVouchers } from '../core/_moduls';
 import { TextInput } from '../../forms/TextInput';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
@@ -11,10 +11,11 @@ import { OneCurrencyResponse } from '../../currency/types/index';
 import { loadAllCurrencies } from '../../../redux/actions/currencyAction';
 import { TextareaInput } from '../../forms/TextareaInput';
 import { createOrUpdateOneCoupon } from '../api/index';
+import { SelectStatusInput } from '../../forms/SelectStatusInput';
 
 interface Props {
   setOpenModal: any,
-  voucherItem?: OneVoucherResponse
+  voucherItem?: OneVoucherResponse | any
 }
 
 const schema = yup
@@ -35,7 +36,7 @@ const schema = yup
 export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { register, handleSubmit, reset,
+  const { register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
@@ -48,6 +49,13 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherIt
     }
     loadItems()
   }, [])
+
+  useEffect(() => {
+    if (voucherItem) {
+      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'startedAt', 'expiredAt'];
+      fields?.forEach((field: any) => setValue(field, voucherItem[field]));
+    }
+  }, [voucherItem]);
 
   const onSubmit = async (data: VoucherFormRequest) => {
     setLoading(true);
@@ -79,31 +87,26 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherIt
         aria-modal='true'
       >
         {/* begin::Modal dialog */}
-        <div className='modal-dialog modal-dialog-centered mw-650px modal-dialog-scrollable'>
+        <div className='modal-dialog modal-dialog-centered mw-750px modal-dialog-scrollable'>
           {/* begin::Modal content */}
           <div className='modal-content'>
-            <div className="modal-header">
-              <h5 className="modal-title">Create coupon</h5>
-              <div
-                onClick={() => { setOpenModal(false) }}
-                className="btn btn-icon btn-sm btn-active-light-primary ms-2"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
+            <div className="modal-header pb-0 border-0 justify-content-end">
+              <div onClick={() => { setOpenModal(false) }} className="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal">
                 <KTSVG
                   path="/media/icons/duotune/arrows/arr061.svg"
                   className="svg-icon svg-icon-2x"
                 />
               </div>
             </div>
-            {/* <UserEditModalHeader /> */}
             {/* begin::Modal body */}
             <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-              <p>{voucherItem?.code}</p>
+              <div className="mb-13 text-center">
+                <h1 className="mb-3">Create New Coupon {voucherItem?.code}</h1>
+              </div>
               {/* <UserEditModalFormWrapper /> */}
               <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
                 <div className="row mb-6">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <TextInput
                       className="form-control form-control-lg"
                       labelFlex="Name"
@@ -118,7 +121,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherIt
                       isRequired={true}
                     />
                   </div>
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <TextInput
                       className="form-control form-control-lg"
                       labelFlex="Email"
@@ -133,9 +136,23 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherIt
                       isRequired={true}
                     />
                   </div>
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                    <TextInput
+                      className="form-control form-control-lg"
+                      labelFlex="Expired date"
+                      register={register}
+                      errors={errors}
+                      name="expiredAt"
+                      type="date"
+                      autoComplete="one"
+                      placeholder=""
+                      validation={{ required: false }}
+                      isRequired={false}
+                    />
+                  </div>
                 </div>
                 <div className="row mb-6">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <TextInput
                       className="form-control form-control-lg"
                       labelFlex="Amount"
@@ -150,7 +167,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherIt
                       isRequired={true}
                     />
                   </div>
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <SelectCurrencyInput
                       dataItem={currencies}
                       className="form-control form-select select2-hidden-accessible"
@@ -163,36 +180,17 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherIt
                       required="required"
                     />
                   </div>
-                </div>
-                <div className="row mb-5">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Started date"
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                    <SelectStatusInput
+                      dataItem={optionsStatusVouchers}
+                      className="form-control form-select select2-hidden-accessible"
+                      labelFlex="Status"
                       register={register}
                       errors={errors}
-                      name="startedAt"
-                      type="date"
-                      autoComplete="one"
-                      placeholder=""
+                      name="status"
                       validation={{ required: true }}
-                      required="required"
                       isRequired={true}
-                    />
-                  </div>
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Expired date"
-                      register={register}
-                      errors={errors}
-                      name="expiredAt"
-                      type="date"
-                      autoComplete="one"
-                      placeholder=""
-                      validation={{ required: true }}
                       required="required"
-                      isRequired={true}
                     />
                   </div>
                 </div>
@@ -208,7 +206,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherIt
                   />
                 </div>
                 <div className="text-center">
-                  <button type="button" onClick={() => { setOpenModal(false) }} className="btn btn-light me-3">Cancel</button>
+                  <button type="button" className="btn btn-light me-3">Cancel</button>
                   <button type='submit' className='btn btn-lg btn-primary fw-bolder'
                     disabled={!isDirty || !isValid || isSubmitted}
                   >

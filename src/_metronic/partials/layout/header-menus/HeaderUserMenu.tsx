@@ -27,7 +27,7 @@ const HeaderUserMenu: FC = () => {
   const joinOrganization = async (subscribe: OneSubscribeResponse) => {
     try {
       const { data } = await updateOrganizationToUser({ organizationId: subscribe?.organization?.id });
-      if (data) { navigate(`/`, { replace: true }); }
+      if (data) { navigate(`/dashboard`, { replace: true }); }
       window.location.reload();
       return data;
     } catch (error) {
