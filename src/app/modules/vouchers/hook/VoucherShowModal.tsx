@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
-import { OneVoucherResponse, VoucherFormRequest } from '../core/_moduls';
+import { OneVoucherResponse, VoucherFormRequest, CouponCreateMutation } from '../core/_moduls';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import { useQuery } from 'react-query';
 import { getOneVoucher } from '../api';
 import dayjs from 'dayjs';
 import { useForm } from "react-hook-form";
 import ContentLoader from 'react-content-loader';
-import { createOrUpdateOneCoupon } from '../api/index';
+import Swal from 'sweetalert2';
 interface Props {
   setOpenModal: any,
   voucherItem: OneVoucherResponse
@@ -26,30 +26,42 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
   })
   const voucher: OneVoucherResponse = data?.data
 
+  const saveMutation = CouponCreateMutation({
+    onSuccess: () => {
+      setOpenModal(false);
+      setHasErrors(false);
+      setLoading(false)
+    },
+  });
 
-  const onSubmit = async (data: VoucherFormRequest) => {
+
+  const onSubmit = (data: any) => {
     setLoading(true);
     setHasErrors(undefined)
-    const payload = {
-      ...data,
-      voucherId: voucherItem?.id,
-      currency: voucherItem?.currency,
-      amount: voucherItem?.amount
-    }
     setTimeout(async () => {
-      await createOrUpdateOneCoupon(payload)
-        .then((response) => {
-          setHasErrors(false);
-          setLoading(false)
-
-        })
-        .catch((error) => {
-          setHasErrors(true)
-          setLoading(false)
-          setHasErrors(error.response.data.message);
-        });
+      const payload = {
+        ...data,
+        voucherId: voucherItem?.id,
+        currency: voucherItem?.currency,
+        amount: voucherItem?.amount
+      }
+      saveMutation.mutateAsync(payload)
+      Swal.fire({
+        title: 'Success',
+        icon: 'success',
+        text: 'Status coupon has been updated',
+        confirmButtonText: 'Ok! Close',
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'btn btn-primary',
+        },
+        showCancelButton: false,
+        showClass: {
+          popup: 'animate__animated animate__bounceIn',
+        },
+      })
     }, 1000)
-  }
+  };
 
   return (
     <>
@@ -73,7 +85,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
               </div>
             </div>
             <div className="modal-body scroll-y pt-0 pb-15">
-              <div className="mw-lg-600px mx-auto">
+              <div className="mw-lg-800px mx-auto">
                 <div className="mb-13 text-center">
                   <h1 className="mb-3">{voucher?.voucherType}</h1>
                 </div>
@@ -95,9 +107,6 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                       <div className={`btn btn-sm btn-light-${voucher?.isExpired ? 'danger' : 'success'} fw-bolder ms-2 fs-8 py-1 px-1`}>
                         {voucher?.isExpired ? 'Expired' : 'Valid'}
                       </div>
-
-
-
                       {voucher?.status === 'ACTIVE' && (
                         <div className='btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-1'>
                           {voucher?.status === 'ACTIVE' && (voucher?.status)}
@@ -149,33 +158,39 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
 
                     <div className='d-flex flex-column flex-grow-1 pe-8'>
                       <div className='d-flex flex-wrap'>
-                        <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
+                        <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
                           <div className='d-flex align-items-center'>
                             <div className='fs-2 fw-bolder'>{voucher?.amount} {voucher?.currencyItem?.code}</div>
                           </div>
-
                           <div className='fw-bold fs-6 text-gray-400'>Amount</div>
                         </div>
 
-                        <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
+                        <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
                           <div className='d-flex align-items-center'>
                             <div className='fs-2 fw-bolder'>{voucher?.activity?.view}</div>
                           </div>
-
                           <div className='fw-bold fs-6 text-gray-400'>Views</div>
                         </div>
+
+                        {voucher?.percent && (
+                          <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
+                            <div className='d-flex align-items-center'>
+                              <div className='fs-2 fw-bolder'>{voucher?.percent} %</div>
+                            </div>
+                            <div className='fw-bold fs-6 text-gray-400'>Percents</div>
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
                       <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
-                        {voucher?.organization?.name} - {voucher?.email}
+                       {voucher?.organization?.name} - {voucher?.email}
                       </div>
                     </div>
-
                   </div>
                 </div>
 
-                {(voucher?.status !== 'USED' && voucher?.status !== 'PENDING') && voucher?.voucherType === 'COUPON'  && !voucher?.isExpired && (
+                {(voucher?.status !== 'USED' && voucher?.status !== 'PENDING') && voucher?.voucherType === 'COUPON' && !voucher?.isExpired && (
                   <form id="kt_account_deactivate_form" className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
                     <input type="hidden"  {...register("status", { value: "USED" })} />
                     <div className='d-flex flex-wrap justify-content-center pb-lg-0'>

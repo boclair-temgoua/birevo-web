@@ -52,84 +52,88 @@ const VoucherActivityShow: FC = (props) => {
                     <div className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
                       {voucher?.code}
                     </div>
-                    <div
-                      className={`btn btn-sm btn-info fw-bolder ms-2 fs-8 py-1 px-3`}
-                    >
-                      {voucher?.amount} {voucher?.currencyItem?.code}
-                    </div>
-                    <div
-                      className={`btn btn-sm btn-light-primary fw-bolder ms-2 fs-8 py-1 px-3`}
-                    >
-                      {voucher?.voucherType}
-                    </div>
-                    <div
-                      className={`btn btn-sm btn-light-${voucher?.isExpired ? 'danger' : 'success'} fw-bolder ms-2 fs-8 py-1 px-3`}
-                    >
+                    <div className={`btn btn-sm btn-light-${voucher?.isExpired ? 'danger' : 'success'} fw-bolder ms-2 fs-8 py-1 px-1`}>
                       {voucher?.isExpired ? 'Expired' : 'Valid'}
                     </div>
-                    {/* <a href='#'>
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen026.svg'
-                        className='svg-icon-1 svg-icon-primary'
-                      />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3'
-                      data-bs-toggle='modal'
-                      data-bs-target='#kt_modal_upgrade_plan'
-                    >
-                      Upgrade to Pro
-                    </a> */}
+                    {voucher?.status === 'ACTIVE' && (
+                      <div className='btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-1'>
+                        {voucher?.status === 'ACTIVE' && (voucher?.status)}
+                      </div>
+                    )}
+                    {voucher?.status === 'PENDING' && (
+                      <div className='btn btn-sm btn-light-danger fw-bolder ms-2 fs-8 py-1 px-1'>
+                        {voucher?.status === 'PENDING' && (voucher?.status)}
+                      </div>
+                    )}
+                    {voucher?.status === 'USED' && (
+                      <div className='btn btn-sm btn-light-info fw-bolder ms-2 fs-8 py-1 px-1'>
+                        {voucher?.status === 'USED' && (voucher?.status)}
+                      </div>
+                    )}
+
+                    {voucher?.statusOnline === 'ONLINE' && (
+                      <div className='btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-1'>
+                        {voucher?.statusOnline === 'ONLINE' && (voucher?.statusOnline)}
+                      </div>
+                    )}
+                    {voucher?.statusOnline === 'OFFLINE' && (
+                      <div className='btn btn-sm btn-light-danger fw-bolder ms-2 fs-8 py-1 px-1'>
+                        {voucher?.statusOnline === 'OFFLINE' && (voucher?.statusOnline)}
+                      </div>
+                    )}
                   </div>
 
                   <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                    <div
-                      className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen001.svg'
-                        className='svg-icon-4 me-1'
-                      />
-                      {voucher?.organization?.name}
-                    </div>
-                    <div
-                      className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/communication/com011.svg'
-                        className='svg-icon-4 me-1'
-                      />
-                      {voucher?.email}
+                    {voucher?.expiredAt && (
+                      <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-4 me-1'
+                        />
+                        Expired date: <span className='badge badge-light-success'>{dayjs(voucher?.expiredAt).format('DD/MM/YYYY')}</span>
+                      </div>
+                    )}
+                    {voucher?.usedAt && (
+                      <div className='d-flex align-items-center text-gray-400 text-hover-danger me-5 mb-2'>
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-4 me-1'
+                        />
+                        <span className='badge badge-light-danger'> {dayjs(voucher?.usedAt).format('DD/MM/YYYY')}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className='d-flex flex-column flex-grow-1 pe-8'>
+                    <div className='d-flex flex-wrap'>
+                      <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
+                        <div className='d-flex align-items-center'>
+                          <div className='fs-2 fw-bolder'>{voucher?.amount} {voucher?.currencyItem?.code}</div>
+                        </div>
+
+                        <div className='fw-bold fs-6 text-gray-400'>Amount</div>
+                      </div>
+
+                      <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
+                        <div className='d-flex align-items-center'>
+                          <div className='fs-2 fw-bolder'>{voucher?.activity?.view}</div>
+                        </div>
+
+                        <div className='fw-bold fs-6 text-gray-400'>Views</div>
+                      </div>
+                      {voucher?.percent && (
+                        <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
+                          <div className='d-flex align-items-center'>
+                            <div className='fs-2 fw-bolder'>{voucher?.percent} %</div>
+                          </div>
+                          <div className='fw-bold fs-6 text-gray-400'>Percents</div>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                    <div
-                      className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen014.svg'
-                        className='svg-icon-4 me-1'
-                      />
-                      <span className='badge badge-light-success'>{dayjs(voucher?.expiredAt).format('DD/MM/YYYY')}</span>
-
-                    </div>
-                    <div
-                      className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen015.svg'
-                        className='svg-icon-4 me-1'
-                      />
-                      {voucher?.status === 'ACTIVE' && (
-                        <span className='badge badge-light-success'>{voucher?.status}</span>
-                      )}
-                      {voucher?.status === 'PENDING' && (
-                        <span className='badge badge-light-danger'>{voucher?.status}</span>
-                      )}
-                      {voucher?.status === 'USED' && (
-                        <span className='badge badge-light-info'>{voucher?.status}</span>
-                      )}
+                    <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
+                      {voucher?.organization?.name} - {voucher?.email}
                     </div>
                   </div>
                 </div>

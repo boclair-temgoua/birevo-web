@@ -15,12 +15,6 @@ import { createOrUpdateOneCoupon } from '../api/index';
 
 const schema = yup
   .object({
-    email: yup.string()
-      .email('Wrong email format')
-      .min(3, 'Minimum 3 symbols')
-      .max(50, 'Maximum 50 symbols')
-      .required('Email is required'),
-    name: yup.string().min(3, 'Minimum 3 symbols').required(),
     status: yup.string().min(3, 'Minimum 3 symbols').required(),
     currency: yup.string().min(3, 'Minimum 3 symbols').required(),
     amount: yup.number().required(),
@@ -85,9 +79,8 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
               type="text"
               autoComplete="one"
               placeholder="Enter name"
-              validation={{ required: true }}
-              required="required"
-              isRequired={true}
+              validation={{ required: false }}
+              isRequired={false}
             />
           </div>
           <div className="col-md-4 fv-row fv-plugins-icon-container">
@@ -100,9 +93,8 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
               type="email"
               autoComplete="one"
               placeholder="Enter email"
-              validation={{ required: true }}
-              required="required"
-              isRequired={true}
+              validation={{ required: false }}
+              isRequired={false}
             />
           </div>
           <div className="col-md-4 fv-row fv-plugins-icon-container">

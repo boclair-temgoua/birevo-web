@@ -12,8 +12,10 @@ import { getVouchers } from '../api';
 import { OneVoucherResponse } from '../core/_moduls';
 import { CouponVoucherTableList } from '../hook/CouponVoucherTableList';
 import { SearchInput } from '../../forms/SearchInput';
+import { VoucherCreateFormModal } from '../hook/VoucherCreateFormModal';
 
 const VouchersTables: FC = () => {
+  const [openModal, setOpenModal] = useState<boolean>(false)
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
@@ -27,7 +29,7 @@ const VouchersTables: FC = () => {
     getVouchers({
       filterQuery: debouncedFilter,
       type: 'VOUCHER',
-      limit: 10,
+      limit: 13,
       page: Number(pageItem || 1)
     })
   const {
@@ -73,22 +75,13 @@ const VouchersTables: FC = () => {
             <span className='card-label fw-bolder fs-3 mb-1'>Vouchers - {userItem?.organization?.name}</span>
             {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
-          <div
-            className='card-toolbar'
-            data-bs-toggle='tooltip'
-            data-bs-placement='top'
-            data-bs-trigger='hover'
-            title='Click to add a user'
-          >
-            <a
-              href='#'
-              className='btn btn-sm btn-light-primary'
-            // data-bs-toggle='modal'
-            // data-bs-target='#kt_modal_invite_friends'
-            >
+          <div className="d-flex align-items-center py-1">
+            <button type='button'
+              onClick={() => { setOpenModal(true) }}
+              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-              New Voucher
-            </a>
+              Create voucher
+            </button>
           </div>
         </div>
 
@@ -109,8 +102,8 @@ const VouchersTables: FC = () => {
                 <tr className='fw-bolder text-muted'>
                   <th className='min-w-140px'>Code</th>
                   <th className='min-w-120px'>Amount</th>
-                  <th className='min-w-120px'>Date Expired</th>
                   <th className='min-w-120px'>Status</th>
+                  <th className='min-w-120px'>Status Online</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>
               </thead>
@@ -160,6 +153,7 @@ const VouchersTables: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
+      {openModal && (<VoucherCreateFormModal setOpenModal={setOpenModal} />)}
     </>
   )
 }

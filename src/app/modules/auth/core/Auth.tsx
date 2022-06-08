@@ -22,6 +22,8 @@ interface AuthUserContextProps {
   organizationTotal: number;
   projectTotal: number;
   profile: {} | any | undefined;
+  billing: {} | any | undefined;
+  currency: {} | any | undefined;
   organization: {} | any | undefined;
   subscribeUser: {} | any | undefined;
   logout: () => void

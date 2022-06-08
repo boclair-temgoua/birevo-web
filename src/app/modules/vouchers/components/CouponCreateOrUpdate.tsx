@@ -16,13 +16,10 @@ const CouponCreateOrUpdate: FC = () => {
   const fetchOneVoucher = async (voucher_uuid: any) => await getOneByUuidVoucher({ uuid: voucher_uuid })
   const { data } = useQuery(['voucher', voucher_uuid], () => fetchOneVoucher(voucher_uuid))
   const voucher: OneVoucherResponse = data?.data
-
-  console.log('voucher ====>',voucher)
-
-
+  
   return (
     <>
-      <HelmetSite title={`Create coupon - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      <HelmetSite title={`Update coupon - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>

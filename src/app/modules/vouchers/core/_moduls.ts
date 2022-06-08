@@ -1,7 +1,10 @@
+import {useQueryClient, useMutation} from 'react-query'
+import {createOrUpdateOneCoupon, createOrUpdateOneVoucher} from '../api/index'
+import Swal from 'sweetalert2'
 export const optionsStatusVouchers = [
   {id: 1, name: 'ACTIVE'},
   {id: 2, name: 'PENDING'},
-  {id: 3, name: 'USED'},
+  // {id: 3, name: 'USED'},
 ]
 
 export type typeVoucher = 'COUPON' | 'VOUCHER'
@@ -72,4 +75,74 @@ export type OneVoucherResponse = {
     userId: number
     createdAt: Date
   }
+}
+
+export const CouponCreateMutation = ({
+  onSuccess,
+}: {
+  onSuccess?: () => void
+} = {}) => {
+  const queryKey = ['voucherCoupons']
+  const queryClient = useQueryClient()
+  const saveMutation = useMutation(
+    async ({...restPayloadProperties}: any): Promise<VoucherFormRequest> => {
+      const {data} = await createOrUpdateOneCoupon({
+        ...restPayloadProperties,
+      })
+      return data.results
+    },
+    {
+      onMutate: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+    }
+  )
+
+  return saveMutation
+}
+
+export const VoucherCreateMutation = ({
+  onSuccess,
+}: {
+  onSuccess?: () => void
+} = {}) => {
+  const queryKey = ['voucherVouchers']
+  const queryClient = useQueryClient()
+  const saveMutation = useMutation(
+    async ({...restPayloadProperties}: any): Promise<VoucherFormRequest> => {
+      const {data} = await createOrUpdateOneVoucher({
+        ...restPayloadProperties,
+      })
+      return data.results
+    },
+    {
+      onMutate: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+    }
+  )
+
+  return saveMutation
 }

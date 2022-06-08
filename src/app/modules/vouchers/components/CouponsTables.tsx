@@ -16,7 +16,7 @@ import { CouponCreateFormModal } from '../hook/CouponCreateFormModal';
 
 const CouponsTables: FC = () => {
   const navigate = useNavigate();
-  const [openModal, setOpenModal] = useState<boolean>(false)
+  const [openCreateOrUpdateModal, setOpenCreateOrUpdateModal] = useState<boolean>(false)
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
@@ -30,7 +30,7 @@ const CouponsTables: FC = () => {
     getVouchers({
       filterQuery: debouncedFilter,
       type: 'COUPON',
-      limit: 10,
+      limit: 13,
       page: Number(pageItem || 1)
     })
   const {
@@ -93,7 +93,7 @@ const CouponsTables: FC = () => {
               Create coupon
             </button> */}
             <button type='button'
-              onClick={() => { setOpenModal(true) }}
+              onClick={() => { setOpenCreateOrUpdateModal(true) }}
               className="btn btn-sm btn-flex btn-light-primary fw-bolder">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               Create coupon
@@ -118,8 +118,8 @@ const CouponsTables: FC = () => {
                 <tr className='fw-bolder text-muted'>
                   <th className='min-w-140px'>Code</th>
                   <th className='min-w-120px'>Amount</th>
-                  <th className='min-w-120px'>Date Expired</th>
                   <th className='min-w-120px'>Status</th>
+                  <th className='min-w-120px'>Status Online</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>
               </thead>
@@ -169,7 +169,7 @@ const CouponsTables: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
-      {openModal && (<CouponCreateFormModal setOpenModal={setOpenModal} />)}
+      {openCreateOrUpdateModal && (<CouponCreateFormModal setOpenCreateOrUpdateModal={setOpenCreateOrUpdateModal} />)}
     </>
   )
 }
