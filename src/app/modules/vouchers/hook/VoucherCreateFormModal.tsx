@@ -197,6 +197,10 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
                       errors={errors}
                       name="amount"
                       type="number"
+                      pattern="[0-9]*"
+                      min="1"
+                      step="1"
+                      inputMode="numeric"
                       autoComplete="off"
                       placeholder="Amount voucher"
                       validation={{ required: true }}
@@ -235,19 +239,19 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
                   </div> */}
                 </div>
                 <div className="d-flex flex-column mb-8">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Name"
-                      register={register}
-                      errors={errors}
-                      name="name"
-                      type="text"
-                      autoComplete="one"
-                      placeholder="Enter name or title (optional)"
-                      validation={{ required: false }}
-                      isRequired={false}
-                    />
-                  </div>
+                  <TextInput
+                    className="form-control form-control-lg"
+                    labelFlex="Name"
+                    register={register}
+                    errors={errors}
+                    name="name"
+                    type="text"
+                    autoComplete="one"
+                    placeholder="Enter name or title (optional)"
+                    validation={{ required: false }}
+                    isRequired={false}
+                  />
+                </div>
                 <div className="d-flex flex-column mb-8">
                   <TextareaInput
                     label="Description"

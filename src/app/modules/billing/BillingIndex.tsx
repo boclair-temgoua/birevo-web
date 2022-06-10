@@ -53,7 +53,7 @@ const BillingIndex: FC = () => {
           <div className="d-flex flex-wrap justify-content-between pb-6">
             <div className="d-flex flex-wrap">
               <span className="fs-1x fw-bolder text-gray-800 lh-1">
-                <h1 data-kt-countup="true" data-kt-countup-value={Math.abs(billingAmount)} data-kt-countup-prefix={userItem?.currency?.code} className="counted">{billingAmount > 0 && '+'} {Number(((Math.abs(billingAmount)) * (userItem?.currency?.amount)) || '0.00').toFixed(2).toLocaleString()} {userItem?.currency?.code}</h1>
+                <h1 data-kt-countup="true" data-kt-countup-value={Math.abs(billingAmount) || '0'} data-kt-countup-prefix={userItem?.currency?.code} className="counted">{billingAmount > 0 && '+'} {Number(((Math.abs(billingAmount)) * (userItem?.currency?.amount)) || '0.00').toFixed(2).toLocaleString()} {userItem?.currency?.code}</h1>
               </span>
             </div>
             <button onClick={() => handlePaymentMake()} className="btn btn-primary px-6 flex-shrink-0 align-self-center">Make a payment</button>

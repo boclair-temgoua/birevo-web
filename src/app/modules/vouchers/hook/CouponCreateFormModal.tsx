@@ -28,7 +28,7 @@ const schema = yup
 export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateModal, voucherItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { register, handleSubmit, reset,setValue,
+  const { register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
@@ -51,7 +51,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
 
   const saveMutation = CouponCreateMutation({
     onSuccess: () => {
-      setOpenCreateOrUpdateModal(false)
+      // setOpenCreateOrUpdateModal(false)
       setHasErrors(false);
       setLoading(false)
     },
@@ -72,43 +72,6 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
 
   };
 
-  // const saveMutation = CouponCreateMutation({
-  //   onSuccess: () => {
-  //     setHasErrors(false);
-  //     reset();
-  //     setLoading(false)
-  //   },
-  // });
-
-
-  // const onSubmit = (data: any) => {
-  //   setLoading(true);
-  //   setHasErrors(undefined)
-  //   setTimeout(async () => {
-  //     const payload: VoucherFormRequest = { ...data }
-  //     saveMutation.mutateAsync(payload)
-  //   }, 1000)
-  // };
-
-  // const onSubmit = async (data: VoucherFormRequest) => {
-  //   setLoading(true);
-  //   setHasErrors(undefined)
-  //   const payload = { ...data }
-  //   setTimeout(async () => {
-  //     await createOrUpdateOneCoupon(payload)
-  //       .then((response) => {
-  //         setHasErrors(false);
-  //         setLoading(false)
-  //         reset()
-
-  //       })
-  //       .catch((error) => {
-  //         setHasErrors(true)
-  //         setLoading(false)
-  //         setHasErrors(error.response.data.message);
-  //       });
-  //   }, 1000)
-  // }
 
   return (
     <>
@@ -134,7 +97,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
             {/* begin::Modal body */}
             <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
               <div className="mb-13 text-center">
-                <h1 className="mb-3">{voucherItem?.uuid ?  'Update': 'Create New'} Coupon</h1>
+                <h1 className="mb-3">{voucherItem?.uuid ? 'Update' : 'Create New'} Coupon</h1>
                 <div className="text-muted fw-bold fs-5">If you need more info, please check
                   <a href="#" className="link-primary fw-bolder"> documentation</a>.
                 </div>
@@ -150,6 +113,10 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                       errors={errors}
                       name="amount"
                       type="number"
+                      pattern="[0-9]*"
+                      min="1"
+                      step="1"
+                      inputMode="numeric"
                       autoComplete="off"
                       placeholder="Amount coupon"
                       validation={{ required: true }}
@@ -244,7 +211,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                 <div className="text-center">
                   <button type="button" onClick={() => { setOpenCreateOrUpdateModal(false) }} className="btn btn-light me-3">Cancel</button>
                   <button type='submit' className='btn btn-lg btn-primary fw-bolder'
-                    disabled={!isDirty || !isValid || isSubmitted}
+                    disabled={!isDirty || !isValid || loading}
                   >
                     {!loading && <span className='indicator-label'>Submit</span>}
                     {loading && (

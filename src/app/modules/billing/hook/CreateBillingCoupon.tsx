@@ -61,6 +61,14 @@ export const CreateBillingCoupon: React.FC = ({ }) => {
   return (
     <>
       <div className="mb-10 fv-row" id="kt_ecommerce_add_product_discount_fixed">
+        {hasErrors && (
+          <div className="text-center alert alert-danger">
+            <div className="d-flex flex-column">
+              <h4 className="mb-1 text-danger">Error</h4>
+              <span>{hasErrors}</span>
+            </div>
+          </div>
+        )}
         <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
           <TextInput
             className="form-control form-control-lg"

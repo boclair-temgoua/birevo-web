@@ -1,5 +1,5 @@
 import { UseFormRegister, FieldError } from "react-hook-form";
-import { InputType } from './index';
+import { InputType, InputInputMode } from './index';
 
 interface Props {
     register: UseFormRegister<any>;
@@ -8,6 +8,10 @@ interface Props {
     label?: string;
     labelFlex?: string;
     type: InputType;
+    min?: string,
+    step?: string;
+    inputMode?: InputInputMode,
+    pattern?: any,
     required?: string;
     value?: string;
     className: string;
@@ -23,6 +27,10 @@ export const TextInput: React.FC<Props> = ({
     label,
     labelFlex,
     isRequired,
+    inputMode,
+    min,
+    step,
+    pattern,
     required,
     type,
     value,
@@ -48,6 +56,10 @@ export const TextInput: React.FC<Props> = ({
                 id={name}
                 type={type}
                 value={value}
+                pattern={pattern}
+                min={min}
+                step={step}
+                inputMode={inputMode}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
                 aria-invalid={errors?.[name] ? "true" : "false"}

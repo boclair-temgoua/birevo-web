@@ -17,7 +17,7 @@ const schema = yup
   .object({
     status: yup.string().min(3, 'Minimum 3 symbols').required(),
     currency: yup.string().min(3, 'Minimum 3 symbols').required(),
-    amount: yup.number().required(),
+    amount: yup.number().positive().required(),
   })
   .required();
 

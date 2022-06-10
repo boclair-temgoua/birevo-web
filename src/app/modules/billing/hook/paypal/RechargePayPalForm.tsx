@@ -9,25 +9,6 @@ import { StripePayFormRequest } from '../../core/_moduls';
 import Swal from 'sweetalert2';
 
 
-const CARD_OPTIONS: any = {
-    iconStyle: "solid",
-    style: {
-        base: {
-            iconColor: "#c4f0ff",
-            color: "#424770",
-            fontWeight: 600,
-            fontFamily: "Roboto, Source Code Pro, monospace, Open Sans, Segoe UI, sans-serif",
-            fontSize: "16px",
-            fontSmoothing: "antialiased",
-            ":-webkit-autofill": { color: "#fce883" },
-            "::placeholder": { color: "#87bbfd" }
-        },
-        invalid: {
-            iconColor: "red",
-            color: "red"
-        }
-    }
-}
 
 const schema = yup
     .object({
@@ -35,30 +16,30 @@ const schema = yup
     })
     .required();
 
-const RechargeStripeForm = () => {
+const RechargePayPalForm = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
     const { register, handleSubmit, reset, setValue,
         formState: { errors }
     } = useForm<any>({ resolver: yupResolver(schema), mode: "onChange" });
     const [success, setSuccess] = useState(false)
-    const stripe = useStripe()
-    const elements: any = useElements()
+    // const stripe = useStripe()
+    // const elements: any = useElements()
 
 
 
     const onSubmit = async (data: any) => {
         setLoading(true);
         setHasErrors(true);
-        if (!stripe || !elements) { return }
-        const payload = stripe
-            ? await stripe.createPaymentMethod({
-                type: "card",
-                card: elements.getElement(CardElement),
-            })
-            : null;
-        const infoPaymentMethod = payload?.paymentMethod;
-        const item: StripePayFormRequest = { infoPaymentMethod, ...data };
+        // if (!stripe || !elements) { return }
+        // const payload = stripe
+        //     ? await stripe.createPaymentMethod({
+        //         type: "card",
+        //         card: elements.getElement(CardElement),
+        //     })
+        //     : null;
+        // const infoPaymentMethod = payload?.paymentMethod;
+        const item: StripePayFormRequest = {  ...data };
         setTimeout(async () => {
             await createStripeBilling(item)
                 .then((response) => {
@@ -126,49 +107,14 @@ const RechargeStripeForm = () => {
                         />
                     </div>
                 </div>
-                <div className="row mb-6">
-                    <div className="col-md-6 fv-row fv-plugins-icon-container">
-                        <TextInput
-                            className="form-control form-control-lg"
-                            labelFlex="Full Name"
-                            register={register}
-                            errors={errors}
-                            name="fullName"
-                            type="text"
-                            autoComplete="one"
-                            placeholder="Enter your name"
-                            validation={{ required: true }}
-                            isRequired={true}
-                            required="required"
-                        />
-                    </div>
-                    <div className="col-md-6 fv-row fv-plugins-icon-container">
-                        <TextInput
-                            className="form-control form-control-lg"
-                            labelFlex="Email address"
-                            register={register}
-                            errors={errors}
-                            name="email"
-                            type="email"
-                            autoComplete="one"
-                            placeholder="Enter your email address"
-                            validation={{ required: true }}
-                            isRequired={true}
-                            required="required"
-                        />
-                    </div>
-                </div>
 
-                <div className="row mb-6">
-                    <CardElement options={CARD_OPTIONS} />
-                </div>
 
                 {/* begin::Action */}
                 <div className='text-center'>
                     <button
                         type='submit'
                         className='btn btn-lg btn-primary w-100 mb-5'
-                        disabled={loading || !stripe || !elements}>
+                        disabled={loading}>
                         {!loading && <span className='indicator-label'>Submit Payment</span>}
                         {loading && (
                             <span className='indicator-progress' style={{ display: 'block' }}>
@@ -185,4 +131,4 @@ const RechargeStripeForm = () => {
     )
 }
 
-export default RechargeStripeForm
+export default RechargePayPalForm

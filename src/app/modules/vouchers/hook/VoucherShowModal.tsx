@@ -172,7 +172,17 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                           <div className='fw-bold fs-6 text-gray-400'>Views</div>
                         </div>
 
-                        {voucher?.percent && (
+                        {voucher?.activity?.usage > 0 && voucher?.voucherType === 'VOUCHER' && (
+                          <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
+                            <div className='d-flex align-items-center'>
+                              <div className='fs-2 fw-bolder'>{voucher?.activity?.usage}</div>
+                            </div>
+                            <div className='fw-bold fs-6 text-gray-400'>Usages</div>
+                          </div>
+                        )}
+
+
+                        {voucher?.percent && voucher?.voucherType === 'VOUCHER' && (
                           <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
                             <div className='d-flex align-items-center'>
                               <div className='fs-2 fw-bolder'>{voucher?.percent} %</div>
@@ -184,13 +194,13 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                     </div>
                     <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
                       <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
-                       {voucher?.organization?.name} - {voucher?.email}
+                        {voucher?.organization?.name} - {voucher?.email}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {(voucher?.status !== 'USED' && voucher?.status !== 'PENDING') && voucher?.voucherType === 'COUPON' && !voucher?.isExpired && (
+                {(voucher?.status !== 'USED' && voucher?.status !== 'PENDING') && voucher?.voucherType === 'COUPON' && (
                   <form id="kt_account_deactivate_form" className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
                     <input type="hidden"  {...register("status", { value: "USED" })} />
                     <div className='d-flex flex-wrap justify-content-center pb-lg-0'>
