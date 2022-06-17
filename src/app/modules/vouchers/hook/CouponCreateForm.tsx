@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { SelectCurrencyInput, SelectStatusInput } from '../../forms';
+import { SelectCurrencyInput, SelectValueNameInput } from '../../forms';
 import { OneCurrencyResponse } from '../../currency/types/index';
 import { loadAllCurrencies } from '../../../redux/actions/currencyAction';
 import { TextareaInput } from '../../forms/TextareaInput';
@@ -142,7 +142,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
             />
           </div>
           <div className="col-md-4 fv-row fv-plugins-icon-container">
-            <SelectStatusInput
+            <SelectValueNameInput
               dataItem={optionsStatusVouchers}
               className="form-control form-select select2-hidden-accessible"
               labelFlex="Status"

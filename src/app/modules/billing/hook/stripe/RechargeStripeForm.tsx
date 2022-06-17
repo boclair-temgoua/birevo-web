@@ -40,7 +40,7 @@ const RechargeStripeForm = () => {
     const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
     const { register, handleSubmit, reset, setValue,
         formState: { errors }
-    } = useForm<any>({ resolver: yupResolver(schema), mode: "onChange" });
+    } = useForm<StripePayFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
     const [success, setSuccess] = useState(false)
     const stripe = useStripe()
     const elements: any = useElements()

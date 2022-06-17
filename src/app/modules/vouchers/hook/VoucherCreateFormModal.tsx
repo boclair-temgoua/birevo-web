@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
 import { OneVoucherResponse, VoucherFormRequest, optionsStatusVouchers, CouponCreateMutation, VoucherCreateMutation } from '../core/_moduls';
 import { TextInput } from '../../forms/TextInput';
+import DatePicker from "react-datepicker";
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SelectCurrencyInput } from '../../forms/SelectCurrencyInput';
 import { OneCurrencyResponse } from '../../currency/types/index';
 import { loadAllCurrencies } from '../../../redux/actions/currencyAction';
 import { TextareaInput } from '../../forms/TextareaInput';
-import { SelectStatusInput } from '../../forms/SelectStatusInput';
+import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
 import { createOrUpdateOneVoucher } from '../api/index';
+import moment from 'moment';
+import dayjs from 'dayjs';
 
 interface Props {
-  setOpenModal: any,
+  setOpenCreateOrUpdateModal: any,
   voucherItem?: OneVoucherResponse | any
 }
 
@@ -33,10 +36,10 @@ const schema = yup
   })
   .required();
 
-export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherItem }) => {
+export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateModal, voucherItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { register, handleSubmit, reset,
+  const { control, register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
@@ -50,6 +53,12 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
     loadItems()
   }, [])
 
+  useEffect(() => {
+    if (voucherItem) {
+      const fields = ['code', 'email', 'status', 'currency', 'amount', 'percent', 'name', 'description', 'expiredAt'];
+      fields?.forEach((field: any) => setValue(field, voucherItem[field]));
+    }
+  }, [voucherItem]);
 
   // const saveMutation = VoucherCreateMutation({
   //   onSuccess: () => {
@@ -70,6 +79,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
   // };
 
   const onSubmit = async (data: VoucherFormRequest) => {
+    console.log('data ====>', data)
     setLoading(true);
     setHasErrors(undefined)
     const payload = { ...data }
@@ -89,6 +99,8 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
     }, 1000)
   }
 
+  // const selected = moment(voucherItem?.expiredAt).toDate();
+  // console.log(`selected: ${selected}`)
   return (
     <>
       <div
@@ -103,7 +115,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
           {/* begin::Modal content */}
           <div className='modal-content'>
             <div className="modal-header pb-0 border-0 justify-content-end">
-              <div onClick={() => { setOpenModal(false) }} className="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal">
+              <div onClick={() => { setOpenCreateOrUpdateModal(false) }} className="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal">
                 <KTSVG
                   path="/media/icons/duotune/arrows/arr061.svg"
                   className="svg-icon svg-icon-2x"
@@ -113,7 +125,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
             {/* begin::Modal body */}
             <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
               <div className="mb-13 text-center">
-                <h1 className="mb-3">Create New Voucher</h1>
+                <h1 className="mb-3">{voucherItem?.code ? `Update Voucher` : `Create New Voucher`}</h1>
                 <div className="text-muted fw-bold fs-5">If you need more info, please check
                   <a href="#" className="link-primary fw-bolder"> documentation</a>.
                 </div>
@@ -162,34 +174,6 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
                 </div>
                 <div className="row mb-6">
                   <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <SelectStatusInput
-                      dataItem={optionsStatusVouchers}
-                      className="form-control form-select select2-hidden-accessible"
-                      labelFlex="Status"
-                      register={register}
-                      errors={errors}
-                      name="status"
-                      validation={{ required: true }}
-                      isRequired={true}
-                      required="required"
-                    />
-                  </div>
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <SelectCurrencyInput
-                      dataItem={currencies}
-                      className="form-control form-select select2-hidden-accessible"
-                      labelFlex="Currency"
-                      register={register}
-                      errors={errors}
-                      name="currency"
-                      validation={{ required: true }}
-                      isRequired={true}
-                      required="required"
-                    />
-                  </div>
-                </div>
-                <div className="row mb-6">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
                     <TextInput
                       className="form-control form-control-lg"
                       labelFlex="Amount"
@@ -209,6 +193,34 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
                     />
                   </div>
                   <div className="col-md-6 fv-row fv-plugins-icon-container">
+                    <SelectCurrencyInput
+                      dataItem={currencies}
+                      className="form-control form-select select2-hidden-accessible"
+                      labelFlex="Currency"
+                      register={register}
+                      errors={errors}
+                      name="currency"
+                      validation={{ required: true }}
+                      isRequired={true}
+                      required="required"
+                    />
+                  </div>
+                </div>
+                <div className="row mb-6">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                    <SelectValueNameInput
+                      dataItem={optionsStatusVouchers}
+                      className="form-control form-select select2-hidden-accessible"
+                      labelFlex="Status"
+                      register={register}
+                      errors={errors}
+                      name="status"
+                      validation={{ required: true }}
+                      isRequired={true}
+                      required="required"
+                    />
+                  </div>
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <TextInput
                       className="form-control form-control-lg"
                       labelFlex="Percent"
@@ -223,20 +235,31 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
                       isRequired={true}
                     />
                   </div>
-                  {/* <div className="col-md-4 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Expired date"
-                      register={register}
-                      errors={errors}
-                      name="expiredAt"
-                      type="date"
-                      autoComplete="one"
-                      placeholder=""
-                      validation={{ required: false }}
-                      isRequired={false}
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                    <label htmlFor='expiredAt' className='form-label fs-6 fw-bold mb-2'>
+                      <strong>Expired date</strong>
+                    </label>
+                    <Controller
+                      name={"expiredAt"}
+                      control={control}
+                      render={({ field: { onChange, value } }) => {
+                        return (
+                          <DatePicker
+                            dateFormat="dd/MM/yyyy"
+                            onChange={onChange}
+                            className="form-control"
+                            locale="it-IT"
+                            minDate={new Date()}
+                            isClearable={true}
+                            // withPortal
+                            selected={value ? dayjs(value).toDate() : null}
+                            placeholderText="Enter expired date (optional)"
+                          />
+                        );
+                      }}
                     />
-                  </div> */}
+                  </div>
+
                 </div>
                 <div className="d-flex flex-column mb-8">
                   <TextInput
@@ -264,7 +287,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenModal, voucherI
                   />
                 </div>
                 <div className="text-center">
-                  <button type="button" onClick={() => { setOpenModal(false) }} className="btn btn-light me-3">Cancel</button>
+                  <button type="button" onClick={() => { setOpenCreateOrUpdateModal(false) }} className="btn btn-light me-3">Cancel</button>
                   <button type='submit' className='btn btn-lg btn-primary fw-bolder'
                     disabled={!isDirty || !isValid}
                   >

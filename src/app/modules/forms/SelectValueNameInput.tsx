@@ -13,7 +13,7 @@ interface Props {
     errors: { [key: string]: FieldError };
 }
 
-export const SelectStatusInput: React.FC<Props> = ({
+export const SelectValueNameInput: React.FC<Props> = ({
     register,
     name,
     label,

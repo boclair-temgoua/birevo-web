@@ -1,6 +1,16 @@
 import {useQueryClient, useMutation} from 'react-query'
-import {crateOneContributor, deleteOneSubscribe} from '../../subscribes/api/index'
+import {
+  crateOneContributor,
+  deleteOneSubscribe,
+  updateOneRoleContributor,
+} from '../../subscribes/api/index'
 import Swal from 'sweetalert2'
+
+export const optionsRoles = [
+  {id: 1, name: 'ADMIN'},
+  {id: 2, name: 'MODERATOR'},
+]
+
 export type OneOrganizationResponse = {
   id: number
   uuid: string
@@ -9,6 +19,12 @@ export type OneOrganizationResponse = {
   color: string
   userId: number
   contributorTotal: number
+}
+
+export type UpdateContributorRequest = {
+  roleId: number
+  contributorId: number
+  subscribe_uuid: string
 }
 
 export const ContributorCreateMutation = ({
@@ -21,6 +37,39 @@ export const ContributorCreateMutation = ({
   const result = useMutation(
     async ({...contributorId}: any): Promise<{contributorId: number}> => {
       const {data} = await crateOneContributor({...contributorId})
+      return data.results
+    },
+    {
+      onMutate: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+    }
+  )
+
+  return result
+}
+
+export const ContributorUpdateMutation = ({
+  onSuccess,
+}: {
+  onSuccess?: () => void
+} = {}) => {
+  const queryKey = ['contributorsOrganizations']
+  const queryClient = useQueryClient()
+  const result = useMutation(
+    async ({...payload}: any): Promise<UpdateContributorRequest> => {
+      const {data} = await updateOneRoleContributor({...payload})
       return data.results
     },
     {

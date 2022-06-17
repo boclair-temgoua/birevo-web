@@ -4,36 +4,38 @@ import { TextInput } from '../../forms/TextInput';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { ApplicationFormRequest, ApplicationMutation, OneApplicationResponse, optionsStatusOnline } from '../core/_moduls';
+// import { ApplicationFormRequest, ApplicationMutation, OneApplicationResponse, optionsStatusOnline } from '../core/_moduls';
 // import { createOrUpdateOneCoupon } from '../api/index';
-import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
+import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
+import { ContributorUpdateMutation, optionsRoles, UpdateContributorRequest } from '../core/_models';
+import { SelectValueIdInput } from '../../forms';
 
 interface Props {
   setOpenModal: any,
-  applicationItem?: OneApplicationResponse | any
+  subscribeUserItem?: OneContributorSubscribeResponse | any
 }
 
 const schema = yup
   .object({
-    name: yup.string().min(3, 'Minimum 3 symbols').required(),
+    roleId: yup.number().required(),
   })
   .required();
 
-export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenModal, applicationItem }) => {
+export const ContributorUpdateFormModal: React.FC<Props> = ({ setOpenModal, subscribeUserItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const { register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
-  } = useForm<ApplicationFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
+  } = useForm<UpdateContributorRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
   useEffect(() => {
-    if (applicationItem) {
-      const fields = ['name', 'statusOnline'];
-      fields?.forEach((field: any) => setValue(field, applicationItem[field]));
+    if (subscribeUserItem) {
+      const fields = ['roleId'];
+      fields?.forEach((field: any) => setValue(field, subscribeUserItem[field]));
     }
-  }, [applicationItem]);
+  }, [subscribeUserItem]);
 
-  const saveUserMutation = ApplicationMutation({
+  const saveItemMutation = ContributorUpdateMutation({
     onSuccess: () => {
       setOpenModal(false)
       setHasErrors(false);
@@ -42,16 +44,14 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
   });
 
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: UpdateContributorRequest) => {
     setLoading(true);
     setHasErrors(undefined)
     setTimeout(async () => {
-      const application_uuid = applicationItem?.uuid
-      const payloadSave: ApplicationFormRequest = { application_uuid, ...data }
-      const payloadUpdate: ApplicationFormRequest = { application_uuid, ...data }
-      !applicationItem ?
-        saveUserMutation.mutateAsync(payloadSave)
-        : saveUserMutation.mutateAsync(payloadUpdate)
+      const subscribe_uuid = subscribeUserItem?.uuid
+      const contributorId = subscribeUserItem?.userId
+      const payloadUpdate: UpdateContributorRequest = { ...data, subscribe_uuid, contributorId, }
+      saveItemMutation.mutateAsync(payloadUpdate)
     }, 1000)
 
   };
@@ -66,17 +66,11 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
         aria-modal='true'
       >
         {/* begin::Modal dialog */}
-        <div className='modal-dialog mw-650px modal-dialog-scrollable'>
+        <div className='modal-dialog modal-dialog-centered mw-750px modal-dialog-scrollable'>
           {/* begin::Modal content */}
           <div className='modal-content'>
-            <div className="modal-header">
-              <h5 className="modal-title">{applicationItem ? applicationItem?.name : 'Create API Key'} </h5>
-              <div
-                onClick={() => { setOpenModal(false) }}
-                className="btn btn-icon btn-sm btn-active-light-primary ms-2"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
+            <div className="modal-header pb-0 border-0 justify-content-end">
+              <div onClick={() => { setOpenModal(false) }} className="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal">
                 <KTSVG
                   path="/media/icons/duotune/arrows/arr061.svg"
                   className="svg-icon svg-icon-2x"
@@ -86,30 +80,14 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
             <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
               {/* begin::Modal body */}
               <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-                {/* <UserEditModalFormWrapper /> */}
-                <div className="d-flex flex-column mb-8">
-                  <TextInput
-                    className="form-control form-control-lg"
-                    labelFlex="Name"
-                    register={register}
-                    errors={errors}
-                    name="name"
-                    type="text"
-                    autoComplete="one"
-                    placeholder="Enter name"
-                    validation={{ required: true }}
-                    required="required"
-                    isRequired={true}
-                  />
-                </div>
                 <div className="fv-row fv-plugins-icon-container">
-                  <SelectValueNameInput
-                    dataItem={optionsStatusOnline}
+                  <SelectValueIdInput
+                    dataItem={optionsRoles}
                     className="form-control"
-                    labelFlex="Status"
+                    labelFlex="Role name"
                     register={register}
                     errors={errors}
-                    name="statusOnline"
+                    name="roleId"
                     validation={{ required: true }}
                     isRequired={true}
                     required="required"

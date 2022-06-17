@@ -3,6 +3,7 @@ export type OneContributorSubscribeResponse = {
   uuid: string
   subscribableType: string
   userId: number
+  roleId: number
   userCreatedId: number
   createdAt: Date
   role: {
@@ -27,12 +28,16 @@ export type OneSubscribeResponse = {
   userCreatedId: number
   subscribableId: number
   createdAt: Date
+  roleId: number
   profileCreated: {
     image: string
     username: string
     firstName: string
     lastName: string
     color: string
+  }
+  role: {
+    name: string
   }
   organization: {
     id: number

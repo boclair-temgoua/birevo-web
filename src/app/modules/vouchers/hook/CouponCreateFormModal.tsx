@@ -3,14 +3,16 @@ import { KTSVG } from '../../../../_metronic/helpers'
 import { OneVoucherResponse, VoucherFormRequest, optionsStatusVouchers, CouponCreateMutation } from '../core/_moduls';
 import { TextInput } from '../../forms/TextInput';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SelectCurrencyInput } from '../../forms/SelectCurrencyInput';
 import { OneCurrencyResponse } from '../../currency/types/index';
 import { loadAllCurrencies } from '../../../redux/actions/currencyAction';
 import { TextareaInput } from '../../forms/TextareaInput';
-import { SelectStatusInput } from '../../forms/SelectStatusInput';
+import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
+import DatePicker from 'react-datepicker';
+import dayjs from 'dayjs';
 
 interface Props {
   setOpenCreateOrUpdateModal: any,
@@ -28,7 +30,7 @@ const schema = yup
 export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateModal, voucherItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { register, handleSubmit, reset, setValue,
+  const { control, register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
@@ -44,7 +46,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
 
   useEffect(() => {
     if (voucherItem) {
-      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'statusOnline', 'expiredAt'];
+      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'expiredAt'];
       fields?.forEach((field: any) => setValue(field, voucherItem[field]));
     }
   }, [voucherItem]);
@@ -71,7 +73,6 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
     }, 1000)
 
   };
-
 
   return (
     <>
@@ -106,22 +107,16 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
               <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
                 <div className="row mb-6">
                   <div className="col-md-4 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Amount"
+                    <SelectValueNameInput
+                      dataItem={optionsStatusVouchers}
+                      className="form-control form-select select2-hidden-accessible"
+                      labelFlex="Status"
                       register={register}
                       errors={errors}
-                      name="amount"
-                      type="number"
-                      pattern="[0-9]*"
-                      min="1"
-                      step="1"
-                      inputMode="numeric"
-                      autoComplete="off"
-                      placeholder="Amount coupon"
+                      name="status"
                       validation={{ required: true }}
-                      required="required"
                       isRequired={true}
+                      required="required"
                     />
                   </div>
                   <div className="col-md-4 fv-row fv-plugins-icon-container">
@@ -154,20 +149,26 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                   </div>
                 </div>
                 <div className="row mb-6">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <SelectStatusInput
-                      dataItem={optionsStatusVouchers}
-                      className="form-control form-select select2-hidden-accessible"
-                      labelFlex="Status"
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                    <TextInput
+                      className="form-control form-control-lg"
+                      labelFlex="Amount"
                       register={register}
                       errors={errors}
-                      name="status"
+                      name="amount"
+                      type="number"
+                      pattern="[0-9]*"
+                      min="1"
+                      step="1"
+                      inputMode="numeric"
+                      autoComplete="off"
+                      placeholder="Amount coupon"
                       validation={{ required: true }}
-                      isRequired={true}
                       required="required"
+                      isRequired={true}
                     />
                   </div>
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <SelectCurrencyInput
                       dataItem={currencies}
                       className="form-control form-select select2-hidden-accessible"
@@ -180,23 +181,31 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                       required="required"
                     />
                   </div>
-                </div>
-                {/* <div className="row mb-6">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Expired date"
-                      register={register}
-                      errors={errors}
-                      name="expiredAt"
-                      type="date"
-                      autoComplete="one"
-                      placeholder=""
-                      validation={{ required: false }}
-                      isRequired={false}
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                    <label htmlFor='expiredAt' className='form-label fs-6 fw-bold mb-2'>
+                      <strong>Expired date</strong>
+                    </label>
+                    <Controller
+                      name={"expiredAt"}
+                      control={control}
+                      render={({ field: { onChange, value } }) => {
+                        return (
+                          <DatePicker
+                            dateFormat="dd/MM/yyyy"
+                            onChange={onChange}
+                            className="form-control"
+                            locale="it-IT"
+                            minDate={new Date()}
+                            isClearable={true}
+                            // withPortal
+                            selected={value ? dayjs(value).toDate() : null}
+                            placeholderText="Enter expired date (optional)"
+                          />
+                        );
+                      }}
                     />
                   </div>
-                </div> */}
+                </div>
                 <div className="d-flex flex-column mb-8">
                   <TextareaInput
                     label="Description"

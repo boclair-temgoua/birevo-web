@@ -15,7 +15,7 @@ import { SearchInput } from '../../forms/SearchInput';
 import { VoucherCreateFormModal } from '../hook/VoucherCreateFormModal';
 
 const VouchersTables: FC = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false)
+  const [openCreateOrUpdateModal, setOpenCreateOrUpdateModal] = useState<boolean>(false)
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
@@ -77,7 +77,7 @@ const VouchersTables: FC = () => {
           </h3>
           <div className="d-flex align-items-center py-1">
             <button type='button'
-              onClick={() => { setOpenModal(true) }}
+              onClick={() => { setOpenCreateOrUpdateModal(true) }}
               className="btn btn-sm btn-flex btn-light-primary fw-bolder">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               Create voucher
@@ -104,6 +104,7 @@ const VouchersTables: FC = () => {
                   <th className='min-w-120px'>Amount</th>
                   <th className='min-w-120px'>Status</th>
                   <th className='min-w-120px'>Status Online</th>
+                  <th className='min-w-120px'>Date creation</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>
               </thead>
@@ -153,7 +154,7 @@ const VouchersTables: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
-      {openModal && (<VoucherCreateFormModal setOpenModal={setOpenModal} />)}
+      {openCreateOrUpdateModal && (<VoucherCreateFormModal setOpenCreateOrUpdateModal={setOpenCreateOrUpdateModal} />)}
     </>
   )
 }

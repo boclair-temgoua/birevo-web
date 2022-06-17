@@ -5,7 +5,7 @@ import { KTSVG } from '../../../_metronic/helpers'
 import { PageTitle } from '../../../_metronic/layout/core'
 import { useAuth } from '../auth'
 import { HelmetSite } from '../../utility/commons/helmet-site'
-import { BillingTable } from './hook/BillingTable'
+import { BillingTables } from './components/BillingTables'
 import { CreateBillingCoupon } from './hook/CreateBillingCoupon'
 import { CreateBillingStripe } from './hook/CreateBillingStripe'
 import { CreateBillingPayPal } from './hook/CreateBillingPayPal';
@@ -140,15 +140,11 @@ const BillingIndex: FC = () => {
 
               </div>
             </>
-
           )}
-
-
-
         </div>
         {/* begin::Body */}
       </div>
-      <BillingTable className='mb-5 mb-xl-8' />
+      <BillingTables className='mb-5 mb-xl-8' />
     </>
   )
 }

@@ -1,10 +1,15 @@
 import dyaxios from '../../../utility/commons/dyaxios'
+import {UpdateContributorRequest} from '../../organizations/core/_models'
 
 export const crateOneContributor = (options: {contributorId: number}) => {
   const {contributorId} = {...options}
   return dyaxios.post(
     `/subscribes/contributor-create?${contributorId ? `contributorId=${contributorId}` : ''}`
   )
+}
+
+export const updateOneRoleContributor = (payload: UpdateContributorRequest) => {
+  return dyaxios.put(`/subscribes/contributor-update`, payload)
 }
 
 export const getContributorsPaginateSubscribes = (options: {

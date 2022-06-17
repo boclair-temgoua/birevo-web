@@ -70,7 +70,7 @@ const ContributorsTables: FC = () => {
 
   const paginate = (pageItem: number) => {
     setPageItem(pageItem)
-    navigate(`/organizations/contributors?page=${pageItem}`)
+    navigate(`/organizations/contributors?${pageItem !== 1 ? `page=${pageItem}` : ''}`)
   }
 
   const dataTable = isLoading ? (<tr><td><strong>Loading...</strong></td></tr>) :
@@ -119,7 +119,7 @@ const ContributorsTables: FC = () => {
               <thead>
                 <tr className='fw-bolder text-muted'>
                   <th className='min-w-150px'>Contributors</th>
-                  {/* <th className='min-w-120px'>Progress</th> */}
+                  <th className='min-w-120px'>Role</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>
               </thead>
