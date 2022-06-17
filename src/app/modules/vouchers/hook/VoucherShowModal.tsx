@@ -164,15 +164,6 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                           Expired: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.expiredAt)}</span>
                         </div>
                       )}
-                      {/* {voucher?.usedAt && (
-                        <div className='d-flex align-items-center text-gray-400 text-hover-danger me-5 mb-2'>
-                          <KTSVG
-                            path='/media/icons/duotune/general/gen014.svg'
-                            className='svg-icon-4 me-1'
-                          />
-                          <span className='badge badge-light-danger'> {dayjs(voucher?.usedAt).format('DD/MM/YYYY')}</span>
-                        </div>
-                      )} */}
                     </div>
 
                     <div className='d-flex flex-column flex-grow-1 pe-8'>

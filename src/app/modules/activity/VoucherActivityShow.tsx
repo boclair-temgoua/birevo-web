@@ -12,6 +12,7 @@ import { getOneVoucher } from '../vouchers/api';
 import { OneVoucherResponse } from '../vouchers/core/_moduls';
 import { toAbsoluteUrl } from '../../../_metronic/helpers/AssetHelpers';
 import dayjs from 'dayjs';
+import { formateDateDayjs } from '../../utility/commons/formate-date-dayjs';
 
 
 
@@ -80,22 +81,31 @@ const VoucherActivityShow: FC = (props) => {
                   </div>
 
                   <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
+                    {voucher?.createdAt && (
+                      <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-4 me-1'
+                        />
+                        Created: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.createdAt)}</span>
+                      </div>
+                    )}
+                    {voucher?.usedAt && (
+                      <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-4 me-1'
+                        />
+                        Used: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.usedAt)}</span>
+                      </div>
+                    )}
                     {voucher?.expiredAt && (
                       <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
                         <KTSVG
                           path='/media/icons/duotune/general/gen014.svg'
                           className='svg-icon-4 me-1'
                         />
-                        Expired date: <span className='badge badge-light-success'>{dayjs(voucher?.expiredAt).format('DD/MM/YYYY')}</span>
-                      </div>
-                    )}
-                    {voucher?.usedAt && (
-                      <div className='d-flex align-items-center text-gray-400 text-hover-danger me-5 mb-2'>
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen014.svg'
-                          className='svg-icon-4 me-1'
-                        />
-                        <span className='badge badge-light-danger'> {dayjs(voucher?.usedAt).format('DD/MM/YYYY')}</span>
+                        Expired: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.expiredAt)}</span>
                       </div>
                     )}
                   </div>
