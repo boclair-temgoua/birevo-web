@@ -13,7 +13,6 @@ import { loadAllCurrencies } from '../../../redux/actions/currencyAction';
 import { TextareaInput } from '../../forms/TextareaInput';
 import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
 import { createOrUpdateOneVoucher } from '../api/index';
-import moment from 'moment';
 import dayjs from 'dayjs';
 
 interface Props {
@@ -60,47 +59,27 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
     }
   }, [voucherItem]);
 
-  // const saveMutation = VoucherCreateMutation({
-  //   onSuccess: () => {
-  //     setHasErrors(false);
-  //     reset();
-  //     setLoading(false)
-  //   },
-  // });
+  const saveMutation = VoucherCreateMutation({
+    onSuccess: () => {
+      setHasErrors(false);
+      setLoading(false)
+    },
+    onError: (error?: any) => {
+      setHasErrors(true);
+      setHasErrors(error.response.data.message);
+    }
+  });
 
 
-  // const onSubmit = (data: any) => {
-  //   setLoading(true);
-  //   setHasErrors(undefined)
-  //   setTimeout(async () => {
-  //     const payload: VoucherFormRequest = { ...data }
-  //     saveMutation.mutateAsync(payload)
-  //   }, 1000)
-  // };
-
-  const onSubmit = async (data: VoucherFormRequest) => {
-    console.log('data ====>', data)
+  const onSubmit = (data: any) => {
     setLoading(true);
     setHasErrors(undefined)
-    const payload = { ...data }
     setTimeout(async () => {
-      await createOrUpdateOneVoucher(payload)
-        .then((response) => {
-          setHasErrors(false);
-          setLoading(false)
-          reset()
-
-        })
-        .catch((error) => {
-          setHasErrors(true)
-          setLoading(false)
-          setHasErrors(error.response.data.message);
-        });
+      const payload: VoucherFormRequest = { voucherId: voucherItem?.id, ...data }
+      saveMutation.mutateAsync(payload)
     }, 1000)
-  }
-
-  // const selected = moment(voucherItem?.expiredAt).toDate();
-  // console.log(`selected: ${selected}`)
+  };
+  
   return (
     <>
       <div
@@ -289,7 +268,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                 <div className="text-center">
                   <button type="button" onClick={() => { setOpenCreateOrUpdateModal(false) }} className="btn btn-light me-3">Cancel</button>
                   <button type='submit' className='btn btn-lg btn-primary fw-bolder'
-                    disabled={!isDirty || !isValid}
+                    disabled={!isDirty || !isValid || loading}
                   >
                     {!loading && <span className='indicator-label'>Submit</span>}
                     {loading && (

@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FC, useState, useEffect } from 'react'
+import { FC, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { KTSVG } from '../../../_metronic/helpers'
 import { PageTitle } from '../../../_metronic/layout/core'
 import { useAuth } from '../auth'
 import { HelmetSite } from '../../utility/commons/helmet-site'
 import { BillingTables } from './components/BillingTables'
-import { CreateBillingCoupon } from './hook/CreateBillingCoupon'
-import { CreateBillingStripe } from './hook/CreateBillingStripe'
-import { CreateBillingPayPal } from './hook/CreateBillingPayPal';
+import { CreateBillingCoupon } from './hook/coupon/CreateBillingCoupon'
+import { CreateBillingStripe } from './hook/stripe/CreateBillingStripe'
+import { CreateBillingPayPal } from './hook/paypal/CreateBillingPayPal';
 
 
 const BillingIndex: FC = () => {
@@ -132,7 +131,7 @@ const BillingIndex: FC = () => {
                   </div>
                 </div>
 
-                {paymentMethod === 'card' && <CreateBillingStripe />}
+                {paymentMethod === 'card' && <CreateBillingStripe userItem={userItem} />}
 
                 {paymentMethod === 'paypal' && <CreateBillingPayPal />}
 

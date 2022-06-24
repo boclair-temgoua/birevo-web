@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import ContentLoader from 'react-content-loader';
 import Swal from 'sweetalert2';
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
+// Import toastify css file
+import 'react-toastify/dist/ReactToastify.css';
 interface Props {
   setOpenModal: any,
   voucherItem: OneVoucherResponse

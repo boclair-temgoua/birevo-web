@@ -8,6 +8,9 @@ $mode: default;
 // Initialize
 @import 'init';
 
+// Toastr;
+@import "toastr";
+
 // Components
 @import './core/components/components';
 @import 'components/components';

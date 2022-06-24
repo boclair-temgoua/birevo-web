@@ -25,16 +25,16 @@ export const TextareaInput: React.FC<Props> = ({
         <>
             <label htmlFor={name} className={`${required} form-label fs-6 fw-bold mb-2`}><strong>{label}</strong></label>
             <textarea
-                className={`${className} ${errors?.[name] ? "is-invalid" : ""
+                className={`${className} ${errors?.name ? "is-invalid" : ""
                     }`}
                 {...register(name, validation)}
                 id={name}
                 placeholder={placeholder}
-                aria-invalid={errors?.[name] ? "true" : "false"}
+                aria-invalid={errors?.name ? "true" : "false"}
             />
-            {errors?.[name] && (
+            {errors?.name && (
                 <span className='invalid-feedback'>
-                    <strong>{errors?.[name].message}</strong>
+                    <strong>{errors?.name.message}</strong>
                 </span>
             )}
         </>

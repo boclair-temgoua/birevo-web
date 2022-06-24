@@ -31,11 +31,11 @@ const CARD_OPTIONS: any = {
 
 const schema = yup
     .object({
-        amount: yup.number().positive().required(),
+        amount: yup.number().min(5).positive().required(),
     })
     .required();
 
-const RechargeStripeForm = () => {
+export const RechargeStripeForm: React.FC<{ userItem: any }> = ({ userItem }) => {
     const [loading, setLoading] = useState<boolean>(false)
     const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
     const { register, handleSubmit, reset, setValue,
@@ -79,6 +79,7 @@ const RechargeStripeForm = () => {
                             popup: 'animate__animated animate__bounceIn',
                         },
                     })
+                    window.location.reload();
                 })
                 .catch((error) => {
                     setHasErrors(true)
@@ -99,17 +100,23 @@ const RechargeStripeForm = () => {
                             <i className="fas fa-exclamation-circle ms-2 fs-7"></i>
                         </label>
                         <input
-                            className={`form-control`}
+                            className={`form-control ${errors?.amount ? "is-invalid" : ""}`}
                             type="number"
                             pattern="[0-9]*"
                             min="1"
                             step="1"
+                            id="amount"
                             inputMode="numeric"
                             autoComplete="off"
                             placeholder="Custom amount"
                             required
-                            {...register("amount", { value: 5 })}
+                            {...register("amount", { value: userItem?.billing?.total > 0 ? 5 : -(userItem?.billing?.total) })}
                         />
+                        {errors?.amount && (
+                            <span className='invalid-feedback'>
+                                <strong>{errors?.amount.message}</strong>
+                            </span>
+                        )}
                     </div>
                     <div className="col-md-4 fv-row fv-plugins-icon-container">
                         <label className="form-label fw-bolder text-dark fs-6 mb-2">
@@ -120,6 +127,7 @@ const RechargeStripeForm = () => {
                             className={`form-control`}
                             type="text"
                             placeholder="Currency"
+                            id="currency"
                             {...register("currency", { value: "EUR" })}
                             autoComplete="off"
                             disabled
@@ -185,4 +193,4 @@ const RechargeStripeForm = () => {
     )
 }
 
-export default RechargeStripeForm
+// export default RechargeStripeForm

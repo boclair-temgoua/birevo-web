@@ -53,10 +53,13 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
 
   const saveMutation = CouponCreateMutation({
     onSuccess: () => {
-      // setOpenCreateOrUpdateModal(false)
       setHasErrors(false);
       setLoading(false)
     },
+    onError: (error?: any) => {
+      setHasErrors(true);
+      setHasErrors(error.response.data.message);
+    }
   });
 
 
@@ -102,6 +105,14 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                 <div className="text-muted fw-bold fs-5">If you need more info, please check
                   <a href="#" className="link-primary fw-bolder"> documentation</a>.
                 </div>
+                {hasErrors && (
+                  <div className="text-center alert alert-danger">
+                    <div className="d-flex flex-column">
+                      <h4 className="mb-1 text-danger">Error</h4>
+                      <span>{hasErrors}</span>
+                    </div>
+                  </div>
+                )}
               </div>
               {/* <UserEditModalFormWrapper /> */}
               <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>

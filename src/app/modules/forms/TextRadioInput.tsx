@@ -32,7 +32,7 @@ export const TextRadioInput: React.FC<Props> = ({
                 type={type}
                 value={value}
                 checked={checked}
-                aria-invalid={errors?.[name] ? "true" : "false"}
+                aria-invalid={errors?.name ? "true" : "false"}
             />
         </>
     );

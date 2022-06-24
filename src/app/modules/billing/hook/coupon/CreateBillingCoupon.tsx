@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
-import { KTSVG } from '../../../../_metronic/helpers'
-import { TextInput } from '../../forms/TextInput';
+import { useState } from 'react'
+import { TextInput } from '../../../forms/TextInput';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { CouponPayFormRequest } from '../core/_moduls';
-import { createCouponBilling } from '../api';
+import { CouponPayFormRequest } from '../../core/_moduls';
+import { createCouponBilling } from '../../api';
 import Swal from 'sweetalert2';
 
 const schema = yup
@@ -20,9 +19,7 @@ export const CreateBillingCoupon: React.FC = ({ }) => {
   const { register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
   } = useForm<CouponPayFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
-
-
-
+  
 
   const onSubmit = (data: CouponPayFormRequest) => {
     setLoading(true);
@@ -48,6 +45,7 @@ export const CreateBillingCoupon: React.FC = ({ }) => {
               popup: 'animate__animated animate__bounceIn',
             },
           })
+          window.location.reload();
 
         })
         .catch((error) => {

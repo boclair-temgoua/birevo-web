@@ -81,21 +81,24 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
             </button>
           </CopyToClipboard>
 
-          {voucher?.status !== 'USED' && (
-            <button onClick={() => { setOpenCreateOrUpdateModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
-              <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
-            </button>
-          )}
           {/* <button onClick={() => { navigate(`/activities/${voucher?.uuid}?type=${(voucher?.voucherType).toLowerCase()}&code=${voucher?.code}`, { replace: true }) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen032.svg' className='svg-icon-3' />
           </button> */}
-          <Link to={`/activities/${voucher?.uuid}?type=${(voucher?.voucherType).toLowerCase()}&code=${voucher?.code}`} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+          <Link to={`/activities/${voucher?.uuid}?type=${(voucher?.voucherType).toLowerCase()}&code=${voucher?.code}`} className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen032.svg' className='svg-icon-3' />
           </Link>
 
-          <button className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
-            <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-          </button>
+          {voucher?.status !== 'USED' && (
+            <>
+              <button onClick={() => { setOpenCreateOrUpdateModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+                <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
+              </button>
+              <button className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'>
+                <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+              </button>
+            </>
+          )}
+
         </td>
       </tr>
       {openModal && (<VoucherShowModal voucherItem={voucher} setOpenModal={setOpenModal} />)}

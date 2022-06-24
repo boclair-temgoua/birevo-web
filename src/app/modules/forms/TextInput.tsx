@@ -50,8 +50,7 @@ export const TextInput: React.FC<Props> = ({
             )}
             {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}
             <input
-                className={`${className} ${errors?.[name] ? "is-invalid" : ""
-                    }`}
+                className={`${className} ${errors?.name ? "is-invalid" : ""}`}
                 {...register(name, validation)}
                 id={name}
                 type={type}
@@ -62,12 +61,12 @@ export const TextInput: React.FC<Props> = ({
                 inputMode={inputMode}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                aria-invalid={errors?.[name] ? "true" : "false"}
+                aria-invalid={errors?.name ? "true" : "false"}
                 required={isRequired}
             />
-            {errors?.[name] && (
+            {errors?.name && (
                 <span className='invalid-feedback'>
-                    <strong>{errors?.[name].message}</strong>
+                    <strong>{errors?.name.message}</strong>
                 </span>
             )}
         </>

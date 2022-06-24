@@ -12,6 +12,7 @@ export type statusOnline = 'ONLINE' | 'OFFLINE' | 'TEST'
 export type statusVoucher = 'ACTIVE' | 'PENDING' | 'USED'
 
 export type VoucherFormRequest = {
+  voucherId?: number
   email: string
   name: string
   currency: string
@@ -79,16 +80,16 @@ export type OneVoucherResponse = {
 
 export const CouponCreateMutation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess?: () => void
+  onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['voucherCoupons']
   const queryClient = useQueryClient()
   const saveMutation = useMutation(
-    async ({...restPayloadProperties}: any): Promise<VoucherFormRequest> => {
-      const {data} = await createOrUpdateOneCoupon({
-        ...restPayloadProperties,
-      })
+    async ({...payloadProperties}: VoucherFormRequest): Promise<VoucherFormRequest> => {
+      const {data} = await createOrUpdateOneCoupon(payloadProperties)
       return data.results
     },
     {
@@ -104,6 +105,13 @@ export const CouponCreateMutation = ({
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
           onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          onError(error)
         }
       },
     }
@@ -114,16 +122,16 @@ export const CouponCreateMutation = ({
 
 export const VoucherCreateMutation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess?: () => void
+  onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['voucherVouchers']
   const queryClient = useQueryClient()
   const saveMutation = useMutation(
-    async ({...restPayloadProperties}: any): Promise<VoucherFormRequest> => {
-      const {data} = await createOrUpdateOneVoucher({
-        ...restPayloadProperties,
-      })
+    async ({...payloadProperties}: VoucherFormRequest): Promise<VoucherFormRequest> => {
+      const {data} = await createOrUpdateOneVoucher({...payloadProperties})
       return data.results
     },
     {
@@ -139,6 +147,13 @@ export const VoucherCreateMutation = ({
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
           onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          onError(error)
         }
       },
     }
