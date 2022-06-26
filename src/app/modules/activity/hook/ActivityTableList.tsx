@@ -1,5 +1,5 @@
 import { OneActivityResponse } from '../core/_moduls';
-import dayjs from 'dayjs';
+import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 
 
 type Props = {
@@ -27,11 +27,11 @@ const ActivityTableList: React.FC<Props> = ({ item }) => {
           {item?.platform}
         </td>
         <td className='text-dark fw-bolder text-hover-primary'>
-          {dayjs(item?.createdAt).format('DD/MM/YYYY')}
+          {formateDateDayjs(item?.createdAt)}
         </td>
-        <td className='text-dark fw-bolder text-hover-primary'>
+        {/* <td className='text-dark fw-bolder text-hover-primary'>
           {item?.source}
-        </td>
+        </td> */}
       </tr>
     </>
   )

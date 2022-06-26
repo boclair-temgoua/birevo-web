@@ -3,7 +3,7 @@ import { TextInput } from '../../../forms/TextInput';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { CouponPayFormRequest } from '../../core/_moduls';
+import { CouponPayFormRequest, CreateCouponBillingMutation } from '../../core/_moduls';
 import { createCouponBilling } from '../../api';
 import Swal from 'sweetalert2';
 
@@ -19,42 +19,65 @@ export const CreateBillingCoupon: React.FC = ({ }) => {
   const { register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
   } = useForm<CouponPayFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
-  
 
-  const onSubmit = (data: CouponPayFormRequest) => {
+
+  const saveMutation = CreateCouponBillingMutation({
+    onSuccess: () => {
+      setHasErrors(false);
+      setLoading(false)
+      reset()
+    },
+    onError: (error?: any) => {
+      setHasErrors(true);
+      setLoading(false);
+      setHasErrors(error.response.data.message);
+    }
+  });
+
+
+  const onSubmit = (data: any) => {
     setLoading(true);
     setHasErrors(undefined)
-    const payload: CouponPayFormRequest = { ...data, paymentMethod: 'COUPON-PAY' }
     setTimeout(async () => {
-      await createCouponBilling(payload)
-        .then((response) => {
-          setHasErrors(false);
-          setLoading(false)
-          reset()
-          Swal.fire({
-            title: 'Success',
-            icon: 'success',
-            text: 'Transaction save successfully',
-            confirmButtonText: 'Got It',
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: 'btn btn-primary',
-            },
-            showCancelButton: false,
-            showClass: {
-              popup: 'animate__animated animate__bounceIn',
-            },
-          })
-          window.location.reload();
-
-        })
-        .catch((error) => {
-          setHasErrors(true)
-          setLoading(false)
-          setHasErrors(error.response.data.message);
-        });
+      const payload: CouponPayFormRequest = { ...data, paymentMethod: 'COUPON-PAY' }
+      saveMutation.mutateAsync(payload)
     }, 1000)
   };
+  
+  // const onSubmit = (data: CouponPayFormRequest) => {
+  //   setLoading(true);
+  //   setHasErrors(undefined)
+  //   const payload: CouponPayFormRequest = { ...data, paymentMethod: 'COUPON-PAY' }
+  //   setTimeout(async () => {
+  //     await createCouponBilling(payload)
+  //       .then((response) => {
+  //         setHasErrors(false);
+  //         setLoading(false)
+  //         reset()
+  //         Swal.fire({
+  //           title: 'Success',
+  //           icon: 'success',
+  //           text: 'Transaction save successfully',
+  //           confirmButtonText: 'Got It',
+  //           buttonsStyling: false,
+  //           customClass: {
+  //             confirmButton: 'btn btn-primary',
+  //           },
+  //           showCancelButton: false,
+  //           showClass: {
+  //             popup: 'animate__animated animate__bounceIn',
+  //           },
+  //         })
+  //         window.location.reload();
+
+  //       })
+  //       .catch((error) => {
+  //         setHasErrors(true)
+  //         setLoading(false)
+  //         setHasErrors(error.response.data.message);
+  //       });
+  //   }, 1000)
+  // };
 
   return (
     <>

@@ -72,12 +72,14 @@ const ContributorSubscribeTableList: React.FC<Props> = ({ subscribeUserItem }) =
         </td>
         <td>
           <div className='d-flex justify-content-end flex-shrink-0'>
-            <button onClick={() => { setOpenModal(true) }}className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
-              <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
-            </button>
-            <button onClick={() => { deleteItem(subscribeUserItem) }} className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'>
-              <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-            </button>
+            <>
+              <button onClick={() => { setOpenModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+                <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
+              </button>
+              <button onClick={() => { deleteItem(subscribeUserItem) }} className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'>
+                <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+              </button>
+            </>
           </div>
         </td>
       </tr>

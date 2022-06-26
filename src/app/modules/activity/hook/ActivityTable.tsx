@@ -87,7 +87,7 @@ const ActivityTable: React.FC<Props> = ({ className, voucherUuid }) => {
                 <th className='min-w-120px'>Browser</th>
                 <th className='min-w-120px'>Platform</th>
                 <th className='min-w-120px'>Date</th>
-                <th className='min-w-120px'>Source</th>
+                {/* <th className='min-w-120px'>Source</th> */}
               </tr>
             </thead>
             {/* end::Table head */}

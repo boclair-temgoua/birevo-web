@@ -6,9 +6,10 @@ import {
   useContext,
   ReactNode,
 } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUserFormToken } from '../../../utility'
 import { loadShowUser } from '../../../redux/actions/userAction'
+import { useQuery } from 'react-query';
+import { getOneApi } from '../../user/api/index';
 
 
 interface AuthUserContextProps {
@@ -38,16 +39,10 @@ const useAuth = () => {
 
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [auth, setAuth] = useState(getCurrentUserFormToken())
-  const user = useSelector((state: any) => state?.users?.user)
-  const dispatch = useDispatch<any>()
 
-
-  useEffect(() => {
-    const loadItems = async () => {
-      await dispatch(loadShowUser({ user_uuid: auth?.uuid }))
-    }
-    loadItems()
-  }, [auth?.uuid])
+  const fetchOneUser = async () => await getOneApi({ user_uuid: auth?.uuid  })
+  const { data } = useQuery(['user'], () => fetchOneUser())
+  const user: any = data?.data
 
   const logout = () => {
     // saveAuth(undefined)

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { TextInput } from '../../../forms/TextInput';
-import { StripePayFormRequest } from '../../core/_moduls';
+import { CreateStripeBillingMutation, StripePayFormRequest } from '../../core/_moduls';
 import Swal from 'sweetalert2';
 
 
@@ -15,6 +15,7 @@ const CARD_OPTIONS: any = {
         base: {
             iconColor: "#c4f0ff",
             color: "#424770",
+            // lineHeight: '24px',
             fontWeight: 600,
             fontFamily: "Roboto, Source Code Pro, monospace, Open Sans, Segoe UI, sans-serif",
             fontSize: "16px",
@@ -38,6 +39,7 @@ const schema = yup
 export const RechargeStripeForm: React.FC<{ userItem: any }> = ({ userItem }) => {
     const [loading, setLoading] = useState<boolean>(false)
     const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
+    const [hasStripeErrors, setHasStripeErrors] = useState<boolean | string | undefined>(undefined)
     const { register, handleSubmit, reset, setValue,
         formState: { errors }
     } = useForm<StripePayFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
@@ -45,53 +47,52 @@ export const RechargeStripeForm: React.FC<{ userItem: any }> = ({ userItem }) =>
     const stripe = useStripe()
     const elements: any = useElements()
 
+    const saveMutation = CreateStripeBillingMutation({
+        onSuccess: () => {
+            setHasErrors(false);
+            setLoading(false)
+        },
+        onError: (error?: any) => {
+            setHasErrors(true);
+            setLoading(false);
+            setHasErrors(error.response.data.message);
+        }
+    });
 
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = (data: any) => {
         setLoading(true);
         setHasErrors(true);
-        if (!stripe || !elements) { return }
-        const payload = stripe
-            ? await stripe.createPaymentMethod({
-                type: "card",
-                card: elements.getElement(CardElement),
-            })
-            : null;
-        const infoPaymentMethod = payload?.paymentMethod;
-        const item: StripePayFormRequest = { infoPaymentMethod, ...data };
         setTimeout(async () => {
-            await createStripeBilling(item)
-                .then((response) => {
-                    setHasErrors(false);
-                    setLoading(false)
-                    reset()
-                    Swal.fire({
-                        title: 'Success',
-                        icon: 'success',
-                        text: 'Transaction save successfully',
-                        confirmButtonText: 'Got It',
-                        buttonsStyling: false,
-                        customClass: {
-                            confirmButton: 'btn btn-primary',
-                        },
-                        showCancelButton: false,
-                        showClass: {
-                            popup: 'animate__animated animate__bounceIn',
-                        },
-                    })
-                    window.location.reload();
+            if (!stripe || !elements) { return }
+            const item = stripe
+                ? await stripe.createPaymentMethod({
+                    type: "card",
+                    card: elements.getElement(CardElement),
+                    billing_details: {
+                        name: data?.fullName,
+                        email: data?.email,
+                    },
                 })
-                .catch((error) => {
-                    setHasErrors(true)
-                    setLoading(false)
-                    setHasErrors(error.response.data.message);
-                });
-        }, 1000)
+                : null;
 
+            if (item?.error) { setHasStripeErrors(item?.error.message); }
+            const infoPaymentMethod = item?.paymentMethod;
+            const payload: StripePayFormRequest = { infoPaymentMethod, ...data };
+            saveMutation.mutateAsync(payload)
+        }, 1000)
     };
 
     return (
         <>
+            {hasStripeErrors && (
+                <div className="text-center alert alert-danger">
+                    <div className="d-flex flex-column">
+                        <h4 className="mb-1 text-danger">Error</h4>
+                        <span>{hasStripeErrors}</span>
+                    </div>
+                </div>
+            )}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row mb-6">
                     <div className="col-md-8 fv-row fv-plugins-icon-container">

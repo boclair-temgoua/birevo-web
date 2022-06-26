@@ -39,7 +39,9 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
               <a href={void (0)} onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }} className='text-dark fw-bolder text-hover-primary fs-6'>
                 {voucher?.code}
               </a>
-              <span className='text-muted fw-bold text-muted d-block fs-7'>Coupon: <span className={`fw-bolder text-${voucher?.statusOnline === 'ONLINE' && voucher?.status === 'ACTIVE' ? 'success' : 'danger'} my-6`}>{voucher?.statusOnline === 'ONLINE' && voucher?.status === 'ACTIVE' ? 'Valid' : 'Invalid'}</span></span>
+              {voucher?.voucherType === 'COUPON' && (
+                <span className='text-muted fw-bold text-muted d-block fs-7'>Coupon: <span className={`fw-bolder text-${voucher?.statusOnline === 'ONLINE' && voucher?.status === 'ACTIVE' ? 'success' : 'danger'} my-6`}>{voucher?.statusOnline === 'ONLINE' && voucher?.status === 'ACTIVE' ? 'Valid' : 'Invalid'}</span></span>
+              )}
             </div>
           </div>
         </td>

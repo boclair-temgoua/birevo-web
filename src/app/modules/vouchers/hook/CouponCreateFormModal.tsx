@@ -225,7 +225,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                     errors={errors}
                     name="description"
                     placeholder="Description coupon (optional)"
-                    validation={{ required: true }}
+                    validation={{ required: false }}
                   />
                 </div>
                 <div className="text-center">
