@@ -15,7 +15,10 @@ import { useIntl } from 'react-intl';
 
 const schema = yup
   .object({
-    username: yup.string().min(3, 'Minimum 3 symbols').required(),
+    email: yup.string()
+    .min(3, 'Minimum 3 symbols')
+    .max(50, 'Maximum 50 symbols')
+    .required('Email is required'),
     password: yup.string()
       .min(8, 'Minimum 8 symbols')
       .max(50, 'Maximum 50 symbols')
@@ -100,13 +103,13 @@ export function Login() {
         <div className='fv-row mb-10'>
           <TextInput
             className="form-control form-control-lg"
-            labelFlex="Username"
+            labelFlex="Email address"
             register={register}
             errors={errors}
-            name="username"
-            type="text"
+            name="email"
+            type="email"
             autoComplete="one"
-            placeholder="Enter your username"
+            placeholder="Enter your email address"
             validation={{ required: true }}
             required="required"
             isRequired={true}

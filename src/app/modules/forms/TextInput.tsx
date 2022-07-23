@@ -48,7 +48,7 @@ export const TextInput: React.FC<Props> = ({
                     {isRequired && (<i className="fas fa-exclamation-circle ms-2 fs-7"></i>)}
                 </label>
             )}
-            {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}
+            {label && (<label htmlFor={name} className={`${required} form-label text-dark`}>{label}</label>)}
             <input
                 className={`${className} ${errors?.name ? "is-invalid" : ""}`}
                 {...register(name, validation)}
@@ -65,10 +65,21 @@ export const TextInput: React.FC<Props> = ({
                 required={isRequired}
             />
             {errors?.name && (
-                <span className='invalid-feedback'>
-                    <strong>{errors?.name.message}</strong>
-                </span>
+                <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                        <span role='alert'>{errors?.name.message}</span>
+                    </div>
+                </div>
+                // <span className='invalid-feedback'>
+                //     <strong>{errors?.name.message}</strong>
+                // </span>
             )}
+
+            {/* <div className='fv-plugins-message-container'>
+                <div className='fv-help-block'>
+                    <span role='alert'>{errors?.name.message}</span>
+                </div>
+            </div> */}
         </>
     );
 };
