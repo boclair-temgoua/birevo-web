@@ -7,7 +7,7 @@ interface Props {
     required?: string;
     className: string;
     validation?: { [key: string]: any };
-    errors: { [key: string]: FieldError };
+    errors: { [key: string]: any };
     placeholder?: string;
 }
 

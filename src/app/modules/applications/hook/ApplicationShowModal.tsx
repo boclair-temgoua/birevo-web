@@ -1,7 +1,7 @@
 import { KTSVG } from '../../../../_metronic/helpers'
 import { OneApplicationResponse, OneApplicationTokenResponse } from '../core/_moduls';
 import { getTokenWithApplications } from '../api';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { ApplicationTokenTable } from './ApplicationTokenTable';
 
 interface Props {

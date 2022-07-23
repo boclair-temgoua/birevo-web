@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ApplicationFormRequest, ApplicationMutation, OneApplicationResponse, optionsStatusOnline } from '../core/_moduls';
-// import { createOrUpdateOneCoupon } from '../api/index';
 import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
 
 interface Props {
@@ -86,7 +85,6 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
             <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
               {/* begin::Modal body */}
               <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-                {/* <UserEditModalFormWrapper /> */}
                 <div className="d-flex flex-column mb-8">
                   <TextInput
                     className="form-control form-control-lg"

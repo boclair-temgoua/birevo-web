@@ -7,7 +7,7 @@ import { loadShowOrganization } from '../../../redux/actions/organizationAction'
 import { KTSVG } from '../../../../_metronic/helpers';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import queryString from 'query-string';
-import { useQueryClient, useQuery } from 'react-query';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { getContributorsPaginateSubscribes } from '../../subscribes/api/index';
 import { useDebounce } from '../../../utility/commons/useDebounce';

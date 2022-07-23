@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FC, useEffect, useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
-import { useQueryClient, useQuery } from 'react-query';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { useDebounce } from '../../../utility/commons/useDebounce';
 import queryString from 'query-string';
 import { getActivitiesVoucher } from '../api/index';

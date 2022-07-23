@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
 import { OneVoucherResponse, VoucherFormRequest, CouponCreateMutation } from '../core/_moduls';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getOneVoucher } from '../api';
 import dayjs from 'dayjs';
 import { useForm } from "react-hook-form";

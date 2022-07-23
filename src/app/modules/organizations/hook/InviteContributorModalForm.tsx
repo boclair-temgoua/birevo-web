@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDebounce } from "../../../utility/commons/useDebounce";
 import { OneOrganizationResponse } from '../core/_models';

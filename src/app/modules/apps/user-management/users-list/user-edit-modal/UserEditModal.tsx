@@ -1,6 +1,5 @@
 import {useEffect} from 'react'
 import {UserEditModalHeader} from './UserEditModalHeader'
-import {UserEditModalFormWrapper} from './UserEditModalFormWrapper'
 
 const UserEditModal = () => {
   useEffect(() => {
@@ -25,9 +24,9 @@ const UserEditModal = () => {
           <div className='modal-content'>
             <UserEditModalHeader />
             {/* begin::Modal body */}
-            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
+            {/* <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
               <UserEditModalFormWrapper />
-            </div>
+            </div> */}
             {/* end::Modal body */}
           </div>
           {/* end::Modal content */}

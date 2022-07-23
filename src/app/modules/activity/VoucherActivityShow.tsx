@@ -7,7 +7,7 @@ import { KTSVG } from '../../../_metronic/helpers';
 import queryString from 'query-string';
 import { ActivityTable } from './hook/ActivityTable';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getOneVoucher } from '../vouchers/api';
 import { OneVoucherResponse } from '../vouchers/core/_moduls';
 import { toAbsoluteUrl } from '../../../_metronic/helpers/AssetHelpers';

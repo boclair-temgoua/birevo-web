@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {FC, useEffect} from 'react'
-import {useMutation, useQueryClient} from 'react-query'
+import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {MenuComponent} from '../../../../../../../_metronic/assets/ts/components'
 import {ID, KTSVG, QUERIES} from '../../../../../../../_metronic/helpers'
 import {useListView} from '../../core/ListViewProvider'

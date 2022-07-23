@@ -4,7 +4,7 @@ import { useAuth } from '../../auth';
 import { useNavigate, useParams } from 'react-router-dom';
 // import { OrganizationSubscribeTable } from '../hook/OrganizationSubscribeTable';
 import { CouponCreateForm } from '../hook/CouponCreateForm';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getOneByUuidVoucher } from '../api/index';
 import { OneVoucherResponse } from '../core/_moduls';
 

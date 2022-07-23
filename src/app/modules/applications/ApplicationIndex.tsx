@@ -8,7 +8,7 @@ import {
 } from '../../../_metronic/partials/widgets'
 import { ApplicationCreateOrUpdateFormModal } from './hook/ApplicationCreateOrUpdateFormModal'
 import queryString from 'query-string';
-import { useQueryClient, useQuery } from 'react-query';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { useDebounce } from '../../utility/commons/useDebounce';
 import { getApplications } from './api/index';
 import { EmptyTable } from '../../utility/commons/EmptyTable';

@@ -1,4 +1,4 @@
-import {useQueryClient, useMutation} from 'react-query'
+import {useQueryClient, useMutation} from '@tanstack/react-query'
 import Swal from 'sweetalert2'
 import {createCouponBilling, createStripeBilling} from '../api/index'
 export type paymentMethodType = 'COUPON-PAY' | 'PAYPAL-PAY' | 'CARD-PAY'

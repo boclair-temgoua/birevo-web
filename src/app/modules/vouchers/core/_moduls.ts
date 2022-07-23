@@ -1,4 +1,4 @@
-import {useQueryClient, useMutation} from 'react-query'
+import {useQueryClient, useMutation} from '@tanstack/react-query'
 import {createOrUpdateOneCoupon, createOrUpdateOneVoucher} from '../api/index'
 import Swal from 'sweetalert2'
 export const optionsStatusVouchers = [

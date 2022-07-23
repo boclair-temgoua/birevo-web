@@ -1,5 +1,5 @@
 import {createOrUpdateOneApplication} from '../api/index'
-import {useQueryClient, useMutation} from 'react-query'
+import {useQueryClient, useMutation} from '@tanstack/react-query'
 import {deleteOneApplication} from '../api/index'
 import Swal from 'sweetalert2'
 export type StatusOnline = 'ONLINE' | 'OFFLINE' | 'TEST'
