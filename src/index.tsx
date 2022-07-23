@@ -20,6 +20,7 @@ import { MetronicI18nProvider } from './_metronic/i18n/Metronici18n'
 import './_metronic/assets/sass/style.scss'
 import './_metronic/assets/sass/style.react.scss'
 import 'animate.css';
+import 'toastify-js/src/toastify.css'
 import 'react-datepicker/dist/react-datepicker.css';
 import { AppRoutes } from './app/routing/AppRoutes'
 import { AuthProvider, setupAxios } from './app/modules/auth'

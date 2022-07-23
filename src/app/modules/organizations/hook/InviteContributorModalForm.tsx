@@ -23,7 +23,7 @@ export const InviteContributorModalForm: React.FC<Props> = ({ setOpenModal, orga
     })
 
     const {
-        isLoading,
+        status,
         isError,
         error,
         data,
@@ -32,7 +32,7 @@ export const InviteContributorModalForm: React.FC<Props> = ({ setOpenModal, orga
         staleTime: 5000
     })
 
-    const dataTable = isLoading ? (<strong>Loading...</strong>) :
+    const dataTable = status === 'loading' ? (<strong>Loading...</strong>) :
         isError ? (<>Error: {error}</>) :
             (data?.data?.data?.length <= 0) ? ('') :
                 (

@@ -4,6 +4,7 @@ import {KTSVG} from '../../../helpers'
 import ApexCharts, {ApexOptions} from 'apexcharts'
 import {getCSS, getCSSVariableValue} from '../../../assets/ts/_utils'
 import clsx from 'clsx'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -15,16 +16,16 @@ type Props = {
 
 const StatisticsWidget4: React.FC<Props> = ({className, svgIcon, color, change, description}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
 
     const height = parseInt(getCSS(chartRef.current, 'height'))
-    const labelColor = getCSSVariableValue('--bs-gray-800')
-    const baseColor = getCSSVariableValue('--bs-' + color)
-    const lightColor = getCSSVariableValue('--bs-light-' + color)
+    const labelColor = getCSSVariableValue('--kt-gray-800')
+    const baseColor = getCSSVariableValue('--kt-' + color)
+    const lightColor = getCSSVariableValue('--kt-' + color + '-light')
 
     const chart = new ApexCharts(
       chartRef.current,
@@ -34,12 +35,18 @@ const StatisticsWidget4: React.FC<Props> = ({className, svgIcon, color, change, 
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
-  }, [chartRef, color])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chartRef, color, mode])
 
   return (
     <div className={`card ${className}`}>
@@ -53,9 +60,9 @@ const StatisticsWidget4: React.FC<Props> = ({className, svgIcon, color, change, 
           </span>
 
           <div className='d-flex flex-column text-end'>
-            <span className='text-dark fw-bolder fs-2'>{change}</span>
+            <span className='text-dark fw-bold fs-2'>{change}</span>
 
-            <span className='text-muted fw-bold mt-1'>{description}</span>
+            <span className='text-muted fw-semibold mt-1'>{description}</span>
           </div>
         </div>
 

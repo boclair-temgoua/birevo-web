@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react'
 import {useLayout} from '../core'
 
-const BG_COLORS = ['bg-white', 'bg-info']
+const BG_COLORS = ['bg-body', 'bg-info']
 
 export function Sidebar() {
   const {classes} = useLayout()

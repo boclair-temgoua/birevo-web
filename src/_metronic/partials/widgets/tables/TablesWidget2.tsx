@@ -14,8 +14,8 @@ const TablesWidget2: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Latest Arrivals</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>More than 100 new products</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Latest Arrivals</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>More than 100 new products</span>
         </h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
@@ -65,17 +65,17 @@ const TablesWidget2: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Top Authors
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Successful Fellas</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Successful Fellas</span>
                 </td>
                 <td className='text-end'>
-                  <span className='badge badge-light-danger fw-bold me-1'>Angular</span>
-                  <span className='badge badge-light-info fw-bold me-1'>PHP</span>
+                  <span className='badge badge-light-danger fw-semibold me-1'>Angular</span>
+                  <span className='badge badge-light-info fw-semibold me-1'>PHP</span>
                 </td>
                 <td className='text-end'>
-                  <span className='text-muted fw-bold'>4600 Users</span>
+                  <span className='text-muted fw-semibold'>4600 Users</span>
                 </td>
                 <td className='text-end'>
                   <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
@@ -96,17 +96,17 @@ const TablesWidget2: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Popular Authors
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Most Successful</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Most Successful</span>
                 </td>
                 <td className='text-end'>
-                  <span className='badge badge-light-danger fw-bold me-1'>HTML</span>
-                  <span className='badge badge-light-info fw-bold me-1'>CSS</span>
+                  <span className='badge badge-light-danger fw-semibold me-1'>HTML</span>
+                  <span className='badge badge-light-info fw-semibold me-1'>CSS</span>
                 </td>
                 <td className='text-end'>
-                  <span className='text-muted fw-bold'>7200 Users</span>
+                  <span className='text-muted fw-semibold'>7200 Users</span>
                 </td>
                 <td className='text-end'>
                   <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
@@ -127,17 +127,17 @@ const TablesWidget2: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     New Users
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Awesome Users</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Awesome Users</span>
                 </td>
                 <td className='text-end'>
-                  <span className='badge badge-light-danger fw-bold me-1'>React</span>
-                  <span className='badge badge-light-info fw-bold me-1'>SASS</span>
+                  <span className='badge badge-light-danger fw-semibold me-1'>React</span>
+                  <span className='badge badge-light-info fw-semibold me-1'>SASS</span>
                 </td>
                 <td className='text-end'>
-                  <span className='text-muted fw-bold'>890 Users</span>
+                  <span className='text-muted fw-semibold'>890 Users</span>
                 </td>
                 <td className='text-end'>
                   <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
@@ -158,17 +158,17 @@ const TablesWidget2: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Active Customers
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Best Customers</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Best Customers</span>
                 </td>
                 <td className='text-end'>
-                  <span className='badge badge-light-danger fw-bold me-1'>Java</span>
-                  <span className='badge badge-light-info fw-bold me-1'>PHP</span>
+                  <span className='badge badge-light-danger fw-semibold me-1'>Java</span>
+                  <span className='badge badge-light-info fw-semibold me-1'>PHP</span>
                 </td>
                 <td className='text-end'>
-                  <span className='text-muted fw-bold'>6370 Users</span>
+                  <span className='text-muted fw-semibold'>6370 Users</span>
                 </td>
                 <td className='text-end'>
                   <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
@@ -189,17 +189,17 @@ const TablesWidget2: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Bestseller Theme
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Amazing Templates</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Amazing Templates</span>
                 </td>
                 <td className='text-end'>
-                  <span className='badge badge-light-danger fw-bold me-1'>Python</span>
-                  <span className='badge badge-light-info fw-bold me-1'>MySQL</span>
+                  <span className='badge badge-light-danger fw-semibold me-1'>Python</span>
+                  <span className='badge badge-light-info fw-semibold me-1'>MySQL</span>
                 </td>
                 <td className='text-end'>
-                  <span className='text-muted fw-bold'>354 Users</span>
+                  <span className='text-muted fw-semibold'>354 Users</span>
                 </td>
                 <td className='text-end'>
                   <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>

@@ -12,7 +12,7 @@ const ListsWidget2: React.FC<Props> = ({className}) => {
     <div className={`card ${className}`}>
       {/* begin::Header */}
       <div className='card-header border-0'>
-        <h3 className='card-title fw-bolder text-dark'>Authors</h3>
+        <h3 className='card-title fw-bold text-dark'>Authors</h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
           <button
@@ -40,10 +40,10 @@ const ListsWidget2: React.FC<Props> = ({className}) => {
           {/* end::Avatar */}
           {/* begin::Text */}
           <div className='flex-grow-1'>
-            <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+            <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
               Emma Smith
             </a>
-            <span className='text-muted d-block fw-bold'>Project Manager</span>
+            <span className='text-muted d-block fw-semibold'>Project Manager</span>
           </div>
           {/* end::Text */}
         </div>
@@ -57,10 +57,10 @@ const ListsWidget2: React.FC<Props> = ({className}) => {
           {/* end::Avatar */}
           {/* begin::Text */}
           <div className='flex-grow-1'>
-            <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+            <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
               Sean Bean
             </a>
-            <span className='text-muted d-block fw-bold'>PHP, SQLite, Artisan CLI</span>
+            <span className='text-muted d-block fw-semibold'>PHP, SQLite, Artisan CLI</span>
           </div>
           {/* end::Text */}
         </div>
@@ -74,10 +74,10 @@ const ListsWidget2: React.FC<Props> = ({className}) => {
           {/* end::Avatar */}
           {/* begin::Text */}
           <div className='flex-grow-1'>
-            <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+            <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
               Brian Cox
             </a>
-            <span className='text-muted d-block fw-bold'>PHP, SQLite, Artisan CLI</span>
+            <span className='text-muted d-block fw-semibold'>PHP, SQLite, Artisan CLI</span>
           </div>
           {/* end::Text */}
         </div>
@@ -91,10 +91,10 @@ const ListsWidget2: React.FC<Props> = ({className}) => {
           {/* end::Avatar */}
           {/* begin::Text */}
           <div className='flex-grow-1'>
-            <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+            <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
               Francis Mitcham
             </a>
-            <span className='text-muted d-block fw-bold'>PHP, SQLite, Artisan CLI</span>
+            <span className='text-muted d-block fw-semibold'>PHP, SQLite, Artisan CLI</span>
           </div>
           {/* end::Text */}
         </div>
@@ -108,10 +108,10 @@ const ListsWidget2: React.FC<Props> = ({className}) => {
           {/* end::Avatar */}
           {/* begin::Text */}
           <div className='flex-grow-1'>
-            <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+            <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
               Dan Wilson
             </a>
-            <span className='text-muted d-block fw-bold'>PHP, SQLite, Artisan CLI</span>
+            <span className='text-muted d-block fw-semibold'>PHP, SQLite, Artisan CLI</span>
           </div>
           {/* end::Text */}
         </div>

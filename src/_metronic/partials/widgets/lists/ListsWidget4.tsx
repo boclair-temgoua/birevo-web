@@ -14,8 +14,8 @@ const ListsWidget4: React.FC<Props> = ({className, items = 6}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder text-dark'>Trends</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>Latest tech trends</span>
+          <span className='card-label fw-bold text-dark'>Trends</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>Latest tech trends</span>
         </h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
@@ -51,12 +51,12 @@ const ListsWidget4: React.FC<Props> = ({className, items = 6}) => {
           {/* begin::Section */}
           <div className='d-flex align-items-center flex-row-fluid flex-wrap'>
             <div className='flex-grow-1 me-2'>
-              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                 Top Authors
               </a>
-              <span className='text-muted fw-bold d-block fs-7'>Mark, Rowling, Esther</span>
+              <span className='text-muted fw-semibold d-block fs-7'>Mark, Rowling, Esther</span>
             </div>
-            <span className='badge badge-light fw-bolder my-2'>+82$</span>
+            <span className='badge badge-light fw-bold my-2'>+82$</span>
           </div>
           {/* end::Section */}
         </div>
@@ -77,12 +77,12 @@ const ListsWidget4: React.FC<Props> = ({className, items = 6}) => {
           {/* begin::Section */}
           <div className='d-flex align-items-center flex-row-fluid flex-wrap'>
             <div className='flex-grow-1 me-2'>
-              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                 Popular Authors
               </a>
-              <span className='text-muted fw-bold d-block fs-7'>Randy, Steve, Mike</span>
+              <span className='text-muted fw-semibold d-block fs-7'>Randy, Steve, Mike</span>
             </div>
-            <span className='badge badge-light fw-bolder my-2'>+280$</span>
+            <span className='badge badge-light fw-bold my-2'>+280$</span>
           </div>
           {/* end::Section */}
         </div>
@@ -103,12 +103,12 @@ const ListsWidget4: React.FC<Props> = ({className, items = 6}) => {
           {/* begin::Section */}
           <div className='d-flex align-items-center flex-row-fluid flex-wrap'>
             <div className='flex-grow-1 me-2'>
-              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                 New Users
               </a>
-              <span className='text-muted fw-bold d-block fs-7'>John, Pat, Jimmy</span>
+              <span className='text-muted fw-semibold d-block fs-7'>John, Pat, Jimmy</span>
             </div>
-            <span className='badge badge-light fw-bolder my-2'>+4500$</span>
+            <span className='badge badge-light fw-bold my-2'>+4500$</span>
           </div>
           {/* end::Section */}
         </div>
@@ -129,12 +129,12 @@ const ListsWidget4: React.FC<Props> = ({className, items = 6}) => {
           {/* begin::Section */}
           <div className='d-flex align-items-center flex-row-fluid flex-wrap'>
             <div className='flex-grow-1 me-2'>
-              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                 Active Customers
               </a>
-              <span className='text-muted fw-bold d-block fs-7'>Mark, Rowling, Esther</span>
+              <span className='text-muted fw-semibold d-block fs-7'>Mark, Rowling, Esther</span>
             </div>
-            <span className='badge badge-light fw-bolder my-2'>+4500$</span>
+            <span className='badge badge-light fw-bold my-2'>+4500$</span>
           </div>
           {/* end::Section */}
         </div>
@@ -156,12 +156,12 @@ const ListsWidget4: React.FC<Props> = ({className, items = 6}) => {
             {/* begin::Section */}
             <div className='d-flex align-items-center flex-row-fluid flex-wrap'>
               <div className='flex-grow-1 me-2'>
-                <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+                <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                   Bestseller Theme
                 </a>
-                <span className='text-muted fw-bold d-block fs-7'>Disco, Retro, Sports</span>
+                <span className='text-muted fw-semibold d-block fs-7'>Disco, Retro, Sports</span>
               </div>
-              <span className='badge badge-light fw-bolder my-2'>+4500$</span>
+              <span className='badge badge-light fw-bold my-2'>+4500$</span>
             </div>
             {/* end::Section */}
           </div>
@@ -183,12 +183,12 @@ const ListsWidget4: React.FC<Props> = ({className, items = 6}) => {
             {/* begin::Section */}
             <div className='d-flex align-items-center flex-row-fluid flex-wrap'>
               <div className='flex-grow-1 me-2'>
-                <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+                <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                   Fox Broker App
                 </a>
-                <span className='text-muted fw-bold d-block fs-7'>Finance, Corporate, Apps</span>
+                <span className='text-muted fw-semibold d-block fs-7'>Finance, Corporate, Apps</span>
               </div>
-              <span className='badge badge-light fw-bolder my-2'>+4500$</span>
+              <span className='badge badge-light fw-bold my-2'>+4500$</span>
             </div>
             {/* end::Section */}
           </div>

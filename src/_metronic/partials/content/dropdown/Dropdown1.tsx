@@ -65,7 +65,7 @@ export function Dropdown1() {
         <div className='d-flex justify-content-end'>
           <button
             type='reset'
-            className='btn btn-sm btn-white btn-active-light-primary me-2'
+            className='btn btn-sm btn-light btn-active-light-primary me-2'
             data-kt-menu-dismiss='true'
           >
             Reset

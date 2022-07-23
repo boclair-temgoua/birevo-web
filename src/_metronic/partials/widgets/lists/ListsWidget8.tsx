@@ -13,8 +13,8 @@ const ListsWidget8: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header align-items-center border-0 mt-4'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='fw-bolder text-dark'>Latest Products</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>Gifts and more</span>
+          <span className='fw-bold text-dark'>Latest Products</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>Gifts and more</span>
         </h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
@@ -48,17 +48,17 @@ const ListsWidget8: React.FC<Props> = ({className}) => {
           <div className='d-flex flex-row-fluid align-items-center flex-wrap my-lg-0 me-2'>
             {/* begin::Title */}
             <div className='flex-grow-1 my-lg-0 my-2 me-2'>
-              <a href='#' className='text-gray-800 fw-bolder text-hover-primary fs-6'>
+              <a href='#' className='text-gray-800 fw-bold text-hover-primary fs-6'>
                 Cup &amp; Green
               </a>
-              <span className='text-muted fw-bold d-block pt-1'>Visually stunning</span>
+              <span className='text-muted fw-semibold d-block pt-1'>Visually stunning</span>
             </div>
             {/* end::Title */}
             {/* begin::Section */}
             <div className='d-flex align-items-center'>
               <div className='me-6'>
                 <i className='fa fa-star-half-alt me-1 text-warning fs-5'></i>
-                <span className='text-gray-800 fw-bolder'>4.2</span>
+                <span className='text-gray-800 fw-bold'>4.2</span>
               </div>
               <a href='#' className='btn btn-icon btn-light btn-sm border-0'>
                 <KTSVG
@@ -86,17 +86,17 @@ const ListsWidget8: React.FC<Props> = ({className}) => {
           <div className='d-flex flex-row-fluid align-items-center flex-wrap my-lg-0 me-2'>
             {/* begin::Title */}
             <div className='flex-grow-1 my-lg-0 my-2 me-2'>
-              <a href='#' className='text-gray-800 fw-bolder text-hover-primary fs-6'>
+              <a href='#' className='text-gray-800 fw-bold text-hover-primary fs-6'>
                 Pink Patterns
               </a>
-              <span className='text-muted fw-bold d-block pt-1'>Feminine all around</span>
+              <span className='text-muted fw-semibold d-block pt-1'>Feminine all around</span>
             </div>
             {/* end::Title */}
             {/* begin::Section */}
             <div className='d-flex align-items-center'>
               <div className='me-6'>
                 <i className='fa fa-star-half-alt me-1 text-warning fs-5'></i>
-                <span className='text-gray-800 fw-bolder'>5.0</span>
+                <span className='text-gray-800 fw-bold'>5.0</span>
               </div>
               <a href='#' className='btn btn-icon btn-light btn-sm border-0'>
                 <KTSVG
@@ -124,17 +124,17 @@ const ListsWidget8: React.FC<Props> = ({className}) => {
           <div className='d-flex flex-row-fluid align-items-center flex-wrap my-lg-0 me-2'>
             {/* begin::Title */}
             <div className='flex-grow-1 my-lg-0 my-2 me-2'>
-              <a href='#' className='text-gray-800 fw-bolder text-hover-primary fs-6'>
+              <a href='#' className='text-gray-800 fw-bold text-hover-primary fs-6'>
                 Abstract Art
               </a>
-              <span className='text-muted fw-bold d-block pt-1'>The will to capture readers</span>
+              <span className='text-muted fw-semibold d-block pt-1'>The will to capture readers</span>
             </div>
             {/* end::Title */}
             {/* begin::Section */}
             <div className='d-flex align-items-center'>
               <div className='me-6'>
                 <i className='fa fa-star-half-alt me-1 text-warning fs-5'></i>
-                <span className='text-gray-800 fw-bolder'>5.7</span>
+                <span className='text-gray-800 fw-bold'>5.7</span>
               </div>
               <a href='#' className='btn btn-icon btn-light btn-sm border-0'>
                 <KTSVG
@@ -162,10 +162,10 @@ const ListsWidget8: React.FC<Props> = ({className}) => {
           <div className='d-flex flex-row-fluid align-items-center flex-wrap my-lg-0 me-2'>
             {/* begin::Title */}
             <div className='flex-grow-1 my-lg-0 my-2 me-2'>
-              <a href='#' className='text-gray-800 fw-bolder text-hover-primary fs-6'>
+              <a href='#' className='text-gray-800 fw-bold text-hover-primary fs-6'>
                 Desserts platter
               </a>
-              <span className='text-muted fw-bold d-block pt-1'>
+              <span className='text-muted fw-semibold d-block pt-1'>
                 Food trends &amp; inspirations
               </span>
             </div>
@@ -174,7 +174,7 @@ const ListsWidget8: React.FC<Props> = ({className}) => {
             <div className='d-flex align-items-center'>
               <div className='me-6'>
                 <i className='fa fa-star-half-alt me-1 text-warning fs-5'></i>
-                <span className='text-gray-800 fw-bolder'>3.7</span>
+                <span className='text-gray-800 fw-bold'>3.7</span>
               </div>
               <a href='#' className='btn btn-icon btn-light btn-sm border-0'>
                 <KTSVG

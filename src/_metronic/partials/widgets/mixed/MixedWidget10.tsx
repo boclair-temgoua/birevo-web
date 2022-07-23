@@ -2,6 +2,7 @@
 import React, {useEffect, useRef} from 'react'
 import ApexCharts, {ApexOptions} from 'apexcharts'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -11,8 +12,8 @@ type Props = {
 
 const MixedWidget10: React.FC<Props> = ({className, chartColor, chartHeight}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -22,13 +23,19 @@ const MixedWidget10: React.FC<Props> = ({className, chartColor, chartHeight}) =>
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
@@ -38,14 +45,14 @@ const MixedWidget10: React.FC<Props> = ({className, chartColor, chartHeight}) =>
         <div className='flex-grow-1 card-p pb-0'>
           <div className='d-flex flex-stack flex-wrap'>
             <div className='me-2'>
-              <a href='#' className='text-dark text-hover-primary fw-bolder fs-3'>
+              <a href='#' className='text-dark text-hover-primary fw-bold fs-3'>
                 Generate Reports
               </a>
 
-              <div className='text-muted fs-7 fw-bold'>Finance and accounting reports</div>
+              <div className='text-muted fs-7 fw-semibold'>Finance and accounting reports</div>
             </div>
 
-            <div className={`fw-bolder fs-3 text-${chartColor}`}>$24,500</div>
+            <div className={`fw-bold fs-3 text-${chartColor}`}>$24,500</div>
           </div>
         </div>
         {/* end::Stats */}
@@ -60,10 +67,10 @@ const MixedWidget10: React.FC<Props> = ({className, chartColor, chartHeight}) =>
 }
 
 const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
-  const labelColor = getCSSVariableValue('--bs-gray-800')
-  const strokeColor = getCSSVariableValue('--bs-gray-300')
-  const baseColor = getCSSVariableValue('--bs-' + chartColor)
-  const lightColor = getCSSVariableValue('--bs-light-' + chartColor)
+  const labelColor = getCSSVariableValue('--kt-gray-800')
+  const strokeColor = getCSSVariableValue('--kt-gray-300')
+  const baseColor = getCSSVariableValue('--kt-' + chartColor)
+  const lightColor = getCSSVariableValue('--kt-' + chartColor + '-light')
 
   return {
     series: [

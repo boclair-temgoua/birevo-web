@@ -12,7 +12,7 @@ type Props = {
 const SearchModal: React.FC<Props> = ({show, handleClose}) => {
   return (
     <Modal
-      className='bg-white'
+      className='bg-body'
       id='kt_header_search_modal'
       aria-hidden='true'
       dialogClassName='modal-fullscreen h-auto'
@@ -59,7 +59,7 @@ const SearchModal: React.FC<Props> = ({show, handleClose}) => {
                               )}')`,
                             }}
                           />
-                          <div className='overlay-layer bg-white bg-opacity-50'>
+                          <div className='overlay-layer bg-body bg-opacity-50'>
                             <a href='#' className='btn btn-sm fw-bold btn-primary'>
                               Explore
                             </a>
@@ -76,7 +76,7 @@ const SearchModal: React.FC<Props> = ({show, handleClose}) => {
                               )}')`,
                             }}
                           />
-                          <div className='overlay-layer bg-white bg-opacity-50'>
+                          <div className='overlay-layer bg-body bg-opacity-50'>
                             <a href='#' className='btn btn-sm fw-bold btn-primary'>
                               Explore
                             </a>
@@ -95,7 +95,7 @@ const SearchModal: React.FC<Props> = ({show, handleClose}) => {
                               )}')`,
                             }}
                           />
-                          <div className='overlay-layer bg-white bg-opacity-50'>
+                          <div className='overlay-layer bg-body bg-opacity-50'>
                             <a href='#' className='btn btn-sm fw-bold btn-primary'>
                               Explore
                             </a>
@@ -116,7 +116,7 @@ const SearchModal: React.FC<Props> = ({show, handleClose}) => {
                           )}')`,
                         }}
                       ></div>
-                      <div className='overlay-layer bg-white bg-opacity-50'>
+                      <div className='overlay-layer bg-body bg-opacity-50'>
                         <a href='#' className='btn btn-sm fw-bold btn-primary'>
                           Explore
                         </a>

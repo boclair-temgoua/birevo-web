@@ -284,8 +284,8 @@ class DrawerComponent {
     return EventHandlerUtil.one(this.element, name, handler)
   }
 
-  public off = (name: string) => {
-    return EventHandlerUtil.off(this.element, name)
+  public off = (name: string, handerId: string) => {
+    return EventHandlerUtil.off(this.element, name, handerId)
   }
 
   public trigger = (name: string, event: Event) => {

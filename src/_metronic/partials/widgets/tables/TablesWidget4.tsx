@@ -12,14 +12,14 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>New Members</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>More than 400 new members</span>
+          <span className='card-label fw-bold fs-3 mb-1'>New Members</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>More than 400 new members</span>
         </h3>
         <div className='card-toolbar'>
           <ul className='nav'>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_4_tab_1'
               >
@@ -28,7 +28,7 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_4_tab_2'
               >
@@ -37,7 +37,7 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_4_tab_3'
               >
@@ -76,13 +76,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>Movie Creator</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Movie Creator</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -117,13 +117,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>HTML, CSS Coding</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>HTML, CSS Coding</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -158,13 +158,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Lebron Wayde
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>ReactJS Developer</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>ReactJS Developer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -199,13 +199,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Natali Trump
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>UI/UX Designer</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>UI/UX Designer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -240,13 +240,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Kevin Leonard
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>Art Director</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Art Director</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -306,13 +306,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Kevin Leonard
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>Art Director</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Art Director</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -347,13 +347,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Natali Trump
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>UI/UX Designer</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>UI/UX Designer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -388,13 +388,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>HTML, CSS Coding</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>HTML, CSS Coding</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -429,13 +429,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>Movie Creator</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Movie Creator</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -495,13 +495,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>HTML, CSS Coding</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>HTML, CSS Coding</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -536,13 +536,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Lebron Wayde
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>ReactJS Developer</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>ReactJS Developer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>
@@ -577,13 +577,13 @@ const TablesWidget4: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Natali Trump
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>UI/UX Designer</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>UI/UX Designer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Rating</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Rating</span>
                       <div className='rating'>
                         <div className='rating-label me-2 checked'>
                           <i className='bi bi-star-fill fs-5'></i>

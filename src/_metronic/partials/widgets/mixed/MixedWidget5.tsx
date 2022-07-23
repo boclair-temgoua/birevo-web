@@ -18,7 +18,7 @@ const MixedWidget5: React.FC<Props> = ({className, time, image, title, descripti
         <div className='flex-grow-1'>
           {/* begin::Info */}
           <div className='d-flex align-items-center pe-2 mb-5'>
-            <span className='text-muted fw-bolder fs-5 flex-grow-1'>{time}</span>
+            <span className='text-muted fw-bold fs-5 flex-grow-1'>{time}</span>
 
             <div className='symbol symbol-50px'>
               <span className='symbol-label bg-light'>
@@ -29,7 +29,7 @@ const MixedWidget5: React.FC<Props> = ({className, time, image, title, descripti
           {/* end::Info */}
 
           {/* begin::Link */}
-          <a href='#' className='text-dark fw-bolder text-hover-primary fs-4'>
+          <a href='#' className='text-dark fw-bold text-hover-primary fs-4'>
             {title}
           </a>
           {/* end::Link */}

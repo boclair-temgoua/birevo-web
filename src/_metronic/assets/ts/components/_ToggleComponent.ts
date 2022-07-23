@@ -18,6 +18,7 @@ class ToggleComponent {
   instanceUid: string
   options: ToggleOptions
   state: string = ''
+  mode: string = ''
   target: HTMLElement | null = null
   attribute: string = ''
 
@@ -32,6 +33,8 @@ class ToggleComponent {
     }
     const elementToggleAttr = this.element.getAttribute('data-kt-toggle-state')
     this.state = elementToggleAttr || ''
+    const elementModeAttr = this.element.getAttribute('data-kt-toggle-mode')
+    this.mode = elementModeAttr || ''
     this.attribute = 'data-kt-' + this.element.getAttribute('data-kt-toggle-name')
 
     // Event Handlers
@@ -45,7 +48,17 @@ class ToggleComponent {
   private _handlers = () => {
     this.element.addEventListener('click', (e: Event) => {
       e.preventDefault()
-      this._toggle()
+
+      if (this.mode === '') {
+        this._toggle()
+        return
+      }
+
+      if (this.mode === 'off' && !this._isEnabled()) {
+        this._toggle()
+      } else if (this.mode === 'on' && this._isEnabled()) {
+        this._toggle()
+      }
     })
   }
 
@@ -147,8 +160,8 @@ class ToggleComponent {
     return EventHandlerUtil.one(this.element, name, handler)
   }
 
-  public off = (name: string) => {
-    return EventHandlerUtil.off(this.element, name)
+  public off = (name: string, handlerId: string) => {
+    return EventHandlerUtil.off(this.element, name, handlerId)
   }
 
   public trigger = (name: string, event?: Event) => {
@@ -166,30 +179,13 @@ class ToggleComponent {
   }
 
   public static createInstances = (selector: string) => {
-    const elements = document.body.querySelectorAll(selector)
+    const elements = document.body.querySelectorAll<HTMLElement>(selector)
     elements.forEach((el) => {
-      const item = el as HTMLElement
-      let toggleElement = ToggleComponent.getInstance(item)
-      if (!toggleElement) {
-        toggleElement = new ToggleComponent(item, defaultToggleOptions)
+      let toggle = ToggleComponent.getInstance(el)
+      if (!toggle) {
+        toggle = new ToggleComponent(el, defaultToggleOptions)
       }
     })
-  }
-
-  public static createInsance = (
-    selector: string,
-    options: ToggleOptions = defaultToggleOptions
-  ): ToggleComponent | undefined => {
-    const element = document.body.querySelector(selector)
-    if (!element) {
-      return
-    }
-    const item = element as HTMLElement
-    let toggle = ToggleComponent.getInstance(item)
-    if (!toggle) {
-      toggle = new ToggleComponent(item, options)
-    }
-    return toggle
   }
 
   public static reinitialization = () => {

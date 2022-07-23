@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { FC, ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import React, {FC, createContext, useContext, useEffect, useState} from 'react'
+import {WithChildren} from '../../helpers'
 
 export interface PageLink {
   title: string
@@ -18,12 +19,12 @@ export interface PageDataContextModel {
 }
 
 const PageDataContext = createContext<PageDataContextModel>({
-  setPageTitle: (_title: string) => { },
-  setPageBreadcrumbs: (_breadcrumbs: Array<PageLink>) => { },
-  setPageDescription: (_description: string) => { },
+  setPageTitle: (_title: string) => {},
+  setPageBreadcrumbs: (_breadcrumbs: Array<PageLink>) => {},
+  setPageDescription: (_description: string) => {},
 })
 
-const PageDataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const PageDataProvider: FC<WithChildren> = ({children}) => {
   const [pageTitle, setPageTitle] = useState<string>('')
   const [pageDescription, setPageDescription] = useState<string>('')
   const [pageBreadcrumbs, setPageBreadcrumbs] = useState<Array<PageLink>>([])
@@ -45,11 +46,10 @@ function usePageData() {
 type Props = {
   description?: string
   breadcrumbs?: Array<PageLink>
-  children?: ReactNode
 }
 
-const PageTitle: FC<Props> = ({ children, description, breadcrumbs }) => {
-  const { setPageTitle, setPageDescription, setPageBreadcrumbs } = usePageData()
+const PageTitle: FC<Props & WithChildren> = ({children, description, breadcrumbs}) => {
+  const {setPageTitle, setPageDescription, setPageBreadcrumbs} = usePageData()
   useEffect(() => {
     if (children) {
       setPageTitle(children.toString())
@@ -80,8 +80,8 @@ const PageTitle: FC<Props> = ({ children, description, breadcrumbs }) => {
   return <></>
 }
 
-const PageDescription: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { setPageDescription } = usePageData()
+const PageDescription: FC<WithChildren> = ({children}) => {
+  const {setPageDescription} = usePageData()
   useEffect(() => {
     if (children) {
       setPageDescription(children.toString())
@@ -93,4 +93,4 @@ const PageDescription: React.FC<{ children: ReactNode }> = ({ children }) => {
   return <></>
 }
 
-export { PageDescription, PageTitle, PageDataProvider, usePageData }
+export {PageDescription, PageTitle, PageDataProvider, usePageData}

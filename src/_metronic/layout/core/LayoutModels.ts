@@ -47,7 +47,7 @@ export interface ISidebar {
   toggle: boolean
   shown: boolean
   content: 'general' | 'user' | 'shop'
-  bgColor: 'bg-white' | 'bg-info'
+  bgColor: 'bg-body' | 'bg-info'
   displayFooter: boolean
   displayFooterButton: boolean
 }

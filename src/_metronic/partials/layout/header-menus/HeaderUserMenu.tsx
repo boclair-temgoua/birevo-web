@@ -1,3 +1,9 @@
+// /* eslint-disable jsx-a11y/anchor-is-valid */
+// import {FC} from 'react'
+// import {Link} from 'react-router-dom'
+// import {useAuth} from '../../../../app/modules/auth'
+// import {Languages} from './Languages'
+// import {toAbsoluteUrl} from '../../../helpers'
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FC, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,9 +14,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadOrganizationsUserSubscribes } from '../../../../app/redux/actions/subscribeAction'
 import { OneSubscribeResponse } from '../../../../app/modules/subscribes/core/_models'
 import { updateOrganizationToUser } from '../../../../app/modules/user/api';
+import { toAbsoluteUrl } from '../../../helpers';
 
 const HeaderUserMenu: FC = () => {
-  const userItem = useAuth()
+  const userItem = useAuth();
+  // const {currentUser, logout} = useAuth()
   const navigate = useNavigate();
 
   const organizations = useSelector((state: any) => state?.subscribes?.organizationSubscribes)
@@ -71,13 +79,13 @@ const HeaderUserMenu: FC = () => {
       </div>
 
       {/* <div className='menu-item px-5'>
-        <a href='#' className='menu-link px-5'>
-          <span className='menu-text'>My Projects</span>
-          <span className='menu-badge'>
-            <span className='badge badge-light-danger badge-circle fw-bolder fs-7'>3</span>
-          </span>
-        </a>
-      </div> */}
+      <a href='#' className='menu-link px-5'>
+        <span className='menu-text'>My Projects</span>
+        <span className='menu-badge'>
+          <span className='badge badge-light-danger badge-circle fw-bolder fs-7'>3</span>
+        </span>
+      </a>
+    </div> */}
 
       <div
         className='menu-item px-5'
@@ -92,7 +100,7 @@ const HeaderUserMenu: FC = () => {
             <span className='badge badge-light-primary badge-circle fw-bolder fs-7'>{organizations?.count}</span>
           </span>
           <span className='menu-arrow'></span>
-          
+
         </a>
 
         <div className='menu-sub menu-sub-dropdown w-175px py-4'>
@@ -107,32 +115,32 @@ const HeaderUserMenu: FC = () => {
           </div>
 
           {/* <div className='menu-item px-3'>
-            <a href='#' className='menu-link d-flex flex-stack px-5'>
-              Statements
-              <i
-                className='fas fa-exclamation-circle ms-2 fs-7'
-                data-bs-toggle='tooltip'
-                title='View your statements'
-              ></i>
-            </a>
-          </div> */}
+          <a href='#' className='menu-link d-flex flex-stack px-5'>
+            Statements
+            <i
+              className='fas fa-exclamation-circle ms-2 fs-7'
+              data-bs-toggle='tooltip'
+              title='View your statements'
+            ></i>
+          </a>
+        </div> */}
 
           {/* <div className='separator my-2'></div>
 
-          <div className='menu-item px-3'>
-            <div className='menu-content px-3'>
-              <label className='form-check form-switch form-check-custom form-check-solid'>
-                <input
-                  className='form-check-input w-30px h-20px'
-                  type='checkbox'
-                  value='1'
-                  defaultChecked={true}
-                  name='notifications'
-                />
-                <span className='form-check-label text-muted fs-7'>Notifications</span>
-              </label>
-            </div>
-          </div> */}
+        <div className='menu-item px-3'>
+          <div className='menu-content px-3'>
+            <label className='form-check form-switch form-check-custom form-check-solid'>
+              <input
+                className='form-check-input w-30px h-20px'
+                type='checkbox'
+                value='1'
+                defaultChecked={true}
+                name='notifications'
+              />
+              <span className='form-check-label text-muted fs-7'>Notifications</span>
+            </label>
+          </div>
+        </div> */}
         </div>
       </div>
 
@@ -141,10 +149,10 @@ const HeaderUserMenu: FC = () => {
       <Languages />
 
       {/* <div className='menu-item px-5 my-1'>
-        <Link to='/crafted/account/settings' className='menu-link px-5'>
-          Account Settings
-        </Link>
-      </div> */}
+      <Link to='/crafted/account/settings' className='menu-link px-5'>
+        Account Settings
+      </Link>
+    </div> */}
 
       <div className='menu-item px-5'>
         <a href='#' className='menu-link px-5'>

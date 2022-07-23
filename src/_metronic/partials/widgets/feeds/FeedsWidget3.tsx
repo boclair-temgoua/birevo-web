@@ -24,10 +24,10 @@ const FeedsWidget3: React.FC<Props> = ({className}) => {
 
             {/* begin::Info */}
             <div className='d-flex flex-column'>
-              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                 Carles Nilson
               </a>
-              <span className='text-gray-400 fw-bold'>Yestarday at 5:06 PM</span>
+              <span className='text-gray-400 fw-semibold'>Yestarday at 5:06 PM</span>
             </div>
             {/* end::Info */}
           </div>
@@ -95,13 +95,13 @@ const FeedsWidget3: React.FC<Props> = ({className}) => {
             <div className='d-flex flex-column flex-row-fluid'>
               {/* begin::Info */}
               <div className='d-flex align-items-center flex-wrap mb-1'>
-                <a href='#' className='text-gray-800 text-hover-primary fw-bolder me-2'>
+                <a href='#' className='text-gray-800 text-hover-primary fw-bold me-2'>
                   Alice Danchik
                 </a>
 
-                <span className='text-gray-400 fw-bold fs-7'>1 day</span>
+                <span className='text-gray-400 fw-semibold fs-7'>1 day</span>
 
-                <a href='#' className='ms-auto text-gray-400 text-hover-primary fw-bold fs-7'>
+                <a href='#' className='ms-auto text-gray-400 text-hover-primary fw-semibold fs-7'>
                   Reply
                 </a>
               </div>
@@ -130,13 +130,13 @@ const FeedsWidget3: React.FC<Props> = ({className}) => {
             <div className='d-flex flex-column flex-row-fluid'>
               {/* begin::Info */}
               <div className='d-flex align-items-center flex-wrap mb-1'>
-                <a href='#' className='text-gray-800 text-hover-primary fw-bolder me-2'>
+                <a href='#' className='text-gray-800 text-hover-primary fw-bold me-2'>
                   Harris Bold
                 </a>
 
-                <span className='text-gray-400 fw-bold fs-7'>2 days</span>
+                <span className='text-gray-400 fw-semibold fs-7'>2 days</span>
 
-                <a href='#' className='ms-auto text-gray-400 text-hover-primary fw-bold fs-7'>
+                <a href='#' className='ms-auto text-gray-400 text-hover-primary fw-semibold fs-7'>
                   Reply
                 </a>
               </div>

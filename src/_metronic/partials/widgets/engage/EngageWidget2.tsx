@@ -20,7 +20,7 @@ const EngageWidget2: React.FC<Props> = ({
       <div className={`card-body p-0 d-flex card-rounded bg-light-${color}`}>
         <div className='py-18 px-12'>
           <h3 className='fs-2x'>
-            <a href='#' className='text-dark text-hover-primary fw-bolder'>
+            <a href='#' className='text-dark text-hover-primary fw-bold'>
               Nike Sneakers
             </a>
           </h3>

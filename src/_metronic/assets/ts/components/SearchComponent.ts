@@ -418,8 +418,8 @@ class SearchComponent {
     return EventHandlerUtil.one(this.element, name, handler)
   }
 
-  public off = (name: string) => {
-    return EventHandlerUtil.off(this.element, name)
+  public off = (name: string, handlerId: string) => {
+    return EventHandlerUtil.off(this.element, name, handlerId)
   }
 
   // Static methods
@@ -429,7 +429,7 @@ class SearchComponent {
   ) => {
     const Search = DataUtil.get(el, componentName)
     if (Search) {
-      return Search
+      return Search as SearchComponent
     }
 
     return null

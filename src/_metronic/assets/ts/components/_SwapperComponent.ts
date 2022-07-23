@@ -124,8 +124,8 @@ class SwapperComponent {
     return EventHandlerUtil.one(this.element, name, handler)
   }
 
-  public off = (name: string) => {
-    return EventHandlerUtil.off(this.element, name)
+  public off = (name: string, handlerId: string) => {
+    return EventHandlerUtil.off(this.element, name, handlerId)
   }
 
   public trigger = (name: string, event: Event) => {

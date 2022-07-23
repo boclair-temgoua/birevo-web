@@ -66,11 +66,11 @@ const ApplicationTableList: React.FC<Props> = ({ item }) => {
           <button onClick={() => { setOpenShowModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/arrows/arr095.svg' className='svg-icon-3' />
           </button>
-          <button onClick={() => { setOpenModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+          <button onClick={() => { setOpenModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-info btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
           </button>
 
-          <button onClick={() => { deleteItem(item) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
+          <button onClick={() => { deleteItem(item) }} className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
           </button>
         </td>

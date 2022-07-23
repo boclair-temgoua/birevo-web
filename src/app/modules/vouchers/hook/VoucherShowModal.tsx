@@ -9,8 +9,6 @@ import { useForm } from "react-hook-form";
 import ContentLoader from 'react-content-loader';
 import Swal from 'sweetalert2';
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
-// Import toastify css file
-import 'react-toastify/dist/ReactToastify.css';
 interface Props {
   setOpenModal: any,
   voucherItem: OneVoucherResponse
@@ -49,20 +47,6 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
         amount: voucherItem?.amount
       }
       saveMutation.mutateAsync(payload)
-      Swal.fire({
-        title: 'Success',
-        icon: 'success',
-        text: 'Status coupon has been updated',
-        confirmButtonText: 'Ok! Close',
-        buttonsStyling: false,
-        customClass: {
-          confirmButton: 'btn btn-primary',
-        },
-        showCancelButton: false,
-        showClass: {
-          popup: 'animate__animated animate__bounceIn',
-        },
-      })
     }, 1000)
   };
 

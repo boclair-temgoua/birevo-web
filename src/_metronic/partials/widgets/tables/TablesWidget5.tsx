@@ -12,14 +12,14 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Latest Products</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>More than 400 new products</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Latest Products</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>More than 400 new products</span>
         </h3>
         <div className='card-toolbar'>
           <ul className='nav'>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_5_tab_1'
               >
@@ -28,7 +28,7 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_5_tab_2'
               >
@@ -37,7 +37,7 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_5_tab_3'
               >
@@ -83,12 +83,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold d-block'>Movie Creator</span>
+                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>React, HTML</td>
+                    <td className='text-end text-muted fw-semibold'>React, HTML</td>
                     <td className='text-end'>
                       <span className='badge badge-light-success'>Approved</span>
                     </td>
@@ -117,12 +117,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Popular Authors
                       </a>
-                      <span className='text-muted fw-bold d-block'>Most Successful</span>
+                      <span className='text-muted fw-semibold d-block'>Most Successful</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>Python, MySQL</td>
+                    <td className='text-end text-muted fw-semibold'>Python, MySQL</td>
                     <td className='text-end'>
                       <span className='badge badge-light-warning'>In Progress</span>
                     </td>
@@ -151,12 +151,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         New Users
                       </a>
-                      <span className='text-muted fw-bold d-block'>Awesome Users</span>
+                      <span className='text-muted fw-semibold d-block'>Awesome Users</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>Laravel,Metronic</td>
+                    <td className='text-end text-muted fw-semibold'>Laravel,Metronic</td>
                     <td className='text-end'>
                       <span className='badge badge-light-primary'>Success</span>
                     </td>
@@ -185,12 +185,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Active Customers
                       </a>
-                      <span className='text-muted fw-bold d-block'>Movie Creator</span>
+                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>AngularJS, C#</td>
+                    <td className='text-end text-muted fw-semibold'>AngularJS, C#</td>
                     <td className='text-end'>
                       <span className='badge badge-light-danger'>Rejected</span>
                     </td>
@@ -219,12 +219,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Bestseller Theme
                       </a>
-                      <span className='text-muted fw-bold d-block'>Best Customers</span>
+                      <span className='text-muted fw-semibold d-block'>Best Customers</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>ReactJS, Ruby</td>
+                    <td className='text-end text-muted fw-semibold'>ReactJS, Ruby</td>
                     <td className='text-end'>
                       <span className='badge badge-light-warning'>In Progress</span>
                     </td>
@@ -279,12 +279,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold d-block'>Movie Creator</span>
+                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>React, HTML</td>
+                    <td className='text-end text-muted fw-semibold'>React, HTML</td>
                     <td className='text-end'>
                       <span className='badge badge-light-success'>Approved</span>
                     </td>
@@ -313,12 +313,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Popular Authors
                       </a>
-                      <span className='text-muted fw-bold d-block'>Most Successful</span>
+                      <span className='text-muted fw-semibold d-block'>Most Successful</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>Python, MySQL</td>
+                    <td className='text-end text-muted fw-semibold'>Python, MySQL</td>
                     <td className='text-end'>
                       <span className='badge badge-light-warning'>In Progress</span>
                     </td>
@@ -347,12 +347,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Active Customers
                       </a>
-                      <span className='text-muted fw-bold d-block'>Movie Creator</span>
+                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>AngularJS, C#</td>
+                    <td className='text-end text-muted fw-semibold'>AngularJS, C#</td>
                     <td className='text-end'>
                       <span className='badge badge-light-danger'>Rejected</span>
                     </td>
@@ -407,12 +407,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Bestseller Theme
                       </a>
-                      <span className='text-muted fw-bold d-block'>Best Customers</span>
+                      <span className='text-muted fw-semibold d-block'>Best Customers</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>ReactJS, Ruby</td>
+                    <td className='text-end text-muted fw-semibold'>ReactJS, Ruby</td>
                     <td className='text-end'>
                       <span className='badge badge-light-warning'>In Progress</span>
                     </td>
@@ -441,12 +441,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Active Customers
                       </a>
-                      <span className='text-muted fw-bold d-block'>Movie Creator</span>
+                      <span className='text-muted fw-semibold d-block'>Movie Creator</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>AngularJS, C#</td>
+                    <td className='text-end text-muted fw-semibold'>AngularJS, C#</td>
                     <td className='text-end'>
                       <span className='badge badge-light-danger'>Rejected</span>
                     </td>
@@ -475,12 +475,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         New Users
                       </a>
-                      <span className='text-muted fw-bold d-block'>Awesome Users</span>
+                      <span className='text-muted fw-semibold d-block'>Awesome Users</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>Laravel,Metronic</td>
+                    <td className='text-end text-muted fw-semibold'>Laravel,Metronic</td>
                     <td className='text-end'>
                       <span className='badge badge-light-primary'>Success</span>
                     </td>
@@ -509,12 +509,12 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Popular Authors
                       </a>
-                      <span className='text-muted fw-bold d-block'>Most Successful</span>
+                      <span className='text-muted fw-semibold d-block'>Most Successful</span>
                     </td>
-                    <td className='text-end text-muted fw-bold'>Python, MySQL</td>
+                    <td className='text-end text-muted fw-semibold'>Python, MySQL</td>
                     <td className='text-end'>
                       <span className='badge badge-light-warning'>In Progress</span>
                     </td>

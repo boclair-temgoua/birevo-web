@@ -6,31 +6,36 @@
 
 // Theme colors
 // Primary
-$primary: if(isDarkMode(), #3699ff, #009ef7);
-$primary-active: if(isDarkMode(), #187de4, #0095e8);
-$primary-light: if(isDarkMode(), #212e48, #f1faff);
-$primary-inverse: #ffffff;
+$primary:       									#009ef7;
+$primary-active:    								#0095e8;
+$primary-light:    								    #f1faff;
+$primary-light-dark:    							#212e48;
+$primary-inverse:  									#ffffff;
 
 // Success
-$success: if(isDarkMode(), #0bb783, #50cd89);
-$success-active: if(isDarkMode(), #04aa77, #47be7d);
-$success-light: if(isDarkMode(), #1c3238, #e8fff3);
-$success-inverse: #ffffff;
+$success:       									#50cd89;
+$success-active:    								#47be7d;
+$success-light:    									#e8fff3;
+$success-light-dark:    							#1c3238;
+$success-inverse:  									#ffffff;
 
 // Info
-$info: if(isDarkMode(), #8950fc, #7239ea);
-$info-active: if(isDarkMode(), #7337ee, #5014d0);
-$info-light: if(isDarkMode(), #2f264f, #f8f5ff);
-$info-inverse: #ffffff;
+$info:       									    #7239ea;
+$info-active:    									#5014d0;
+$info-light:    									#f8f5ff;
+$info-light-dark:    								#2f264f;
+$info-inverse:  									#ffffff;
 
 // Danger
-$danger: if(isDarkMode(), #f64e60, #f1416c);
-$danger-active: if(isDarkMode(), #ee2d41, #d9214e);
-$danger-light: if(isDarkMode(), #3a2434, #fff5f8);
-$danger-inverse: #ffffff;
+$danger:       									    #f1416c;
+$danger-active:    									#d9214e;
+$danger-light:    									#fff5f8;
+$danger-light-dark:    								#3a2434;
+$danger-inverse:  									#ffffff;
 
 // Warning
-$warning: if(isDarkMode(), #ffa800, #ffc700);
-$warning-active: if(isDarkMode(), #ee9d01, #f1bc00);
-$warning-light: if(isDarkMode(), #392f28, #fff8dd);
-$warning-inverse: #ffffff;
+$warning:       									#ffc700;
+$warning-active:    								#f1bc00;
+$warning-light:    									#fff8dd;
+$warning-light-dark:    							#392f28;
+$warning-inverse:  									#ffffff;

@@ -13,8 +13,8 @@ const TablesWidget1: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Tasks Overview</span>
-          <span className='text-muted fw-bold fs-7'>Pending 10 tasks</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Tasks Overview</span>
+          <span className='text-muted fw-semibold fs-7'>Pending 10 tasks</span>
         </h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
@@ -65,15 +65,15 @@ const TablesWidget1: React.FC<Props> = ({className}) => {
                   </div>
                 </th>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Top Authors
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Successful Fellas</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Successful Fellas</span>
                 </td>
                 <td>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>70%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>70%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -103,15 +103,15 @@ const TablesWidget1: React.FC<Props> = ({className}) => {
                   </div>
                 </th>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Popular Authors
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Most Successful</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Most Successful</span>
                 </td>
                 <td>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>50%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>50%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -141,15 +141,15 @@ const TablesWidget1: React.FC<Props> = ({className}) => {
                   </div>
                 </th>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     New Users
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Awesome Users</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Awesome Users</span>
                 </td>
                 <td>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>80%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>80%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -179,15 +179,15 @@ const TablesWidget1: React.FC<Props> = ({className}) => {
                   </div>
                 </th>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Active Customers
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Best Customers</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Best Customers</span>
                 </td>
                 <td>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>90%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>90%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -217,15 +217,15 @@ const TablesWidget1: React.FC<Props> = ({className}) => {
                   </div>
                 </th>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Bestseller Theme
                   </a>
-                  <span className='text-muted fw-bold d-block fs-7'>Amazing Templates</span>
+                  <span className='text-muted fw-semibold d-block fs-7'>Amazing Templates</span>
                 </td>
                 <td>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>70%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>70%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div

@@ -24,10 +24,10 @@ const FeedsWidget4: React.FC<Props> = ({className}) => {
 
             {/* begin::Info */}
             <div className='d-flex flex-column'>
-              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bolder'>
+              <a href='#' className='text-gray-800 text-hover-primary fs-6 fw-bold'>
                 Carles Nilson
               </a>
-              <span className='text-gray-400 fw-bold'>Last week at 10:00 PM</span>
+              <span className='text-gray-400 fw-semibold'>Last week at 10:00 PM</span>
             </div>
             {/* end::Info */}
           </div>

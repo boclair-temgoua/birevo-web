@@ -240,9 +240,12 @@ class ScrollComponent {
     return DataUtil.has(element, 'scroll')
   }
 
-  public static getInstance(element: HTMLElement) {
+  public static getInstance(element: HTMLElement): ScrollComponent | undefined {
     if (element !== null && ScrollComponent.hasInstace(element)) {
-      return DataUtil.get(element, 'scroll')
+      const data = DataUtil.get(element, 'scroll')
+      if (data) {
+        return data as ScrollComponent
+      }
     }
   }
 

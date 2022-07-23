@@ -1,6 +1,6 @@
-import { FC, ReactNode } from 'react'
-import { useLang } from './Metronici18n'
-import { IntlProvider } from 'react-intl'
+import {FC} from 'react'
+import {useLang} from './Metronici18n'
+import {IntlProvider} from 'react-intl'
 import '@formatjs/intl-relativetimeformat/polyfill'
 import '@formatjs/intl-relativetimeformat/locale-data/en'
 import '@formatjs/intl-relativetimeformat/locale-data/de'
@@ -15,6 +15,7 @@ import esMessages from './messages/es.json'
 import frMessages from './messages/fr.json'
 import jaMessages from './messages/ja.json'
 import zhMessages from './messages/zh.json'
+import { WithChildren } from '../helpers'
 
 const allMessages = {
   de: deMessages,
@@ -24,8 +25,8 @@ const allMessages = {
   ja: jaMessages,
   zh: zhMessages,
 }
-type Props = { children: ReactNode }
-const I18nProvider: FC<Props> = ({ children }) => {
+
+const I18nProvider: FC<WithChildren> = ({children}) => {
   const locale = useLang()
   const messages = allMessages[locale]
 
@@ -36,4 +37,4 @@ const I18nProvider: FC<Props> = ({ children }) => {
   )
 }
 
-export { I18nProvider }
+export {I18nProvider}

@@ -1,6 +1,7 @@
 import {useQueryClient, useMutation} from '@tanstack/react-query'
 import {createOrUpdateOneCoupon, createOrUpdateOneVoucher} from '../api/index'
 import Swal from 'sweetalert2'
+import Toastify from 'toastify-js'
 export const optionsStatusVouchers = [
   {id: 1, name: 'ACTIVE'},
   {id: 2, name: 'PENDING'},
@@ -104,6 +105,15 @@ export const CouponCreateMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
+          Toastify({
+            text: 'Status coupon has been updated.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+            },
+          }).showToast()
           onSuccess()
         }
       },
@@ -111,6 +121,15 @@ export const CouponCreateMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
           onError(error)
         }
       },

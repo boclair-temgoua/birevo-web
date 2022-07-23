@@ -4,6 +4,7 @@ import ApexCharts, {ApexOptions} from 'apexcharts'
 import {KTSVG} from '../../../helpers'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
 import {Dropdown1} from '../../content/dropdown/Dropdown1'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -13,8 +14,8 @@ type Props = {
 
 const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -24,22 +25,28 @@ const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => 
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
       {/* begin::Beader */}
       <div className='card-header border-0 py-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Sales Overview</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Sales Overview</span>
 
-          <span className='text-muted fw-bold fs-7'>Recent sales statistics</span>
+          <span className='text-muted fw-semibold fs-7'>Recent sales statistics</span>
         </h3>
 
         <div className='card-toolbar'>
@@ -62,18 +69,18 @@ const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => 
       {/* begin::Body */}
       <div className='card-body p-0 d-flex flex-column'>
         {/* begin::Stats */}
-        <div className='card-p pt-5 bg-white flex-grow-1'>
+        <div className='card-p pt-5 bg-body flex-grow-1'>
           {/* begin::Row */}
           <div className='row g-0'>
             {/* begin::Col */}
             <div className='col mr-8'>
               {/* begin::Label */}
-              <div className='fs-7 text-muted fw-bold'>Average Sale</div>
+              <div className='fs-7 text-muted fw-semibold'>Average Sale</div>
               {/* end::Label */}
 
               {/* begin::Stat */}
               <div className='d-flex align-items-center'>
-                <div className='fs-4 fw-bolder'>$650</div>
+                <div className='fs-4 fw-bold'>$650</div>
                 <KTSVG
                   path='/media/icons/duotune/arrows/arr066.svg'
                   className='svg-icon-5 svg-icon-success ms-1'
@@ -86,11 +93,11 @@ const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => 
             {/* begin::Col */}
             <div className='col'>
               {/* begin::Label */}
-              <div className='fs-7 text-muted fw-bold'>Commission</div>
+              <div className='fs-7 text-muted fw-semibold'>Commission</div>
               {/* end::Label */}
 
               {/* begin::Stat */}
-              <div className='fs-4 fw-bolder'>$233,600</div>
+              <div className='fs-4 fw-bold'>$233,600</div>
               {/* end::Stat */}
             </div>
             {/* end::Col */}
@@ -102,11 +109,11 @@ const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => 
             {/* begin::Col */}
             <div className='col mr-8'>
               {/* begin::Label */}
-              <div className='fs-7 text-muted fw-bold'>Annual Taxes 2019</div>
+              <div className='fs-7 text-muted fw-semibold'>Annual Taxes 2019</div>
               {/* end::Label */}
 
               {/* begin::Stat */}
-              <div className='fs-4 fw-bolder'>$29,004</div>
+              <div className='fs-4 fw-bold'>$29,004</div>
               {/* end::Stat */}
             </div>
             {/* end::Col */}
@@ -114,12 +121,12 @@ const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => 
             {/* begin::Col */}
             <div className='col'>
               {/* begin::Label */}
-              <div className='fs-7 text-muted fw-bold'>Annual Income</div>
+              <div className='fs-7 text-muted fw-semibold'>Annual Income</div>
               {/* end::Label */}
 
               {/* begin::Stat */}
               <div className='d-flex align-items-center'>
-                <div className='fs-4 fw-bolder'>$1,480,00</div>
+                <div className='fs-4 fw-bold'>$1,480,00</div>
                 <KTSVG
                   path='/media/icons/duotune/arrows/arr065.svg'
                   className='svg-icon-5 svg-icon-danger ms-1'
@@ -134,7 +141,7 @@ const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => 
         {/* end::Stats */}
 
         {/* begin::Chart */}
-        <div ref={chartRef} className='mixed-widget-3-chart card-rounded-bottom'></div>
+        <div ref={chartRef} className='mixed-widget-3-chart card-rounded-bottom' data-kt-chart-color={chartColor} style={{height: chartHeight}}></div>
         {/* end::Chart */}
       </div>
       {/* end::Body */}
@@ -143,10 +150,10 @@ const MixedWidget6: React.FC<Props> = ({className, chartHeight, chartColor}) => 
 }
 
 const chartOptions = (chartHeight: string, chartColor: string): ApexOptions => {
-  const labelColor = getCSSVariableValue('--bs-gray-800')
-  const strokeColor = getCSSVariableValue('--bs-gray-300')
-  const baseColor = getCSSVariableValue('--bs-' + chartColor)
-  const lightColor = getCSSVariableValue('--bs-light-' + chartColor)
+  const labelColor = getCSSVariableValue('--kt-gray-800')
+  const strokeColor = getCSSVariableValue('--kt-gray-300')
+  const baseColor = getCSSVariableValue('--kt-' + chartColor)
+  const lightColor = getCSSVariableValue('--kt-' + chartColor + '-light')
 
   return {
     series: [

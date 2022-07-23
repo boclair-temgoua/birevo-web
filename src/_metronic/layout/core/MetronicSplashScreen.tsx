@@ -5,15 +5,15 @@ import React, {
   useState,
   useEffect,
   SetStateAction,
-  ReactNode,
   Dispatch,
 } from 'react'
+import {WithChildren} from '../../helpers'
 
 const MetronicSplashScreenContext = createContext<Dispatch<SetStateAction<number>> | undefined>(
   undefined
 )
 
-const MetronicSplashScreenProvider: FC<{ children: ReactNode }> = ({children}) => {
+const MetronicSplashScreenProvider: FC<WithChildren> = ({children}) => {
   const [count, setCount] = useState(0)
   let visible = count > 0
 

@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, ReactNode } from 'react'
-import { useLocation } from 'react-router'
+import {FC, useRef, useEffect} from 'react'
+import {useLocation} from 'react-router'
 import clsx from 'clsx'
-import { checkIsActive, KTSVG } from '../../../helpers'
+import {checkIsActive, KTSVG, WithChildren} from '../../../helpers'
 
 type Props = {
   to: string
@@ -13,10 +13,9 @@ type Props = {
   hasArrow?: boolean
   hasBullet?: boolean
   isMega?: boolean
-  children?: ReactNode
 }
 
-const MenuInnerWithSub: React.FC<Props> = ({
+const MenuInnerWithSub: FC<Props & WithChildren> = ({
   children,
   to,
   title,
@@ -29,7 +28,7 @@ const MenuInnerWithSub: React.FC<Props> = ({
   isMega = false,
 }) => {
   const menuItemRef = useRef<HTMLDivElement>(null)
-  const { pathname } = useLocation()
+  const {pathname} = useLocation()
 
   useEffect(() => {
     if (menuItemRef.current && menuTrigger && menuPlacement) {
@@ -80,4 +79,4 @@ const MenuInnerWithSub: React.FC<Props> = ({
   )
 }
 
-export { MenuInnerWithSub }
+export {MenuInnerWithSub}

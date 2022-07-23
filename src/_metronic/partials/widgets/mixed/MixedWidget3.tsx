@@ -5,6 +5,7 @@ import {KTSVG} from '../../../helpers'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
 import {Dropdown1} from '../../content/dropdown/Dropdown1'
 import clsx from 'clsx'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -14,8 +15,8 @@ type Props = {
 
 const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -25,19 +26,25 @@ const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => 
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
       {/* begin::Header  */}
       <div className={`card-header border-0 bg-${chartColor} py-5`}>
-        <h3 className='card-title fw-bolder text-white'>Sales Progress</h3>
+        <h3 className='card-title fw-bold text-white'>Sales Progress</h3>
 
         <div className='card-toolbar'>
           {/* begin::Menu  */}
@@ -70,20 +77,20 @@ const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => 
         {/* end::Chart  */}
 
         {/* begin::Stats  */}
-        <div className='card-rounded bg-white mt-n10 position-relative card-px py-15'>
+        <div className='card-rounded bg-body mt-n10 position-relative card-px py-15'>
           {/* begin::Row  */}
           <div className='row g-0 mb-7'>
             {/* begin::Col  */}
             <div className='col mx-5'>
               <div className='fs-6 text-gray-400'>Avarage Sale</div>
-              <div className='fs-2 fw-bolder text-gray-800'>$650</div>
+              <div className='fs-2 fw-bold text-gray-800'>$650</div>
             </div>
             {/* end::Col  */}
 
             {/* begin::Col  */}
             <div className='col mx-5'>
               <div className='fs-6 text-gray-400'>Comissions</div>
-              <div className='fs-2 fw-bolder text-gray-800'>$29,500</div>
+              <div className='fs-2 fw-bold text-gray-800'>$29,500</div>
             </div>
             {/* end::Col  */}
           </div>
@@ -94,14 +101,14 @@ const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => 
             {/* begin::Col  */}
             <div className='col mx-5'>
               <div className='fs-6 text-gray-400'>Revenue</div>
-              <div className='fs-2 fw-bolder text-gray-800'>$55,000</div>
+              <div className='fs-2 fw-bold text-gray-800'>$55,000</div>
             </div>
             {/* end::Col  */}
 
             {/* begin::Col  */}
             <div className='col mx-5'>
               <div className='fs-6 text-gray-400'>Expenses</div>
-              <div className='fs-2 fw-bolder text-gray-800'>$1,130,600</div>
+              <div className='fs-2 fw-bold text-gray-800'>$1,130,600</div>
             </div>
             {/* end::Col  */}
           </div>
@@ -115,8 +122,8 @@ const MixedWidget3: React.FC<Props> = ({className, chartColor, chartHeight}) => 
 }
 
 const chartOptions = (chartHeight: string): ApexOptions => {
-  const labelColor = getCSSVariableValue('--bs-gray-500')
-  const borderColor = getCSSVariableValue('--bs-gray-200')
+  const labelColor = getCSSVariableValue('--kt-gray-500')
+  const borderColor = getCSSVariableValue('--kt-gray-200')
 
   return {
     series: [

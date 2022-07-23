@@ -4,6 +4,7 @@ import ApexCharts, {ApexOptions} from 'apexcharts'
 import {KTSVG} from '../../../helpers'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
 import {Dropdown1} from '../../content/dropdown/Dropdown1'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -13,8 +14,8 @@ type Props = {
 
 const MixedWidget7: React.FC<Props> = ({className, chartColor, chartHeight}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -24,21 +25,27 @@ const MixedWidget7: React.FC<Props> = ({className, chartColor, chartHeight}) => 
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
       {/* begin::Beader */}
       <div className='card-header border-0 py-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Action Needed</span>
-          <span className='text-muted fw-bold fs-7'>Complete your profile setup</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Action Needed</span>
+          <span className='text-muted fw-semibold fs-7'>Complete your profile setup</span>
         </h3>
 
         <div className='card-toolbar'>
@@ -83,9 +90,9 @@ const MixedWidget7: React.FC<Props> = ({className, chartColor, chartHeight}) => 
 }
 
 const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
-  const baseColor = getCSSVariableValue('--bs-' + chartColor)
-  const lightColor = getCSSVariableValue('--bs-light-' + chartColor)
-  const labelColor = getCSSVariableValue('--bs-gray-700')
+  const baseColor = getCSSVariableValue('--kt-' + chartColor)
+  const lightColor = getCSSVariableValue('--kt-' + chartColor + '-light')
+  const labelColor = getCSSVariableValue('--kt-gray-700')
 
   return {
     series: [74],

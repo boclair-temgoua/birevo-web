@@ -2,6 +2,7 @@
 import React, {useEffect, useRef} from 'react'
 import ApexCharts, {ApexOptions} from 'apexcharts'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -11,8 +12,8 @@ type Props = {
 
 const MixedWidget11: React.FC<Props> = ({className, chartColor, chartHeight}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -22,13 +23,19 @@ const MixedWidget11: React.FC<Props> = ({className, chartColor, chartHeight}) =>
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
@@ -37,12 +44,12 @@ const MixedWidget11: React.FC<Props> = ({className, chartColor, chartHeight}) =>
         {/* begin::Hidden */}
         <div className='d-flex flex-stack flex-wrap flex-grow-1 px-9 pt-9 pb-3'>
           <div className='me-2'>
-            <span className='fw-bolder text-gray-800 d-block fs-3'>Sales</span>
+            <span className='fw-bold text-gray-800 d-block fs-3'>Sales</span>
 
-            <span className='text-gray-400 fw-bold'>Oct 8 - Oct 26 2021</span>
+            <span className='text-gray-400 fw-semibold'>Oct 8 - Oct 26 2021</span>
           </div>
 
-          <div className={`fw-bolder fs-3 text-${chartColor}`}>$15,300</div>
+          <div className={`fw-bold fs-3 text-${chartColor}`}>$15,300</div>
         </div>
         {/* end::Hidden */}
 
@@ -55,10 +62,10 @@ const MixedWidget11: React.FC<Props> = ({className, chartColor, chartHeight}) =>
 }
 
 const chartOptions = (chartColor: string, chartHeight: string): ApexOptions => {
-  const labelColor = getCSSVariableValue('--bs-gray-500')
-  const borderColor = getCSSVariableValue('--bs-gray-200')
-  const secondaryColor = getCSSVariableValue('--bs-gray-300')
-  const baseColor = getCSSVariableValue('--bs-' + chartColor)
+  const labelColor = getCSSVariableValue('--kt-gray-500')
+  const borderColor = getCSSVariableValue('--kt-gray-200')
+  const secondaryColor = getCSSVariableValue('--kt-gray-300')
+  const baseColor = getCSSVariableValue('--kt-' + chartColor)
 
   return {
     series: [

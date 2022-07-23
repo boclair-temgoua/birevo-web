@@ -74,6 +74,15 @@ export function AsideMenuMain() {
         </AsideMenuItemWithSub>
       </AsideMenuItemWithSub>
       <AsideMenuItemWithSub
+        to='/crafted/accounts'
+        title='Accounts'
+        icon='/media/icons/duotune/communication/com006.svg'
+        fontIcon='bi-person'
+      >
+        <AsideMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} />
+        <AsideMenuItem to='/crafted/account/settings' title='Settings' hasBullet={true} />
+      </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub
         to='/error'
         title='Errors'
         fontIcon='bi-sticky'
@@ -100,7 +109,7 @@ export function AsideMenuMain() {
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Apps</span>
         </div>
       </div>
-      <AsideMenuItemWithSub
+      {/* <AsideMenuItemWithSub
         to='/apps/chat'
         title='Chat'
         fontIcon='bi-chat-left'
@@ -115,22 +124,7 @@ export function AsideMenuMain() {
         icon='/media/icons/duotune/general/gen051.svg'
         title='User management'
         fontIcon='bi-layers'
-      />
-      <div className='menu-item'>
-        <div className='menu-content'>
-          <div className='separator mx-1 my-4'></div>
-        </div>
-      </div>
-    
-      <AsideMenuItemWithSub
-        to='/crafted/accounts'
-        title='Accounts'
-        icon='/media/icons/duotune/communication/com006.svg'
-        fontIcon='bi-person'
-      >
-        <AsideMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} />
-        <AsideMenuItem to='/crafted/account/settings' title='Settings' hasBullet={true} />
-      </AsideMenuItemWithSub>
+      /> */}
       <div className='menu-item'>
         <Link className='menu-link'
         to='/account/billing'
@@ -151,7 +145,7 @@ export function AsideMenuMain() {
           <span className='menu-title'>Api developers</span>
         </Link>
       </div>
-      {/* <div className='menu-item'>
+      <div className='menu-item'>
         <a
           target='_blank'
           className='menu-link'
@@ -162,7 +156,7 @@ export function AsideMenuMain() {
           </span>
           <span className='menu-title'>Changelog {process.env.REACT_APP_VERSION}</span>
         </a>
-      </div> */}
+      </div>
     </>
   )
 }

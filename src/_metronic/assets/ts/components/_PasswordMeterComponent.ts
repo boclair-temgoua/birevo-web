@@ -221,13 +221,11 @@ class PasswordMeterComponent {
   public static getInstance = (
     el: HTMLElement,
     componentName: string = defaultPasswordMeterQueires.componentName
-  ) => {
+  ): PasswordMeterComponent | undefined  => {
     const passwordMeter = DataUtil.get(el, componentName)
     if (passwordMeter) {
-      return passwordMeter
+      return passwordMeter as PasswordMeterComponent
     }
-
-    return null
   }
 
   public static createInstances = (

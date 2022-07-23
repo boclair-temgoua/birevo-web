@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, createContext, useContext } from 'react'
+import React, {FC, createContext, useContext} from 'react'
+import {WithChildren} from '../helpers'
 
 const I18N_CONFIG_KEY = process.env.REACT_APP_I18N_CONFIG_KEY || 'i18nConfig'
 
@@ -23,7 +24,7 @@ function getConfig(): Props {
 
 // Side effect
 export function setLanguage(lang: string) {
-  localStorage.setItem(I18N_CONFIG_KEY, JSON.stringify({ selectedLang: lang }))
+  localStorage.setItem(I18N_CONFIG_KEY, JSON.stringify({selectedLang: lang}))
   window.location.reload()
 }
 
@@ -33,10 +34,9 @@ const useLang = () => {
   return useContext(I18nContext).selectedLang
 }
 
-
-const MetronicI18nProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const MetronicI18nProvider: FC<WithChildren> = ({children}) => {
   const lang = getConfig()
   return <I18nContext.Provider value={lang}>{children}</I18nContext.Provider>
 }
 
-export { MetronicI18nProvider, useLang }
+export {MetronicI18nProvider, useLang}

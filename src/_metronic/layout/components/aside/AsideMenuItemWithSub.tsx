@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import {useLocation} from 'react-router'
-import {checkIsActive, KTSVG} from '../../../helpers'
+import {checkIsActive, KTSVG, WithChildren} from '../../../helpers'
 import {useLayout} from '../../core'
 
 type Props = {
@@ -10,10 +10,9 @@ type Props = {
   icon?: string
   fontIcon?: string
   hasBullet?: boolean
-  children?: React.ReactNode
 }
 
-const AsideMenuItemWithSub: React.FC<Props> = ({
+const AsideMenuItemWithSub: React.FC<Props & WithChildren> = ({
   children,
   to,
   title,

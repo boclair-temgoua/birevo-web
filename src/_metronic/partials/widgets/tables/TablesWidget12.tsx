@@ -12,8 +12,8 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Member Statistics</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>Over 500 new members</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Member Statistics</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>Over 500 new members</span>
         </h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
@@ -28,12 +28,12 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
           </button>
           {/* begin::Menu 2 */}
           <div
-            className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px'
+            className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold w-200px'
             data-kt-menu='true'
           >
             {/* begin::Menu item */}
             <div className='menu-item px-3'>
-              <div className='menu-content fs-6 text-dark fw-bolder px-3 py-4'>Quick Actions</div>
+              <div className='menu-content fs-6 text-dark fw-bold px-3 py-4'>Quick Actions</div>
             </div>
             {/* end::Menu item */}
             {/* begin::Menu separator */}
@@ -126,7 +126,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
           <table className='table align-middle gs-0 gy-4'>
             {/* begin::Table head */}
             <thead>
-              <tr className='fw-bolder text-muted bg-light'>
+              <tr className='fw-bold text-muted bg-light'>
                 <th className='ps-4 min-w-300px rounded-start'>Agent</th>
                 <th className='min-w-125px'>Earnings</th>
                 <th className='min-w-125px'>Comission</th>
@@ -151,32 +151,32 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       </span>
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         HTML, JS, ReactJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $8,000,000
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Pending</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Pending</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $5,400
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Paid</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Paid</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     Intertico
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>
                     Web, UI/UX Design
                   </span>
                 </td>
@@ -198,7 +198,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       <i className='bi bi-star-fill fs-5'></i>
                     </div>
                   </div>
-                  <span className='text-muted fw-bold text-muted d-block fs-7 mt-1'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7 mt-1'>
                     Best Rated
                   </span>
                 </td>
@@ -230,32 +230,32 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       </span>
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Lebron Wayde
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         PHP, Laravel, VueJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $8,750,000
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Paid</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Paid</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $7,400
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Paid</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Paid</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     Agoda
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>
                     Houses &amp; Hotels
                   </span>
                 </td>
@@ -277,7 +277,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       <i className='bi bi-star-fill fs-5'></i>
                     </div>
                   </div>
-                  <span className='text-muted fw-bold text-muted d-block fs-7 mt-1'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7 mt-1'>
                     Above Avarage
                   </span>
                 </td>
@@ -309,32 +309,32 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       </span>
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         HTML, JS, ReactJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $8,000,000
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>In Proccess</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>In Proccess</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $2,500
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Rejected</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Rejected</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     RoadGee
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Paid</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Paid</span>
                 </td>
                 <td>
                   <div className='rating'>
@@ -354,7 +354,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       <i className='bi bi-star-fill fs-5'></i>
                     </div>
                   </div>
-                  <span className='text-muted fw-bold text-muted d-block fs-7 mt-1'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7 mt-1'>
                     Best Rated
                   </span>
                 </td>
@@ -386,32 +386,32 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       </span>
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Natali Trump
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         HTML, JS, ReactJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $700,000
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Pending</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Pending</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $7,760
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Paid</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Paid</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     The Hill
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Insurance</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Insurance</span>
                 </td>
                 <td>
                   <div className='rating'>
@@ -431,7 +431,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       <i className='bi bi-star-fill fs-5'></i>
                     </div>
                   </div>
-                  <span className='text-muted fw-bold text-muted d-block fs-7 mt-1'>Avarage</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7 mt-1'>Avarage</span>
                 </td>
                 <td className='text-end'>
                   <a
@@ -461,32 +461,32 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       </span>
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         HTML, JS, ReactJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $1,320,000
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Pending</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Pending</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     $6,250
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Paid</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Paid</span>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                     Intertico
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>
                     Web, UI/UX Design
                   </span>
                 </td>
@@ -508,7 +508,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       <i className='bi bi-star-fill fs-5'></i>
                     </div>
                   </div>
-                  <span className='text-muted fw-bold text-muted d-block fs-7 mt-1'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7 mt-1'>
                     Best Rated
                   </span>
                 </td>

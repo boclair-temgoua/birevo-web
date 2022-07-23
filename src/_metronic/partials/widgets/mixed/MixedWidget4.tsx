@@ -32,11 +32,11 @@ const MixedWidget4: React.FC<Props> = ({className, color, image, title, date, pr
 
             {/* begin:Title */}
             <div className='d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3'>
-              <a href='#' className='text-dark fw-bolder text-hover-primary fs-5'>
+              <a href='#' className='text-dark fw-bold text-hover-primary fs-5'>
                 {title}
               </a>
 
-              <span className='text-muted fw-bold'>{date}</span>
+              <span className='text-muted fw-semibold'>{date}</span>
             </div>
             {/* end:Title */}
           </div>
@@ -61,7 +61,7 @@ const MixedWidget4: React.FC<Props> = ({className, color, image, title, date, pr
 
         {/* begin:Stats */}
         <div className='d-flex flex-column w-100 mt-12'>
-          <span className='text-dark me-2 fw-bolder pb-3'>Progress</span>
+          <span className='text-dark me-2 fw-bold pb-3'>Progress</span>
 
           <div className='progress h-5px w-100'>
             <div
@@ -75,7 +75,7 @@ const MixedWidget4: React.FC<Props> = ({className, color, image, title, date, pr
 
         {/* begin:Team */}
         <div className='d-flex flex-column mt-10'>
-          <div className='text-dark me-2 fw-bolder pb-4'>Team</div>
+          <div className='text-dark me-2 fw-bold pb-4'>Team</div>
 
           <div className='d-flex'>
             <a

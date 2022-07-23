@@ -2,6 +2,7 @@
 import React, {useEffect, useRef} from 'react'
 import ApexCharts, {ApexOptions} from 'apexcharts'
 import {getCSS, getCSSVariableValue} from '../../../assets/ts/_utils'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -9,8 +10,8 @@ type Props = {
 
 const ChartsWidget5: React.FC<Props> = ({className}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -22,21 +23,27 @@ const ChartsWidget5: React.FC<Props> = ({className}) => {
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Recent Customers</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Recent Customers</span>
 
-          <span className='text-muted fw-bold fs-7'>More than 500 new customers</span>
+          <span className='text-muted fw-semibold fs-7'>More than 500 new customers</span>
         </h3>
 
         {/* begin::Toolbar */}
@@ -80,11 +87,11 @@ const ChartsWidget5: React.FC<Props> = ({className}) => {
 export {ChartsWidget5}
 
 function getChartOptions(height: number): ApexOptions {
-  const labelColor = getCSSVariableValue('--bs-gray-500')
-  const borderColor = getCSSVariableValue('--bs-gray-200')
+  const labelColor = getCSSVariableValue('--kt-gray-500')
+  const borderColor = getCSSVariableValue('--kt-gray-200')
 
-  const baseColor = getCSSVariableValue('--bs-primary')
-  const secondaryColor = getCSSVariableValue('--bs-info')
+  const baseColor = getCSSVariableValue('--kt-primary')
+  const secondaryColor = getCSSVariableValue('--kt-info')
 
   return {
     series: [

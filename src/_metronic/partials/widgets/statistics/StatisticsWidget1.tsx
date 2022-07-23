@@ -22,14 +22,14 @@ const StatisticsWidget1: React.FC<Props> = ({className, image, title, time, desc
     >
       {/* begin::Body */}
       <div className='card-body'>
-        <a href='#' className='card-title fw-bolder text-muted text-hover-primary fs-4'>
+        <a href='#' className='card-title fw-bold text-muted text-hover-primary fs-4'>
           {title}
         </a>
 
-        <div className='fw-bolder text-primary my-6'>{time}</div>
+        <div className='fw-bold text-primary my-6'>{time}</div>
 
         <p
-          className='text-dark-75 fw-bold fs-5 m-0'
+          className='text-dark-75 fw-semibold fs-5 m-0'
           dangerouslySetInnerHTML={{__html: description}}
         ></p>
       </div>

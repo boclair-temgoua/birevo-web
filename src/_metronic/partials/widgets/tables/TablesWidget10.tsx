@@ -12,8 +12,8 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Members Statistics</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>Over 500 members</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Members Statistics</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>Over 500 members</span>
         </h3>
         <div
           className='card-toolbar'
@@ -42,7 +42,7 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
           <table className='table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4'>
             {/* begin::Table head */}
             <thead>
-              <tr className='fw-bolder text-muted'>
+              <tr className='fw-bold text-muted'>
                 <th className='w-25px'>
                   <div className='form-check form-check-sm form-check-custom form-check-solid'>
                     <input
@@ -75,27 +75,27 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <img src={toAbsoluteUrl('/media/avatars/300-14.jpg')} alt='' />
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
                         Ana Simmons
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         HTML, JS, ReactJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block fs-6'>
                     Intertico
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>
                     Web, UI/UX Design
                   </span>
                 </td>
                 <td className='text-end'>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>50%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>50%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -147,27 +147,27 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <img src={toAbsoluteUrl('/media/avatars/300-2.jpg')} alt='' />
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         C#, ASP.NET, MS SQL
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block fs-6'>
                     Agoda
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>
                     Houses &amp; Hotels
                   </span>
                 </td>
                 <td className='text-end'>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>70%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>70%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -219,25 +219,25 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <img src={toAbsoluteUrl('/media/avatars/300-5.jpg')} alt='' />
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
                         Lebron Wayde
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         PHP, Laravel, VueJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block fs-6'>
                     RoadGee
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Transportation</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Transportation</span>
                 </td>
                 <td className='text-end'>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>60%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>60%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -289,25 +289,25 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <img src={toAbsoluteUrl('/media/avatars/300-20.jpg')} alt='' />
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
                         Natali Goodwin
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         Python, PostgreSQL, ReactJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block fs-6'>
                     The Hill
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Insurance</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Insurance</span>
                 </td>
                 <td className='text-end'>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>50%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>50%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div
@@ -359,25 +359,25 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <img src={toAbsoluteUrl('/media/avatars/300-23.jpg')} alt='' />
                     </div>
                     <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
                         Kevin Leonard
                       </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                      <span className='text-muted fw-semibold text-muted d-block fs-7'>
                         HTML, JS, ReactJS
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary d-block fs-6'>
                     RoadGee
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Art Director</span>
+                  <span className='text-muted fw-semibold text-muted d-block fs-7'>Art Director</span>
                 </td>
                 <td className='text-end'>
                   <div className='d-flex flex-column w-100 me-2'>
                     <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>90%</span>
+                      <span className='text-muted me-2 fs-7 fw-semibold'>90%</span>
                     </div>
                     <div className='progress h-6px w-100'>
                       <div

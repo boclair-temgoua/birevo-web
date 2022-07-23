@@ -12,14 +12,14 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Authors Earnings</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>More than 400 new authors</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Authors Earnings</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>More than 400 new authors</span>
         </h3>
         <div className='card-toolbar'>
           <ul className='nav'>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_6_tab_1'
               >
@@ -28,7 +28,7 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_6_tab_2'
               >
@@ -37,7 +37,7 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_6_tab_3'
               >
@@ -82,17 +82,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold d-block'>Successful Fellas</span>
+                      <span className='text-muted fw-semibold d-block'>Successful Fellas</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$200,500</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$200,500</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-primary fs-7 fw-bolder'>+28%</span>
+                      <span className='text-primary fs-7 fw-bold'>+28%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -119,17 +119,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold d-block'>HTML, CSS Coding</span>
+                      <span className='text-muted fw-semibold d-block'>HTML, CSS Coding</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$1,200,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$1,200,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-warning fs-7 fw-bolder'>+52%</span>
+                      <span className='text-warning fs-7 fw-bold'>+52%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -156,17 +156,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold d-block'>PHP, Laravel, VueJS</span>
+                      <span className='text-muted fw-semibold d-block'>PHP, Laravel, VueJS</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$1,200,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$1,200,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-danger fs-7 fw-bolder'>+52%</span>
+                      <span className='text-danger fs-7 fw-bold'>+52%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -193,17 +193,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Natali Trump
                       </a>
-                      <span className='text-muted fw-bold d-block'>UI/UX Designer</span>
+                      <span className='text-muted fw-semibold d-block'>UI/UX Designer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$3,400,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$3,400,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-success fs-7 fw-bolder'>-34%</span>
+                      <span className='text-success fs-7 fw-bold'>-34%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -230,17 +230,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Kevin Leonard
                       </a>
-                      <span className='text-muted fw-bold d-block'>Art Director</span>
+                      <span className='text-muted fw-semibold d-block'>Art Director</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$35,600,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$35,600,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-info fs-7 fw-bolder'>+230%</span>
+                      <span className='text-info fs-7 fw-bold'>+230%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -292,17 +292,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold d-block'>HTML, CSS Coding</span>
+                      <span className='text-muted fw-semibold d-block'>HTML, CSS Coding</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$1,200,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$1,200,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-warning fs-7 fw-bolder'>+52%</span>
+                      <span className='text-warning fs-7 fw-bold'>+52%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -329,17 +329,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Natali Trump
                       </a>
-                      <span className='text-muted fw-bold d-block'>UI/UX Designer</span>
+                      <span className='text-muted fw-semibold d-block'>UI/UX Designer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$3,400,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$3,400,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-success fs-7 fw-bolder'>-34%</span>
+                      <span className='text-success fs-7 fw-bold'>-34%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -366,17 +366,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold d-block'>Successful Fellas</span>
+                      <span className='text-muted fw-semibold d-block'>Successful Fellas</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$200,500</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$200,500</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-primary fs-7 fw-bolder'>+28%</span>
+                      <span className='text-primary fs-7 fw-bold'>+28%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -428,17 +428,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Jessie Clarcson
                       </a>
-                      <span className='text-muted fw-bold d-block'>HTML, CSS Coding</span>
+                      <span className='text-muted fw-semibold d-block'>HTML, CSS Coding</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$1,200,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$1,200,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-danger fs-7 fw-bolder'>+52%</span>
+                      <span className='text-danger fs-7 fw-bold'>+52%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -465,17 +465,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Natali Trump
                       </a>
-                      <span className='text-muted fw-bold d-block'>UI/UX Designer</span>
+                      <span className='text-muted fw-semibold d-block'>UI/UX Designer</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$3,400,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$3,400,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-success fs-7 fw-bolder'>-34%</span>
+                      <span className='text-success fs-7 fw-bold'>-34%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -502,17 +502,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Kevin Leonard
                       </a>
-                      <span className='text-muted fw-bold d-block'>Art Director</span>
+                      <span className='text-muted fw-semibold d-block'>Art Director</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$35,600,000</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$35,600,000</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-info fs-7 fw-bolder'>+230%</span>
+                      <span className='text-info fs-7 fw-bold'>+230%</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -539,17 +539,17 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Brad Simmons
                       </a>
-                      <span className='text-muted fw-bold d-block'>Successful Fellas</span>
+                      <span className='text-muted fw-semibold d-block'>Successful Fellas</span>
                     </td>
                     <td>
-                      <span className='text-muted fw-bold d-block fs-7'>Paid</span>
-                      <span className='text-dark fw-bolder d-block fs-5'>$200,500</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
+                      <span className='text-dark fw-bold d-block fs-5'>$200,500</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-primary fs-7 fw-bolder'>+28%</span>
+                      <span className='text-primary fs-7 fw-bold'>+28%</span>
                     </td>
                     <td className='text-end'>
                       <a

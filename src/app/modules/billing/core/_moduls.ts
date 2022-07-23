@@ -1,6 +1,6 @@
 import {useQueryClient, useMutation} from '@tanstack/react-query'
-import Swal from 'sweetalert2'
 import {createCouponBilling, createStripeBilling} from '../api/index'
+import Toastify from 'toastify-js'
 export type paymentMethodType = 'COUPON-PAY' | 'PAYPAL-PAY' | 'CARD-PAY'
 
 export type CouponPayFormRequest = {
@@ -41,20 +41,15 @@ export const CreateStripeBillingMutation = ({
       onSuccess: async () => {
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
-        Swal.fire({
-          title: 'Success',
-          icon: 'success',
-          text: 'Transaction save successfully',
-          confirmButtonText: 'Got It',
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: 'btn btn-primary',
+        Toastify({
+          text: 'Your transaction has been save.',
+          className: 'info',
+          gravity: 'bottom', // `top` or `bottom`
+          position: 'center', // `left`, `center` or `right`
+          style: {
+            background: 'linear-gradient(to right, #4169E1, #4169E1)',
           },
-          showCancelButton: false,
-          showClass: {
-            popup: 'animate__animated animate__bounceIn',
-          },
-        })
+        }).showToast()
         if (onSuccess) {
           onSuccess()
         }
@@ -63,6 +58,15 @@ export const CreateStripeBillingMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
           onError(error)
         }
       },
@@ -98,6 +102,15 @@ export const CreateCouponBillingMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
+          Toastify({
+            text: 'Your transaction has been save.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+            },
+          }).showToast()
           onSuccess()
         }
       },
@@ -105,6 +118,15 @@ export const CreateCouponBillingMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
           onError(error)
         }
       },

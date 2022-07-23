@@ -12,14 +12,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Latest Products</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>More than 100 new orders</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Latest Products</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>More than 100 new orders</span>
         </h3>
         <div className='card-toolbar'>
           <ul className='nav'>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_8_tab_1'
               >
@@ -28,7 +28,7 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4 me-1'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_8_tab_2'
               >
@@ -37,7 +37,7 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
             </li>
             <li className='nav-item'>
               <a
-                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4'
+                className='nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bold px-4'
                 data-bs-toggle='tab'
                 href='#kt_table_widget_8_tab_3'
               >
@@ -80,14 +80,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         School Music Festival
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>by Rose Liam</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>by Rose Liam</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>4:20PM, 03 Sep</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>4:20PM, 03 Sep</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -110,14 +110,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Maths Championship
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Tom Gere</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Tom Gere</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>10:05PM, 25 Oct</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>10:05PM, 25 Oct</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -140,14 +140,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Who Knows Geography
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Zoey Dylan</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Zoey Dylan</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>3:22PM, 07 Sep</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>3:22PM, 07 Sep</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -170,14 +170,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Napoleon Days
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Luke Owen</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Luke Owen</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>1:20PM, 02 Dec</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>1:20PM, 02 Dec</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -200,14 +200,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         The School Art Leads
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Ellie Cole</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Ellie Cole</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>6:20PM, 07 Sep</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>6:20PM, 07 Sep</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -254,14 +254,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Who Knows Geography
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Zoey Dylan</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Zoey Dylan</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>3:22PM, 07 Sep</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>3:22PM, 07 Sep</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -284,14 +284,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Maths Championship
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Tom Gere</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Tom Gere</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>10:05PM, 25 Oct</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>10:05PM, 25 Oct</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -314,14 +314,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         School Music Festival
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>by Rose Liam</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>by Rose Liam</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>4:20PM, 03 Sep</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>4:20PM, 03 Sep</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -368,14 +368,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Maths Championship
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Tom Gere</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Tom Gere</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>10:05PM, 25 Oct</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>10:05PM, 25 Oct</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -398,14 +398,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Who Knows Geography
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Zoey Dylan</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Zoey Dylan</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>3:22PM, 07 Sep</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>3:22PM, 07 Sep</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -428,14 +428,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         Napoleon Days
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>By Luke Owen</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>By Luke Owen</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>1:20PM, 02 Dec</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>1:20PM, 02 Dec</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a
@@ -458,14 +458,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                       </div>
                     </td>
                     <td>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                      <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                         School Music Festival
                       </a>
-                      <span className='text-muted fw-bold d-block fs-7'>by Rose Liam</span>
+                      <span className='text-muted fw-semibold d-block fs-7'>by Rose Liam</span>
                     </td>
                     <td className='text-end'>
-                      <span className='text-dark fw-bolder d-block fs-7'>4:20PM, 03 Sep</span>
-                      <span className='text-muted fw-bold d-block fs-8'>Date</span>
+                      <span className='text-dark fw-bold d-block fs-7'>4:20PM, 03 Sep</span>
+                      <span className='text-muted fw-semibold d-block fs-8'>Date</span>
                     </td>
                     <td className='text-end'>
                       <a

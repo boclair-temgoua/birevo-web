@@ -13,8 +13,8 @@ const TablesWidget3: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Files</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>Over 100 pending files</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Files</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>Over 100 pending files</span>
         </h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
@@ -63,13 +63,13 @@ const TablesWidget3: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Top Authors
                   </a>
                 </td>
-                <td className='text-end text-muted fw-bold'>ReactJs, HTML</td>
-                <td className='text-end text-muted fw-bold'>4600 Users</td>
-                <td className='text-end text-dark fw-bolder fs-6 pe-0'>5.4MB</td>
+                <td className='text-end text-muted fw-semibold'>ReactJs, HTML</td>
+                <td className='text-end text-muted fw-semibold'>4600 Users</td>
+                <td className='text-end text-dark fw-bold fs-6 pe-0'>5.4MB</td>
               </tr>
               <tr>
                 <td>
@@ -83,13 +83,13 @@ const TablesWidget3: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Popular Authors
                   </a>
                 </td>
-                <td className='text-end text-muted fw-bold'>Python, MySQL</td>
-                <td className='text-end text-muted fw-bold'>7200 Users</td>
-                <td className='text-end text-dark fw-bolder fs-6 pe-0'>2.8MB</td>
+                <td className='text-end text-muted fw-semibold'>Python, MySQL</td>
+                <td className='text-end text-muted fw-semibold'>7200 Users</td>
+                <td className='text-end text-dark fw-bold fs-6 pe-0'>2.8MB</td>
               </tr>
               <tr>
                 <td>
@@ -103,13 +103,13 @@ const TablesWidget3: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     New Users
                   </a>
                 </td>
-                <td className='text-end text-muted fw-bold'>Laravel, Metronic</td>
-                <td className='text-end text-muted fw-bold'>890 Users</td>
-                <td className='text-end text-dark fw-bolder fs-6 pe-0'>1.5MB</td>
+                <td className='text-end text-muted fw-semibold'>Laravel, Metronic</td>
+                <td className='text-end text-muted fw-semibold'>890 Users</td>
+                <td className='text-end text-dark fw-bold fs-6 pe-0'>1.5MB</td>
               </tr>
               <tr>
                 <td>
@@ -123,13 +123,13 @@ const TablesWidget3: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Active Customers
                   </a>
                 </td>
-                <td className='text-end text-muted fw-bold'>AngularJS, C#</td>
-                <td className='text-end text-muted fw-bold'>4600 Users</td>
-                <td className='text-end text-dark fw-bolder fs-6 pe-0'>5.4MB</td>
+                <td className='text-end text-muted fw-semibold'>AngularJS, C#</td>
+                <td className='text-end text-muted fw-semibold'>4600 Users</td>
+                <td className='text-end text-dark fw-bold fs-6 pe-0'>5.4MB</td>
               </tr>
               <tr>
                 <td>
@@ -143,13 +143,13 @@ const TablesWidget3: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary mb-1 fs-6'>
+                  <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
                     Active Customers
                   </a>
                 </td>
-                <td className='text-end text-muted fw-bold'>ReactJS, Ruby</td>
-                <td className='text-end text-muted fw-bold'>354 Users</td>
-                <td className='text-end text-dark fw-bolder fs-6 pe-0'>500KB</td>
+                <td className='text-end text-muted fw-semibold'>ReactJS, Ruby</td>
+                <td className='text-end text-muted fw-semibold'>354 Users</td>
+                <td className='text-end text-dark fw-bold fs-6 pe-0'>500KB</td>
               </tr>
             </tbody>
             {/* end::Table body */}

@@ -17,7 +17,7 @@ const MixedWidget1: React.FC<Props> = ({className, color}) => {
         <div className={`px-9 pt-7 card-rounded h-275px w-100 bg-${color}`}>
           {/* begin::Heading */}
           <div className='d-flex flex-stack'>
-            <h3 className='m-0 text-white fw-bolder fs-3'>Sales Summary</h3>
+            <h3 className='m-0 text-white fw-bold fs-3'>Sales Summary</h3>
             <div className='ms-1'>
               {/* begin::Menu */}
               <button
@@ -36,15 +36,15 @@ const MixedWidget1: React.FC<Props> = ({className, color}) => {
           {/* end::Heading */}
           {/* begin::Balance */}
           <div className='d-flex text-center flex-column text-white pt-8'>
-            <span className='fw-bold fs-7'>You Balance</span>
-            <span className='fw-bolder fs-2x pt-1'>$37,562.00</span>
+            <span className='fw-semibold fs-7'>You Balance</span>
+            <span className='fw-bold fs-2x pt-1'>$37,562.00</span>
           </div>
           {/* end::Balance */}
         </div>
         {/* end::Header */}
         {/* begin::Items */}
         <div
-          className='shadow-xs card-rounded mx-9 mb-9 px-6 py-9 position-relative z-index-1 bg-white'
+          className='shadow-xs card-rounded mx-9 mb-9 px-6 py-9 position-relative z-index-1 bg-body'
           style={{marginTop: '-100px'}}
         >
           {/* begin::Item */}
@@ -60,15 +60,15 @@ const MixedWidget1: React.FC<Props> = ({className, color}) => {
             <div className='d-flex align-items-center flex-wrap w-100'>
               {/* begin::Title */}
               <div className='mb-1 pe-3 flex-grow-1'>
-                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bolder'>
+                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bold'>
                   Sales
                 </a>
-                <div className='text-gray-400 fw-bold fs-7'>100 Regions</div>
+                <div className='text-gray-400 fw-semibold fs-7'>100 Regions</div>
               </div>
               {/* end::Title */}
               {/* begin::Label */}
               <div className='d-flex align-items-center'>
-                <div className='fw-bolder fs-5 text-gray-800 pe-1'>$2,5b</div>
+                <div className='fw-bold fs-5 text-gray-800 pe-1'>$2,5b</div>
                 <KTSVG
                   path='/media/icons/duotune/arrows/arr066.svg'
                   className='svg-icon-5 svg-icon-success ms-1'
@@ -92,15 +92,15 @@ const MixedWidget1: React.FC<Props> = ({className, color}) => {
             <div className='d-flex align-items-center flex-wrap w-100'>
               {/* begin::Title */}
               <div className='mb-1 pe-3 flex-grow-1'>
-                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bolder'>
+                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bold'>
                   Revenue
                 </a>
-                <div className='text-gray-400 fw-bold fs-7'>Quarter 2/3</div>
+                <div className='text-gray-400 fw-semibold fs-7'>Quarter 2/3</div>
               </div>
               {/* end::Title */}
               {/* begin::Label */}
               <div className='d-flex align-items-center'>
-                <div className='fw-bolder fs-5 text-gray-800 pe-1'>$1,7b</div>
+                <div className='fw-bold fs-5 text-gray-800 pe-1'>$1,7b</div>
                 <KTSVG
                   path='/media/icons/duotune/general/gen024.svg'
                   className='svg-icon-5 svg-icon-danger ms-1'
@@ -124,15 +124,15 @@ const MixedWidget1: React.FC<Props> = ({className, color}) => {
             <div className='d-flex align-items-center flex-wrap w-100'>
               {/* begin::Title */}
               <div className='mb-1 pe-3 flex-grow-1'>
-                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bolder'>
+                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bold'>
                   Growth
                 </a>
-                <div className='text-gray-400 fw-bold fs-7'>80% Rate</div>
+                <div className='text-gray-400 fw-semibold fs-7'>80% Rate</div>
               </div>
               {/* end::Title */}
               {/* begin::Label */}
               <div className='d-flex align-items-center'>
-                <div className='fw-bolder fs-5 text-gray-800 pe-1'>$8,8m</div>
+                <div className='fw-bold fs-5 text-gray-800 pe-1'>$8,8m</div>
                 <KTSVG
                   path='/media/icons/duotune/arrows/arr066.svg'
                   className='svg-icon-5 svg-icon-success ms-1'
@@ -156,15 +156,15 @@ const MixedWidget1: React.FC<Props> = ({className, color}) => {
             <div className='d-flex align-items-center flex-wrap w-100'>
               {/* begin::Title */}
               <div className='mb-1 pe-3 flex-grow-1'>
-                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bolder'>
+                <a href='#' className='fs-5 text-gray-800 text-hover-primary fw-bold'>
                   Dispute
                 </a>
-                <div className='text-gray-400 fw-bold fs-7'>3090 Refunds</div>
+                <div className='text-gray-400 fw-semibold fs-7'>3090 Refunds</div>
               </div>
               {/* end::Title */}
               {/* begin::Label */}
               <div className='d-flex align-items-center'>
-                <div className='fw-bolder fs-5 text-gray-800 pe-1'>$270m</div>
+                <div className='fw-bold fs-5 text-gray-800 pe-1'>$270m</div>
                 <KTSVG
                   path='/media/icons/duotune/arrows/arr065.svg'
                   className='svg-icon-5 svg-icon-danger ms-1'

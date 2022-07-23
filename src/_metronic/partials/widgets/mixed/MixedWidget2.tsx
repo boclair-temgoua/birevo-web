@@ -4,6 +4,7 @@ import ApexCharts, {ApexOptions} from 'apexcharts'
 import {KTSVG} from '../../../helpers'
 import {getCSSVariableValue} from '../../../assets/ts/_utils'
 import {Dropdown1} from '../../content/dropdown/Dropdown1'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -14,8 +15,8 @@ type Props = {
 
 const MixedWidget2: React.FC<Props> = ({className, chartColor, chartHeight, strokeColor}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -28,19 +29,24 @@ const MixedWidget2: React.FC<Props> = ({className, chartColor, chartHeight, stro
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
       <div className={`card-header border-0 py-5 bg-${chartColor}`}>
-        <h3 className='card-title fw-bolder text-white'>Sales Statistics</h3>
+        <h3 className='card-title fw-bold text-white'>Sales Statistics</h3>
         <div className='card-toolbar'>
           {/* begin::Menu */}
           <button
@@ -75,7 +81,7 @@ const MixedWidget2: React.FC<Props> = ({className, chartColor, chartHeight, stro
                 path='/media/icons/duotune/general/gen032.svg'
                 className='svg-icon-3x svg-icon-warning d-block my-2'
               />
-              <a href='#' className='text-warning fw-bold fs-6'>
+              <a href='#' className='text-warning fw-semibold fs-6'>
                 Weekly Sales
               </a>
             </div>
@@ -86,7 +92,7 @@ const MixedWidget2: React.FC<Props> = ({className, chartColor, chartHeight, stro
                 path='/media/icons/duotune/arrows/arr075.svg'
                 className='svg-icon-3x svg-icon-primary d-block my-2'
               />
-              <a href='#' className='text-primary fw-bold fs-6'>
+              <a href='#' className='text-primary fw-semibold fs-6'>
                 New Users
               </a>
             </div>
@@ -101,7 +107,7 @@ const MixedWidget2: React.FC<Props> = ({className, chartColor, chartHeight, stro
                 path='/media/icons/duotune/abstract/abs027.svg'
                 className='svg-icon-3x svg-icon-danger d-block my-2'
               />
-              <a href='#' className='text-danger fw-bold fs-6 mt-2'>
+              <a href='#' className='text-danger fw-semibold fs-6 mt-2'>
                 Item Orders
               </a>
             </div>
@@ -112,7 +118,7 @@ const MixedWidget2: React.FC<Props> = ({className, chartColor, chartHeight, stro
                 path='/media/icons/duotune/communication/com010.svg'
                 className='svg-icon-3x svg-icon-success d-block my-2'
               />
-              <a href='#' className='text-success fw-bold fs-6 mt-2'>
+              <a href='#' className='text-success fw-semibold fs-6 mt-2'>
                 Bug Reports
               </a>
             </div>
@@ -132,9 +138,9 @@ const chartOptions = (
   chartColor: string,
   strokeColor: string
 ): ApexOptions => {
-  const labelColor = getCSSVariableValue('--bs-gray-500')
-  const borderColor = getCSSVariableValue('--bs-gray-200')
-  const color = getCSSVariableValue('--bs-' + chartColor)
+  const labelColor = getCSSVariableValue('--kt-gray-500')
+  const borderColor = getCSSVariableValue('--kt-gray-200')
+  const color = getCSSVariableValue('--kt-' + chartColor)
 
   return {
     series: [

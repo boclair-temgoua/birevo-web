@@ -37,16 +37,16 @@ const EngageWidget1: React.FC<Props> = ({
             lg ? 'py-10 py-md-14 px-10 px-md-20 pe-lg-0' : 'p-10 p-md-20'
           }`}
         >
-          <h1 className={`fw-bolder text-dark ${lg ? 'mb-0' : ''}`}>Search Goods</h1>
+          <h1 className={`fw-bold text-dark ${lg ? 'mb-0' : ''}`}>Search Goods</h1>
           <div className='fs-3 mb-8'>Get Amazing Gadgets</div>
-          <form className='d-flex flex-center py-2 px-6 bg-white rounded'>
+          <form className='d-flex flex-center py-2 px-6 bg-body rounded'>
             <KTSVG
               path='/media/icons/duotune/general/gen021.svg'
               className='svg-icon-1 svg-icon-primary'
             />
             <input
               type='text'
-              className={`form-control border-0 fw-bold ps-2 ${lg ? 'w-xxl-600px' : 'w-xxl-350px'}`}
+              className={`form-control border-0 fw-semibold ps-2 ${lg ? 'w-xxl-600px' : 'w-xxl-350px'}`}
               placeholder='Search Goods'
             />
           </form>

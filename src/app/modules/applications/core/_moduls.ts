@@ -1,6 +1,7 @@
 import {createOrUpdateOneApplication} from './../api/index'
 import {useQueryClient, useMutation} from '@tanstack/react-query'
 import {deleteOneApplication} from '../api/index'
+import Toastify from 'toastify-js'
 import Swal from 'sweetalert2'
 export type StatusOnline = 'ONLINE' | 'OFFLINE' | 'TEST'
 
@@ -64,17 +65,15 @@ export const ApplicationMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
-          Swal.fire({
-            title: 'Created!',
-            icon: 'success',
+          Toastify({
             text: 'Your application has been created.',
-            showCancelButton: false,
-            showConfirmButton: false,
-            timer: 1500,
-            showClass: {
-              popup: 'animate__animated animate__bounceIn',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #4169E1, #4169E1)',
             },
-          })
+          }).showToast()
           onSuccess()
         }
       },
@@ -108,17 +107,15 @@ export const ApplicationDeleteMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
-          Swal.fire({
-            title: 'Deleted!',
-            icon: 'success',
+          Toastify({
             text: 'Your application has been deleted.',
-            showCancelButton: false,
-            showConfirmButton: false,
-            timer: 1500,
-            showClass: {
-              popup: 'animate__animated animate__bounceIn',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #4169E1, #4169E1)',
             },
-          })
+          }).showToast()
           onSuccess()
         }
       },

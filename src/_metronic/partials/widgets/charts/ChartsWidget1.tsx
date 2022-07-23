@@ -4,6 +4,7 @@ import ApexCharts, {ApexOptions} from 'apexcharts'
 import {KTSVG} from '../../../helpers'
 import {Dropdown1} from '../../content/dropdown/Dropdown1'
 import {getCSS, getCSSVariableValue} from '../../../assets/ts/_utils'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -11,8 +12,19 @@ type Props = {
 
 const ChartsWidget1: React.FC<Props> = ({className}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
+  const {mode} = useThemeMode()
 
   useEffect(() => {
+    const chart = refreshChart()
+
+    return () => {
+      if (chart) {
+        chart.destroy()
+      }
+    }
+  }, [chartRef, mode])
+
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
@@ -24,12 +36,8 @@ const ChartsWidget1: React.FC<Props> = ({className}) => {
       chart.render()
     }
 
-    return () => {
-      if (chart) {
-        chart.destroy()
-      }
-    }
-  }, [chartRef])
+    return chart
+  }
 
   return (
     <div className={`card ${className}`}>
@@ -37,9 +45,9 @@ const ChartsWidget1: React.FC<Props> = ({className}) => {
       <div className='card-header border-0 pt-5'>
         {/* begin::Title */}
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Recent Statistics</span>
+          <span className='card-label fw-bold fs-3 mb-1'>Recent Statistics</span>
 
-          <span className='text-muted fw-bold fs-7'>More than 400 new members</span>
+          <span className='text-muted fw-semibold fs-7'>More than 400 new members</span>
         </h3>
         {/* end::Title */}
 
@@ -76,10 +84,10 @@ const ChartsWidget1: React.FC<Props> = ({className}) => {
 export {ChartsWidget1}
 
 function getChartOptions(height: number): ApexOptions {
-  const labelColor = getCSSVariableValue('--bs-gray-500')
-  const borderColor = getCSSVariableValue('--bs-gray-200')
-  const baseColor = getCSSVariableValue('--bs-primary')
-  const secondaryColor = getCSSVariableValue('--bs-gray-300')
+  const labelColor = getCSSVariableValue('--kt-gray-500')
+  const borderColor = getCSSVariableValue('--kt-gray-200')
+  const baseColor = getCSSVariableValue('--kt-primary')
+  const secondaryColor = getCSSVariableValue('--kt-gray-300')
 
   return {
     series: [

@@ -2,6 +2,7 @@
 import React, {useEffect, useRef} from 'react'
 import ApexCharts, {ApexOptions} from 'apexcharts'
 import {getCSS, getCSSVariableValue} from '../../../assets/ts/_utils'
+import {useThemeMode} from '../../layout/theme-mode/ThemeModeProvider'
 
 type Props = {
   className: string
@@ -13,16 +14,16 @@ type Props = {
 
 const StatisticsWidget3: React.FC<Props> = ({className, title, description, change, color}) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
+  const {mode} = useThemeMode()
+  const refreshChart = () => {
     if (!chartRef.current) {
       return
     }
 
     const height = parseInt(getCSS(chartRef.current, 'height'))
-    const labelColor = getCSSVariableValue('--bs-gray-800')
-    const baseColor = getCSSVariableValue('--bs-' + color)
-    const lightColor = getCSSVariableValue('--bs-light-' + color)
+    const labelColor = getCSSVariableValue('--kt-gray-800')
+    const baseColor = getCSSVariableValue('--kt-' + color)
+    const lightColor = getCSSVariableValue('--kt-' + color + '-light')
 
     const chart = new ApexCharts(
       chartRef.current,
@@ -32,13 +33,19 @@ const StatisticsWidget3: React.FC<Props> = ({className, title, description, chan
       chart.render()
     }
 
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
     return () => {
       if (chart) {
         chart.destroy()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef])
+  }, [chartRef, mode])
 
   return (
     <div className={`card ${className}`}>
@@ -46,18 +53,18 @@ const StatisticsWidget3: React.FC<Props> = ({className, title, description, chan
       <div className='card-body d-flex flex-column p-0'>
         <div className='d-flex flex-stack flex-grow-1 card-p'>
           <div className='d-flex flex-column me-2'>
-            <a href='#' className='text-dark text-hover-primary fw-bolder fs-3'>
+            <a href='#' className='text-dark text-hover-primary fw-bold fs-3'>
               {title}
             </a>
 
             <span
-              className='text-muted fw-bold mt-1'
+              className='text-muted fw-semibold mt-1'
               dangerouslySetInnerHTML={{__html: description}}
             ></span>
           </div>
 
           <span className='symbol symbol-50px'>
-            <span className={`symbol-label fs-5 fw-bolder bg-light-${color} text-${color}`}>
+            <span className={`symbol-label fs-5 fw-bold bg-light-${color} text-${color}`}>
               {change}
             </span>
           </span>

@@ -13,8 +13,8 @@ const ListsWidget1: React.FC<Props> = ({className}) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder text-dark'>Tasks Overview</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>Pending 10 tasks</span>
+          <span className='card-label fw-bold text-dark'>Tasks Overview</span>
+          <span className='text-muted mt-1 fw-semibold fs-7'>Pending 10 tasks</span>
         </h3>
 
         <div className='card-toolbar'>
@@ -50,10 +50,10 @@ const ListsWidget1: React.FC<Props> = ({className}) => {
           {/* end::Symbol */}
           {/* begin::Text */}
           <div className='d-flex flex-column'>
-            <a href='#' className='text-dark text-hover-primary fs-6 fw-bolder'>
+            <a href='#' className='text-dark text-hover-primary fs-6 fw-bold'>
               Project Briefing
             </a>
-            <span className='text-muted fw-bold'>Project Manager</span>
+            <span className='text-muted fw-semibold'>Project Manager</span>
           </div>
           {/* end::Text */}
         </div>
@@ -72,10 +72,10 @@ const ListsWidget1: React.FC<Props> = ({className}) => {
           {/* end::Symbol */}
           {/* begin::Text */}
           <div className='d-flex flex-column'>
-            <a href='#' className='text-dark text-hover-primary fs-6 fw-bolder'>
+            <a href='#' className='text-dark text-hover-primary fs-6 fw-bold'>
               Concept Design
             </a>
-            <span className='text-muted fw-bold'>Art Director</span>
+            <span className='text-muted fw-semibold'>Art Director</span>
           </div>
           {/* end::Text */}
         </div>
@@ -94,10 +94,10 @@ const ListsWidget1: React.FC<Props> = ({className}) => {
           {/* end::Symbol */}
           {/* begin::Text */}
           <div className='d-flex flex-column'>
-            <a href='#' className='text-dark text-hover-primary fs-6 fw-bolder'>
+            <a href='#' className='text-dark text-hover-primary fs-6 fw-bold'>
               Functional Logics
             </a>
-            <span className='text-muted fw-bold'>Lead Developer</span>
+            <span className='text-muted fw-semibold'>Lead Developer</span>
           </div>
           {/* end::Text */}
         </div>
@@ -116,10 +116,10 @@ const ListsWidget1: React.FC<Props> = ({className}) => {
           {/* end::Symbol */}
           {/* begin::Text */}
           <div className='d-flex flex-column'>
-            <a href='#' className='text-dark text-hover-primary fs-6 fw-bolder'>
+            <a href='#' className='text-dark text-hover-primary fs-6 fw-bold'>
               Development
             </a>
-            <span className='text-muted fw-bold'>DevOps</span>
+            <span className='text-muted fw-semibold'>DevOps</span>
           </div>
           {/* end::Text */}
         </div>
@@ -138,10 +138,10 @@ const ListsWidget1: React.FC<Props> = ({className}) => {
           {/* end::Symbol */}
           {/* begin::Text */}
           <div className='d-flex flex-column'>
-            <a href='#' className='text-dark text-hover-primary fs-6 fw-bolder'>
+            <a href='#' className='text-dark text-hover-primary fs-6 fw-bold'>
               Testing
             </a>
-            <span className='text-muted fw-bold'>QA Managers</span>
+            <span className='text-muted fw-semibold'>QA Managers</span>
           </div>
           {/* end::Text */}
         </div>

@@ -1,13 +1,12 @@
 import React from 'react'
-import {useLayout} from '../../core/LayoutProvider'
-import {Toolbar1} from './Toolbar1'
-import {Toolbar2} from './Toolbar2'
+import { useLayout } from '../../core/LayoutProvider'
+import { Toolbar2 } from './Toolbar2'
 
 const Toolbar = () => {
-  const {config} = useLayout()
+  const { config } = useLayout()
 
   switch (config.toolbar.layout) {
-    case 'toolbar2':
+    case 'toolbar1':
       return <Toolbar2 />
 
     default:
@@ -15,4 +14,4 @@ const Toolbar = () => {
   }
 }
 
-export {Toolbar}
+export { Toolbar }

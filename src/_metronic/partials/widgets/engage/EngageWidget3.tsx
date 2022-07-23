@@ -34,7 +34,7 @@ const EngageWidget3: React.FC<Props> = ({
         <div className='card shadow-none w-auto w-md-300px w-lg-auto w-xxl-300px ml-auto'>
           {/*begin::Card Body*/}
           <div className='card-body bg-light px-12 py-10'>
-            <h3 className='fw-bolder fs-1 mb-1'>
+            <h3 className='fw-bold fs-1 mb-1'>
               <a href='#' className='text-gray-800'>
                 Nike True Balance
               </a>
@@ -45,7 +45,7 @@ const EngageWidget3: React.FC<Props> = ({
               about driving and keep you focused one the overall structure of your post
             </div>
             {/*begin::Info*/}
-            <table className='table table-borderless align-middle fw-bold'>
+            <table className='table table-borderless align-middle fw-semibold'>
               <tbody>
                 <tr>
                   <td className='text-gray-600 ps-0'>Shoes Brand</td>
