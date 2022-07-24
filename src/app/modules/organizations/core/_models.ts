@@ -5,6 +5,7 @@ import {
   updateOneRoleContributor,
 } from '../../subscribes/api/index'
 import Swal from 'sweetalert2'
+import Toastify from 'toastify-js'
 
 export const optionsRoles = [
   {id: 1, name: 'ADMIN'},
@@ -29,8 +30,10 @@ export type UpdateContributorRequest = {
 
 export const ContributorCreateMutation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess?: () => void
+  onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['contributorsOrganizations']
   const queryClient = useQueryClient()
@@ -51,7 +54,32 @@ export const ContributorCreateMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
+          Toastify({
+            text: 'Invitation has been successfully.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+            },
+          }).showToast()
           onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
         }
       },
     }
@@ -62,8 +90,10 @@ export const ContributorCreateMutation = ({
 
 export const ContributorUpdateMutation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess?: () => void
+  onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['contributorsOrganizations']
   const queryClient = useQueryClient()
@@ -84,7 +114,32 @@ export const ContributorUpdateMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
+          Toastify({
+            text: 'Information has been successfully.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+            },
+          }).showToast()
           onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
         }
       },
     }
