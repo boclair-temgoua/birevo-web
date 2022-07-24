@@ -112,11 +112,11 @@ const ActivityTable: React.FC<Props> = ({ className, voucherUuid }) => {
                     paginate(pageItem - 1)
                   }}
                   className="page-link" >
-                  <i className="previous"></i><span className="page-link">Previous</span>
+                  <i className="previous"></i>
                 </button>
               </li>
               <li className="page-item active">
-                <a href={void (0)} className="page-link">{pageItem}</a>
+                <button type="button" className="page-link">{pageItem}</button>
               </li>
               <li className={`page-item next ${(!isPreviousData && data?.data?.total_pages === pageItem) && ('disabled')}`}>
                 <button type="button"
@@ -127,7 +127,7 @@ const ActivityTable: React.FC<Props> = ({ className, voucherUuid }) => {
                     }
                   }}
                   className="page-link" >
-                  <span className="page-link">Next</span><i className="next"></i>
+                  <i className="next"></i>
                 </button>
               </li>
             </ul>

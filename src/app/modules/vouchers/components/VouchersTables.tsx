@@ -65,6 +65,20 @@ const VouchersTables: FC = () => {
             <CouponVoucherTableList voucher={item} key={index} />
           )))
 
+
+  // const getPages = () => {
+  //   const elements = [];
+  //   for (let i = 1; i <= data?.data?.total_pages; i++) {
+  //     elements.push(
+  //       <li className={`page-item ${pageItem === i ? "active" : ""}`} key={i}>
+  //         <button type="button" onClick={() => setPageItem(i)} className="page-link">
+  //           {i < 10 ? `${i}` : i}
+  //         </button>
+  //       </li>
+  //     );
+  //   }
+  //   return elements; // [<div>1</div>, <div>2</div>....]
+  // };
   return (
     <>
       <HelmetSite title={`Vouchers - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
@@ -130,12 +144,14 @@ const VouchersTables: FC = () => {
                       paginate(pageItem - 1)
                     }}
                     className="page-link" >
-                    <i className="previous"></i><span className="page-link">Previous</span>
+                    <i className="previous"></i>
                   </button>
                 </li>
                 <li className="page-item active">
-                  <a href={void (0)} className="page-link">{pageItem}</a>
+                  <button type="button" className="page-link">{pageItem}</button>
                 </li>
+                {/* {getPages()} */}
+
                 <li className={`page-item next ${(!isPreviousData && data?.data?.total_pages === pageItem) && ('disabled')}`}>
                   <button type="button"
                     onClick={() => {
@@ -144,8 +160,7 @@ const VouchersTables: FC = () => {
                         paginate(pageItem + 1)
                       }
                     }}
-                    className="page-link" >
-                    <span className="page-link">Next</span><i className="next"></i>
+                    className="page-link" ><i className="next"></i>
                   </button>
                 </li>
               </ul>
