@@ -17,9 +17,13 @@ export type VoucherFormRequest = {
   email: string
   name: string
   currency: string
+  codeGenerate: boolean
   status?: statusVoucher
+  deliveryType: 'AMOUNT' | 'PERCENT'
   expiredAt: Date
+  startedAt: Date
   amount: number
+  percent: number
   description: Date
 }
 
@@ -38,6 +42,7 @@ export type OneVoucherResponse = {
   amount: number
   percent: number
   isExpired: boolean
+  startedAt: Date
   expiredAt: Date
   createdAt: Date
   updatedAt: Date
@@ -109,9 +114,9 @@ export const CouponCreateMutation = ({
             text: 'Status coupon has been updated.',
             className: 'info',
             gravity: 'bottom', // `top` or `bottom`
-            position: 'center', // `left`, `center` or `right`
+            position: 'right', // `left`, `center` or `right`
             style: {
-              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
             },
           }).showToast()
           onSuccess()
@@ -125,7 +130,7 @@ export const CouponCreateMutation = ({
             text: 'An error has occurred.',
             className: 'info',
             gravity: 'bottom', // `top` or `bottom`
-            position: 'center', // `left`, `center` or `right`
+            position: 'right', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #FF0000, #FF0000)',
             },

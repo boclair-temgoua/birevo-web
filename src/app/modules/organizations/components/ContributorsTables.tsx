@@ -3,7 +3,7 @@ import { HelmetSite } from '../../../utility/commons/helmet-site'
 import { useAuth } from '../../auth';
 import { ContributorSubscribeTableList } from '../hook/ContributorSubscribeTableList'
 import { useSelector, useDispatch } from 'react-redux';
-import { loadShowOrganization } from '../../../redux/actions/organizationAction';
+// import { loadShowOrganization } from '../../../redux/actions/organizationAction';
 import { KTSVG } from '../../../../_metronic/helpers';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import queryString from 'query-string';
@@ -14,23 +14,17 @@ import { useDebounce } from '../../../utility/commons/useDebounce';
 import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { pluralName } from '../../../utility/commons/plural-name';
-import { ApplicationCreateOrUpdateFormModal } from '../../applications/hook/ApplicationCreateOrUpdateFormModal';
 import { InviteContributorModalForm } from '../hook/InviteContributorModalForm';
+import { getOneOrganizationApi } from '../api';
 
 const ContributorsTables: FC = () => {
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const userItem = useAuth();
-  const organization = useSelector((state: any) => state?.organizations?.organization)
   const [openModal, setOpenModal] = useState<boolean>(false)
-  const dispatch = useDispatch<any>()
-
-  useEffect(() => {
-    const loadItems = async () => {
-      await dispatch(loadShowOrganization({ organization_slug: userItem?.organization?.slug }))
-    }
-    loadItems()
-  }, [dispatch, userItem?.organization?.slug])
+  const fetchOneOrganization = async () => await getOneOrganizationApi({ organization_uuid: userItem?.organization?.uuid })
+  const { data: itemOrganization } = useQuery(['organization'], () => fetchOneOrganization(), { refetchOnWindowFocus: false })
+  const organization: any = itemOrganization?.data
 
 
   const queryClient = useQueryClient()

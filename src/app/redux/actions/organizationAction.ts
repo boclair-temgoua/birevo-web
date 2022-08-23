@@ -9,20 +9,20 @@ import {
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css'
 import Swal from 'sweetalert2'
-import {getOneOrganizationApi} from '../../modules/organizations/api'
+// import {getOneOrganizationApi} from '../../modules/organizations/api'
 
-export const loadShowOrganization =
-  (options: {organization_slug: string}) => async (dispatch: any) => {
-    const {organization_slug} = {...options}
-    await getOneOrganizationApi({organization_slug})
-      .then((response) =>
-        dispatch({
-          type: SHOW_ORGANIZATION,
-          payload: response.data,
-        })
-      )
-      .catch((error) => console.error(error))
-  }
+// export const loadShowOrganization =
+//   (options: {organization_uuid: string}) => async (dispatch: any) => {
+//     const {organization_uuid} = {...options}
+//     await getOneOrganizationApi({organization_uuid})
+//       .then((response) =>
+//         dispatch({
+//           type: SHOW_ORGANIZATION,
+//           payload: response.data,
+//         })
+//       )
+//       .catch((error) => console.error(error))
+//   }
 
 // export const loadUserNavOrganizationSubscribeFiles =
 //     (options: {

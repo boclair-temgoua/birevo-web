@@ -64,22 +64,14 @@ export const TextInput: React.FC<Props> = ({
                 aria-invalid={errors?.name ? "true" : "false"}
                 required={isRequired}
             />
+
             {errors?.name && (
-                <div className='fv-plugins-message-container'>
+                <strong className='fv-plugins-message-container text-danger'>
                     <div className='fv-help-block'>
                         <span role='alert'>{errors?.name.message}</span>
                     </div>
-                </div>
-                // <span className='invalid-feedback'>
-                //     <strong>{errors?.name.message}</strong>
-                // </span>
+                </strong>
             )}
-
-            {/* <div className='fv-plugins-message-container'>
-                <div className='fv-help-block'>
-                    <span role='alert'>{errors?.name.message}</span>
-                </div>
-            </div> */}
         </>
     );
 };

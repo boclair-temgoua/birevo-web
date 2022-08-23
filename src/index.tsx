@@ -17,8 +17,9 @@ import { MetronicI18nProvider } from './_metronic/i18n/Metronici18n'
  *
  * import './_metronic/assets/css/style.rtl.css'
  **/
-import './_metronic/assets/sass/style.scss'
-import './_metronic/assets/sass/style.react.scss'
+ import './_metronic/assets/sass/style.scss'
+ import './_metronic/assets/sass/plugins.scss'
+ import './_metronic/assets/sass/style.react.scss'
 import 'animate.css';
 import 'toastify-js/src/toastify.css'
 import 'react-datepicker/dist/react-datepicker.css';

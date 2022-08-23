@@ -32,12 +32,12 @@ export const InviteContributorModalForm: React.FC<Props> = ({ setOpenModal, orga
         staleTime: 5000
     })
 
-    const dataTable = status === 'loading' ? (<strong>Loading...</strong>) :
+    const dataTable = status === 'loading' ? ('') :
         isError ? (<>Error: {error}</>) :
             (data?.data?.data?.length <= 0) ? ('') :
                 (
                     data?.data?.data?.map((item: any, index: number) => (
-                        <SubscribeModalUserTable organization={organization} subscribe={item} key={index} />
+                        <SubscribeModalUserTable organization={organization} user={item} key={index} />
                     )))
     return (
         <>

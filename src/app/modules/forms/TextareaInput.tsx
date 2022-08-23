@@ -33,9 +33,11 @@ export const TextareaInput: React.FC<Props> = ({
                 aria-invalid={errors?.name ? "true" : "false"}
             />
             {errors?.name && (
-                <span className='invalid-feedback'>
-                    <strong>{errors?.name.message}</strong>
-                </span>
+                <strong className='fv-plugins-message-container text-danger'>
+                    <div className='fv-help-block'>
+                        <span role='alert'>{errors?.name.message}</span>
+                    </div>
+                </strong>
             )}
         </>
     );

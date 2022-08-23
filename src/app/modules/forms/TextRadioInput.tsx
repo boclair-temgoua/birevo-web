@@ -34,6 +34,13 @@ export const TextRadioInput: React.FC<Props> = ({
                 checked={checked}
                 aria-invalid={errors?.name ? "true" : "false"}
             />
+             {errors?.name && (
+                 <strong className='fv-plugins-message-container text-danger'>
+                    <div className='fv-help-block'>
+                        <span role='alert'>{errors?.name.message}</span>
+                    </div>
+                </strong>
+            )}
         </>
     );
 };

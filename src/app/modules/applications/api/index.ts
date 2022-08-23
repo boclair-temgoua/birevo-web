@@ -1,5 +1,6 @@
 import dyaxios from '../../../utility/commons/dyaxios'
 import {ApplicationFormRequest} from '../core/_moduls'
+import {SortType} from '../../../utility/index'
 
 export const createOrUpdateOneApplication = (data: ApplicationFormRequest) => {
   return dyaxios.post(`/applications/create-or-update`, data)
@@ -15,11 +16,16 @@ export const deleteOneApplication = (options: {application_uuid: string}) => {
   return dyaxios.delete(`/applications/delete/${application_uuid}`)
 }
 
-export const getApplications = (options: {filterQuery?: string; limit: number; page: number}) => {
-  const {filterQuery, limit, page} = options
+export const getApplications = (options: {
+  filterQuery?: string
+  limit: number
+  page: number
+  sort: SortType
+}) => {
+  const {filterQuery, limit, page, sort} = options
   return dyaxios.get(
     `/applications?limit=${limit}${
-      filterQuery ? `&filterQuery=${filterQuery}&page=${1}` : `&page=${page}`
+      filterQuery ? `&filterQuery=${filterQuery}&page=${1}` : `&page=${page}&sort=${sort}`
     }`
   )
 }

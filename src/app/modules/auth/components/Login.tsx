@@ -12,6 +12,7 @@ import { loginApi } from '../api';
 import jwt_decode from 'jwt-decode';
 import { LoginModel } from '../core/_models';
 import { useIntl } from 'react-intl';
+import Toastify from 'toastify-js'
 
 const schema = yup
   .object({
@@ -66,6 +67,15 @@ export function Login() {
         setHasErrors(true)
         setLoading(false)
         setHasErrors(error.response.data.message);
+        Toastify({
+          text: 'An error has occurred.',
+          className: 'info',
+          gravity: 'bottom', // `top` or `bottom`
+          position: 'right', // `left`, `center` or `right`
+          style: {
+            background: 'linear-gradient(to right, #FF0000, #FF0000)',
+          },
+        }).showToast()
       });
   };
 
@@ -145,7 +155,7 @@ export function Login() {
             type='submit'
             id='kt_sign_in_submit'
             className='btn btn-lg btn-primary w-100 mb-5'
-            disabled={!isDirty || !isValid}
+            disabled={!isDirty || !isValid || loading}
           >
             {!loading && <span className='indicator-label'>{intl.formatMessage({id: 'AUTH.LOGIN.BUTTON'})}</span>}
             {loading && (

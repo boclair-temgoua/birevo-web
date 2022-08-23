@@ -34,7 +34,8 @@ const ApplicationIndex: FC = () => {
     getApplications({
       filterQuery: debouncedFilter,
       limit: 10,
-      page: Number(pageItem || 1)
+      page: Number(pageItem || 1),
+      sort:'DESC'
     })
   const {
     isLoading,

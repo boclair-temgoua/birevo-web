@@ -141,6 +141,15 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                           Used: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.usedAt)}</span>
                         </div>
                       )}
+                      {voucher?.startedAt && (
+                        <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen014.svg'
+                            className='svg-icon-4 me-1'
+                          />
+                          Stated: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.startedAt)}</span>
+                        </div>
+                      )}
                       {voucher?.expiredAt && (
                         <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
                           <KTSVG

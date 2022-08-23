@@ -41,10 +41,12 @@ export const SelectValueIdInput: React.FC<Props> = ({
                     <option value={item?.id} key={index}>{item?.name}</option>
                 ))}
             </select>
-            {errors?.[name] && (
-                <span className='invalid-feedback'>
-                    <strong>{errors?.[name].message}</strong>
-                </span>
+            {errors?.name && (
+                <strong className='fv-plugins-message-container text-danger'>
+                    <div className='fv-help-block'>
+                        <span role='alert'>{errors?.name.message}</span>
+                    </div>
+                </strong>
             )}
         </>
     );

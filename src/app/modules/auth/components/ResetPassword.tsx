@@ -69,8 +69,8 @@ export function ResetPassword() {
         </div>
 
         {/* begin::Title */}
-        {hasErrors === true && (
-          <div className='mb-lg-15 alert alert-danger'>
+        {hasErrors && (
+          <div className='mb-lg-15 alert alert-danger text-center'>
             <div className='alert-text font-weight-bold'>
               Sorry, looks like there are some errors detected, please try again.
             </div>
@@ -122,11 +122,11 @@ export function ResetPassword() {
           <button
             type='submit'
             className='btn btn-lg btn-primary fw-bolder'
-            disabled={!isDirty || !isValid || isSubmitted}
+            disabled={!isDirty || !isValid || loading}
           >
-            <span className='indicator-label'>Reset password</span>
+            {!loading && <span className='indicator-label'>Reset password</span>}
             {loading && (
-              <span className='indicator-progress'>
+              <span className='indicator-progress' style={{ display: 'block' }}>
                 Please wait...
                 <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
               </span>

@@ -13,6 +13,7 @@ import { TextareaInput } from '../../forms/TextareaInput';
 import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
 import DatePicker from 'react-datepicker';
 import dayjs from 'dayjs';
+import { TextRadioInput } from '../../forms';
 
 interface Props {
   setOpenCreateOrUpdateModal: any,
@@ -21,18 +22,22 @@ interface Props {
 
 const schema = yup
   .object({
+    deliveryType: yup.string().required(),
     status: yup.string().min(3, 'Minimum 3 symbols').required(),
-    currency: yup.string().min(3, 'Minimum 3 symbols').required(),
-    amount: yup.number().required(),
+    startedAt: yup.date().min(new Date(), 'Please choose future date').required(),
+    expiredAt: yup.date().min(yup.ref("startedAt"), "End date has to be more than start date").required(),
   })
   .required();
 
 export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateModal, voucherItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { control, register, handleSubmit, reset, setValue,
-    formState: { errors, isSubmitted, isDirty, isValid }
+  const { control, watch, register, handleSubmit, reset, setValue,
+    formState: { errors, isDirty, isValid }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
+  const watchCodeGenerate = watch("codeGenerate", false);
+  const watchAmount = watch('deliveryType', 'AMOUNT');
+  const watchPercent = watch('deliveryType', 'PERCENT');
 
   const currencies: OneCurrencyResponse = useSelector((state: any) => state?.currencies?.currencies)
   const dispatch = useDispatch<any>()
@@ -46,7 +51,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
 
   useEffect(() => {
     if (voucherItem) {
-      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'expiredAt'];
+      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'percent', 'deliveryType', 'startedAt', 'expiredAt'];
       fields?.forEach((field: any) => setValue(field, voucherItem[field]));
     }
   }, [voucherItem]);
@@ -160,39 +165,150 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                   </div>
                 </div>
                 <div className="row mb-6">
-                  <div className="col-md-4 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Amount"
-                      register={register}
-                      errors={errors}
-                      name="amount"
-                      type="number"
-                      pattern="[0-9]*"
-                      min="1"
-                      step="1"
-                      inputMode="numeric"
-                      autoComplete="off"
-                      placeholder="Amount coupon"
-                      validation={{ required: true }}
-                      required="required"
-                      isRequired={true}
-                    />
+
+                  <div className="col-md-6 col-lg-6 col-xxl-6">
+                    <label
+                      className={`btn btn-outline btn-outline-dashed d-flex text-start p-6`}
+                    >
+                      <span
+                        className="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1"
+                      >
+                        <TextRadioInput
+                          className="form-check-input"
+                          register={register}
+                          errors={errors}
+                          name="deliveryType"
+                          type="radio"
+                          validation={{ required: true }}
+                          value={'AMOUNT'}
+                        />
+
+                      </span>
+                      <span className="ms-5">
+                        <span className="fs-4 fw-bolder text-gray-800 d-block">
+                          Coupon based on the price
+                        </span>
+                      </span>
+                    </label>
                   </div>
-                  <div className="col-md-4 fv-row fv-plugins-icon-container">
-                    <SelectCurrencyInput
-                      dataItem={currencies}
-                      className="form-control form-select select2-hidden-accessible"
-                      labelFlex="Currency"
-                      register={register}
-                      errors={errors}
-                      name="currency"
-                      validation={{ required: true }}
-                      isRequired={true}
-                      required="required"
-                    />
+                  <div className="col-md-6 col-lg-6 col-xxl-6">
+                    <label
+                      className={`btn btn-outline btn-outline-dashed d-flex text-start p-6`}
+                    >
+                      <span
+                        className="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1"
+                      >
+                        <TextRadioInput
+                          className="form-check-input"
+                          register={register}
+                          errors={errors}
+                          name="deliveryType"
+                          type="radio"
+                          validation={{ required: true }}
+                          value={'PERCENT'}
+                        />
+
+                      </span>
+                      <span className="ms-5">
+                        <span className="fs-4 fw-bolder text-gray-800 d-block">
+                          Coupon based on the percentage
+                        </span>
+                      </span>
+                    </label>
                   </div>
-                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                </div>
+
+                {watchPercent === 'PERCENT' && (
+                  <div className="row mb-6">
+                    <div className="col-md-12 fv-row fv-plugins-icon-container">
+                      <TextInput
+                        className="form-control form-control-lg"
+                        labelFlex="Percent"
+                        register={register}
+                        errors={errors}
+                        name="percent"
+                        type="number"
+                        pattern="[0-9]*"
+                        min="1"
+                        step="1"
+                        inputMode="numeric"
+                        autoComplete="off"
+                        placeholder="Percent coupon %"
+                        validation={{ required: false }}
+                        isRequired={false}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {watchAmount === 'AMOUNT' && (
+                  <div className="row mb-6">
+                    <div className="col-md-6 fv-row fv-plugins-icon-container">
+                      <TextInput
+                        className="form-control form-control-lg"
+                        labelFlex="Amount"
+                        register={register}
+                        errors={errors}
+                        name="amount"
+                        type="number"
+                        pattern="[0-9]*"
+                        min="1"
+                        step="1"
+                        inputMode="numeric"
+                        autoComplete="off"
+                        placeholder="Amount coupon"
+                        validation={{ required: false }}
+                        isRequired={false}
+                      />
+                    </div>
+                    <div className="col-md-6 fv-row fv-plugins-icon-container">
+                      <SelectCurrencyInput
+                        dataItem={currencies}
+                        className="form-control form-select select2-hidden-accessible"
+                        labelFlex="Currency"
+                        register={register}
+                        errors={errors}
+                        name="currency"
+                        validation={{ required: false }}
+                        isRequired={false}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                <div className="row mb-6">
+                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                    <label htmlFor='expiredAt' className='form-label fs-6 fw-bold mb-2'>
+                      <strong>Started date</strong>
+                    </label>
+                    <Controller
+                      name={"startedAt"}
+                      control={control}
+                      render={({ field: { onChange, value } }) => {
+                        return (
+                          <DatePicker
+                            dateFormat="dd/MM/yyyy"
+                            onChange={onChange}
+                            className="form-control"
+                            locale="it-IT"
+                            minDate={new Date()}
+                            isClearable={true}
+                            // withPortal
+                            selected={value ? dayjs(value).toDate() : null}
+                            placeholderText="Enter started date"
+                          />
+                        );
+                      }}
+                    />
+                    {errors?.startedAt && (
+                      <div className='fv-plugins-message-container'>
+                        <div className='fv-help-block'>
+                          <span role='alert'>{errors?.startedAt?.message}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="col-md-6 fv-row fv-plugins-icon-container">
                     <label htmlFor='expiredAt' className='form-label fs-6 fw-bold mb-2'>
                       <strong>Expired date</strong>
                     </label>
@@ -210,13 +326,52 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                             isClearable={true}
                             // withPortal
                             selected={value ? dayjs(value).toDate() : null}
-                            placeholderText="Enter expired date (optional)"
+                            placeholderText="Enter expired date"
                           />
                         );
                       }}
                     />
+                    {errors?.expiredAt && (
+                      <strong className='fv-plugins-message-container text-danger'>
+                        <div className='fv-help-block'>
+                          <span role='alert'>{errors?.expiredAt?.message}</span>
+                        </div>
+                      </strong>
+                    )}
                   </div>
                 </div>
+
+                <div className="d-flex flex-column mb-8">
+                  <div className='form-check form-check-solid fv-row'>
+                    <input
+                      className='form-check-input'
+                      type='checkbox' {...register('codeGenerate')}
+                    />
+                    <label className='form-check-label fw-bold ps-2 fs-6' htmlFor='deactivate'>
+                      Insert code or generate automatically
+                    </label>
+                  </div>
+                </div>
+
+                {watchCodeGenerate && (
+                  <div className="row mb-6">
+                    <div className="col-md-12 fv-row fv-plugins-icon-container">
+                      <TextInput
+                        className="form-control form-control-lg"
+                        labelFlex="Code coupon or voucher"
+                        register={register}
+                        errors={errors}
+                        name="code"
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Enter code (optional)"
+                        validation={{ required: false }}
+                        isRequired={false}
+                      />
+                    </div>
+                  </div>
+                )}
+
                 <div className="d-flex flex-column mb-8">
                   <TextareaInput
                     label="Description"

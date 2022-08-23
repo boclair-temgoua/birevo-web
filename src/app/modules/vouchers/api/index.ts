@@ -1,5 +1,6 @@
 import dyaxios from '../../../utility/commons/dyaxios'
 import {typeVoucher, VoucherFormRequest} from '../core/_moduls'
+import {SortType} from '../../../utility/index'
 
 export const createOrUpdateOneCoupon = (payload: VoucherFormRequest) => {
   return dyaxios.post(`/vouchers/c/create-or-update`, payload)
@@ -20,15 +21,16 @@ export const getOneByUuidVoucher = (options: {uuid: string}) => {
 }
 
 export const getVouchers = (options: {
-  filterQuery?: string
+  q?: string
   type: typeVoucher
   limit: number
   page: number
+  sort: SortType
 }) => {
-  const {filterQuery, type, limit, page} = options
+  const {q, type, limit, page, sort} = options
   return dyaxios.get(
-    `/vouchers?is_paginate=${true}&type=${type}&limit=${limit}${
-      filterQuery ? `&filterQuery=${filterQuery}&page=${1}` : `&page=${page}`
+    `/vouchers?is_paginate=${true}&type=${type}&sort=${sort}&limit=${limit}${
+      q ? `&q=${q}&page=${1}` : `&page=${page}`
     }`
   )
 }

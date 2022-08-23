@@ -66,14 +66,14 @@ export function ForgotPassword() {
           {/* end::Link */}
         </div>
 
-        {/* begin::Title */}
-        {hasErrors === true && (
+        {hasErrors && (
           <div className='mb-lg-15 alert alert-danger'>
             <div className='alert-text font-weight-bold'>
               Sorry, looks like there are some errors detected, please try again.
             </div>
           </div>
         )}
+
 
         {hasErrors === false && (
           <div className='mb-10 bg-light-info p-8 rounded'>
@@ -113,11 +113,11 @@ export function ForgotPassword() {
           <button
             type='submit'
             className='btn btn-lg btn-primary fw-bolder'
-            disabled={!isDirty || !isValid || isSubmitted}
+            disabled={!isDirty || !isValid || loading}
           >
-            <span className='indicator-label'>Submit</span>
+            {!loading && <span className='indicator-label'>Submit</span>}
             {loading && (
-              <span className='indicator-progress'>
+              <span className='indicator-progress' style={{ display: 'block' }}>
                 Please wait...
                 <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
               </span>

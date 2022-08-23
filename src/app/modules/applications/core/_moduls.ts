@@ -41,8 +41,10 @@ export type OneApplicationTokenResponse = {
 
 export const ApplicationMutation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess?: () => void
+  onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['applications']
   const queryClient = useQueryClient()
@@ -69,12 +71,28 @@ export const ApplicationMutation = ({
             text: 'Your application has been created.',
             className: 'info',
             gravity: 'bottom', // `top` or `bottom`
-            position: 'center', // `left`, `center` or `right`
+            position: 'right', // `left`, `center` or `right`
             style: {
-              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
             },
           }).showToast()
           onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
         }
       },
     }
@@ -85,8 +103,10 @@ export const ApplicationMutation = ({
 
 export const ApplicationDeleteMutation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess?: () => void
+  onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['applications']
   const queryClient = useQueryClient()
@@ -111,15 +131,30 @@ export const ApplicationDeleteMutation = ({
             text: 'Your application has been deleted.',
             className: 'info',
             gravity: 'bottom', // `top` or `bottom`
-            position: 'center', // `left`, `center` or `right`
+            position: 'right', // `left`, `center` or `right`
             style: {
-              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
             },
           }).showToast()
           onSuccess()
         }
       },
-      onError: async () => {},
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'bottom', // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
+        }
+      },
     }
   )
 

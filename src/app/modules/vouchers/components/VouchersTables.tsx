@@ -27,10 +27,11 @@ const VouchersTables: FC = () => {
   const isEnabled = Boolean(debouncedFilter)
   const fetchUserOrg = async (pageItem = 1, debouncedFilter: string) => await
     getVouchers({
-      filterQuery: debouncedFilter,
+      q: debouncedFilter,
       type: 'VOUCHER',
       limit: 13,
-      page: Number(pageItem || 1)
+      page: Number(pageItem || 1),
+      sort: 'DESC'
     })
   const {
     isLoading,
@@ -115,8 +116,9 @@ const VouchersTables: FC = () => {
               <thead>
                 <tr className='fw-bolder text-muted'>
                   <th className='min-w-140px'>Code</th>
-                  <th className='min-w-120px'>Amount</th>
                   <th className='min-w-120px'>Status</th>
+                  <th className='min-w-120px'>Started</th>
+                  <th className='min-w-120px'>Expired</th>
                   <th className='min-w-120px'>Status Online</th>
                   <th className='min-w-120px'>Date creation</th>
                   <th className='min-w-100px text-end'>Actions</th>

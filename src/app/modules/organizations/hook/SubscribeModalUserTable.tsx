@@ -7,42 +7,43 @@ import { OneOrganizationResponse, ContributorCreateMutation } from '../core/_mod
 import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
 import { crateOneContributor } from '../../subscribes/api/index';
 import { KTSVG } from "../../../../_metronic/helpers";
+import { OneUserResponse } from '../../user/core/_models';
 
 interface Props {
-  subscribe: OneContributorSubscribeResponse
+  user: OneUserResponse
   organization?: OneOrganizationResponse,
 }
 
-export const SubscribeModalUserTable: React.FC<Props> = ({ subscribe, organization }) => {
+export const SubscribeModalUserTable: React.FC<Props> = ({ user, organization }) => {
   const [isInvited, setIsInvited] = useState<boolean>(true)
 
 
   const actionDeleteMutation = ContributorCreateMutation({ onSuccess: () => {} });
 
-  const invitedItem = async (subscribe: OneContributorSubscribeResponse) => {
-    const payloadSave = { contributorId: Number(subscribe?.profile?.userId) }
+  const invitedItem = async (user: OneUserResponse) => {
+    const payloadSave = { contributorId: Number(user?.profile?.userId) }
     actionDeleteMutation.mutateAsync(payloadSave)
     setIsInvited(isInvited => !isInvited)
   }
 
-  const lastNameItem = String(subscribe?.profile?.lastName)
-  const firstNameItem = String(subscribe?.profile?.firstName)
+  const lastNameItem = String(user?.profile?.lastName)
+  const firstNameItem = String(user?.profile?.firstName)
   return (
     <>
       <div className="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
         <div className="d-flex align-subscribeProjects-center">
           <div className="symbol symbol-35px symbol-circle">
-            {subscribe?.profile?.image ? (<img alt={`${lastNameItem} ${firstNameItem}`} src={subscribe?.profile?.image} />) :
-              (<span className={`symbol-label bg-light-${subscribe?.profile?.color} text-${subscribe?.profile?.color} fw-bold`}>
+            {user?.profile?.image ? (<img alt={`${lastNameItem} ${firstNameItem}`} src={user?.profile?.image} />) :
+              (<span className={`symbol-label bg-light-${user?.profile?.color} text-${user?.profile?.color} fw-bold`}>
                 {capitalizeFirstLetter(firstNameItem, lastNameItem)}</span>)}
           </div>
           <div className="ms-5">
             <a href={void (0)} className="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">{firstNameItem} {lastNameItem}</a>
-            <div className="fw-bold text-muted">{subscribe?.profile?.email}</div>
+            <div className="fw-bold text-muted">{user?.email}</div>
           </div>
         </div>
         <div className="ms-2 w-100px">
-          <button onClick={() => invitedItem(subscribe)} className={`btn btn-sm btn-light btn-active-${isInvited ? 'primary' : 'success'}`}>
+          <button onClick={() => invitedItem(user)} className={`btn btn-sm btn-light btn-active-${isInvited ? 'primary' : 'success'}`}>
             <KTSVG path={`/media/icons/duotune/${isInvited ? 'arrows/arr075' : 'arrows/arr012'}.svg`} className='svg-icon-3' />{isInvited ? 'Invite' : 'Invited'}
           </button>
         </div>

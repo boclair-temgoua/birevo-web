@@ -45,7 +45,6 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
             </div>
           </div>
         </td>
-        <td className='text-dark fw-bolder text-hover-primary fs-6'>{voucher?.amount} {voucher?.currencyItem?.code}</td>
         <td>
           {voucher?.status === 'ACTIVE' && (
             <span className='badge badge-light-success'>{voucher?.status}</span>
@@ -56,6 +55,16 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
           {voucher?.status === 'USED' && (
             <span className='badge badge-light-info'>{voucher?.status}</span>
           )}
+        </td>
+        <td>
+          <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+            {formateDateDayjs(voucher?.startedAt)}
+          </a>
+        </td>
+        <td>
+          <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+            {formateDateDayjs(voucher?.expiredAt)}
+          </a>
         </td>
         <td>
           {voucher?.statusOnline === 'ONLINE' && (
