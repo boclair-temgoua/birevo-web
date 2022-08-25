@@ -15,22 +15,22 @@ import { loadOrganizationsUserSubscribes } from '../../../../app/redux/actions/s
 import { OneSubscribeResponse } from '../../../../app/modules/subscribes/core/_models'
 import { updateOrganizationToUser } from '../../../../app/modules/user/api';
 import { toAbsoluteUrl } from '../../../helpers';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
+import { getOrganizationsUserSubscribe } from '../../../../app/modules/subscribes/api/index';
 
 const HeaderUserMenu: FC = () => {
   const userItem = useAuth();
-  // const {currentUser, logout} = useAuth()
   const navigate = useNavigate();
-
-  const organizations = useSelector((state: any) => state?.subscribes?.organizationSubscribes)
-  const dispatch = useDispatch<any>()
-
-
-  useEffect(() => {
-    const loadItems = async () => {
-      await dispatch(loadOrganizationsUserSubscribes({ limit: 10, page: 1 }))
-    }
-    loadItems()
-  }, [])
+  const fetchUserOrg = async () => await
+    getOrganizationsUserSubscribe({ limit: 10, page: 1 })
+  const {
+    isLoading,
+    isError,
+    error,
+    data,
+  } = useQuery(['organizations'], () => fetchUserOrg(), {
+    refetchOnWindowFocus: false
+  })
 
   const joinOrganization = async (subscribe: OneSubscribeResponse) => {
     try {
@@ -44,6 +44,17 @@ const HeaderUserMenu: FC = () => {
       console.log('--release ---');
     }
   }
+
+  const dataTable = isLoading ? (<>Loading ...</>) :
+    isError ? (<>Error: {error}</>) :
+      (data?.data?.count <= 0) ? ('') :
+        (
+          data?.data?.data?.map((subscribe: OneSubscribeResponse, index: number) => (
+            <a key={index} href={void (0)} style={{ cursor: 'pointer' }} onClick={() => { joinOrganization(subscribe) }} className='menu-link px-5'>
+              {subscribe?.organization?.name}
+            </a>
+          )))
+
   return (
     <div
       className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px'
@@ -97,7 +108,7 @@ const HeaderUserMenu: FC = () => {
         <a href='#' className='menu-link px-5'>
           <span className='menu-title'>Organizations</span>
           <span className='menu-badge'>
-            <span className='badge badge-light-primary badge-circle fw-bolder fs-7'>{organizations?.count}</span>
+            <span className='badge badge-light-primary badge-circle fw-bolder fs-7'>{data?.data?.count}</span>
           </span>
           <span className='menu-arrow'></span>
 
@@ -106,11 +117,7 @@ const HeaderUserMenu: FC = () => {
         <div className='menu-sub menu-sub-dropdown w-175px py-4'>
           <div className='menu-item px-3'>
 
-            {organizations?.data?.map((subscribe: OneSubscribeResponse, index: number) => (
-              <a key={index} href={void (0)} style={{ cursor: 'pointer' }} onClick={() => { joinOrganization(subscribe) }} className='menu-link px-5'>
-                {subscribe?.organization?.name}
-              </a>
-            ))}
+            {dataTable}
 
           </div>
 

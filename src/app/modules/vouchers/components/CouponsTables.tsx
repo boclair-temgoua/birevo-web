@@ -121,7 +121,8 @@ const CouponsTables: FC = () => {
                   <th className='min-w-120px'>Status</th>
                   <th className='min-w-120px'>Started</th>
                   <th className='min-w-120px'>Expired</th>
-                  <th className='min-w-120px'>Status Online</th>
+                  <th className='min-w-120px'>Amount</th>
+                  <th className='min-w-120px'>Percent</th>
                   <th className='min-w-120px'>Date creation</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>

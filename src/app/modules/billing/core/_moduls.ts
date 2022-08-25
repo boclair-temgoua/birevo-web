@@ -44,10 +44,10 @@ export const CreateStripeBillingMutation = ({
         Toastify({
           text: 'Your transaction has been save.',
           className: 'info',
-          gravity: 'bottom', // `top` or `bottom`
+          gravity: 'top', // `top` or `bottom`
           position: 'center', // `left`, `center` or `right`
           style: {
-            background: 'linear-gradient(to right, #4169E1, #4169E1)',
+            background: 'linear-gradient(to right, #3CB371, #3CB371)',
           },
         }).showToast()
         if (onSuccess) {
@@ -61,7 +61,7 @@ export const CreateStripeBillingMutation = ({
           Toastify({
             text: 'An error has occurred.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
+            gravity: 'top', // `top` or `bottom`
             position: 'center', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #FF0000, #FF0000)',
@@ -105,10 +105,10 @@ export const CreateCouponBillingMutation = ({
           Toastify({
             text: 'Your transaction has been save.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
+            gravity: 'top', // `top` or `bottom`
             position: 'center', // `left`, `center` or `right`
             style: {
-              background: 'linear-gradient(to right, #4169E1, #4169E1)',
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
             },
           }).showToast()
           onSuccess()
@@ -121,7 +121,7 @@ export const CreateCouponBillingMutation = ({
           Toastify({
             text: 'An error has occurred.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
+            gravity: 'top', // `top` or `bottom`
             position: 'center', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #FF0000, #FF0000)',

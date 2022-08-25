@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
-import { OneVoucherResponse, VoucherFormRequest, CouponCreateMutation } from '../core/_moduls';
+import { OneVoucherResponse, VoucherFormRequest, UseCouponMutation } from '../core/_moduls';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import { useQuery } from '@tanstack/react-query';
 import { getOneVoucher } from '../api';
 import dayjs from 'dayjs';
 import { useForm } from "react-hook-form";
 import ContentLoader from 'react-content-loader';
-import Swal from 'sweetalert2';
+import Skeleton from 'react-loading-skeleton'
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 interface Props {
   setOpenModal: any,
@@ -27,7 +27,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
   })
   const voucher: OneVoucherResponse = data?.data
 
-  const saveMutation = CouponCreateMutation({
+  const saveMutation = UseCouponMutation({
     onSuccess: () => {
       setOpenModal(false);
       setHasErrors(false);
@@ -43,8 +43,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
       const payload = {
         ...data,
         voucherId: voucherItem?.id,
-        currency: voucherItem?.currency,
-        amount: voucherItem?.amount
+        code: voucherItem?.code,
       }
       saveMutation.mutateAsync(payload)
     }, 1000)
@@ -76,24 +75,34 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                 <div className="mb-13 text-center">
                   <h1 className="mb-3">{voucher?.voucherType}</h1>
                 </div>
+                
+                {/* <ContentLoader viewBox="0 0 700 350" height={350} width={700}>
+                  <rect x="20" y="15" rx="20" ry="20" width="200" height="200" />
+                  <rect x="240" y="17" rx="10" ry="10" width="420" height="20" />
+                  <rect x="240" y="71" rx="10" ry="10" width="315" height="20" />
+                  <rect x="240" y="125" rx="10" ry="10" width="233" height="20" />
+                  <rect x="300" y="240" rx="8" ry="8" width="130" height="38" />
+                  <rect x="515" y="240" rx="8" ry="8" width="130" height="38" />
+                </ContentLoader> */}
+
                 <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
 
                   <div className='me-7 mb-4'>
                     <div className='symbol symbol-100px symbol-lg-160px symbol-fixed position-relative'>
-                      {voucher?.code ? <img src={toAbsoluteUrl(voucher?.qrCode?.image)} alt={voucher?.code} /> :
-                        <ContentLoader height="200" width="200" viewBox="0 0 265 300">
-                          <rect x="15" y="50" rx="2" ry="2" width="350" height="150" />
-                        </ContentLoader>}
+                      {voucher?.code && <img src={toAbsoluteUrl(voucher?.qrCode?.image)} alt={voucher?.code} />}
                     </div>
                   </div>
                   <div className='d-flex flex-column'>
+
                     <div className='d-flex align-items-center mb-2'>
                       <div className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
                         {voucher?.code}
                       </div>
-                      <div className={`btn btn-sm btn-light-${voucher?.isExpired ? 'danger' : 'success'} fw-bolder ms-2 fs-8 py-1 px-1`}>
-                        {voucher?.isExpired ? 'Expired' : 'Valid'}
-                      </div>
+                      {voucher?.id && (
+                        <div className={`btn btn-sm btn-light-${!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'success' : 'danger'} fw-bolder ms-2 fs-8 py-1 px-1`}>
+                          {!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'Valid' : 'Invalid'}
+                        </div>
+                      )}
                       {voucher?.status === 'ACTIVE' && (
                         <div className='btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-1'>
                           {voucher?.status === 'ACTIVE' && (voucher?.status)}
@@ -132,15 +141,6 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                           Created: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.createdAt)}</span>
                         </div>
                       )}
-                       {voucher?.usedAt && (
-                        <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
-                          <KTSVG
-                            path='/media/icons/duotune/general/gen014.svg'
-                            className='svg-icon-4 me-1'
-                          />
-                          Used: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.usedAt)}</span>
-                        </div>
-                      )}
                       {voucher?.startedAt && (
                         <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
                           <KTSVG
@@ -161,21 +161,42 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                       )}
                     </div>
 
+                    <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
+                      {voucher?.usedAt && (
+                        <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen014.svg'
+                            className='svg-icon-4 me-1'
+                          />
+                          Used: <span className='badge badge-light-primary'>{formateDateDayjs(voucher?.usedAt)}</span>
+                        </div>
+                      )}
+                    </div>
+
                     <div className='d-flex flex-column flex-grow-1 pe-8'>
                       <div className='d-flex flex-wrap'>
-                        <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
-                          <div className='d-flex align-items-center'>
-                            <div className='fs-2 fw-bolder'>{voucher?.amount} {voucher?.currencyItem?.code}</div>
-                          </div>
-                          <div className='fw-bold fs-6 text-gray-400'>Amount</div>
-                        </div>
 
-                        <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
-                          <div className='d-flex align-items-center'>
-                            <div className='fs-2 fw-bolder'>{voucher?.activity?.view}</div>
+                        {voucher?.amount && (
+                          <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
+                            <div className='d-flex align-items-center'>
+                              <div className='fs-2 fw-bolder'>{voucher?.amount} {voucher?.currencyItem?.code}</div>
+                            </div>
+                            <div className='fw-bold fs-6 text-gray-400'>Amount</div>
                           </div>
-                          <div className='fw-bold fs-6 text-gray-400'>Views</div>
-                        </div>
+                        )}
+
+
+                        {/* <ContentLoader height="150" width="150" viewBox="0 0 265 300">
+                          <rect x="15" y="50" rx="2" ry="2" width="350" height="150" />
+                        </ContentLoader> */}
+                        {voucher?.activity?.view > 0 && (
+                          <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
+                            <div className='d-flex align-items-center'>
+                              <div className='fs-2 fw-bolder'>{voucher?.activity?.view}</div>
+                            </div>
+                            <div className='fw-bold fs-6 text-gray-400'>Views</div>
+                          </div>
+                        )}
 
                         {voucher?.activity?.usage > 0 && voucher?.voucherType === 'VOUCHER' && (
                           <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
@@ -186,8 +207,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                           </div>
                         )}
 
-
-                        {voucher?.percent && voucher?.voucherType === 'VOUCHER' && (
+                        {voucher?.percent && (
                           <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
                             <div className='d-flex align-items-center'>
                               <div className='fs-2 fw-bolder'>{voucher?.percent} %</div>
@@ -197,11 +217,14 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                         )}
                       </div>
                     </div>
+
+
                     <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
                       <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
-                        {voucher?.organization?.name} - {voucher?.email}
+                        {voucher?.voucherType && `${voucher?.organization?.name} - ${voucher?.email}`}
                       </div>
                     </div>
+
                   </div>
                 </div>
 

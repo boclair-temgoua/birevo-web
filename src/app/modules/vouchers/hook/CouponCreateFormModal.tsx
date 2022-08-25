@@ -32,7 +32,7 @@ const schema = yup
 export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateModal, voucherItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { control, watch, register, handleSubmit, reset, setValue,
+  const { control, watch, register, handleSubmit, setValue,
     formState: { errors, isDirty, isValid }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
   const watchCodeGenerate = watch("codeGenerate", false);
@@ -218,7 +218,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                   </div>
                 </div>
 
-                {watchPercent === 'PERCENT' && (
+                {watchPercent === 'PERCENT' && watchAmount !== 'AMOUNT' && (
                   <div className="row mb-6">
                     <div className="col-md-12 fv-row fv-plugins-icon-container">
                       <TextInput
@@ -241,7 +241,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                   </div>
                 )}
 
-                {watchAmount === 'AMOUNT' && (
+                {watchAmount === 'AMOUNT' && watchPercent !== 'PERCENT' && (
                   <div className="row mb-6">
                     <div className="col-md-6 fv-row fv-plugins-icon-container">
                       <TextInput

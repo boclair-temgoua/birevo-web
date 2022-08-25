@@ -45,7 +45,7 @@ export const getOrganizationsUserSubscribe = (options: {
 }) => {
   const {filterQuery, limit, page} = options
   return dyaxios.get(
-    `/subscribes?is_paginate=${true}&type=${'ORGANIZATION'}&limit=${limit}${
+    `/subscribes?is_paginate=${true}&limit=${limit}${
       filterQuery ? `&filterQuery=${filterQuery}&page=${page}` : `&page=${page}`
     }`
   )

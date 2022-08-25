@@ -11,6 +11,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CouponCreateFormModal } from './CouponCreateFormModal';
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 import { VoucherCreateFormModal } from './VoucherCreateFormModal';
+import { capitalizeOneFirstLetter } from '../../../utility/commons/capitalize-first-letter';
+import { capitalizeName } from '../../../utility/commons/capitalized-name';
 
 type Props = {
   voucher?: OneVoucherResponse | any;
@@ -39,9 +41,7 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
               <a href={void (0)} onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }} className='text-dark fw-bolder text-hover-primary fs-6'>
                 {voucher?.code}
               </a>
-              {voucher?.voucherType === 'COUPON' && (
-                <span className='text-muted fw-bold text-muted d-block fs-7'>Coupon: <span className={`fw-bolder text-${voucher?.statusOnline === 'ONLINE' && voucher?.status === 'ACTIVE' ? 'success' : 'danger'} my-6`}>{voucher?.statusOnline === 'ONLINE' && voucher?.status === 'ACTIVE' ? 'Valid' : 'Invalid'}</span></span>
-              )}
+              <span className='text-muted fw-bold text-muted d-block fs-7'>{capitalizeName(voucher?.voucherType)}: <span className={`fw-bolder text-${!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'success' : 'danger'} my-6`}>{!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'Valid' : 'Invalid'}</span></span>
             </div>
           </div>
         </td>
@@ -66,7 +66,7 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
             {formateDateDayjs(voucher?.expiredAt)}
           </a>
         </td>
-        <td>
+        {/* <td>
           {voucher?.statusOnline === 'ONLINE' && (
             <span className='badge badge-light-success'>{voucher?.statusOnline}</span>
           )}
@@ -76,6 +76,16 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
           {voucher?.statusOnline === 'TEST' && (
             <span className='badge badge-light-info'>{voucher?.statusOnline}</span>
           )}
+        </td> */}
+        <td>
+          <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+            {voucher?.amount && `${voucher?.amount} ${voucher?.currencyItem?.code}`}
+          </a>
+        </td>
+        <td>
+          <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+            {voucher?.percent && `${voucher?.percent}%`}
+          </a>
         </td>
         <td>
           <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>

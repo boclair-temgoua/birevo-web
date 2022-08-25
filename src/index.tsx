@@ -23,6 +23,7 @@ import { MetronicI18nProvider } from './_metronic/i18n/Metronici18n'
 import 'animate.css';
 import 'toastify-js/src/toastify.css'
 import 'react-datepicker/dist/react-datepicker.css';
+import 'react-loading-skeleton/dist/skeleton.css'
 import { AppRoutes } from './app/routing/AppRoutes'
 import { AuthProvider, setupAxios } from './app/modules/auth'
 import { store } from "./app/redux/store";

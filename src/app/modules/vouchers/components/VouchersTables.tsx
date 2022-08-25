@@ -65,21 +65,6 @@ const VouchersTables: FC = () => {
           data?.data?.data?.map((item: OneVoucherResponse, index: number) => (
             <CouponVoucherTableList voucher={item} key={index} />
           )))
-
-
-  // const getPages = () => {
-  //   const elements = [];
-  //   for (let i = 1; i <= data?.data?.total_pages; i++) {
-  //     elements.push(
-  //       <li className={`page-item ${pageItem === i ? "active" : ""}`} key={i}>
-  //         <button type="button" onClick={() => setPageItem(i)} className="page-link">
-  //           {i < 10 ? `${i}` : i}
-  //         </button>
-  //       </li>
-  //     );
-  //   }
-  //   return elements; // [<div>1</div>, <div>2</div>....]
-  // };
   return (
     <>
       <HelmetSite title={`Vouchers - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
@@ -119,7 +104,8 @@ const VouchersTables: FC = () => {
                   <th className='min-w-120px'>Status</th>
                   <th className='min-w-120px'>Started</th>
                   <th className='min-w-120px'>Expired</th>
-                  <th className='min-w-120px'>Status Online</th>
+                  <th className='min-w-120px'>Amount</th>
+                  <th className='min-w-120px'>Percent</th>
                   <th className='min-w-120px'>Date creation</th>
                   <th className='min-w-100px text-end'>Actions</th>
                 </tr>

@@ -6,6 +6,10 @@ export const createOrUpdateOneCoupon = (payload: VoucherFormRequest) => {
   return dyaxios.post(`/vouchers/c/create-or-update`, payload)
 }
 
+export const updateUseOneCoupon = (payload: VoucherFormRequest) => {
+  return dyaxios.put(`/vouchers/c/use/${payload?.code}`, payload)
+}
+
 export const createOrUpdateOneVoucher = (payload: VoucherFormRequest) => {
   return dyaxios.post(`/vouchers/v/create-or-update`, payload)
 }

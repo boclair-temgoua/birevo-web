@@ -1,4 +1,5 @@
 export const capitalizeName = (s: string) => {
-    if (typeof s !== 'string') return '';
-    return s.charAt(0).toUpperCase() + s.slice(1);
-};
+  if (typeof s !== 'string') return ''
+  const v = s.toLowerCase()
+  return v.charAt(0).toUpperCase() + v.slice(1)
+}

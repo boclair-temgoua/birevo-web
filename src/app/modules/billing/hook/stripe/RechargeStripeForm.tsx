@@ -9,6 +9,13 @@ import { CreateStripeBillingMutation, StripePayFormRequest } from '../../core/_m
 import Swal from 'sweetalert2';
 
 
+const containerStyles = {
+    border: '1px solid #d3d3d3',
+    padding: '12px 17px 12px 17px',
+    borderRadius: '10px',
+    width: '100%',
+};
+
 const CARD_OPTIONS: any = {
     iconStyle: "solid",
     style: {
@@ -168,8 +175,12 @@ export const RechargeStripeForm: React.FC<{ userItem: any }> = ({ userItem }) =>
                     </div>
                 </div>
 
-                <div className="row mb-6">
-                    <CardElement options={CARD_OPTIONS} />
+                <div className="row">
+                    <div className="mb-6">
+                        <div style={containerStyles}>
+                            <CardElement options={CARD_OPTIONS} />
+                        </div>
+                    </div>
                 </div>
 
                 {/* begin::Action */}

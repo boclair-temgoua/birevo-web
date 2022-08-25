@@ -1,5 +1,5 @@
 import {useQueryClient, useMutation} from '@tanstack/react-query'
-import {createOrUpdateOneCoupon, createOrUpdateOneVoucher} from '../api/index'
+import {createOrUpdateOneCoupon, createOrUpdateOneVoucher, updateUseOneCoupon} from '../api/index'
 import Swal from 'sweetalert2'
 import Toastify from 'toastify-js'
 export const optionsStatusVouchers = [
@@ -14,6 +14,7 @@ export type statusVoucher = 'ACTIVE' | 'PENDING' | 'USED'
 
 export type VoucherFormRequest = {
   voucherId?: number
+  code: string
   email: string
   name: string
   currency: string
@@ -113,8 +114,8 @@ export const CouponCreateMutation = ({
           Toastify({
             text: 'Status coupon has been updated.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
-            position: 'right', // `left`, `center` or `right`
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #3CB371, #3CB371)',
             },
@@ -129,8 +130,69 @@ export const CouponCreateMutation = ({
           Toastify({
             text: 'An error has occurred.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
-            position: 'right', // `left`, `center` or `right`
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
+        }
+      },
+    }
+  )
+
+  return saveMutation
+}
+
+export const UseCouponMutation = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void
+  onError?: (error: any) => void
+} = {}) => {
+  const queryKey = ['voucherCoupons']
+  const queryClient = useQueryClient()
+  const saveMutation = useMutation(
+    async ({...payloadProperties}: VoucherFormRequest): Promise<VoucherFormRequest> => {
+      console.log(`payloadProperties =======>`, payloadProperties)
+      const {data} = await updateUseOneCoupon({...payloadProperties})
+      return data.results
+    },
+    {
+      onMutate: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          Toastify({
+            text: 'Status coupon has been updated.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
+            },
+          }).showToast()
+          onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #FF0000, #FF0000)',
             },
@@ -170,6 +232,15 @@ export const VoucherCreateMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
+          Toastify({
+            text: 'Voucher has been save.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
+            },
+          }).showToast()
           onSuccess()
         }
       },
@@ -177,6 +248,15 @@ export const VoucherCreateMutation = ({
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
           onError(error)
         }
       },
