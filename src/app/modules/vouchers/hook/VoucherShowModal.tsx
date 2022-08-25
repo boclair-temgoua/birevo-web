@@ -75,15 +75,16 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                 <div className="mb-13 text-center">
                   <h1 className="mb-3">{voucher?.voucherType}</h1>
                 </div>
-                
-                {/* <ContentLoader viewBox="0 0 700 350" height={350} width={700}>
-                  <rect x="20" y="15" rx="20" ry="20" width="200" height="200" />
-                  <rect x="240" y="17" rx="10" ry="10" width="420" height="20" />
-                  <rect x="240" y="71" rx="10" ry="10" width="315" height="20" />
-                  <rect x="240" y="125" rx="10" ry="10" width="233" height="20" />
-                  <rect x="300" y="240" rx="8" ry="8" width="130" height="38" />
-                  <rect x="515" y="240" rx="8" ry="8" width="130" height="38" />
-                </ContentLoader> */}
+
+                {voucher?.id ? '' : <ContentLoader viewBox="0 0 700 200" height={200} width={700}>
+                  <rect x="20" y="15" rx="20" ry="20" width="150" height="150" />
+                  <rect x="180" y="17" rx="10" ry="10" width="420" height="20" />
+                  <rect x="180" y="45" rx="10" ry="10" width="315" height="20" />
+                  <rect x="180" y="70" rx="10" ry="10" width="233" height="20" />
+                  <rect x="250" y="150" rx="8" ry="8" width="130" height="38" />
+                  <rect x="415" y="150" rx="8" ry="8" width="130" height="38" />
+                </ContentLoader>}
+
 
                 <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
 
