@@ -41,11 +41,16 @@ const VoucherActivityShow: FC = (props) => {
 
           {voucher?.id ? '' : <ContentLoader viewBox="0 0 700 200" height={200} width={700}>
             <rect x="20" y="15" rx="20" ry="20" width="150" height="150" />
-            <rect x="180" y="17" rx="10" ry="10" width="420" height="20" />
-            <rect x="180" y="45" rx="10" ry="10" width="315" height="20" />
-            <rect x="180" y="70" rx="10" ry="10" width="233" height="20" />
-            <rect x="250" y="150" rx="8" ry="8" width="130" height="38" />
-            <rect x="415" y="150" rx="8" ry="8" width="130" height="38" />
+            <rect x="180" y="17" rx="10" ry="10" width="420" height="15" />
+            <rect x="180" y="45" rx="10" ry="10" width="315" height="15" />
+            <rect x="180" y="70" rx="10" ry="10" width="233" height="15" />
+
+            <rect x="180" y="100" rx="8" ry="8" width="130" height="40" />
+            <rect x="320" y="100" rx="8" ry="8" width="130" height="40" />
+            <rect x="460" y="100" rx="8" ry="8" width="130" height="40" />
+
+            <rect x="250" y="160" rx="8" ry="8" width="130" height="38" />
+            <rect x="415" y="160" rx="8" ry="8" width="130" height="38" />
           </ContentLoader>}
 
           <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>

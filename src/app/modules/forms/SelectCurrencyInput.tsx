@@ -30,7 +30,7 @@ export const SelectCurrencyInput: React.FC<Props> = ({
             {labelFlex && (
                 <label className="form-label fw-bolder text-dark fs-6 mb-2">
                     <span className={required}>{labelFlex}</span>
-                    <i className="fas fa-exclamation-circle ms-2 fs-7"></i>
+                    {isRequired && (<i className="fas fa-exclamation-circle ms-2 fs-7"></i>)}
                 </label>
             )}
             {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}
@@ -41,9 +41,9 @@ export const SelectCurrencyInput: React.FC<Props> = ({
                     <option value={item?.code} key={index}>{item?.code} - {(item?.name)}</option>
                 ))}
             </select>
-            {errors?.[name] && (
+            {errors?.name && (
                 <span className='invalid-feedback'>
-                    <strong>{errors?.[name].message}</strong>
+                    <strong>{errors?.name.message}</strong>
                 </span>
             )}
         </>

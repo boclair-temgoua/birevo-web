@@ -3,16 +3,16 @@ export interface AuthModel {
   refreshToken?: string
 }
 
-export type LoginModel = {
-  email: string
-  password: string
-}
-
 export interface UserAddressModel {
   addressLine: string
   city: string
   state: string
   postCode: string
+}
+
+export type LoginModel = {
+  email: string
+  password: string
 }
 
 export type RegisterModel = {
