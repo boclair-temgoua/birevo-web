@@ -14,6 +14,11 @@ export const createOrUpdateOneVoucher = (payload: VoucherFormRequest) => {
   return dyaxios.post(`/vouchers/v/create-or-update`, payload)
 }
 
+export const deleteOneVoucher = (options: {code: string}) => {
+  const {code} = options
+  return dyaxios.delete(`/vouchers/delete/${code}`)
+}
+
 export const getOneVoucher = (options: {code: string}) => {
   const {code} = options
   return dyaxios.get(`/vouchers/show?code=${code}`)

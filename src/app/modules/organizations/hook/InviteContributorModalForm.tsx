@@ -17,7 +17,7 @@ export const InviteContributorModalForm: React.FC<Props> = ({ setOpenModal, orga
     const debouncedFilter = useDebounce(filter, 1000);
     const isEnabled = Boolean(debouncedFilter)
     const fetchUserOrg = async (debouncedFilter: string) => await getUsers({
-        filterQuery: debouncedFilter,
+        q: debouncedFilter,
         limit: 10,
         page: 1
     })

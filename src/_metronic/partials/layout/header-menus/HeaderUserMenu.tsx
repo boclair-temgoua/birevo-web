@@ -45,6 +45,12 @@ const HeaderUserMenu: FC = () => {
     }
   }
 
+  const signOut = () => {
+    localStorage.removeItem( String(process.env.REACT_APP_BASE_NAME_TOKEN))
+    navigate(`/login`,{ replace: true });
+    window.location.reload();
+  }
+
   const dataTable = isLoading ? (<>Loading ...</>) :
     isError ? (<>Error: {error}</>) :
       (data?.data?.count <= 0) ? ('') :
@@ -162,7 +168,7 @@ const HeaderUserMenu: FC = () => {
     </div> */}
 
       <div className='menu-item px-5'>
-        <a href='#' className='menu-link px-5'>
+        <a href={void (0)} onClick={() => { signOut() }} className='menu-link px-5'>
           Sign Out
         </a>
       </div>

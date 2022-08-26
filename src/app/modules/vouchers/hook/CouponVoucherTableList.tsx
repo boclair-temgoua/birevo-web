@@ -2,7 +2,7 @@
 import { KTSVG } from '../../../../_metronic/helpers'
 // import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { OneVoucherResponse } from '../core/_moduls';
+import { OneVoucherResponse, DeleteCouponMutation, DeleteVoucherMutation } from '../core/_moduls';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import { VoucherShowModal } from './VoucherShowModal';
@@ -13,6 +13,7 @@ import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 import { VoucherCreateFormModal } from './VoucherCreateFormModal';
 import { capitalizeOneFirstLetter } from '../../../utility/commons/capitalize-first-letter';
 import { capitalizeName } from '../../../utility/commons/capitalized-name';
+import Swal from 'sweetalert2';
 
 type Props = {
   voucher?: OneVoucherResponse | any;
@@ -27,6 +28,38 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
   const handleCopiedClick = () => {
     setCopied(true);
     setTimeout(() => { setCopied(false) }, 1500);
+  }
+
+  const actionDeleteCouponMutation = DeleteCouponMutation({ onSuccess: () => { } });
+  const actionDeleteVoucherMutation = DeleteVoucherMutation({ onSuccess: () => { } });
+
+  const deleteItem = async (voucher: any) => {
+    Swal.fire({
+      title: 'Delete?',
+      text: 'Are you sure you want to perform this action?',
+      confirmButtonText: 'Yes, Deleted',
+      cancelButtonText: 'No, Cancel',
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-outline-default',
+      },
+      showCancelButton: true,
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.value) {
+        //Envoyer la requet au serve
+        const payloadSave = { code: voucher?.code }
+        // eslint-disable-next-line no-lone-blocks
+        {
+          voucher?.voucherType === 'COUPON' ?
+          actionDeleteCouponMutation.mutateAsync(payloadSave) :
+          actionDeleteVoucherMutation.mutateAsync(payloadSave)
+        }
+
+      }
+    });
+
   }
 
   return (
@@ -114,12 +147,11 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
               <button onClick={() => { setOpenCreateOrUpdateModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
                 <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
               </button>
-              <button className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'>
-                <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-              </button>
             </>
           )}
-
+          <button type='button' onClick={() => { deleteItem(voucher) }} className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'>
+            <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+          </button>
         </td>
       </tr>
       {openModal && (<VoucherShowModal voucherItem={voucher} setOpenModal={setOpenModal} />)}

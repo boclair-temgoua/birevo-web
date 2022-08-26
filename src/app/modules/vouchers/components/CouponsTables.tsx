@@ -58,6 +58,7 @@ const CouponsTables: FC = () => {
 
   const paginate = (pageItem: number) => {
     setPageItem(pageItem)
+    // navigate(`/vouchers/coupons?${pageItem !== 1 ? `page=${pageItem}` : ''}`)
   }
 
   const dataTable = isLoading ? (<tr><td><strong>Loading...</strong></td></tr>) :

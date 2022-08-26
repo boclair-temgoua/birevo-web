@@ -36,7 +36,7 @@ const ContributorsTables: FC = () => {
   const isEnabled = Boolean(debouncedFilter)
   const fetchUserOrg = async (pageItem = 1, debouncedFilter: string) => await
     getContributorsPaginateSubscribes({
-      filterQuery: debouncedFilter,
+      q: debouncedFilter,
       is_paginate: true,
       limit: 10,
       page: Number(pageItem || 1)

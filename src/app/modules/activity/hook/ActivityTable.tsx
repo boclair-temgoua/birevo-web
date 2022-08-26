@@ -25,7 +25,7 @@ const ActivityTable: React.FC<Props> = ({ className, voucherUuid }) => {
   const isEnabled = Boolean(debouncedFilter)
   const fetchUserOrg = async (pageItem = 1, debouncedFilter: string) => await
     getActivitiesVoucher({
-      filterQuery: debouncedFilter,
+      q: debouncedFilter,
       voucher_uuid: voucherUuid,
       limit: 10,
       page: Number(pageItem || 1)

@@ -24,7 +24,7 @@ const OrganizationsTables: FC = () => {
   const isEnabled = Boolean(debouncedFilter)
   const fetchUserOrg = async (pageItem = 1, debouncedFilter: string) => await
     getOrganizationsUserSubscribe({
-      filterQuery: debouncedFilter,
+      q: debouncedFilter,
       limit: 10,
       page: Number(pageItem || 1)
     })

@@ -17,16 +17,14 @@ export const deleteOneApplication = (options: {application_uuid: string}) => {
 }
 
 export const getApplications = (options: {
-  filterQuery?: string
+  q?: string
   limit: number
   page: number
   sort: SortType
 }) => {
-  const {filterQuery, limit, page, sort} = options
+  const {q, limit, page, sort} = options
   return dyaxios.get(
-    `/applications?limit=${limit}${
-      filterQuery ? `&filterQuery=${filterQuery}&page=${1}` : `&page=${page}&sort=${sort}`
-    }`
+    `/applications?limit=${limit}${q ? `&q=${q}&page=${1}` : `&page=${page}&sort=${sort}`}`
   )
 }
 

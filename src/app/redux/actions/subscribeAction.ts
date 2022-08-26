@@ -25,9 +25,9 @@ export const loadShowSubscribe =
   }
 
 export const loadOrganizationsUserSubscribes =
-  (options: {filterQuery?: string; limit: number; page: number}) => async (dispatch: any) => {
-    const {filterQuery, limit, page} = options
-    await getOrganizationsUserSubscribe({filterQuery, limit, page})
+  (options: {q?: string; limit: number; page: number}) => async (dispatch: any) => {
+    const {q, limit, page} = options
+    await getOrganizationsUserSubscribe({q, limit, page})
       .then((response) =>
         dispatch({
           type: GET_ORGANIZATIONS_USER_SUBSCRIBES,

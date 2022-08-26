@@ -13,17 +13,17 @@ export const updateOneRoleContributor = (payload: UpdateContributorRequest) => {
 }
 
 export const getContributorsPaginateSubscribes = (options: {
-  filterQuery?: string
+  q?: string
   is_paginate: boolean
   limit: number
   page: number
 }) => {
-  const {filterQuery, is_paginate, limit, page} = {
+  const {q, is_paginate, limit, page} = {
     ...options,
   }
   return dyaxios.get(
     `/subscribes/contributors?is_paginate=${is_paginate}&limit=${limit}${
-      filterQuery ? `&filterQuery=${filterQuery}&page=${page}` : `&page=${page}`
+      q ? `&q=${q}&page=${page}` : `&page=${page}`
     }`
   )
 }
@@ -39,14 +39,12 @@ export const getOne = (options: {userId: number; subscribableId: number}) => {
 }
 
 export const getOrganizationsUserSubscribe = (options: {
-  filterQuery?: string
+  q?: string
   limit: number
   page: number
 }) => {
-  const {filterQuery, limit, page} = options
+  const {q, limit, page} = options
   return dyaxios.get(
-    `/subscribes?is_paginate=${true}&limit=${limit}${
-      filterQuery ? `&filterQuery=${filterQuery}&page=${page}` : `&page=${page}`
-    }`
+    `/subscribes?is_paginate=${true}&limit=${limit}${q ? `&q=${q}&page=${page}` : `&page=${page}`}`
   )
 }

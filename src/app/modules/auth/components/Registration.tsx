@@ -32,7 +32,7 @@ const schema = yup
       .min(8, 'Minimum 8 symbols')
       .max(50, 'Maximum 50 symbols')
       .required('Password is required'),
-    confirmPassword: yup.string()
+    passwordConfirm: yup.string()
       .required('Password confirmation is required')
       .when('password', {
         is: (val: string) => (val && val.length > 0 ? true : false),
@@ -214,7 +214,7 @@ export function Registration() {
             labelFlex="Confirm password"
             register={register}
             errors={errors}
-            name="confirmPassword"
+            name="passwordConfirm"
             type="password"
             autoComplete="off"
             placeholder={intl.formatMessage({ id: 'AUTH.INPUT.PASSWORD' })}

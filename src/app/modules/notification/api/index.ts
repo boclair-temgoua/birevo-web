@@ -15,13 +15,9 @@ export const deleteOneApplication = (options: {application_uuid: string}) => {
   return dyaxios.delete(`/applications/delete/${application_uuid}`)
 }
 
-export const getApplications = (options: {filterQuery?: string; limit: number; page: number}) => {
-  const {filterQuery, limit, page} = options
-  return dyaxios.get(
-    `/applications?limit=${limit}${
-      filterQuery ? `&filterQuery=${filterQuery}&page=${1}` : `&page=${page}`
-    }`
-  )
+export const getApplications = (options: {q?: string; limit: number; page: number}) => {
+  const {q, limit, page} = options
+  return dyaxios.get(`/applications?limit=${limit}${q ? `&q=${q}&page=${1}` : `&page=${page}`}`)
 }
 
 export const getTokenWithApplications = (options: {applicationId: number}) => {

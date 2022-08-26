@@ -1,5 +1,10 @@
 import {useQueryClient, useMutation} from '@tanstack/react-query'
-import {createOrUpdateOneCoupon, createOrUpdateOneVoucher, updateUseOneCoupon} from '../api/index'
+import {
+  createOrUpdateOneCoupon,
+  createOrUpdateOneVoucher,
+  updateUseOneCoupon,
+  deleteOneVoucher,
+} from '../api/index'
 import Swal from 'sweetalert2'
 import Toastify from 'toastify-js'
 export const optionsStatusVouchers = [
@@ -156,7 +161,6 @@ export const UseCouponMutation = ({
   const queryClient = useQueryClient()
   const saveMutation = useMutation(
     async ({...payloadProperties}: VoucherFormRequest): Promise<VoucherFormRequest> => {
-      console.log(`payloadProperties =======>`, payloadProperties)
       const {data} = await updateUseOneCoupon({...payloadProperties})
       return data.results
     },
@@ -264,4 +268,124 @@ export const VoucherCreateMutation = ({
   )
 
   return saveMutation
+}
+
+export const DeleteCouponMutation = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void
+  onError?: (error: any) => void
+} = {}) => {
+  const queryKey = ['voucherCoupons']
+  const queryClient = useQueryClient()
+  const result = useMutation(
+    async ({...code}: any): Promise<{code: string}> => {
+      const {data} = await deleteOneVoucher({...code})
+      return data.results
+    },
+    {
+      onMutate: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          Toastify({
+            text: 'Voucher has been deleted.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
+            },
+          }).showToast()
+          onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
+        }
+      },
+    }
+  )
+
+  return result
+}
+
+export const DeleteVoucherMutation = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void
+  onError?: (error: any) => void
+} = {}) => {
+  const queryKey = ['voucherVouchers']
+  const queryClient = useQueryClient()
+  const result = useMutation(
+    async ({...code}: any): Promise<{code: string}> => {
+      const {data} = await deleteOneVoucher({...code})
+      return data.results
+    },
+    {
+      onMutate: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          Toastify({
+            text: 'Voucher has been deleted.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
+            },
+          }).showToast()
+          onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
+        }
+      },
+    }
+  )
+
+  return result
 }

@@ -32,7 +32,7 @@ const ApplicationIndex: FC = () => {
   const isEnabled = Boolean(debouncedFilter)
   const fetchUserOrg = async (pageItem = 1, debouncedFilter: string) => await
     getApplications({
-      filterQuery: debouncedFilter,
+      q: debouncedFilter,
       limit: 10,
       page: Number(pageItem || 1),
       sort:'DESC'

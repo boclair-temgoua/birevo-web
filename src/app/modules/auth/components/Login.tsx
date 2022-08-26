@@ -58,7 +58,7 @@ export function Login() {
             String(process.env.REACT_APP_BASE_NAME_TOKEN),
             JSON.stringify(response.data)
           );
-          navigate(`/`,{ replace: true });
+          navigate(`/dashboard`,{ replace: true });
           window.location.reload();
         }
 
@@ -155,7 +155,7 @@ export function Login() {
             type='submit'
             id='kt_sign_in_submit'
             className='btn btn-lg btn-primary w-100 mb-5'
-            disabled={!isDirty || !isValid || loading}
+            disabled={loading}
           >
             {!loading && <span className='indicator-label'>{intl.formatMessage({id: 'AUTH.LOGIN.BUTTON'})}</span>}
             {loading && (
