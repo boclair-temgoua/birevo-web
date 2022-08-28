@@ -23,7 +23,7 @@ const ContributorsTables: FC = () => {
   const userItem = useAuth();
   const [openModal, setOpenModal] = useState<boolean>(false)
   const fetchOneOrganization = async () => await getOneOrganizationApi({ organization_uuid: userItem?.organization?.uuid })
-  const { data: itemOrganization } = useQuery(['organization'], () => fetchOneOrganization(), { refetchOnWindowFocus: false })
+  const { data: itemOrganization } = useQuery(['organization'], () => fetchOneOrganization())
   const organization: any = itemOrganization?.data
 
 
@@ -44,7 +44,6 @@ const ContributorsTables: FC = () => {
   const {
     isLoading,
     isError,
-    error,
     data,
     isPreviousData,
   } = useQuery(['contributorsOrganizations', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
@@ -68,7 +67,7 @@ const ContributorsTables: FC = () => {
   }
 
   const dataTable = isLoading ? (<tr><td><strong>Loading...</strong></td></tr>) :
-    isError ? (<tr><>Error: {error}</></tr>) :
+    isError ? (<tr><td><strong>Error find data please try again...</strong></td></tr>) :
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneContributorSubscribeResponse, index: number) => (
@@ -82,7 +81,7 @@ const ContributorsTables: FC = () => {
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>
-            <span className='card-label fw-bolder fs-3 mb-1'>Contributors - {userItem?.organization?.name || process.env.REACT_APP_NAME}</span>
+            <span className='card-label fw-bolder fs-3 mb-1'>{userItem?.id && (`Contributors - ${userItem?.organization?.name}`)}</span>
             <span className='text-muted mt-1 fw-bold fs-7'>Over {organization?.contributorTotal} {pluralName({ lengthItem: organization?.contributorTotal, word: 'members' })} </span>
           </h3>
           <div className="d-flex align-items-center py-1">

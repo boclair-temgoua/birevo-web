@@ -5,6 +5,7 @@ interface Props {
     name: string;
     dataItem: any;
     isRequired: boolean;
+    isValueInt: boolean;
     label?: string;
     labelFlex?: string;
     required?: string;
@@ -20,6 +21,7 @@ export const SelectCurrencyInput: React.FC<Props> = ({
     dataItem,
     labelFlex,
     isRequired,
+    isValueInt,
     required,
     className,
     validation = {},
@@ -38,7 +40,7 @@ export const SelectCurrencyInput: React.FC<Props> = ({
                 }`} {...register(name, validation)} required={isRequired}>
                 <option value="">Choose currency</option>
                 {dataItem?.map((item: any, index: number) => (
-                    <option value={item?.code} key={index}>{item?.code} - {(item?.name)}</option>
+                    <option value={isValueInt ? item?.id : item?.code} key={index}>{item?.code} - {(item?.name)}</option>
                 ))}
             </select>
             {errors?.name && (

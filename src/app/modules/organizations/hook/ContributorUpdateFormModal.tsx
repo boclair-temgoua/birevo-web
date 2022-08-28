@@ -24,7 +24,7 @@ const schema = yup
 export const ContributorUpdateFormModal: React.FC<Props> = ({ setOpenModal, subscribeUserItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { register, handleSubmit, reset, setValue,
+  const { register, handleSubmit, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
   } = useForm<UpdateContributorRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 

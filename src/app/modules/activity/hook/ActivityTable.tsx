@@ -56,7 +56,7 @@ const ActivityTable: React.FC<Props> = ({ className, voucherUuid }) => {
   }
 
   const dataTable = isLoading ? (<tr><td><strong>Loading...</strong></td></tr>) :
-    isError ? (<tr><>Error: {error}</></tr>) :
+    isError ? (<tr><td><strong>Error find data please try again...</strong></td></tr>) :
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneActivityResponse, index: number) => (

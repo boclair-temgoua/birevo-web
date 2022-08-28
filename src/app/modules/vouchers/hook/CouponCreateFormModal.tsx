@@ -264,6 +264,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                     <div className="col-md-6 fv-row fv-plugins-icon-container">
                       <SelectCurrencyInput
                         dataItem={currencies}
+                        isValueInt={false}
                         className="form-control form-select select2-hidden-accessible"
                         labelFlex="Currency"
                         register={register}

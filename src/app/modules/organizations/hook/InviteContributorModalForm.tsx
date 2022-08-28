@@ -33,7 +33,7 @@ export const InviteContributorModalForm: React.FC<Props> = ({ setOpenModal, orga
     })
 
     const dataTable = status === 'loading' ? ('') :
-        isError ? (<>Error: {error}</>) :
+        isError ? (<strong>Error find data please try again...</strong>) :
             (data?.data?.data?.length <= 0) ? ('') :
                 (
                     data?.data?.data?.map((item: any, index: number) => (

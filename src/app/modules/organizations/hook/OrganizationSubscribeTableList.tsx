@@ -49,15 +49,6 @@ const OrganizationSubscribeTableList: React.FC<Props> = ({ subscribeUserItem }) 
           >
             <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
           </a>
-          <a
-            href='#'
-            className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-          >
-            <KTSVG
-              path='/media/icons/duotune/general/gen027.svg'
-              className='svg-icon-3'
-            />
-          </a>
         </div>
       </td>
     </tr>

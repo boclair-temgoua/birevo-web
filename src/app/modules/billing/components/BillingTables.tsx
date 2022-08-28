@@ -55,7 +55,7 @@ const BillingTables: React.FC<Props> = ({ className }) => {
   }
 
   const dataTable = isLoading ? (<tr><td><strong>Loading...</strong></td></tr>) :
-    isError ? (<tr><>Error: {error}</></tr>) :
+    isError ? (<tr><td><strong>Error find data please try again...</strong></td></tr>) :
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: any, index: number) => (

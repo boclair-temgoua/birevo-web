@@ -32,7 +32,7 @@ const BillingIndex: FC = () => {
       <div className={`card mb-5 mb-xl-8`}>
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>
-            <span className='card-label fw-bolder fs-3 mb-1'>Billing - {userItem?.organization?.name}</span>
+            <span className='card-label fw-bolder fs-3 mb-1'>{userItem?.id && (`Billing - ${userItem?.organization?.name}`)}</span>
             {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
           {/* <div className="d-flex align-items-center py-1">

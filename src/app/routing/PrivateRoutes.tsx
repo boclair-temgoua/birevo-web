@@ -9,6 +9,7 @@ import { ApplicationIndex } from '../modules/applications/ApplicationIndex'
 import { BillingIndex } from '../modules/billing/BillingIndex'
 import { NotificationIndex } from '../modules/notification/NotificationIndex'
 import { VoucherActivityShow } from '../modules/activity/VoucherActivityShow'
+import { ProfileSettingsPage } from '../modules/user/ProfileSettingsPage';
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
@@ -47,6 +48,7 @@ const PrivateRoutes = () => {
         <Route path='applications' element={<ApplicationIndex />} />
         <Route path='activities/:voucher_uuid' element={<VoucherActivityShow />} />
         <Route path='account/billing' element={<BillingIndex />} />
+        <Route path='account/profile' element={<ProfileSettingsPage />} />
         <Route path='notifications' element={<NotificationIndex />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />

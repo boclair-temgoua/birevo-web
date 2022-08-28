@@ -46,13 +46,13 @@ const HeaderUserMenu: FC = () => {
   }
 
   const signOut = () => {
-    localStorage.removeItem( String(process.env.REACT_APP_BASE_NAME_TOKEN))
-    navigate(`/login`,{ replace: true });
+    localStorage.removeItem(String(process.env.REACT_APP_BASE_NAME_TOKEN))
+    navigate(`/login`, { replace: true });
     window.location.reload();
   }
 
   const dataTable = isLoading ? (<>Loading ...</>) :
-    isError ? (<>Error: {error}</>) :
+    isError ? (<strong>Error find data please try again...</strong>) :
       (data?.data?.count <= 0) ? ('') :
         (
           data?.data?.data?.map((subscribe: OneSubscribeResponse, index: number) => (
@@ -161,11 +161,11 @@ const HeaderUserMenu: FC = () => {
 
       <Languages />
 
-      {/* <div className='menu-item px-5 my-1'>
-      <Link to='/crafted/account/settings' className='menu-link px-5'>
-        Account Settings
-      </Link>
-    </div> */}
+      <div className='menu-item px-5 my-1'>
+        <Link to='/account/profile' className='menu-link px-5'>
+          Account Settings
+        </Link>
+      </div>
 
       <div className='menu-item px-5'>
         <a href={void (0)} onClick={() => { signOut() }} className='menu-link px-5'>

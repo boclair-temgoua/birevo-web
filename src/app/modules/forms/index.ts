@@ -5,6 +5,14 @@ export * from './SelectValueNameInput'
 export * from './SelectCurrencyInput'
 export * from './SelectValueIdInput'
 
-export type InputType = 'text' | 'number' | 'radio' | 'password' | 'email' | 'date' | 'hidden'
+export type InputType =
+  | 'text'
+  | 'number'
+  | 'radio'
+  | 'password'
+  | 'email'
+  | 'date'
+  | 'url'
+  | 'hidden'
 
 export type InputInputMode = 'numeric'

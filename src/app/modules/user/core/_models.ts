@@ -20,3 +20,20 @@ export type OneUserResponse = {
     userId: number
   }
 }
+export interface UpdateEmailRequest {
+  newEmail: string
+  passwordConfirm: string
+}
+
+export interface UpdatePasswordRequest {
+  password: string
+  newPassword: string
+  passwordConfirm: string
+}
+export interface UpdateProfileRequest {
+  profileId: number
+  firstName: string
+  currencyId: number
+  lastName: string
+  url: string
+}

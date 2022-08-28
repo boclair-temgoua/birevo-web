@@ -62,7 +62,7 @@ const CouponsTables: FC = () => {
   }
 
   const dataTable = isLoading ? (<tr><td><strong>Loading...</strong></td></tr>) :
-    isError ? (<tr><>Error: {error}</></tr>) :
+    isError ? (<tr><td><strong>Error find data please try again...</strong></td></tr>) :
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneVoucherResponse, index: number) => (
@@ -76,7 +76,7 @@ const CouponsTables: FC = () => {
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>
-            <span className='card-label fw-bolder fs-3 mb-1'>Coupons - {userItem?.organization?.name}</span>
+            <span className='card-label fw-bolder fs-3 mb-1'>{userItem?.id && (`Coupons - ${userItem?.organization?.name}`)}</span>
             {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
           <div className="d-flex align-items-center py-1">

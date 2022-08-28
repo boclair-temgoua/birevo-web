@@ -39,24 +39,6 @@ const OrganizationsPage = () => (
             </>
           }
         />
-      {/* <Route
-        path='horizontal'
-        element={
-          <>
-            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Horizontal</PageTitle>
-            <Horizontal />
-          </>
-        }
-      />
-      <Route
-        path='vertical'
-        element={
-          <>
-            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Vertical</PageTitle>
-            <Vertical />
-          </>
-        }
-      /> */}
       <Route index element={<Navigate to='/organizations/user' />} />
     </Route>
   </Routes>
