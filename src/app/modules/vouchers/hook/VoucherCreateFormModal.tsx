@@ -15,6 +15,8 @@ import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
 import { createOrUpdateOneVoucher } from '../api/index';
 import dayjs from 'dayjs';
 import { TextRadioInput } from '../../forms/TextRadioInput';
+import { getCurrencies } from '../../currency/api/index';
+import { useQuery } from '@tanstack/react-query';
 
 interface Props {
   setOpenCreateOrUpdateModal: any,
@@ -44,16 +46,11 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
   const watchAmount = watch('deliveryType', 'AMOUNT');
   const watchPercent = watch('deliveryType', 'PERCENT');
-
-  const currencies: OneCurrencyResponse = useSelector((state: any) => state?.currencies?.currencies)
-  const dispatch = useDispatch<any>()
-
-  useEffect(() => {
-    const loadItems = async () => {
-      await dispatch(loadAllCurrencies())
-    }
-    loadItems()
-  }, [])
+  
+  const {
+    data: dataCurrencies,
+  } = useQuery(['currencies'], () => getCurrencies())
+  const currencies = dataCurrencies?.data
 
   useEffect(() => {
     if (voucherItem) {

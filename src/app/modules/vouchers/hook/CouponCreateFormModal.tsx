@@ -14,6 +14,8 @@ import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
 import DatePicker from 'react-datepicker';
 import dayjs from 'dayjs';
 import { TextRadioInput } from '../../forms';
+import { getCurrencies } from '../../currency/api/index';
+import { useQuery } from '@tanstack/react-query';
 
 interface Props {
   setOpenCreateOrUpdateModal: any,
@@ -39,15 +41,10 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
   const watchAmount = watch('deliveryType', 'AMOUNT');
   const watchPercent = watch('deliveryType', 'PERCENT');
 
-  const currencies: OneCurrencyResponse = useSelector((state: any) => state?.currencies?.currencies)
-  const dispatch = useDispatch<any>()
-
-  useEffect(() => {
-    const loadItems = async () => {
-      await dispatch(loadAllCurrencies())
-    }
-    loadItems()
-  }, [])
+  const {
+    data: dataCurrencies,
+  } = useQuery(['currencies'], () => getCurrencies())
+  const currencies = dataCurrencies?.data
 
   useEffect(() => {
     if (voucherItem) {
@@ -342,7 +339,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                   </div>
                 </div>
 
-                <div className="d-flex flex-column mb-8">
+                {/* <div className="d-flex flex-column mb-8">
                   <div className='form-check form-check-solid fv-row'>
                     <input
                       className='form-check-input'
@@ -352,7 +349,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                       Insert code or generate automatically
                     </label>
                   </div>
-                </div>
+                </div> */}
 
                 {watchCodeGenerate && (
                   <div className="row mb-6">

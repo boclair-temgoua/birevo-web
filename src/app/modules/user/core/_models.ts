@@ -30,6 +30,10 @@ export interface UpdatePasswordRequest {
   newPassword: string
   passwordConfirm: string
 }
+export interface DeactivateAccountRequest {
+  user_uuid?: string
+  confirm: boolean
+}
 export interface UpdateProfileRequest {
   profileId: number
   firstName: string

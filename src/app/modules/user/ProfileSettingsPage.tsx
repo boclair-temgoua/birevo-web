@@ -9,6 +9,7 @@ import { useAuth } from '../auth'
 import { ProfileMethodCard } from './components/ProfileMethodCard'
 import { SignInMethodCard } from './components/SignInMethodCard'
 import { HelmetSite } from '../../utility/commons/helmet-site';
+import { DeactivateAccountForm } from './hook/DeactivateAccountForm'
 
 export function ProfileSettingsPage() {
   const userItem = useAuth();
@@ -20,7 +21,7 @@ export function ProfileSettingsPage() {
       {/* <ConnectedAccounts /> */}
       {/* <EmailPreferences />
       <Notifications /> */}
-      <DeactivateAccount />
+      <DeactivateAccountForm />
     </>
   )
 }

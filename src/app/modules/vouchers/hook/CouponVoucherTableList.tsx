@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { KTSVG } from '../../../../_metronic/helpers'
-// import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { OneVoucherResponse, DeleteCouponMutation, DeleteVoucherMutation } from '../core/_moduls';
-import dayjs from 'dayjs';
 import { useState } from 'react';
 import { VoucherShowModal } from './VoucherShowModal';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
@@ -11,7 +9,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CouponCreateFormModal } from './CouponCreateFormModal';
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 import { VoucherCreateFormModal } from './VoucherCreateFormModal';
-import { capitalizeOneFirstLetter } from '../../../utility/commons/capitalize-first-letter';
 import { capitalizeName } from '../../../utility/commons/capitalized-name';
 import Swal from 'sweetalert2';
 
@@ -20,7 +17,6 @@ type Props = {
 }
 
 const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
-  const navigate = useNavigate();
   const [openCreateOrUpdateModal, setOpenCreateOrUpdateModal] = useState<boolean>(false)
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [copied, setCopied] = useState(false);

@@ -192,7 +192,7 @@ const ProfileMethodForm: React.FC = () => {
                 onClick={() => { setShowForm(false) }}>
                 Cancel
               </button>
-              <button type='submit' className='btn btn-primary me-2' disabled={loading}>
+              <button type='submit' className='btn btn-primary me-2' disabled={!isValid || loading}>
                 {!loading && 'Save Changes'}
                 {loading && (
                   <span className='indicator-progress' style={{ display: 'block' }}>

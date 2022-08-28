@@ -1,5 +1,10 @@
 import dyaxios from '../../../utility/commons/dyaxios'
-import {UpdateEmailRequest, UpdatePasswordRequest, UpdateProfileRequest} from '../core/_models'
+import {
+  DeactivateAccountRequest,
+  UpdateEmailRequest,
+  UpdatePasswordRequest,
+  UpdateProfileRequest,
+} from '../core/_models'
 
 export const getOneApi = (options: {user_uuid: string}) => {
   const {user_uuid} = options
@@ -26,4 +31,11 @@ export const updatePasswordToUser = (payload: UpdatePasswordRequest) => {
 
 export const updateProfileToUser = (payload: UpdateProfileRequest) => {
   return dyaxios.put<UpdateProfileRequest>(`/users/update-profile/${payload?.profileId}`, payload)
+}
+
+export const deactivateProfileToUser = (payload: DeactivateAccountRequest) => {
+  return dyaxios.put<DeactivateAccountRequest>(
+    `/users/deactivate-user/${payload?.user_uuid}`,
+    payload
+  )
 }

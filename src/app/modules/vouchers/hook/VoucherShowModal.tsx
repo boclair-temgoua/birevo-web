@@ -4,10 +4,8 @@ import { OneVoucherResponse, VoucherFormRequest, UseCouponMutation } from '../co
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import { useQuery } from '@tanstack/react-query';
 import { getOneVoucher } from '../api';
-import dayjs from 'dayjs';
 import { useForm } from "react-hook-form";
 import ContentLoader from 'react-content-loader';
-import Skeleton from 'react-loading-skeleton'
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 interface Props {
   setOpenModal: any,
