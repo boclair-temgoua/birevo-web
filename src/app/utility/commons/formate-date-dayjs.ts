@@ -4,7 +4,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(localizedFormat)
 dayjs.extend(relativeTime)
 
-export const formateDateDayjs = (date: Date | any) => {
+export const formateDateDayjs = (date: Date) => {
   const todaysDate = new Date()
   const dateInit = dayjs(date)
   const currentYear = todaysDate.getFullYear()

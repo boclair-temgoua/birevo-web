@@ -8,7 +8,7 @@ import { useAuth } from '../auth';
 import { HelmetSite } from '../../utility/commons/helmet-site';
 import { EmptyTable } from '../../utility/commons/EmptyTable';
 import { OneActivityResponse } from '../activity/core/_moduls';
-import { ActivityUserTableList } from './hook/ActivityUserTableList';
+import { ActivityTableList } from '../activity/hook/ActivityTableList';
 
 const ActivityUserPage: FC = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -59,7 +59,7 @@ const ActivityUserPage: FC = () => {
       (data?.data?.count <= 0) ? (<EmptyTable />) :
         (
           data?.data?.data?.map((item: OneActivityResponse, index: number) => (
-            <ActivityUserTableList activityItem={item} key={index} />
+            <ActivityTableList item={item} key={index} />
           )))
 
   return (

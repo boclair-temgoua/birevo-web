@@ -12,20 +12,20 @@ const ActivityTableList: React.FC<Props> = ({ item }) => {
     <>
       <tr key={item?.id}>
         <td className='text-dark fw-bolder text-hover-primary'>
-          {item?.ipLocation}
-        </td>
-        <td className='text-dark fw-bolder text-hover-primary'>
-          {item?.activityAbleType}
-        </td>
-        <td className='text-dark fw-bolder text-hover-primary'>
           {item?.action}
         </td>
         <td className='text-dark fw-bolder text-hover-primary'>
-          {item?.browser}
+          {item?.ipLocation}
         </td>
         <td className='text-dark fw-bolder text-hover-primary'>
-          {item?.platform}
+          {item?.countryCode}
         </td>
+        <td className='text-dark fw-bolder text-hover-primary'>
+          {item?.city}
+        </td>
+        {/* <td className='text-dark fw-bolder text-hover-primary'>
+          {item?.platform}
+        </td> */}
         <td className='text-dark fw-bolder text-hover-primary'>
           {formateDateDayjs(item?.createdAt)}
         </td>
