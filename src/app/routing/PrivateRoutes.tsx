@@ -9,7 +9,6 @@ import { ApplicationIndex } from '../modules/applications/ApplicationIndex'
 import { BillingIndex } from '../modules/billing/BillingIndex'
 import { NotificationIndex } from '../modules/notification/NotificationIndex'
 import { VoucherActivityShow } from '../modules/activity/VoucherActivityShow'
-import { ProfileSettingsPage } from '../modules/user/ProfileSettingsPage';
 
 const PrivateRoutes = () => {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
@@ -18,6 +17,7 @@ const PrivateRoutes = () => {
   const VouchersPage = lazy(() => import('../modules/vouchers/VouchersPage'))
   const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
   const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
+  const AccountUserPage = lazy(() => import('../modules/user/AccountUserPage'))
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
@@ -48,7 +48,6 @@ const PrivateRoutes = () => {
         <Route path='applications' element={<ApplicationIndex />} />
         <Route path='activities/:voucher_uuid' element={<VoucherActivityShow />} />
         <Route path='account/billing' element={<BillingIndex />} />
-        <Route path='account/profile' element={<ProfileSettingsPage />} />
         <Route path='notifications' element={<NotificationIndex />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
@@ -98,6 +97,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <AccountPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='account/*'
+          element={
+            <SuspensedView>
+              <AccountUserPage />
             </SuspensedView>
           }
         />

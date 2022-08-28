@@ -1,17 +1,11 @@
-import React from 'react'
-// import { ConnectedAccounts } from '../accounts/components/settings/cards/ConnectedAccounts'
-import { DeactivateAccount } from '../accounts/components/settings/cards/DeactivateAccount'
-import { EmailPreferences } from '../accounts/components/settings/cards/EmailPreferences'
-import { Notifications } from '../accounts/components/settings/cards/Notifications'
-import { ProfileDetails } from '../accounts/components/settings/cards/ProfileDetails'
-import { SignInMethod } from '../accounts/components/settings/cards/SignInMethod'
+import { FC } from 'react';
 import { useAuth } from '../auth'
 import { ProfileMethodCard } from './components/ProfileMethodCard'
 import { SignInMethodCard } from './components/SignInMethodCard'
 import { HelmetSite } from '../../utility/commons/helmet-site';
 import { DeactivateAccountForm } from './hook/DeactivateAccountForm'
 
-export function ProfileSettingsPage() {
+const ProfileSettingsPage: FC = () => {
   const userItem = useAuth();
   return (
     <>
@@ -25,3 +19,4 @@ export function ProfileSettingsPage() {
     </>
   )
 }
+export { ProfileSettingsPage }

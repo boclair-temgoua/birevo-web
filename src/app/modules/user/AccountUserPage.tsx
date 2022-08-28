@@ -1,24 +1,26 @@
 import React from 'react'
 import {Navigate, Route, Routes, Outlet} from 'react-router-dom'
 import {PageLink, PageTitle} from '../../../_metronic/layout/core'
+import { ActivityUserPage } from './ActivityUserPage';
+import { ProfileSettingsPage } from './ProfileSettingsPage';
 
 
 const accountBreadCrumbs: Array<PageLink> = [
   {
     title: 'Account',
-    path: '/crafted/account/overview',
+    path: '/account/profile',
     isSeparator: false,
     isActive: false,
   },
   {
-    title: '',
-    path: '',
+    title: 'Account',
+    path: '/account/activity',
     isSeparator: true,
     isActive: false,
   },
 ]
 
-const UserPage: React.FC = () => {
+const AccountUserPage: React.FC = () => {
   return (
     <Routes>
       <Route
@@ -30,27 +32,27 @@ const UserPage: React.FC = () => {
         }
       >
         <Route
-          path='overview'
+          path='profile'
           element={
             <>
-              <PageTitle breadcrumbs={accountBreadCrumbs}>Overview</PageTitle>
-              {/* <Overview /> */}
+              <PageTitle breadcrumbs={accountBreadCrumbs}>Account</PageTitle>
+              <ProfileSettingsPage />
             </>
           }
         />
         <Route
-          path='settings'
+          path='activity'
           element={
             <>
-              <PageTitle breadcrumbs={accountBreadCrumbs}>Settings</PageTitle>
-              {/* <Settings /> */}
+              <PageTitle breadcrumbs={accountBreadCrumbs}>Activity</PageTitle>
+              <ActivityUserPage />
             </>
           }
         />
-        <Route index element={<Navigate to='/crafted/account/overview' />} />
+        <Route index element={<Navigate to='/account/profile' />} />
       </Route>
     </Routes>
   )
 }
 
-export default UserPage
+export default AccountUserPage

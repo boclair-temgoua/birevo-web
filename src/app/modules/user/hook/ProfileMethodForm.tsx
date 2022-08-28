@@ -24,10 +24,6 @@ const schema = yup.object().shape({
     .required('Password is required'),
   currencyId: yup.number()
     .required('Currency is required'),
-  url: yup.string()
-    .url()
-    .max(50, 'Maximum 50 symbols')
-    .optional(),
 })
 
 const ProfileMethodForm: React.FC = () => {

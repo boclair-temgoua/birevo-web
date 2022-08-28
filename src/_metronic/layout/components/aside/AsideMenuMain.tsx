@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import {useIntl} from 'react-intl'
-import {KTSVG} from '../../../helpers'
-import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
-import {AsideMenuItem} from './AsideMenuItem'
+import { useIntl } from 'react-intl'
+import { KTSVG } from '../../../helpers'
+import { AsideMenuItemWithSub } from './AsideMenuItemWithSub'
+import { AsideMenuItem } from './AsideMenuItem'
 import { Link } from 'react-router-dom'
 
 export function AsideMenuMain() {
@@ -14,7 +14,7 @@ export function AsideMenuMain() {
       <AsideMenuItem
         to='/dashboard'
         icon='/media/icons/duotune/art/art002.svg'
-        title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
+        title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
       />
       <AsideMenuItem
@@ -73,6 +73,7 @@ export function AsideMenuMain() {
           <AsideMenuItem to='/crafted/pages/wizards/vertical' title='Vertical' hasBullet={true} />
         </AsideMenuItemWithSub>
       </AsideMenuItemWithSub>
+
       <AsideMenuItemWithSub
         to='/crafted/accounts'
         title='Accounts'
@@ -82,6 +83,7 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} />
         <AsideMenuItem to='/crafted/account/settings' title='Settings' hasBullet={true} />
       </AsideMenuItemWithSub>
+
       <AsideMenuItemWithSub
         to='/error'
         title='Errors'
@@ -104,6 +106,19 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/crafted/widgets/tables' title='Tables' hasBullet={true} />
         <AsideMenuItem to='/crafted/widgets/feeds' title='Feeds' hasBullet={true} />
       </AsideMenuItemWithSub>
+
+      {/** Account user profile */}
+      <AsideMenuItemWithSub
+        to='/account/profile'
+        title='Accounts'
+        icon='/media/icons/duotune/communication/com006.svg'
+        fontIcon='bi-person'
+      >
+        <AsideMenuItem to='/account/profile' title='Settings' hasBullet={true} />
+        <AsideMenuItem to='/account/activity' title='Activity' hasBullet={true} />
+      </AsideMenuItemWithSub>
+      {/** End account user profile */}
+
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Apps</span>
@@ -127,7 +142,7 @@ export function AsideMenuMain() {
       /> */}
       <div className='menu-item'>
         <Link className='menu-link'
-        to='/account/billing'
+          to='/account/billing'
         >
           <span className='menu-icon'>
             <KTSVG path='/media/icons/duotune/communication/com001.svg' className='svg-icon-2' />
@@ -137,7 +152,7 @@ export function AsideMenuMain() {
       </div>
       <div className='menu-item'>
         <Link className='menu-link'
-        to='/applications'
+          to='/applications'
         >
           <span className='menu-icon'>
             <KTSVG path='/media/icons/duotune/coding/cod003.svg' className='svg-icon-2' />

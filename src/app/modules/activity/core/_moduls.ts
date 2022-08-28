@@ -9,6 +9,8 @@ export type OneActivityResponse = {
   action: string
   ipLocation: string
   browser: string
+  countryCode: string
+  city: string
   os: string
   platform: string
   source: string
