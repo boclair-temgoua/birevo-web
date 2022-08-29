@@ -5,6 +5,7 @@ import {
   updateOneRoleContributor,
 } from '../../subscribes/api/index'
 import Toastify from 'toastify-js'
+import {updateOrganizationApi} from '../api'
 
 export const optionsRoles = [
   {id: 1, name: 'ADMIN'},
@@ -19,6 +20,11 @@ export type OneOrganizationResponse = {
   color: string
   userId: number
   contributorTotal: number
+}
+
+export type UpdateOrganizationRequest = {
+  organization_uuid: number
+  name: string
 }
 
 export type UpdateContributorRequest = {
@@ -181,6 +187,66 @@ export const DeleteContributorMutation = ({
             },
           }).showToast()
           onSuccess()
+        }
+      },
+    }
+  )
+
+  return result
+}
+
+export const OrganizationUpdateMutation = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void
+  onError?: (error: any) => void
+} = {}) => {
+  const queryKey = ['organizationsSubscribes']
+  const queryClient = useQueryClient()
+  const result = useMutation(
+    async ({...payload}: any): Promise<UpdateOrganizationRequest> => {
+      const {data} = await updateOrganizationApi({...payload})
+      return data.results
+    },
+    {
+      onMutate: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          onSuccess()
+        }
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onSuccess) {
+          Toastify({
+            text: 'Information has been successfully.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #3CB371, #3CB371)',
+            },
+          }).showToast()
+          onSuccess()
+        }
+      },
+      onError: async (error) => {
+        await queryClient.invalidateQueries(queryKey)
+        await queryClient.removeQueries(queryKey)
+        if (onError) {
+          Toastify({
+            text: 'An error has occurred.',
+            className: 'info',
+            gravity: 'top', // `top` or `bottom`
+            position: 'center', // `left`, `center` or `right`
+            style: {
+              background: 'linear-gradient(to right, #FF0000, #FF0000)',
+            },
+          }).showToast()
+          onError(error)
         }
       },
     }

@@ -80,7 +80,7 @@ const HeaderUserMenu: FC = () => {
               {userItem?.profile?.firstName} {userItem?.profile?.lastName}
               <span className='badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2'>Pro</span>
             </div>
-            <a href='#' className='fw-bold text-muted text-hover-primary fs-7'>
+            <a href={void (0)} className='fw-bold text-muted text-hover-primary fs-7'>
               {userItem?.email}
             </a>
           </div>
@@ -90,7 +90,7 @@ const HeaderUserMenu: FC = () => {
       <div className='separator my-2'></div>
 
       <div className='menu-item px-5'>
-        <Link to={'/crafted/pages/profile'} className='menu-link px-5'>
+        <Link to={'/account/profile'} className='menu-link px-5'>
           Profile
         </Link>
       </div>

@@ -4,12 +4,11 @@ import { TextInput } from '../../forms/TextInput';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { ApplicationFormRequest, ApplicationMutation, OneApplicationResponse, optionsStatusOnline } from '../core/_moduls';
-import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
+import { OrganizationUpdateMutation, UpdateOrganizationRequest } from '../core/_models';
 
 interface Props {
   setOpenModal: any,
-  applicationItem?: OneApplicationResponse | any
+  organizationItem?: any
 }
 
 const schema = yup
@@ -18,21 +17,21 @@ const schema = yup
   })
   .required();
 
-export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenModal, applicationItem }) => {
+export const OrganizationUpdateFormModal: React.FC<Props> = ({ setOpenModal, organizationItem }) => {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const { register, handleSubmit, reset, setValue,
     formState: { errors, isSubmitted, isDirty, isValid }
-  } = useForm<ApplicationFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
+  } = useForm<UpdateOrganizationRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
   useEffect(() => {
-    if (applicationItem) {
-      const fields = ['name', 'statusOnline'];
-      fields?.forEach((field: any) => setValue(field, applicationItem[field]));
+    if (organizationItem) {
+      const fields = ['name'];
+      fields?.forEach((field: any) => setValue(field, organizationItem[field]));
     }
-  }, [applicationItem]);
+  }, [organizationItem]);
 
-  const saveUserMutation = ApplicationMutation({
+  const updateOrganizationMutation = OrganizationUpdateMutation({
     onSuccess: () => {
       setOpenModal(false)
       setHasErrors(false);
@@ -45,12 +44,12 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
     setLoading(true);
     setHasErrors(undefined)
     setTimeout(async () => {
-      const application_uuid = applicationItem?.uuid
-      const payloadSave: ApplicationFormRequest = { application_uuid, ...data }
-      const payloadUpdate: ApplicationFormRequest = { application_uuid, ...data }
-      !applicationItem ?
-        saveUserMutation.mutateAsync(payloadSave)
-        : saveUserMutation.mutateAsync(payloadUpdate)
+      const organization_uuid = organizationItem?.uuid
+      const payloadSave: UpdateOrganizationRequest = { organization_uuid, ...data }
+      const payloadUpdate: UpdateOrganizationRequest = { organization_uuid, ...data }
+      !organizationItem ?
+        updateOrganizationMutation.mutateAsync(payloadSave)
+        : updateOrganizationMutation.mutateAsync(payloadUpdate)
     }, 1000)
 
   };
@@ -69,7 +68,7 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
           {/* begin::Modal content */}
           <div className='modal-content'>
             <div className="modal-header">
-              <h5 className="modal-title">{applicationItem ? applicationItem?.name : 'Create API Key'} </h5>
+              <h5 className="modal-title">{organizationItem ? organizationItem?.name : 'Organization'} </h5>
               <div
                 onClick={() => { setOpenModal(false) }}
                 className="btn btn-icon btn-sm btn-active-light-primary ms-2"
@@ -82,7 +81,6 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
                 />
               </div>
             </div>
-          
             <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
               {/* begin::Modal body */}
               <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
@@ -99,19 +97,6 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
                     validation={{ required: true }}
                     required="required"
                     isRequired={true}
-                  />
-                </div>
-                <div className="fv-row fv-plugins-icon-container">
-                  <SelectValueNameInput
-                    dataItem={optionsStatusOnline}
-                    className="form-control"
-                    labelFlex="Status"
-                    register={register}
-                    errors={errors}
-                    name="statusOnline"
-                    validation={{ required: true }}
-                    isRequired={true}
-                    required="required"
                   />
                 </div>
               </div>

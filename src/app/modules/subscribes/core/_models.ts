@@ -1,6 +1,7 @@
 export type OneContributorSubscribeResponse = {
   id: number
   uuid: string
+  subscribableId: number
   subscribableType: string
   userId: number
   roleId: number

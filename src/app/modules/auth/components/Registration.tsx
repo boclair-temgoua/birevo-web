@@ -13,33 +13,34 @@ import { useIntl } from 'react-intl';
 import Toastify from 'toastify-js'
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 
-const schema = yup
-  .object({
-    firstName: yup.string()
-      .min(3, 'Minimum 3 symbols')
-      .max(50, 'Maximum 50 symbols')
-      .required('First name is required'),
-    lastName: yup.string()
-      .min(3, 'Minimum 3 symbols')
-      .max(50, 'Maximum 50 symbols')
-      .required('Last name is required'),
-    email: yup.string()
-      .email('Wrong email format')
-      .min(3, 'Minimum 3 symbols')
-      .max(50, 'Maximum 50 symbols')
-      .required('Email is required'),
-    password: yup.string()
-      .min(8, 'Minimum 8 symbols')
-      .max(50, 'Maximum 50 symbols')
-      .required('Password is required'),
-    passwordConfirm: yup.string()
-      .required('Password confirmation is required')
-      .when('password', {
-        is: (val: string) => (val && val.length > 0 ? true : false),
-        then: yup.string().oneOf([yup.ref('password')], "Password and Confirm Password didn't match"),
-      }),
-  })
-  .required();
+
+const schema = yup.object().shape({
+  firstName: yup.string()
+    .min(3, 'Minimum 3 symbols')
+    .max(50, 'Maximum 50 symbols')
+    .required('First name is required'),
+  lastName: yup.string()
+    .min(3, 'Minimum 3 symbols')
+    .max(50, 'Maximum 50 symbols')
+    .required('Last name is required'),
+  email: yup.string()
+    .email('Wrong email format')
+    .min(3, 'Minimum 3 symbols')
+    .max(50, 'Maximum 50 symbols')
+    .required('Email is required'),
+  password: yup.string()
+    .min(8, 'Minimum 8 symbols')
+    .max(50, 'Maximum 50 symbols')
+    .required('Password is required'),
+  passwordConfirm: yup.string()
+    .required('Password confirmation is required')
+    .when('password', {
+      is: (val: string) => (val && val.length > 0 ? true : false),
+      then: yup.string().oneOf([yup.ref('password')], "Password and Confirm Password didn't match"),
+    }),
+  confirm: yup.boolean().oneOf([true], 'Please check the box to deactivate your account').required(),
+})
+
 
 export function Registration() {
   const intl = useIntl()
@@ -105,21 +106,21 @@ export function Registration() {
         {/* end::Heading */}
 
         {/* begin::Action */}
-        <button type='button' className='btn btn-light-primary fw-bolder w-100 mb-10'>
+        {/* <button type='button' className='btn btn-light-primary fw-bolder w-100 mb-10'>
           <img
             alt='Logo'
             src={toAbsoluteUrl('/media/svg/brand-logos/google-icon.svg')}
             className='h-20px me-3'
           />
           Sign in with Google
-        </button>
+        </button> */}
         {/* end::Action */}
 
-        <div className='d-flex align-items-center mb-10'>
+        {/* <div className='d-flex align-items-center mb-10'>
           <div className='border-bottom border-gray-300 mw-50 w-100'></div>
           <span className='fw-bold text-gray-400 fs-7 mx-2'>OR</span>
           <div className='border-bottom border-gray-300 mw-50 w-100'></div>
-        </div>
+        </div> */}
 
         {/* <div className='mb-lg-15 alert alert-danger'>
           <div className='alert-text font-weight-bold'>message</div>
@@ -135,7 +136,7 @@ export function Registration() {
         )}
 
         {/* begin::Form group Firstname */}
-        <div className='row fv-row mb-7'>
+        <div className='row'>
           <div className='col-xl-6'>
             <TextInput
               className="form-control form-control-lg"
@@ -174,7 +175,7 @@ export function Registration() {
         {/* end::Form group */}
 
         {/* begin::Form group Email */}
-        <div className='fv-row mb-7'>
+        <div className='fv-row mb-5'>
           <TextInput
             className="form-control form-control-lg"
             labelFlex="Email address"
@@ -190,8 +191,6 @@ export function Registration() {
           />
         </div>
         {/* end::Form group */}
-
-
         <div className='fv-row mb-5'>
           <TextInput
             className="form-control form-control-lg"
@@ -230,7 +229,8 @@ export function Registration() {
             <input
               className='form-check-input'
               type='checkbox'
-              id='kt_login_toc_agree'
+              id='confirm'
+              {...register('confirm')}
             />
             <label
               className='form-check-label fw-bold text-gray-700 fs-6'
@@ -243,6 +243,11 @@ export function Registration() {
               .
             </label>
           </div>
+          {errors?.confirm && (
+            <div className='fv-plugins-message-container'>
+              <div className='fv-help-block'>{errors.confirm?.message}</div>
+            </div>
+          )}
         </div>
         {/* end::Form group */}
 
@@ -268,7 +273,7 @@ export function Registration() {
               id='kt_login_signup_form_cancel_button'
               className='btn btn-lg btn-light-primary w-100 mb-5'
             >
-              Cancel
+              Login
             </button>
           </Link>
         </div>

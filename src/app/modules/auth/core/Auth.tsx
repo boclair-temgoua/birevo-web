@@ -12,7 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getOneApi } from '../../user/api/index';
 
 
-interface AuthUserContextProps {
+export interface OneUserContextProps {
   id: string;
   uuid: string;
   email: string;
@@ -30,7 +30,7 @@ interface AuthUserContextProps {
   logout: () => void
 }
 
-const AuthUserContext = createContext<AuthUserContextProps | null>(null)
+const AuthUserContext = createContext<OneUserContextProps | null>(null)
 
 
 const useAuth = () => {

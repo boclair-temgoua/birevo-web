@@ -17,12 +17,12 @@ export function AsideMenuMain() {
         title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
       />
-      <AsideMenuItem
+      {/* <AsideMenuItem
         to='/builder'
         icon='/media/icons/duotune/general/gen019.svg'
         title='Layout Builder'
         fontIcon='bi-layers'
-      />
+      /> */}
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Crafted</span>
@@ -46,7 +46,7 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/organizations/user' title='Overview' hasBullet={true} />
         <AsideMenuItem to='/organizations/contributors' title='Contributors' hasBullet={true} />
       </AsideMenuItemWithSub>
-      <AsideMenuItemWithSub
+      {/* <AsideMenuItemWithSub
         to='/crafted/pages'
         title='Pages'
         fontIcon='bi-archive'
@@ -72,9 +72,9 @@ export function AsideMenuMain() {
           />
           <AsideMenuItem to='/crafted/pages/wizards/vertical' title='Vertical' hasBullet={true} />
         </AsideMenuItemWithSub>
-      </AsideMenuItemWithSub>
+      </AsideMenuItemWithSub> */}
 
-      <AsideMenuItemWithSub
+      {/* <AsideMenuItemWithSub
         to='/crafted/accounts'
         title='Accounts'
         icon='/media/icons/duotune/communication/com006.svg'
@@ -105,7 +105,7 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/crafted/widgets/mixed' title='Mixed' hasBullet={true} />
         <AsideMenuItem to='/crafted/widgets/tables' title='Tables' hasBullet={true} />
         <AsideMenuItem to='/crafted/widgets/feeds' title='Feeds' hasBullet={true} />
-      </AsideMenuItemWithSub>
+      </AsideMenuItemWithSub> */}
 
       {/** Account user profile */}
       <AsideMenuItemWithSub

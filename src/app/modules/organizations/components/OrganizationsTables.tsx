@@ -31,7 +31,6 @@ const OrganizationsTables: FC = () => {
   const {
     isLoading,
     isError,
-    error,
     data,
     isPreviousData,
   } = useQuery(['organizationsSubscribes', pageItem, debouncedFilter], () => fetchUserOrg(pageItem, debouncedFilter), {
@@ -78,7 +77,7 @@ const OrganizationsTables: FC = () => {
             data-bs-trigger='hover'
             title='Click to add a user'
           >
-            <a
+            {/* <a
               href='#'
               className='btn btn-sm btn-light-primary'
             // data-bs-toggle='modal'
@@ -86,7 +85,7 @@ const OrganizationsTables: FC = () => {
             >
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               New Organization
-            </a>
+            </a> */}
           </div>
         </div>
         {/* end::Header */}

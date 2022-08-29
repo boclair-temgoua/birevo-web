@@ -23,7 +23,7 @@ export function ForgotPassword() {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const { register, handleSubmit, reset,
-    formState: { errors, isSubmitted, isDirty, isValid }
+    formState: { errors, isDirty, isValid }
   } = useForm<ForgotPasswordModel>({ resolver: yupResolver(schema), mode: "onChange" });
 
   const onSubmit = async (data: ForgotPasswordModel) => {
@@ -32,7 +32,7 @@ export function ForgotPassword() {
     const payload = { ...data }
     setTimeout(async () => {
       await forgotPasswordApi(payload)
-        .then((response) => {
+        .then(() => {
           setHasErrors(false);
           setLoading(false)
           reset()
@@ -58,7 +58,7 @@ export function ForgotPassword() {
       >
         <div className='text-center mb-10'>
           {/* begin::Title */}
-          <h1 className='text-dark mb-3'>Forgot Password ?</h1>
+          <h1 className='text-dark mb-3'>Forgot your password ?</h1>
           {/* end::Title */}
 
           {/* begin::Link */}

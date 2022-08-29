@@ -14,18 +14,16 @@ import { LoginModel } from '../core/_models';
 import { useIntl } from 'react-intl';
 import Toastify from 'toastify-js'
 
-const schema = yup
-  .object({
-    email: yup.string()
+const schema = yup.object().shape({
+  email: yup.string().email()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('Email is required'),
-    password: yup.string()
-      .min(8, 'Minimum 8 symbols')
-      .max(50, 'Maximum 50 symbols')
-      .required('Password is required'),
-  })
-  .required();
+  password: yup.string()
+    .min(8, 'Minimum 8 symbols')
+    .max(50, 'Maximum 50 symbols')
+    .required('Password is required'),
+})
 
 export function Login() {
   const intl = useIntl()
@@ -58,7 +56,7 @@ export function Login() {
             String(process.env.REACT_APP_BASE_NAME_TOKEN),
             JSON.stringify(response.data)
           );
-          navigate(`/dashboard`,{ replace: true });
+          navigate(`/dashboard`, { replace: true });
           window.location.reload();
         }
 
@@ -137,7 +135,7 @@ export function Login() {
             name="password"
             type="password"
             autoComplete="off"
-            placeholder={intl.formatMessage({id: 'AUTH.INPUT.PASSWORD'})}
+            placeholder={intl.formatMessage({ id: 'AUTH.INPUT.PASSWORD' })}
             validation={{ required: true }}
             isRequired={true}
             required="required"
@@ -157,7 +155,7 @@ export function Login() {
             className='btn btn-lg btn-primary w-100 mb-5'
             disabled={loading}
           >
-            {!loading && <span className='indicator-label'>{intl.formatMessage({id: 'AUTH.LOGIN.BUTTON'})}</span>}
+            {!loading && <span className='indicator-label'>{intl.formatMessage({ id: 'AUTH.LOGIN.BUTTON' })}</span>}
             {loading && (
               <span className='indicator-progress' style={{ display: 'block' }}>
                 Please wait...
@@ -165,32 +163,6 @@ export function Login() {
               </span>
             )}
           </button>
-
-          {/* begin::Separator */}
-          <div className='text-center text-muted text-uppercase fw-bolder mb-5'>{intl.formatMessage({id: 'AUTH.GENERAL.OR'})}</div>
-          {/* end::Separator */}
-
-          {/* begin::Google link */}
-          <a href='#' className='btn btn-flex flex-center btn-light btn-lg w-100 mb-5'>
-            <img
-              alt='Logo'
-              src={toAbsoluteUrl('/media/svg/brand-logos/google-icon.svg')}
-              className='h-20px me-3'
-            />
-            Continue with Google
-          </a>
-          {/* end::Google link */}
-
-          {/* begin::Google link */}
-          <a href='#' className='btn btn-flex flex-center btn-light btn-lg w-100 mb-5'>
-            <img
-              alt='Logo'
-              src={toAbsoluteUrl('/media/svg/brand-logos/facebook-4.svg')}
-              className='h-20px me-3'
-            />
-            Continue with Facebook
-          </a>
-          {/* end::Google link */}
         </div>
         {/* end::Action */}
       </form>

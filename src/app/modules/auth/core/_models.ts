@@ -16,6 +16,7 @@ export type LoginModel = {
 }
 
 export type RegisterModel = {
+  confirm: boolean
   email: string
   password: string
   passwordConfirm: string
