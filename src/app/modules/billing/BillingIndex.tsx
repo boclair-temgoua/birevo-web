@@ -143,7 +143,7 @@ const BillingIndex: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
-      {/* <BillingTables className='mb-5 mb-xl-8' /> */}
+      <BillingTables className='mb-5 mb-xl-8' />
     </>
   )
 }

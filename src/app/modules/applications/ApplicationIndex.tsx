@@ -16,6 +16,7 @@ import { ApplicationTableList } from './hook/ApplicationTableList'
 import { OneApplicationResponse } from './core/_moduls';
 import { useAuth } from '../auth'
 import { HelmetSite } from '../../utility/commons/helmet-site';
+import { PaginationItem } from '../forms/PaginationItem';
 
 
 const ApplicationIndex: FC = () => {
@@ -119,36 +120,15 @@ const ApplicationIndex: FC = () => {
           {/* end::Table container */}
           <div className="separator"></div>
           <br />
-          {data?.data?.count > 0 && (
-            <div className="d-flex flex-center mb-0">
-              <ul className="pagination">
-                <li className={`page-item previous ${(isPreviousData || pageItem <= 1) && ('disabled')}`}>
-                  <button type="button"
-                    onClick={() => {
-                      setPageItem(old => Math.max(old - 1, 1))
-                      paginate(pageItem - 1)
-                    }}
-                    className="page-link" >
-                    <i className="previous"></i>
-                  </button>
-                </li>
-                <li className="page-item active">
-                  <button type="button" className="page-link">{pageItem}</button>
-                </li>
-                <li className={`page-item next ${(!isPreviousData && data?.data?.total_pages === pageItem) && ('disabled')}`}>
-                  <button type="button"
-                    onClick={() => {
-                      if (!isPreviousData && data?.data?.total_pages !== pageItem) {
-                        setPageItem(old => old + 1)
-                        paginate(pageItem + 1)
-                      }
-                    }}
-                    className="page-link" ><i className="next"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
-          )}
+          <PaginationItem
+            data={data}
+            setPageItem={setPageItem}
+            setPreviewPageItem={(old: number) => Math.max(old - 1, 1)}
+            setNextPageItem={(old: number) => old + 1}
+            paginate={paginate}
+            isPreviousData={isPreviousData}
+            pageItem={pageItem}
+          />
         </div>
         {/* begin::Body */}
       </div>

@@ -26,8 +26,8 @@ const VoucherActivityShow: FC = (props) => {
   const userItem = useAuth();
   const intl = useIntl()
 
-  const fetchOneVoucher = async (code: any) => await getOneVoucher({ code })
-  const { data } = useQuery(['voucher', code], () => fetchOneVoucher(code), {
+  const fetchOneVoucher = async (code: string) => await getOneVoucher({ code })
+  const { data } = useQuery(['voucher', code], () => fetchOneVoucher(String(code)), {
     refetchOnWindowFocus: false,
   })
   const voucher: OneVoucherResponse = data?.data

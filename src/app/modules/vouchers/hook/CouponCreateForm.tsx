@@ -118,6 +118,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
               className="form-control form-control-lg"
               labelFlex="Amount"
               register={register}
+              isNumber={true}
               errors={errors}
               name="amount"
               type="number"

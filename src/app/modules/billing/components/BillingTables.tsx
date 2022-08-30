@@ -8,6 +8,7 @@ import { useDebounce } from '../../../utility/commons/useDebounce';
 import queryString from 'query-string';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { BillingTableList } from '../hook/BillingTableList';
+import { PaginationItem } from '../../forms/PaginationItem';
 
 type Props = {
   className: string
@@ -26,6 +27,7 @@ const BillingTables: React.FC<Props> = ({ className }) => {
   const fetchDataItems = async (pageItem = 1, debouncedFilter: string) => await
     getBillings({
       limit: 10,
+      sort: 'DESC',
       page: Number(pageItem || 1)
     })
   const {
@@ -81,13 +83,9 @@ const BillingTables: React.FC<Props> = ({ className }) => {
             {/* begin::Table head */}
             <thead>
               <tr className='fw-bolder text-muted'>
-                <th className='min-w-150px'>Order Id</th>
-                <th className='min-w-140px'>Country</th>
+                <th className='min-w-140px'>Description</th>
+                <th className='min-w-120px'>Amount</th>
                 <th className='min-w-120px'>Date</th>
-                <th className='min-w-120px'>Company</th>
-                <th className='min-w-120px'>Total</th>
-                <th className='min-w-120px'>Status</th>
-                <th className='min-w-100px text-end'></th>
               </tr>
             </thead>
             {/* end::Table head */}
@@ -102,37 +100,15 @@ const BillingTables: React.FC<Props> = ({ className }) => {
         {/* end::Table container */}
         <div className="separator"></div>
         <br />
-        {data?.data?.count > 0 && (
-          <div className="d-flex flex-center mb-0">
-            <ul className="pagination">
-              <li className={`page-item previous ${(isPreviousData || pageItem <= 1) && ('disabled')}`}>
-                <button type="button"
-                  onClick={() => {
-                    setPageItem(old => Math.max(old - 1, 1))
-                    paginate(pageItem - 1)
-                  }}
-                  className="page-link" >
-                  <i className="previous"></i><span className="page-link">Previous</span>
-                </button>
-              </li>
-              <li className="page-item active">
-                <a href={void (0)} className="page-link">{pageItem}</a>
-              </li>
-              <li className={`page-item next ${(!isPreviousData && data?.data?.total_pages === pageItem) && ('disabled')}`}>
-                <button type="button"
-                  onClick={() => {
-                    if (!isPreviousData && data?.data?.total_pages !== pageItem) {
-                      setPageItem(old => old + 1)
-                      paginate(pageItem + 1)
-                    }
-                  }}
-                  className="page-link" >
-                  <span className="page-link">Next</span><i className="next"></i>
-                </button>
-              </li>
-            </ul>
-          </div>
-        )}
+        <PaginationItem
+          data={data}
+          setPageItem={setPageItem}
+          setPreviewPageItem={(old: number) => Math.max(old - 1, 1)}
+          setNextPageItem={(old: number) => old + 1}
+          paginate={paginate}
+          isPreviousData={isPreviousData}
+          pageItem={pageItem}
+        />
       </div>
       {/* begin::Body */}
     </div>
