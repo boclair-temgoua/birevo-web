@@ -54,7 +54,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
 
   useEffect(() => {
     if (voucherItem) {
-      const fields = ['code', 'name', 'description', 'email', 'amount', 'currency', 'status', 'percent', 'deliveryType', 'startedAt', 'expiredAt'];
+      const fields = ['code', 'name', 'description', 'email', 'amount', 'currencyId', 'status', 'percent', 'deliveryType', 'startedAt', 'expiredAt'];
       fields?.forEach((field: any) => setValue(field, voucherItem[field]));
     }
   }, [voucherItem]);
@@ -250,12 +250,12 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                     <div className="col-md-6 fv-row fv-plugins-icon-container">
                       <SelectCurrencyInput
                         dataItem={currencies}
-                        isValueInt={false}
+                        isValueInt={true}
                         className="form-control form-select select2-hidden-accessible"
                         labelFlex="Currency"
                         register={register}
                         errors={errors}
-                        name="currency"
+                        name="currencyId"
                         validation={{ required: false }}
                         isRequired={false}
                       />

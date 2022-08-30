@@ -149,7 +149,7 @@ const VoucherActivityShow: FC = (props) => {
                       {voucher?.amount && (
                         <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
                           <div className='d-flex align-items-center'>
-                            <div className='fs-2 fw-bolder'>{voucher?.amount} {voucher?.currencyItem?.code}</div>
+                            <div className='fs-2 fw-bolder'>{voucher?.amount} {voucher?.currency?.code}</div>
                           </div>
                           <div className='fw-bold fs-6 text-gray-400'>Amount</div>
                         </div>

@@ -22,7 +22,7 @@ export type VoucherFormRequest = {
   code: string
   email: string
   name: string
-  currency: string
+  currencyId: number
   codeGenerate: boolean
   status?: statusVoucher
   deliveryType: 'AMOUNT' | 'PERCENT'
@@ -43,7 +43,6 @@ export type OneVoucherResponse = {
   status: string
   name: string
   email: string
-  currency: string
   description: null
   amount: number
   percent: number
@@ -54,12 +53,14 @@ export type OneVoucherResponse = {
   updatedAt: Date
   userTransactionId: number
   userId: number
+  currencyId: number
   organizationId: number
   userCreatedId: number
   applicationId: number
-  currencyItem: {
+  currency: {
     code: string
     name: string
+    amount: number
   }
   organization: {
     name: string

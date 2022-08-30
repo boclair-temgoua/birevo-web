@@ -108,7 +108,7 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
         </td> */}
         <td>
           <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
-            {voucher?.amount && `${voucher?.amount} ${voucher?.currencyItem?.code}`}
+            {voucher?.amount && `${voucher?.amount} ${voucher?.currency?.code}`}
           </a>
         </td>
         <td>
