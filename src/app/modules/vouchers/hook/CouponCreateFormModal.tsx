@@ -2,13 +2,10 @@ import { useEffect, useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
 import { OneVoucherResponse, VoucherFormRequest, optionsStatusVouchers, CouponCreateMutation } from '../core/_moduls';
 import { TextInput } from '../../forms/TextInput';
-import { useSelector, useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SelectCurrencyInput } from '../../forms/SelectCurrencyInput';
-import { OneCurrencyResponse } from '../../currency/types/index';
-import { loadAllCurrencies } from '../../../redux/actions/currencyAction';
 import { TextareaInput } from '../../forms/TextareaInput';
 import { SelectValueNameInput } from '../../forms/SelectValueNameInput';
 import DatePicker from 'react-datepicker';
