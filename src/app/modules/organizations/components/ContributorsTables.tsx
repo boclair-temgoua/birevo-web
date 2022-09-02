@@ -17,6 +17,7 @@ import { pluralName } from '../../../utility/commons/plural-name';
 import { InviteContributorModalForm } from '../hook/InviteContributorModalForm';
 import { getOneOrganizationApi } from '../api';
 import { PaginationItem } from '../../forms/PaginationItem';
+import { BillingBalanceAlert } from '../../billing/hook/BillingBalanceAlert';
 
 const ContributorsTables: FC = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -78,6 +79,7 @@ const ContributorsTables: FC = () => {
   return (
     <>
       <HelmetSite title={`Contributors - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      <BillingBalanceAlert/>
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>

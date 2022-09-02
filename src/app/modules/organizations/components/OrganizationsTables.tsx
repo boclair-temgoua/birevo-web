@@ -12,6 +12,7 @@ import { OrganizationSubscribeTableList } from '../hook/OrganizationSubscribeTab
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { pluralName } from '../../../utility/commons/plural-name';
 import { PaginationItem } from '../../forms/PaginationItem';
+import { BillingBalanceAlert } from '../../billing/hook/BillingBalanceAlert';
 
 const OrganizationsTables: FC = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -64,6 +65,8 @@ const OrganizationsTables: FC = () => {
   return (
     <>
       <HelmetSite title={`Organizations - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      <BillingBalanceAlert/>
+      
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>

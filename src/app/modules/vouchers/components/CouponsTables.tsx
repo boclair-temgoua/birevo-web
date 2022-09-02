@@ -14,6 +14,7 @@ import { CouponVoucherTableList } from '../hook/CouponVoucherTableList';
 import { SearchInput } from '../../forms/SearchInput';
 import { CouponCreateFormModal } from '../hook/CouponCreateFormModal';
 import { PaginationItem } from '../../forms/PaginationItem';
+import { BillingBalanceAlert } from '../../billing/hook/BillingBalanceAlert';
 
 const CouponsTables: FC = () => {
   const navigate = useNavigate();
@@ -73,6 +74,8 @@ const CouponsTables: FC = () => {
   return (
     <>
       <HelmetSite title={`Coupons - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      <BillingBalanceAlert/>
+      
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>

@@ -9,6 +9,7 @@ import { HelmetSite } from '../../utility/commons/helmet-site';
 import { EmptyTable } from '../../utility/commons/EmptyTable';
 import { OneActivityResponse } from '../activity/core/_moduls';
 import { ActivityTableList } from '../activity/hook/ActivityTableList';
+import { BillingBalanceAlert } from '../billing/hook/BillingBalanceAlert';
 
 const ActivityUserPage: FC = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -65,6 +66,8 @@ const ActivityUserPage: FC = () => {
   return (
     <>
       <HelmetSite title={`Activities - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      <BillingBalanceAlert/>
+      
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>

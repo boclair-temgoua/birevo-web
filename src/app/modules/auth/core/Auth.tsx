@@ -24,6 +24,7 @@ export interface OneUserContextProps {
   projectTotal: number;
   profile: {} | any | undefined;
   billing: {} | any | undefined;
+  balance: {} | any | undefined;
   currency: {} | any | undefined;
   organization: {} | any | undefined;
   subscribeUser: {} | any | undefined;
@@ -40,7 +41,7 @@ const useAuth = () => {
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [auth, setAuth] = useState(getCurrentUserFormToken())
 
-  const fetchOneUser = async () => await getOneApi({ user_uuid: auth?.uuid  })
+  const fetchOneUser = async () => await getOneApi({ user_uuid: auth?.uuid })
   const { data } = useQuery(['user'], () => fetchOneUser(), {
     refetchOnWindowFocus: false
     // staleTime: 60_000,

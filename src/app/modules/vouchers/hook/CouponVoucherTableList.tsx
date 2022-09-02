@@ -49,8 +49,8 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
         // eslint-disable-next-line no-lone-blocks
         {
           voucher?.voucherType === 'COUPON' ?
-          actionDeleteCouponMutation.mutateAsync(payloadSave) :
-          actionDeleteVoucherMutation.mutateAsync(payloadSave)
+            actionDeleteCouponMutation.mutateAsync(payloadSave) :
+            actionDeleteVoucherMutation.mutateAsync(payloadSave)
         }
 
       }
@@ -70,7 +70,11 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
               <a href={void (0)} onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }} className='text-dark fw-bolder text-hover-primary fs-6'>
                 {voucher?.code}
               </a>
-              <span className='text-muted fw-bold text-muted d-block fs-7'>{capitalizeName(voucher?.voucherType)}: <span className={`fw-bolder text-${!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'success' : 'danger'} my-6`}>{!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'Valid' : 'Invalid'}</span></span>
+              <span className='text-muted fw-bold text-muted d-block fs-7'>{capitalizeName(voucher?.voucherType)}:
+                <span className={`fw-bolder text-${!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'success' : 'danger'} my-6`}>
+                  {!voucher?.isExpired && voucher?.status === 'ACTIVE' ? 'Valid' : 'Invalid'}
+                </span>
+              </span>
             </div>
           </div>
         </td>
@@ -84,6 +88,7 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
           {voucher?.status === 'USED' && (
             <span className='badge badge-light-info'>{voucher?.status}</span>
           )}
+          {voucher?.isExpired && (<>-<span className='badge badge-light-danger'>Expired</span></>)}
         </td>
         <td>
           <a href={void (0)} className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>

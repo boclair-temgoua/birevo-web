@@ -72,6 +72,7 @@ export type OneVoucherResponse = {
     uuid: string
     color: string
     image: string
+    email: string
     lastName: string
     firstName: string
     profileId: number

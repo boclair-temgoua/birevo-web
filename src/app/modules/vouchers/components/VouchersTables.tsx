@@ -14,6 +14,7 @@ import { CouponVoucherTableList } from '../hook/CouponVoucherTableList';
 import { SearchInput } from '../../forms/SearchInput';
 import { VoucherCreateFormModal } from '../hook/VoucherCreateFormModal';
 import { PaginationItem } from '../../forms/PaginationItem';
+import { BillingBalanceAlert } from '../../billing/hook/BillingBalanceAlert';
 
 const VouchersTables: FC = () => {
   const [openCreateOrUpdateModal, setOpenCreateOrUpdateModal] = useState<boolean>(false)
@@ -69,6 +70,9 @@ const VouchersTables: FC = () => {
   return (
     <>
       <HelmetSite title={`Vouchers - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      
+      <BillingBalanceAlert/>
+
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>

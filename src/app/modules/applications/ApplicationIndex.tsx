@@ -17,6 +17,7 @@ import { OneApplicationResponse } from './core/_moduls';
 import { useAuth } from '../auth'
 import { HelmetSite } from '../../utility/commons/helmet-site';
 import { PaginationItem } from '../forms/PaginationItem';
+import { BillingBalanceAlert } from '../billing/hook/BillingBalanceAlert'
 
 
 const ApplicationIndex: FC = () => {
@@ -76,6 +77,9 @@ const ApplicationIndex: FC = () => {
     <>
       <HelmetSite title={`Application - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
       <PageTitle breadcrumbs={[]}>{intl.formatMessage({ id: 'MENU.APPS' })}</PageTitle>
+
+      <BillingBalanceAlert/>
+      
       <div className={`card mb-5 mb-xl-8`}>
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>

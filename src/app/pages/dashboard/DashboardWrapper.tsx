@@ -15,8 +15,12 @@ import {
   TablesWidget10,
   MixedWidget8,
 } from '../../../_metronic/partials/widgets'
+import { useAuth } from '../../modules/auth'
+import { BillingBalanceAlert } from '../../modules/billing/hook/BillingBalanceAlert'
+import { HelmetSite } from '../../utility/commons/helmet-site';
 
 const DashboardPage: FC = () => (
+  
   <>
     {/* begin::Row */}
     <div className='row gy-5 g-xl-8'>
@@ -88,10 +92,16 @@ const DashboardPage: FC = () => (
 )
 
 const DashboardWrapper: FC = () => {
+  const userItem = useAuth()
   const intl = useIntl()
   return (
     <>
+      <HelmetSite title={`${intl.formatMessage({id: 'MENU.DASHBOARD'})} - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+
       <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.DASHBOARD'})}</PageTitle>
+      
+      <BillingBalanceAlert/>
+
       <DashboardPage />
     </>
   )

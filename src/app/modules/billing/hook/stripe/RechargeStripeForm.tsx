@@ -118,7 +118,7 @@ export const RechargeStripeForm: React.FC<{ userItem: any }> = ({ userItem }) =>
                             autoComplete="off"
                             placeholder="Custom amount"
                             required
-                            {...register("amount", { value: userItem?.billing?.total > 0 ? 5 : -(userItem?.billing?.total) })}
+                            {...register("amount", { value: userItem?.balance?.total > 0 ? 5 : -(userItem?.balance?.total) })}
                         />
                         {errors?.amount && (
                             <span className='invalid-feedback'>

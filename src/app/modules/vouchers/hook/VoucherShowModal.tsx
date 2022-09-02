@@ -7,6 +7,7 @@ import { getOneVoucher } from '../api';
 import { useForm } from "react-hook-form";
 import ContentLoader from 'react-content-loader';
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
+import { capitalizeOneFirstLetter } from '../../../utility/commons/capitalize-first-letter';
 interface Props {
   setOpenModal: any,
   voucherItem: OneVoucherResponse
@@ -72,6 +73,22 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
               <div className="mw-lg-800px mx-auto">
                 <div className="mb-13 text-center">
                   <h1 className="mb-3">{voucher?.voucherType}</h1>
+                  {voucher?.voucherType && (
+                    <>
+                      <div className='symbol symbol-35px symbol-circle me-2'>
+                        <span className={`symbol-label bg-light-${voucher?.profileOwner?.color} text-${voucher?.profileOwner?.color} fw-bold`}>
+                          {capitalizeOneFirstLetter(String(`${voucher?.profileOwner?.lastName} ${voucher?.profileOwner?.firstName}`))}</span>
+                      </div>
+                      <div className='d-flex justify-content-start flex-column'>
+                        <a href={void (0)} className='text-dark fw-bolder text-hover-primary fs-6'>
+                          {voucher?.profileOwner?.lastName} {voucher?.profileOwner?.firstName}
+                        </a>
+                        <span className='text-muted fw-bold text-muted d-block fs-7'>
+                          {voucher?.profileOwner?.email}
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {voucher?.id ? '' : <ContentLoader viewBox="0 0 700 200" height={200} width={700}>
@@ -97,7 +114,6 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                     </div>
                   </div>
                   <div className='d-flex flex-column'>
-
                     <div className='d-flex align-items-center mb-2'>
                       <div className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
                         {voucher?.code}
@@ -131,6 +147,11 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                       {voucher?.statusOnline === 'OFFLINE' && (
                         <div className='btn btn-sm btn-light-danger fw-bolder ms-2 fs-8 py-1 px-1'>
                           {voucher?.statusOnline === 'OFFLINE' && (voucher?.statusOnline)}
+                        </div>
+                      )}
+                      {voucher?.isExpired && (
+                        <div className='btn btn-sm btn-light-danger fw-bolder ms-2 fs-8 py-1 px-1'>
+                          {voucher?.isExpired && 'Expired'}
                         </div>
                       )}
                     </div>
@@ -176,6 +197,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                         </div>
                       )}
                     </div>
+
 
                     <div className='d-flex flex-column flex-grow-1 pe-8'>
                       <div className='d-flex flex-wrap'>
@@ -223,11 +245,12 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                     </div>
 
 
-                    <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
+                    {/* <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
                       <div className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'>
                         {voucher?.voucherType && `${voucher?.organization?.name} - ${voucher?.email}`}
                       </div>
-                    </div>
+                    </div> */}
+
 
                   </div>
                 </div>

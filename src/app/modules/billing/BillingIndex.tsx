@@ -8,6 +8,9 @@ import { BillingTables } from './components/BillingTables'
 import { CreateBillingCoupon } from './hook/coupon/CreateBillingCoupon'
 import { CreateBillingStripe } from './hook/stripe/CreateBillingStripe'
 import { CreateBillingPayPal } from './hook/paypal/CreateBillingPayPal';
+import { KTSVG } from '../../../_metronic/helpers'
+import { Link } from 'react-router-dom'
+import { BillingBalanceAlert } from './hook/BillingBalanceAlert'
 
 
 const BillingIndex: FC = () => {
@@ -24,10 +27,14 @@ const BillingIndex: FC = () => {
     setPaymentMethod(e.target.value)
   }
   const billingAmount: number = userItem?.billing?.total;
+  const balanceAmount: number = userItem?.balance?.total;
 
   return (
     <>
       <HelmetSite title={`Billing - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
+      
+      <BillingBalanceAlert/>
+
       <PageTitle breadcrumbs={[]}>Billing</PageTitle>
       <div className={`card mb-5 mb-xl-8`}>
         <div className='card-header border-0 pt-5'>
@@ -47,6 +54,17 @@ const BillingIndex: FC = () => {
         {/* end::Header */}
         {/* begin::Body */}
         <div className='card-body py-3'>
+
+          {balanceAmount > 1 && (
+            <>
+              <span className="fs-5 fw-bold text-gray-600 pb-5 d-block">Balance of your profile</span>
+              <span className="fs-1x fw-bolder text-gray-800 lh-1">
+                <h1 data-kt-countup="true" data-kt-countup-value={Math.abs(balanceAmount) || '0'} data-kt-countup-prefix={userItem?.currency?.code} className="counted">{balanceAmount > 0 && '+'} {Number(((Math.abs(balanceAmount)) * (userItem?.currency?.amount)) || '0.00').toFixed(2).toLocaleString()} {userItem?.currency?.code}</h1>
+              </span>
+              <div className='separator separator-dashed my-6'></div>
+            </>
+          )}
+
 
           <span className="fs-5 fw-bold text-gray-600 pb-5 d-block">Last 30 day earnings calculated. Apart from arranging the order of topics.</span>
           <div className="d-flex flex-wrap justify-content-between pb-6">

@@ -15,6 +15,7 @@ import dayjs from 'dayjs';
 import { formateDateDayjs } from '../../utility/commons/formate-date-dayjs';
 import ContentLoader from 'react-content-loader';
 import { capitalizeName } from '../../utility/commons/capitalized-name';
+import { capitalizeOneFirstLetter } from '../../utility/commons/capitalize-first-letter';
 
 
 
@@ -197,15 +198,30 @@ const VoucherActivityShow: FC = (props) => {
                 </div>
 
                 <div className='d-flex my-4'>
-                  <button
-                    type='button'
-                    className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
-                    onClick={() => { navigate(-1) }}
-                  >
-                    <KTSVG path='/media/icons/duotune/arrows/arr063.svg' className='svg-icon-2' />
-                  </button>
-                </div>
+                  {voucher?.voucherType && (
+                    <>
+                      <div className='symbol symbol-35px symbol-circle me-2'>
+                        <span className={`symbol-label bg-light-${voucher?.profileOwner?.color} text-${voucher?.profileOwner?.color} fw-bold`}>
+                          {capitalizeOneFirstLetter(String(`${voucher?.profileOwner?.lastName} ${voucher?.profileOwner?.firstName}`))}</span>
+                      </div>
+                      <div className='d-flex justify-content-start flex-column'>
+                        <a href={void (0)} className='text-dark fw-bolder text-hover-primary fs-6'>
+                          {voucher?.profileOwner?.lastName} {voucher?.profileOwner?.firstName}
+                        </a>
+                        <span className='text-muted fw-bold text-muted d-block fs-7'>
+                          {voucher?.profileOwner?.email}
+                        </span>
+                      </div>
 
+                      {/* <button
+                        type='button'
+                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
+                        onClick={() => { navigate(-1) }}>
+                        <KTSVG path='/media/icons/duotune/arrows/arr063.svg' className='svg-icon-2' />
+                      </button> */}
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>
