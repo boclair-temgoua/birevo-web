@@ -43,41 +43,6 @@ export const CreateBillingCoupon: React.FC = ({ }) => {
       saveMutation.mutateAsync(payload)
     }, 1000)
   };
-  
-  // const onSubmit = (data: CouponPayFormRequest) => {
-  //   setLoading(true);
-  //   setHasErrors(undefined)
-  //   const payload: CouponPayFormRequest = { ...data, paymentMethod: 'COUPON-PAY' }
-  //   setTimeout(async () => {
-  //     await createCouponBilling(payload)
-  //       .then((response) => {
-  //         setHasErrors(false);
-  //         setLoading(false)
-  //         reset()
-  //         Swal.fire({
-  //           title: 'Success',
-  //           icon: 'success',
-  //           text: 'Transaction save successfully',
-  //           confirmButtonText: 'Got It',
-  //           buttonsStyling: false,
-  //           customClass: {
-  //             confirmButton: 'btn btn-primary',
-  //           },
-  //           showCancelButton: false,
-  //           showClass: {
-  //             popup: 'animate__animated animate__bounceIn',
-  //           },
-  //         })
-  //         window.location.reload();
-
-  //       })
-  //       .catch((error) => {
-  //         setHasErrors(true)
-  //         setLoading(false)
-  //         setHasErrors(error.response.data.message);
-  //       });
-  //   }, 1000)
-  // };
 
   return (
     <>

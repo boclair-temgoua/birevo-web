@@ -16,6 +16,7 @@ import { formateDateDayjs } from '../../utility/commons/formate-date-dayjs';
 import ContentLoader from 'react-content-loader';
 import { capitalizeName } from '../../utility/commons/capitalized-name';
 import { capitalizeOneFirstLetter } from '../../utility/commons/capitalize-first-letter';
+import { BillingBalanceAlert } from '../billing/hook/BillingBalanceAlert';
 
 
 
@@ -36,7 +37,8 @@ const VoucherActivityShow: FC = (props) => {
   return (
     <>
       <HelmetSite title={`${capitalizeName(String(type))} - ${voucher?.organization?.name || process.env.REACT_APP_NAME}`} />
-
+      <BillingBalanceAlert/>
+      
       <div className='card mb-5 mb-xl-10'>
         <div className='card-body pt-9 pb-0'>
 
