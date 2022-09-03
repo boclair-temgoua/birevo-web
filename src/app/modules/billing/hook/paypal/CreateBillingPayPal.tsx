@@ -8,7 +8,6 @@ import { useAuth } from '../../../auth';
 import { CreatePaypalBillingMutation, PayPalPayFormRequest } from '../../core/_moduls';
 
 const currency = 'EUR'
-
 export const CreateBillingPayPal: React.FC = () => {
   const [hasErrors, setHasErrors] = useState<any>(undefined)
   const [amount, setAmount] = useState<string>('5');
@@ -51,8 +50,7 @@ export const CreateBillingPayPal: React.FC = () => {
   }
 
   return (
-    <form >
-
+    <>
       <div className="row mb-6">
         <div className="col-md-8 fv-row fv-plugins-icon-container">
           <label className="form-label fw-bolder text-dark fs-6 mb-2">
@@ -119,6 +117,6 @@ export const CreateBillingPayPal: React.FC = () => {
           </div>
         </PayPalScriptProvider>
       </div>
-    </form>
+    </>
   );
 }
