@@ -97,7 +97,7 @@ export function Registration() {
           {/* begin::Link */}
           <div className='text-gray-400 fw-bold fs-4'>
             Already have an account?
-            <Link to='/forgot-password' className='link-primary fw-bolder' style={{ marginLeft: '5px' }}>
+            <Link to='/forgot-password/new' className='link-primary fw-bolder' style={{ marginLeft: '5px' }}>
               Forgot Password ?
             </Link>
           </div>

@@ -42,7 +42,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
   const watchAmount = watch('deliveryType', 'AMOUNT');
   const watchPercent = watch('deliveryType', 'PERCENT');
-  
+
   const {
     data: dataCurrencies,
   } = useQuery(['currencies'], () => getCurrencies())
@@ -116,7 +116,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
               {/* <UserEditModalFormWrapper /> */}
               <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
                 <div className="row mb-6">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <SelectValueNameInput
                       dataItem={optionsStatusVouchers}
                       className="form-control form-select select2-hidden-accessible"
@@ -129,21 +129,36 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                       required="required"
                     />
                   </div>
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
                     <TextInput
                       className="form-control form-control-lg"
-                      labelFlex="Code"
+                      labelFlex="Email"
                       register={register}
                       errors={errors}
-                      name="code"
-                      type="text"
-                      autoComplete="off"
-                      placeholder="Enter voucher code"
+                      name="email"
+                      type="email"
+                      autoComplete="one"
+                      placeholder="Enter email"
                       validation={{ required: true }}
                       isRequired={true}
                       required="required"
                     />
                   </div>
+                  <div className="col-md-4 fv-row fv-plugins-icon-container">
+                    <TextInput
+                      className="form-control form-control-lg"
+                      labelFlex="Name"
+                      register={register}
+                      errors={errors}
+                      name="name"
+                      type="text"
+                      autoComplete="one"
+                      placeholder="Enter name or title (optional)"
+                      validation={{ required: false }}
+                      isRequired={false}
+                    />
+                  </div>
+
                 </div>
                 <div className="row mb-6">
 
@@ -208,9 +223,9 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                         errors={errors}
                         name="percent"
                         type="number"
-                        pattern="[0-9]*"
-                        min="1"
-                        step="1"
+                        // pattern="[0-9]*"
+                        // min="1"
+                        // step="1"
                         isNumber={true}
                         inputMode="numeric"
                         autoComplete="one"
@@ -324,36 +339,20 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                   </div>
                 </div>
 
-                <div className="row mb-6">
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Email"
-                      register={register}
-                      errors={errors}
-                      name="email"
-                      type="email"
-                      autoComplete="one"
-                      placeholder="Enter email"
-                      validation={{ required: true }}
-                      isRequired={true}
-                      required="required"
-                    />
-                  </div>
-                  <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <TextInput
-                      className="form-control form-control-lg"
-                      labelFlex="Name"
-                      register={register}
-                      errors={errors}
-                      name="name"
-                      type="text"
-                      autoComplete="one"
-                      placeholder="Enter name or title (optional)"
-                      validation={{ required: false }}
-                      isRequired={false}
-                    />
-                  </div>
+                <div className="fv-row fv-plugins-icon-container mb-8">
+                  <TextInput
+                    className="form-control form-control-lg"
+                    labelFlex="Code"
+                    register={register}
+                    errors={errors}
+                    name="code"
+                    type="text"
+                    autoComplete="off"
+                    placeholder="Enter voucher code"
+                    validation={{ required: true }}
+                    isRequired={true}
+                    required="required"
+                  />
                 </div>
                 <div className="d-flex flex-column mb-8">
                   <TextareaInput
