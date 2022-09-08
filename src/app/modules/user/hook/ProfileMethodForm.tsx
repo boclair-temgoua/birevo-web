@@ -14,14 +14,10 @@ import { getCurrencies } from '../../currency/api/index';
 import { SelectCurrencyInput } from '../../forms/SelectCurrencyInput';
 
 const schema = yup.object().shape({
-  firstName: yup.string()
+  fullName: yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('Email is required'),
-  lastName: yup.string()
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
-    .required('Password is required'),
   currencyId: yup.number()
     .required('Currency is required'),
 })
@@ -43,7 +39,7 @@ const ProfileMethodForm: React.FC = () => {
 
   useEffect(() => {
     if (userItem?.profile) {
-      const fields = ['firstName', 'lastName', 'url', 'currencyId'];
+      const fields = ['fullName', 'url', 'currencyId', 'countryId'];
       fields?.forEach((field: any) => setValue(field, userItem?.profile[field]));
     }
   }, [userItem?.profile]);
@@ -117,33 +113,31 @@ const ProfileMethodForm: React.FC = () => {
                 <div className='fv-row mb-0'>
                   <TextInput
                     className="form-control form-control-lg"
-                    labelFlex="First name"
+                    labelFlex="Full Name"
                     register={register}
                     errors={errors}
-                    name="firstName"
+                    name="fullName"
                     type="text"
                     autoComplete="one"
-                    placeholder="Enter first name"
+                    placeholder="Enter full name"
                     validation={{ required: true }}
                     required="required"
                     isRequired={true}
                   />
                 </div>
               </div>
-              <div className='col-lg-6'>
+              <div className='col-lg-6 mb-4 mb-lg-0'>
                 <div className='fv-row mb-0'>
-                  <TextInput
-                    className="form-control form-control-lg"
-                    labelFlex="Last name"
+                  <SelectCurrencyInput
+                    dataItem={currencies}
+                    isValueInt={true}
+                    className="form-control form-select select2-hidden-accessible"
+                    labelFlex="Country"
                     register={register}
                     errors={errors}
-                    name="lastName"
-                    type="text"
-                    autoComplete="one"
-                    placeholder="Enter last name"
-                    validation={{ required: true }}
-                    required="required"
-                    isRequired={true}
+                    name="countryId"
+                    validation={{ required: false }}
+                    isRequired={false}
                   />
                 </div>
               </div>

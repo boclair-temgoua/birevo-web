@@ -20,8 +20,7 @@ export type RegisterModel = {
   email: string
   password: string
   passwordConfirm: string
-  lastName: string
-  firstName: string
+  fullName: string
 }
 
 export type ForgotPasswordModel = {
@@ -47,7 +46,6 @@ export interface UserModel {
   password: string | undefined
   email: string
   firstName: string
-  lastName: string
   fullName?: string
   occupation?: string
   companyName?: string

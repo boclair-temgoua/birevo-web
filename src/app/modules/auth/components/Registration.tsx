@@ -15,14 +15,10 @@ import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 
 
 const schema = yup.object().shape({
-  firstName: yup.string()
+  fullName: yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('First name is required'),
-  lastName: yup.string()
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
-    .required('Last name is required'),
   email: yup.string()
     .email('Wrong email format')
     .min(3, 'Minimum 3 symbols')
@@ -136,41 +132,20 @@ export function Registration() {
         )}
 
         {/* begin::Form group Firstname */}
-        <div className='row'>
-          <div className='col-xl-6'>
-            <TextInput
-              className="form-control form-control-lg"
-              labelFlex="First name"
-              register={register}
-              errors={errors}
-              name="firstName"
-              type="text"
-              autoComplete="one"
-              placeholder="Enter first name"
-              validation={{ required: true }}
-              required="required"
-              isRequired={true}
-            />
-          </div>
-          <div className='col-xl-6'>
-            {/* begin::Form group Lastname */}
-            <div className='fv-row mb-5'>
-              <TextInput
-                className="form-control form-control-lg"
-                labelFlex="Last name"
-                register={register}
-                errors={errors}
-                name="lastName"
-                type="text"
-                autoComplete="one"
-                placeholder="Enter last name"
-                validation={{ required: true }}
-                required="required"
-                isRequired={true}
-              />
-            </div>
-            {/* end::Form group */}
-          </div>
+        <div className='fv-row mb-5'>
+          <TextInput
+            className="form-control form-control-lg"
+            labelFlex="First name"
+            register={register}
+            errors={errors}
+            name="fullName"
+            type="text"
+            autoComplete="one"
+            placeholder="Enter full name"
+            validation={{ required: true }}
+            required="required"
+            isRequired={true}
+          />
         </div>
         {/* end::Form group */}
 

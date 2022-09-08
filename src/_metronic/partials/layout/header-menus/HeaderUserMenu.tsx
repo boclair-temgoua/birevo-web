@@ -77,7 +77,7 @@ const HeaderUserMenu: FC = () => {
 
           <div className='d-flex flex-column'>
             <div className='fw-bolder d-flex align-items-center fs-5'>
-              {userItem?.profile?.firstName} {userItem?.profile?.lastName}
+              {userItem?.profile?.fullName}
               <span className='badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2'>Pro</span>
             </div>
             <a href={void (0)} className='fw-bold text-muted text-hover-primary fs-7'>

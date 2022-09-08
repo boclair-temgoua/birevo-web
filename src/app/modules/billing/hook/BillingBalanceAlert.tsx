@@ -2,6 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { KTSVG } from '../../../../_metronic/helpers'
+import { getMonthFormatDays } from '../../../utility/commons/formate-date-dayjs';
 import { useAuth } from '../../auth';
 
 const BillingBalanceAlert: React.FC = () => {
@@ -21,7 +22,7 @@ const BillingBalanceAlert: React.FC = () => {
               <div className='mb-3 mb-md-0 fw-bold'>
                 <h4 className='text-danger-800 fw-bolder text-danger'>Payment Required</h4>
                 <div className='fs-6 pe-7 text-danger'>
-                  Your account has a past due balance. Please submit a payment of <strong>{balanceAmount > 0 && '+'} {Number(((Math.abs(balanceAmount)) * (userItem?.currency?.amount)) || '0.00').toFixed(2).toLocaleString()} {userItem?.currency?.code}</strong> before Wednesday, Sep 21 to prevent account suspension.
+                  Your account has a past due balance. Please submit a payment of <strong>{balanceAmount > 0 && '+'} {Number(((Math.abs(balanceAmount)) * (userItem?.currency?.amount)) || '0.00').toFixed(2).toLocaleString()} {userItem?.currency?.code}</strong> before Wednesday, {getMonthFormatDays(new Date())} 15 to prevent account suspension.
                 </div>
               </div>
               <Link to={`/account/billing`} className='btn btn-danger px-6 align-self-center text-nowrap'>Pay Now</Link>

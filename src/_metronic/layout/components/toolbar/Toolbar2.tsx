@@ -5,7 +5,7 @@ import { useLayout } from '../../core/LayoutProvider';
 import { useAuth } from '../../../../app/modules/auth';
 import { useNavigate } from 'react-router-dom';
 import { OneContributorSubscribeResponse } from '../../../../app/modules/subscribes/core/_models';
-import { capitalizeFirstLetter } from '../../../../app/utility/commons/capitalize-first-letter';
+import { capitalizeOneFirstLetter } from '../../../../app/utility/commons/capitalize-first-letter';
 import { useQuery } from '@tanstack/react-query';
 import { getContributorsPaginateSubscribes } from '../../../../app/modules/subscribes/api/index';
 
@@ -33,10 +33,10 @@ const Toolbar2: FC = () => {
       (data?.data?.length < 0) ? ('') :
         (
           data?.data?.map((item: OneContributorSubscribeResponse, index: number) => (
-            <div key={item.id} className="symbol symbol-circle symbol-35px" title={item?.profile?.firstName} data-bs-original-title={item?.profile?.firstName}>
-              {item?.profile?.image ? (<img alt={`${item.profile.lastName} ${item?.profile?.firstName}`} src={item?.profile?.image} />) :
+            <div key={item.id} className="symbol symbol-circle symbol-35px" title={item?.profile?.fullName} data-bs-original-title={item?.profile?.fullName}>
+              {item?.profile?.image ? (<img alt={`${item.profile.fullName}`} src={item?.profile?.image} />) :
                 (<div className={`symbol-label bg-light-${item?.profile?.color} text-${item?.profile?.color} fw-bold`}>
-                  {capitalizeFirstLetter(item?.profile?.firstName, item.profile.lastName)}</div>)}
+                  {capitalizeOneFirstLetter(item?.profile?.fullName)}</div>)}
             </div>
           )))
 

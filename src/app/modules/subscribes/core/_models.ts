@@ -15,8 +15,7 @@ export type OneContributorSubscribeResponse = {
     email: string
     image: string
     color: string
-    firstName: string
-    lastName: string
+    fullName: string
     username: string
   }
 }
@@ -33,8 +32,7 @@ export type OneSubscribeResponse = {
   profileCreated: {
     image: string
     username: string
-    firstName: string
-    lastName: string
+    fullName: string
     color: string
   }
   role: {

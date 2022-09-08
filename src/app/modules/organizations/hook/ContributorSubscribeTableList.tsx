@@ -2,7 +2,7 @@ import { useState } from 'react';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { KTSVG, toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
-import { capitalizeFirstLetter } from '../../../utility/commons/capitalize-first-letter';
+import { capitalizeOneFirstLetter } from '../../../utility/commons/capitalize-first-letter';
 import Swal from 'sweetalert2';
 import { DeleteContributorMutation } from '../core/_models';
 import { ContributorUpdateFormModal } from './ContributorUpdateFormModal';
@@ -15,8 +15,7 @@ type Props = {
 const ContributorSubscribeTableList: React.FC<Props> = ({ subscribeUserItem }) => {
   const [openModal, setOpenModal] = useState<boolean>(false)
 
-  const lastNameItem = String(subscribeUserItem?.profile?.lastName)
-  const firstNameItem = String(subscribeUserItem?.profile?.firstName)
+  const fullNameItem = String(subscribeUserItem?.profile?.fullName)
 
   const actionDeleteMutation = DeleteContributorMutation({ onSuccess: () => { } });
 
@@ -48,13 +47,13 @@ const ContributorSubscribeTableList: React.FC<Props> = ({ subscribeUserItem }) =
         <td>
           <div className='d-flex align-items-center'>
             <div className='symbol symbol-35px symbol-circle me-2'>
-              {subscribeUserItem?.profile?.image ? (<img alt={`${lastNameItem} ${firstNameItem}`} src={toAbsoluteUrl(subscribeUserItem?.profile?.image)} />) :
+              {subscribeUserItem?.profile?.image ? (<img alt={`${fullNameItem}`} src={toAbsoluteUrl(subscribeUserItem?.profile?.image)} />) :
                 (<span className={`symbol-label bg-light-${subscribeUserItem?.profile?.color} text-${subscribeUserItem?.profile?.color} fw-bold`}>
-                  {capitalizeFirstLetter(firstNameItem, lastNameItem)}</span>)}
+                  {capitalizeOneFirstLetter(fullNameItem)}</span>)}
             </div>
             <div className='d-flex justify-content-start flex-column'>
               <a href={void (0)} className='text-dark fw-bolder text-hover-primary fs-6'>
-                {firstNameItem} {lastNameItem}
+                {fullNameItem}
               </a>
               <span className='text-muted fw-bold text-muted d-block fs-7'>
                 {subscribeUserItem?.profile?.email}

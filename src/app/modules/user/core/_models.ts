@@ -36,8 +36,7 @@ export interface DeactivateAccountRequest {
 }
 export interface UpdateProfileRequest {
   profileId: number
-  firstName: string
+  fullName: string
   currencyId: number
-  lastName: string
   url: string
 }
