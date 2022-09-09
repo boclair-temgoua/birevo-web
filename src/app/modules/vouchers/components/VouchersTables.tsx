@@ -15,9 +15,11 @@ import { SearchInput } from '../../forms/SearchInput';
 import { VoucherCreateFormModal } from '../hook/VoucherCreateFormModal';
 import { PaginationItem } from '../../forms/PaginationItem';
 import { BillingBalanceAlert } from '../../billing/hook/BillingBalanceAlert';
+import { DownloadVoucherModal } from '../hook/DownloadVoucherModal';
 
 const VouchersTables: FC = () => {
   const [openCreateOrUpdateModal, setOpenCreateOrUpdateModal] = useState<boolean>(false)
+  const [openDownloadExcelModal, setOpenDownloadExcelModal] = useState<boolean>(false)
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
@@ -83,9 +85,15 @@ const VouchersTables: FC = () => {
           <div className="d-flex align-items-center py-1">
             <button type='button'
               onClick={() => { setOpenCreateOrUpdateModal(true) }}
-              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
+              className="btn btn-sm btn-flex btn-light-primary fw-bolder me-3">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               Create voucher
+            </button>
+            <button type='button'
+              onClick={() => { setOpenDownloadExcelModal(true) }}
+              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
+              <KTSVG path='/media/icons/duotune/arrows/arr091.svg' className='svg-icon-3' />
+              Download Excel
             </button>
           </div>
         </div>
@@ -140,6 +148,7 @@ const VouchersTables: FC = () => {
         {/* begin::Body */}
       </div>
       {openCreateOrUpdateModal && (<VoucherCreateFormModal setOpenCreateOrUpdateModal={setOpenCreateOrUpdateModal} />)}
+      {openDownloadExcelModal && (<DownloadVoucherModal setOpenDownloadExcelModal={setOpenDownloadExcelModal} userItem={userItem} voucherType={'VOUCHER'} />)}
     </>
   )
 }

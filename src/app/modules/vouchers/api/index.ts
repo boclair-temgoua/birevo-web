@@ -1,5 +1,5 @@
 import dyaxios from '../../../utility/commons/dyaxios'
-import {typeVoucher, VoucherFormRequest} from '../core/_moduls'
+import {typeVoucher, VoucherFormRequest, VoucherDownloadFormRequest} from '../core/_moduls'
 import {SortType} from '../../../utility/index'
 
 export const createOrUpdateOneCoupon = (payload: VoucherFormRequest) => {
@@ -12,6 +12,12 @@ export const updateUseOneCoupon = (payload: VoucherFormRequest) => {
 
 export const createOrUpdateOneVoucher = (payload: VoucherFormRequest) => {
   return dyaxios.post(`/vouchers/v/create-or-update`, payload)
+}
+
+export const createDownloadVoucher = (payload: VoucherDownloadFormRequest) => {
+  dyaxios.get(
+    `/vouchers/download-xlsx?organizationId=${payload?.organizationId}&type=${payload?.type}&initiationAt=${payload?.initiationAt}&endAt=${payload?.endAt}`
+  )
 }
 
 export const deleteOneVoucher = (options: {code: string}) => {

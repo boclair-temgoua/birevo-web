@@ -13,12 +13,14 @@ import { OneVoucherResponse } from '../core/_moduls';
 import { CouponVoucherTableList } from '../hook/CouponVoucherTableList';
 import { SearchInput } from '../../forms/SearchInput';
 import { CouponCreateFormModal } from '../hook/CouponCreateFormModal';
+import { DownloadVoucherModal } from '../hook/DownloadVoucherModal';
 import { PaginationItem } from '../../forms/PaginationItem';
 import { BillingBalanceAlert } from '../../billing/hook/BillingBalanceAlert';
 
 const CouponsTables: FC = () => {
   const navigate = useNavigate();
   const [openCreateOrUpdateModal, setOpenCreateOrUpdateModal] = useState<boolean>(false)
+  const [openDownloadExcelModal, setOpenDownloadExcelModal] = useState<boolean>(false)
   // eslint-disable-next-line no-restricted-globals
   const { page } = queryString.parse(location.search);
   const queryClient = useQueryClient()
@@ -74,8 +76,8 @@ const CouponsTables: FC = () => {
   return (
     <>
       <HelmetSite title={`Coupons - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
-      <BillingBalanceAlert/>
-      
+      <BillingBalanceAlert />
+
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
@@ -84,25 +86,17 @@ const CouponsTables: FC = () => {
             {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
           <div className="d-flex align-items-center py-1">
-            {/* <div className="me-4">
-              <button type='button'
-                onClick={() => { navigate('/vouchers/coupons/create') }}
-                className="btn btn-sm btn-flex btn-light-primary fw-bolder">
-                  <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-                  Create coupon
-              </button>
-            </div> */}
-            {/* <button type='button'
-              onClick={() => { navigate('/vouchers/coupons/create', { replace: true }) }}
-              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
-              <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-              Create coupon
-            </button> */}
             <button type='button'
               onClick={() => { setOpenCreateOrUpdateModal(true) }}
-              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
+              className="btn btn-sm btn-flex btn-light-primary fw-bolder me-3">
               <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
               Create coupon
+            </button>
+            <button type='button'
+              onClick={() => { setOpenDownloadExcelModal(true) }}
+              className="btn btn-sm btn-flex btn-light-primary fw-bolder">
+              <KTSVG path='/media/icons/duotune/arrows/arr091.svg' className='svg-icon-3' />
+              Download Excel
             </button>
           </div>
         </div>
@@ -157,6 +151,7 @@ const CouponsTables: FC = () => {
         {/* begin::Body */}
       </div>
       {openCreateOrUpdateModal && (<CouponCreateFormModal setOpenCreateOrUpdateModal={setOpenCreateOrUpdateModal} />)}
+      {openDownloadExcelModal && (<DownloadVoucherModal setOpenDownloadExcelModal={setOpenDownloadExcelModal} userItem={userItem} voucherType={'COUPON'} />)}
     </>
   )
 }
