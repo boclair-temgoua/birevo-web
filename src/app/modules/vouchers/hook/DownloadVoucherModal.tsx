@@ -187,7 +187,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                       render={({ field: { onChange, value } }) => {
                         return (
                           <DatePicker
-                            dateFormat="MM/dd/yyyy"
+                            dateFormat="dd/MM/yyyy"
                             onChange={onChange}
                             className="form-control"
                             locale="it-IT"
@@ -218,7 +218,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                       render={({ field: { onChange, value } }) => {
                         return (
                           <DatePicker
-                            dateFormat="MM/dd/yyyy"
+                            dateFormat="dd/MM/yyyy"
                             onChange={onChange}
                             className="form-control"
                             locale="it-IT"
