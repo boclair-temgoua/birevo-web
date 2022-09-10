@@ -68,7 +68,7 @@ export function Login() {
         Toastify({
           text: 'An error has occurred.',
           className: 'info',
-          gravity: 'bottom', // `top` or `bottom`
+          gravity: 'top', // `top` or `bottom`
           position: 'right', // `left`, `center` or `right`
           style: {
             background: 'linear-gradient(to right, #FF0000, #FF0000)',

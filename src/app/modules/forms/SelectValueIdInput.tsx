@@ -6,6 +6,7 @@ interface Props {
     dataItem: any;
     isRequired: boolean;
     label?: string;
+    isValueInt: boolean;
     labelFlex?: string;
     required?: string;
     className: string;
@@ -20,6 +21,7 @@ export const SelectValueIdInput: React.FC<Props> = ({
     dataItem,
     labelFlex,
     isRequired,
+    isValueInt,
     required,
     className,
     validation = {},
@@ -38,7 +40,7 @@ export const SelectValueIdInput: React.FC<Props> = ({
                 }`} {...register(name, validation)} required={isRequired}>
                 <option value="">Choose status</option>
                 {dataItem?.map((item: any, index: number) => (
-                    <option value={item?.id} key={index}>{item?.name}</option>
+                    <option value={isValueInt ? item?.id : item?.code} key={index}>{(item?.name)}</option>
                 ))}
             </select>
             {errors?.name && (

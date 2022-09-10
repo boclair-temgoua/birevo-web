@@ -81,6 +81,14 @@ export const OrganizationUpdateFormModal: React.FC<Props> = ({ setOpenModal, org
                 />
               </div>
             </div>
+            {hasErrors && (
+              <div className="text-center alert alert-danger">
+                <div className="d-flex flex-column">
+                  <h4 className="mb-1 text-danger">Error</h4>
+                  <span>{hasErrors}</span>
+                </div>
+              </div>
+            )}
             <form className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
               {/* begin::Modal body */}
               <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>

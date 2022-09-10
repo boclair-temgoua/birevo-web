@@ -83,6 +83,7 @@ export const ContributorUpdateFormModal: React.FC<Props> = ({ setOpenModal, subs
                 <div className="fv-row fv-plugins-icon-container">
                   <SelectValueIdInput
                     dataItem={optionsRoles}
+                    isValueInt={false}
                     className="form-control"
                     labelFlex="Role name"
                     register={register}

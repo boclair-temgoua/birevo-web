@@ -3,15 +3,16 @@ import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { UpdateEmailRequest, UpdateProfileRequest } from '../core/_models';
+import { UpdateProfileRequest } from '../core/_models';
 import { TextInput } from '../../forms/TextInput';
 import { useIntl } from 'react-intl';
 import Toastify from 'toastify-js';
 import { updateProfileToUser } from '../api';
 import { useAuth } from '../../auth';
 import { useQuery } from '@tanstack/react-query';
-import { getCurrencies } from '../../currency/api/index';
+import { getCurrencies, getCountries } from '../../currency/api/index';
 import { SelectCurrencyInput } from '../../forms/SelectCurrencyInput';
+import { SelectValueIdInput } from '../../forms/SelectValueIdInput';
 
 const schema = yup.object().shape({
   fullName: yup.string()
@@ -20,6 +21,8 @@ const schema = yup.object().shape({
     .required('Email is required'),
   currencyId: yup.number()
     .required('Currency is required'),
+  countryId: yup.number()
+    .required('Country is required'),
 })
 
 const ProfileMethodForm: React.FC = () => {
@@ -35,7 +38,11 @@ const ProfileMethodForm: React.FC = () => {
   const {
     data: dataCurrencies,
   } = useQuery(['currencies'], () => getCurrencies())
+  const {
+    data: dataCountries,
+  } = useQuery(['countries'], () => getCountries())
   const currencies = dataCurrencies?.data
+  const countries = dataCountries?.data
 
   useEffect(() => {
     if (userItem?.profile) {
@@ -85,7 +92,7 @@ const ProfileMethodForm: React.FC = () => {
       <div className='d-flex flex-wrap align-items-center'>
         <div id='kt_signin_email' className={' ' + (showForm && 'd-none')}>
           <div className='fs-6 fw-bolder mb-1'>Full Name</div>
-          <div className='fw-bold text-gray-600'>{userItem?.profile?.firstName} {userItem?.profile?.lastName}</div>
+          <div className='fw-bold text-gray-600'>{userItem?.profile?.fullName}</div>
         </div>
 
         <div
@@ -128,16 +135,17 @@ const ProfileMethodForm: React.FC = () => {
               </div>
               <div className='col-lg-6 mb-4 mb-lg-0'>
                 <div className='fv-row mb-0'>
-                  <SelectCurrencyInput
-                    dataItem={currencies}
+                  <SelectValueIdInput
+                    dataItem={countries}
                     isValueInt={true}
                     className="form-control form-select select2-hidden-accessible"
                     labelFlex="Country"
                     register={register}
                     errors={errors}
                     name="countryId"
-                    validation={{ required: false }}
-                    isRequired={false}
+                    validation={{ required: true }}
+                    isRequired={true}
+                    required="required"
                   />
                 </div>
               </div>
