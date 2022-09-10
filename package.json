@@ -1,10 +1,10 @@
 {
-  "name": "demo1",
+  "name": "birevo-web",
   "version": "8.1.0",
   "private": true,
   "homepage": "/",
   "engines": {
-    "node": "16.14.0"
+    "node": "16.17.0"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.2",
