@@ -15,8 +15,7 @@ export type OneUserResponse = {
     uuid: string
     color: string
     image: string
-    lastName: string
-    firstName: string
+    fullName: string
     userId: number
   }
 }

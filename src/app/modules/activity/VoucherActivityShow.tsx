@@ -204,11 +204,11 @@ const VoucherActivityShow: FC = (props) => {
                     <>
                       <div className='symbol symbol-35px symbol-circle me-2'>
                         <span className={`symbol-label bg-light-${voucher?.profileOwner?.color} text-${voucher?.profileOwner?.color} fw-bold`}>
-                          {capitalizeOneFirstLetter(String(`${voucher?.profileOwner?.lastName} ${voucher?.profileOwner?.firstName}`))}</span>
+                          {capitalizeOneFirstLetter(String(`${voucher?.profileOwner?.fullName}`))}</span>
                       </div>
                       <div className='d-flex justify-content-start flex-column'>
                         <a href={void (0)} className='text-dark fw-bolder text-hover-primary fs-6'>
-                          {voucher?.profileOwner?.lastName} {voucher?.profileOwner?.firstName}
+                          {voucher?.profileOwner?.fullName}
                         </a>
                         <span className='text-muted fw-bold text-muted d-block fs-7'>
                           {voucher?.profileOwner?.email}

@@ -81,8 +81,7 @@ export type OneVoucherResponse = {
     color: string
     image: string
     email: string
-    lastName: string
-    firstName: string
+    fullName: string
     profileId: number
   }
   activity: {
