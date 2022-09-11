@@ -33,7 +33,7 @@ const BillingIndex: FC = () => {
       
       <BillingBalanceAlert/>
 
-      <PageTitle breadcrumbs={[]}>Billing</PageTitle>
+      {/* <PageTitle breadcrumbs={[]}>Billing</PageTitle> */}
       <div className={`card mb-5 mb-xl-8`}>
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>

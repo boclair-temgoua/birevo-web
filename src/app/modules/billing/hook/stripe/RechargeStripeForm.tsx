@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { TextInput } from '../../../forms/TextInput';
 import { CreateStripeBillingMutation, StripePayFormRequest } from '../../core/_moduls';
+import { useNavigate } from 'react-router-dom';
 
 
 const containerStyles = {
@@ -42,20 +43,22 @@ const schema = yup
     .required();
 
 export const RechargeStripeForm: React.FC<{ userItem: any }> = ({ userItem }) => {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(false)
     const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
     const [hasStripeErrors, setHasStripeErrors] = useState<boolean | string | undefined>(undefined)
     const { register, handleSubmit, reset, setValue,
         formState: { errors }
     } = useForm<StripePayFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
-    const [success, setSuccess] = useState(false)
     const stripe = useStripe()
     const elements: any = useElements()
 
+
     const saveMutation = CreateStripeBillingMutation({
-        onSuccess: () => {
+        onSuccess: (result: any) => {
             setHasErrors(false);
             setLoading(false)
+            if (result?.token) { navigate(`/account/billing/success?token=${result?.token}`, { replace: true }) }
         },
         onError: (error?: any) => {
             setHasErrors(true);

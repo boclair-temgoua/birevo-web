@@ -16,3 +16,8 @@ export const getMonthFormatDays = (date: Date) => {
   const currentMouth = dayjs(date).format('MMM')
   return currentMouth
 }
+
+export const formateDaysMonthYearFormatDays = (date: Date) => {
+  const currentMouth = dayjs(date).format('DD MMM YYYY')
+  return currentMouth
+}

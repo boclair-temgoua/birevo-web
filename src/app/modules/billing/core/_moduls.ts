@@ -22,12 +22,24 @@ export type PayPalPayFormRequest = {
   paymentMethod: paymentMethodType
 }
 
+export type OneAmountResponse = {
+  id: number
+  token: string
+  currency: string
+  type: string
+  description: string
+  paymentMethod: paymentMethodType
+  organizationId: number
+  amount: number
+  createdAt: Date
+}
+
 /** Stripe send request */
 export const CreateStripeBillingMutation = ({
   onSuccess,
   onError,
 }: {
-  onSuccess?: () => void
+  onSuccess?: (result: any) => void
   onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['user']
@@ -38,14 +50,14 @@ export const CreateStripeBillingMutation = ({
       return data
     },
     {
-      onMutate: async () => {
+      onMutate: async (result) => {
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
-          onSuccess()
+          onSuccess(result)
         }
       },
-      onSuccess: async () => {
+      onSuccess: async (result) => {
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         Toastify({
@@ -58,7 +70,7 @@ export const CreateStripeBillingMutation = ({
           },
         }).showToast()
         if (onSuccess) {
-          onSuccess()
+          onSuccess(result)
         }
       },
       onError: async (error) => {
@@ -88,7 +100,7 @@ export const CreatePaypalBillingMutation = ({
   onSuccess,
   onError,
 }: {
-  onSuccess?: () => void
+  onSuccess?: (result: any) => void
   onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['user']
@@ -99,14 +111,14 @@ export const CreatePaypalBillingMutation = ({
       return data
     },
     {
-      onMutate: async () => {
+      onMutate: async (result) => {
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
-          onSuccess()
+          onSuccess(result)
         }
       },
-      onSuccess: async () => {
+      onSuccess: async (result) => {
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         Toastify({
@@ -119,7 +131,7 @@ export const CreatePaypalBillingMutation = ({
           },
         }).showToast()
         if (onSuccess) {
-          onSuccess()
+          onSuccess(result)
         }
       },
       onError: async (error) => {
@@ -149,7 +161,7 @@ export const CreateCouponBillingMutation = ({
   onSuccess,
   onError,
 }: {
-  onSuccess?: () => void
+  onSuccess?: (result: any) => void
   onError?: (error: any) => void
 } = {}) => {
   const queryKey = ['user']
@@ -160,14 +172,14 @@ export const CreateCouponBillingMutation = ({
       return data
     },
     {
-      onMutate: async () => {
+      onMutate: async (result) => {
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
-          onSuccess()
+          onSuccess(result)
         }
       },
-      onSuccess: async () => {
+      onSuccess: async (result) => {
         await queryClient.invalidateQueries(queryKey)
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
@@ -180,7 +192,7 @@ export const CreateCouponBillingMutation = ({
               background: 'linear-gradient(to right, #3CB371, #3CB371)',
             },
           }).showToast()
-          onSuccess()
+          onSuccess(result)
         }
       },
       onError: async (error) => {

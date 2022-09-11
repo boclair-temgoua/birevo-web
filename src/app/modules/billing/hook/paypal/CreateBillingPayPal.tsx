@@ -4,9 +4,11 @@ import {
   PayPalButtons,
 } from "@paypal/react-paypal-js";
 import { CreatePaypalBillingMutation, PayPalPayFormRequest } from '../../core/_moduls';
+import { useNavigate } from 'react-router-dom';
 
 const currency = 'EUR'
 export const CreateBillingPayPal: React.FC = () => {
+  const navigate = useNavigate();
   const [hasErrors, setHasErrors] = useState<any>(undefined)
   const [amount, setAmount] = useState<string>('5');
 
@@ -16,8 +18,9 @@ export const CreateBillingPayPal: React.FC = () => {
   };
 
   const saveMutation = CreatePaypalBillingMutation({
-    onSuccess: () => {
+    onSuccess: (result: any) => {
       setHasErrors(false);
+      if (result?.token) { navigate(`/account/billing/success?token=${result?.token}`, { replace: true }) }
     },
     onError: (error?: any) => {
       setHasErrors(true);

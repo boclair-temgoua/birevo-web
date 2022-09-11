@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CouponPayFormRequest, CreateCouponBillingMutation } from '../../core/_moduls';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup
   .object({
@@ -12,17 +13,19 @@ const schema = yup
   .required();
 
 export const CreateBillingCoupon: React.FC = ({ }) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const { register, handleSubmit, reset, setValue,
-    formState: { errors, isSubmitted, isDirty, isValid }
+    formState: { errors, isDirty, isValid }
   } = useForm<CouponPayFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
 
 
   const saveMutation = CreateCouponBillingMutation({
-    onSuccess: () => {
+    onSuccess: (result: any) => {
       setHasErrors(false);
       setLoading(false)
+      if (result?.token) { navigate(`/account/billing/success?token=${result?.token}`, { replace: true }) }
       reset()
     },
     onError: (error?: any) => {

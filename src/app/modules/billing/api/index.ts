@@ -11,8 +11,12 @@ export const createStripeBilling = (payload: StripePayFormRequest) => {
 }
 
 export const createPayPalBilling = (payload: PayPalPayFormRequest) => {
-  console.log(`payload ====>`, payload)
   return dyaxios.post<PayPalPayFormRequest>(`/billings/paypal/create`, payload)
+}
+
+export const getOneAmountBilling = (options: {token: string}) => {
+  const {token} = options
+  return dyaxios.get(`/billings/billing_success/${token}`)
 }
 
 export const getBillings = (options: {limit: number; sort: SortType; page: number}) => {
