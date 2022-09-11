@@ -36,7 +36,7 @@ export type VoucherFormRequest = {
 export type VoucherDownloadFormRequest = {
   organizationId: number
   type: 'COUPON' | 'VOUCHER'
-  status?: statusVoucher
+  statusVoucher?: statusVoucher
   initiationAt: Date
   endAt: Date
 }

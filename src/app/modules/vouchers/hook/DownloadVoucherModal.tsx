@@ -17,7 +17,7 @@ interface Props {
 
 const schema = yup
   .object({
-    status: yup.string().required(),
+    statusVoucher: yup.string().required(),
     initiationAt: yup.date()
       .max(new Date(), 'Please choose passe date')
       .required(),
@@ -46,7 +46,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
     setTimeout(async () => {
       setHasErrors(false);
       setLoading(false)
-      window.location.href = `${process.env.REACT_APP_SERVER_URL}/vouchers/download-xlsx?status=${payload?.status}&organizationId=${Number(payload?.organizationId)}&type=${payload?.type}&initiationAt=${payload?.initiationAt}&endAt=${payload?.endAt}`
+      window.location.href = `${process.env.REACT_APP_SERVER_URL}/vouchers/download-xlsx?statusVoucher=${payload?.statusVoucher}&organizationId=${Number(payload?.organizationId)}&type=${payload?.type}&initiationAt=${payload?.initiationAt}&endAt=${payload?.endAt}`
       setOpenDownloadExcelModal(false)
     }, 1000)
 
@@ -95,7 +95,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                     <i className="fas fa-exclamation-circle ms-2 fs-7"></i>
                   </label>
 
-                  <div className="col-md-4 col-lg-4 col-xxl-4">
+                  <div className="col-md-3 col-lg-3 col-xxl-3">
                     <label
                       className={`btn btn-outline btn-outline-dashed d-flex text-start p-6`}
                     >
@@ -106,7 +106,32 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                           className="form-check-input"
                           register={register}
                           errors={errors}
-                          name="status"
+                          name="statusVoucher"
+                          type="radio"
+                          validation={{ required: true }}
+                          value={'ALL'}
+                        />
+
+                      </span>
+                      <span className="ms-5">
+                        <span className="fs-4 fw-bolder text-gray-800 d-block">
+                          ALL
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                  <div className="col-md-3 col-lg-3 col-xxl-3">
+                    <label
+                      className={`btn btn-outline btn-outline-dashed d-flex text-start p-6`}
+                    >
+                      <span
+                        className="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1"
+                      >
+                        <TextRadioInput
+                          className="form-check-input"
+                          register={register}
+                          errors={errors}
+                          name="statusVoucher"
                           type="radio"
                           validation={{ required: true }}
                           value={'ACTIVE'}
@@ -120,7 +145,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                       </span>
                     </label>
                   </div>
-                  <div className="col-md-4 col-lg-4 col-xxl-4">
+                  <div className="col-md-3 col-lg-3 col-xxl-3">
                     <label
                       className={`btn btn-outline btn-outline-dashed d-flex text-start p-6`}
                     >
@@ -131,7 +156,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                           className="form-check-input"
                           register={register}
                           errors={errors}
-                          name="status"
+                          name="statusVoucher"
                           type="radio"
                           validation={{ required: true }}
                           value={'PENDING'}
@@ -145,7 +170,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                       </span>
                     </label>
                   </div>
-                  <div className="col-md-4 col-lg-4 col-xxl-4">
+                  <div className="col-md-3 col-lg-3 col-xxl-3">
                     <label
                       className={`btn btn-outline btn-outline-dashed d-flex text-start p-6`}
                     >
@@ -156,7 +181,7 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
                           className="form-check-input"
                           register={register}
                           errors={errors}
-                          name="status"
+                          name="statusVoucher"
                           type="radio"
                           validation={{ required: true }}
                           value={'USED'}
