@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CouponPayFormRequest, CreateCouponBillingMutation } from '../../core/_moduls';
-import { createCouponBilling } from '../../api';
-import Swal from 'sweetalert2';
 
 const schema = yup
   .object({

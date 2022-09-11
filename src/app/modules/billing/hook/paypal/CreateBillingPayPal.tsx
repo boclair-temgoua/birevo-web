@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
   PayPalScriptProvider,
   PayPalButtons,
-  usePayPalScriptReducer
 } from "@paypal/react-paypal-js";
-import { useAuth } from '../../../auth';
 import { CreatePaypalBillingMutation, PayPalPayFormRequest } from '../../core/_moduls';
 
 const currency = 'EUR'

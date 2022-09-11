@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { KTSVG } from '../../../../_metronic/helpers'
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 
 type Props = {

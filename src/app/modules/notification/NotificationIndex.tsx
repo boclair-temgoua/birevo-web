@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FC, useState, useEffect } from 'react'
+import { FC } from 'react'
 import { useIntl } from 'react-intl'
 import { KTSVG } from '../../../_metronic/helpers'
-import { PageTitle } from '../../../_metronic/layout/core'
 import { useAuth } from '../auth'
 import { HelmetSite } from '../../utility/commons/helmet-site'
-import { NotificationTableList } from './hook/NotificationTableList'
 
 
 const NotificationIndex: FC = () => {

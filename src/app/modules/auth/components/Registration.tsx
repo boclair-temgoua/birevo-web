@@ -78,6 +78,7 @@ export function Registration() {
 
   return (
     <>
+     <HelmetSite title={`Register`} />
       <form
         className='form w-100 fv-plugins-bootstrap5 fv-plugins-framework'
         noValidate

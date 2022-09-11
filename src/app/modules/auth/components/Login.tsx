@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { HelmetSite } from '../../../utility/commons/helmet-site'
 import { TextInput } from '../../forms/TextInput';
 import { useForm } from "react-hook-form";

@@ -1,12 +1,10 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import React, { useState } from 'react'
-import { createStripeBilling } from '../../api'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { TextInput } from '../../../forms/TextInput';
 import { CreateStripeBillingMutation, StripePayFormRequest } from '../../core/_moduls';
-import Swal from 'sweetalert2';
 
 
 const containerStyles = {

@@ -25,7 +25,6 @@ export const InviteContributorModalForm: React.FC<Props> = ({ setOpenModal, orga
     const {
         status,
         isError,
-        error,
         data,
     } = useQuery(['users', debouncedFilter], () => fetchUserOrg(debouncedFilter), {
         enabled: !!isEnabled,

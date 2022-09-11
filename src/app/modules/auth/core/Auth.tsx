@@ -1,13 +1,11 @@
 import {
   FC,
   useState,
-  useEffect,
   createContext,
   useContext,
   ReactNode,
 } from 'react'
 import { getCurrentUserFormToken } from '../../../utility'
-import { loadShowUser } from '../../../redux/actions/userAction'
 import { useQuery } from '@tanstack/react-query';
 import { getOneApi } from '../../user/api/index';
 
