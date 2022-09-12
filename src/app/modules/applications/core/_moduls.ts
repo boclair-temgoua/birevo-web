@@ -70,7 +70,7 @@ export const ApplicationMutation = ({
           Toastify({
             text: 'Your application has been created.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
+            gravity: 'top', // `top` or `bottom`
             position: 'right', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #3CB371, #3CB371)',
@@ -86,7 +86,7 @@ export const ApplicationMutation = ({
           Toastify({
             text: 'An error has occurred.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
+            gravity: 'top', // `top` or `bottom`
             position: 'right', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #FF0000, #FF0000)',
@@ -130,7 +130,7 @@ export const ApplicationDeleteMutation = ({
           Toastify({
             text: 'Your application has been deleted.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
+            gravity: 'top', // `top` or `bottom`
             position: 'right', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #3CB371, #3CB371)',
@@ -146,7 +146,7 @@ export const ApplicationDeleteMutation = ({
           Toastify({
             text: 'An error has occurred.',
             className: 'info',
-            gravity: 'bottom', // `top` or `bottom`
+            gravity: 'top', // `top` or `bottom`
             position: 'right', // `left`, `center` or `right`
             style: {
               background: 'linear-gradient(to right, #FF0000, #FF0000)',

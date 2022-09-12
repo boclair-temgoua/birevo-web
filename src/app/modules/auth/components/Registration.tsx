@@ -12,6 +12,7 @@ import { RegisterModel } from '../core/_models';
 import { useIntl } from 'react-intl';
 import Toastify from 'toastify-js'
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
+import queryString from 'query-string';
 
 
 const schema = yup.object().shape({
@@ -39,6 +40,8 @@ const schema = yup.object().shape({
 
 
 export function Registration() {
+  // eslint-disable-next-line no-restricted-globals
+  const { codeVoucher } = queryString.parse(location.search);
   const intl = useIntl()
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
@@ -51,12 +54,12 @@ export function Registration() {
   const onSubmit = async (data: RegisterModel) => {
     setLoading(true);
     setHasErrors(undefined)
-    const payload = { ...data }
+    const payload = { ...data, codeVoucher }
     await registerApi(payload)
       .then((response) => {
         setHasErrors(false);
         setLoading(false)
-        navigate(`/`, { replace: true });
+        navigate(`/login`, { replace: true });
 
       })
       .catch((error) => {

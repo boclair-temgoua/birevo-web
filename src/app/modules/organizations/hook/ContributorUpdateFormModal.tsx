@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
-import { TextInput } from '../../forms/TextInput';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-// import { ApplicationFormRequest, ApplicationMutation, OneApplicationResponse, optionsStatusOnline } from '../core/_moduls';
-// import { createOrUpdateOneCoupon } from '../api/index';
 import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
 import { ContributorUpdateMutation, optionsRoles, UpdateContributorRequest } from '../core/_models';
 import { SelectValueIdInput } from '../../forms';
@@ -49,7 +46,7 @@ export const ContributorUpdateFormModal: React.FC<Props> = ({ setOpenModal, subs
     setHasErrors(undefined)
     setTimeout(async () => {
       const subscribe_uuid = subscribeUserItem?.uuid
-      const contributorId = subscribeUserItem?.userId
+      const contributorId = Number(subscribeUserItem?.userId)
       const payloadUpdate: UpdateContributorRequest = { ...data, subscribe_uuid, contributorId, }
       saveItemMutation.mutateAsync(payloadUpdate)
     }, 1000)
