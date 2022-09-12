@@ -9,6 +9,7 @@ import { useAuth } from '../../auth'
 import Toastify from 'toastify-js';
 import { deactivateProfileToUser } from '../api'
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const schema = yup.object().shape({
   confirm: yup.boolean().oneOf([true], 'Please check the box to deactivate your account').required(),
@@ -26,38 +27,57 @@ const DeactivateAccountForm: React.FC = () => {
   const onSubmit = async (data: DeactivateAccountRequest) => {
     setLoading(true);
     setHasErrors(undefined)
-    const payload = { ...data, user_uuid: userItem?.uuid }
-    await deactivateProfileToUser(payload)
-      .then(() => {
-        setHasErrors(false);
-        setLoading(false)
-        Toastify({
-          text: 'Information save successfully.',
-          className: 'info',
-          gravity: 'top', // `top` or `bottom`
-          position: 'center', // `left`, `center` or `right`
-          style: {
-            background: 'linear-gradient(to right, #3CB371, #3CB371)',
-          },
-        }).showToast()
-        localStorage.removeItem(String(process.env.REACT_APP_BASE_NAME_TOKEN))
-        navigate(`/login`, { replace: true });
-        window.location.reload();
-      })
-      .catch((error) => {
-        setHasErrors(true)
-        setLoading(false)
-        setHasErrors(error.response.data.message);
-        Toastify({
-          text: 'An error has occurred.',
-          className: 'info',
-          gravity: 'top', // `top` or `bottom`
-          position: 'center', // `left`, `center` or `right`
-          style: {
-            background: 'linear-gradient(to right, #FF0000, #FF0000)',
-          },
-        }).showToast()
-      });
+    Swal.fire({
+      title: 'Deactivate ?',
+      text: 'Are you sure you want to perform this action?',
+      confirmButtonText: 'Yes, Deactivate',
+      cancelButtonText: 'No, Cancel',
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-outline-default',
+      },
+      showCancelButton: true,
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.value) {
+        //Envoyer la requet au serve
+        const payload = { ...data, user_uuid: userItem?.uuid }
+        await deactivateProfileToUser(payload)
+          .then(() => {
+            setHasErrors(false);
+            setLoading(false)
+            Toastify({
+              text: 'Account deactivate successfully.',
+              className: 'info',
+              gravity: 'top', // `top` or `bottom`
+              position: 'center', // `left`, `center` or `right`
+              style: {
+                background: 'linear-gradient(to right, #3CB371, #3CB371)',
+              },
+            }).showToast()
+            localStorage.removeItem(String(process.env.REACT_APP_BASE_NAME_TOKEN))
+            navigate(`/login`, { replace: true });
+            window.location.reload();
+          })
+          .catch((error) => {
+            setHasErrors(true)
+            setLoading(false)
+            setHasErrors(error.response.data.message);
+            Toastify({
+              text: 'An error has occurred.',
+              className: 'info',
+              gravity: 'top', // `top` or `bottom`
+              position: 'center', // `left`, `center` or `right`
+              style: {
+                background: 'linear-gradient(to right, #FF0000, #FF0000)',
+              },
+            }).showToast()
+          });
+
+      }
+    });
+
   };
   return (
     <div className='card'>
@@ -121,15 +141,9 @@ const DeactivateAccountForm: React.FC = () => {
               id='kt_account_deactivate_account_submit'
               type='submit'
               className='btn btn-danger fw-bold'
-              disabled={!isValid || loading}
+              disabled={!isValid}
             >
-              {!loading && 'Deactivate Account'}
-              {loading && (
-                <span className='indicator-progress' style={{ display: 'block' }}>
-                  Please wait...{' '}
-                  <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-                </span>
-              )}
+              Deactivate Account
             </button>
           </div>
         </form>

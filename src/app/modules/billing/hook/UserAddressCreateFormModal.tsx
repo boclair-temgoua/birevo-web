@@ -47,11 +47,12 @@ export const UserAddressCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpd
     onSuccess: () => {
       setHasErrors(false);
       setLoading(false)
-      setOpenCreateOrUpdateModal(true)
+      setOpenCreateOrUpdateModal(false)
     },
     onError: (error?: any) => {
       setHasErrors(true);
       setHasErrors(error.response.data.message);
+      setOpenCreateOrUpdateModal(true)
     }
   });
 
