@@ -11,6 +11,11 @@ export const getOneApi = (options: {user_uuid: string}) => {
   return dyaxios.get(`/users/show/${user_uuid}`)
 }
 
+export const getUserAddressApi = (options: {organizationId: number}) => {
+  const {organizationId} = options
+  return dyaxios.get(`/user-address/billing/${organizationId}`)
+}
+
 export const updateOrganizationToUser = (options: {organizationId: number}) => {
   const {organizationId} = options
   return dyaxios.get(`/users/update-organization-to-user?organizationId=${organizationId}`)

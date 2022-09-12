@@ -1,9 +1,18 @@
 import dyaxios from '../../../utility/commons/dyaxios'
-import {CouponPayFormRequest, StripePayFormRequest, PayPalPayFormRequest} from '../core/_moduls'
+import {
+  CouponPayFormRequest,
+  StripePayFormRequest,
+  PayPalPayFormRequest,
+  UserAddressFormRequest,
+} from '../core/_moduls'
 import {SortType} from '../../../utility/index'
 
 export const createCouponBilling = (data: CouponPayFormRequest) => {
   return dyaxios.post<CouponPayFormRequest>(`/billings/coupon/create`, data)
+}
+
+export const createOrUpdateUserAddress = (payload: UserAddressFormRequest) => {
+  return dyaxios.post<UserAddressFormRequest>(`/user-address/create-or-update`, payload)
 }
 
 export const createStripeBilling = (payload: StripePayFormRequest) => {

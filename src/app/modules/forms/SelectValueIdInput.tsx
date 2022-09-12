@@ -32,13 +32,13 @@ export const SelectValueIdInput: React.FC<Props> = ({
             {labelFlex && (
                 <label className="form-label fw-bolder text-dark fs-6 mb-2">
                     <span className={required}>{labelFlex}</span>
-                    {isRequired && (<i className="fas fa-exclamation-circle ms-2 fs-7"></i>)}
+                    {/* {isRequired && (<i className="fas fa-exclamation-circle ms-2 fs-7"></i>)} */}
                 </label>
             )}
             {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}
             <select className={`${className} ${errors?.[name] ? "is-invalid" : ""
                 }`} {...register(name, validation)} required={isRequired}>
-                <option value="">Choose status</option>
+                <option value="">Choose value</option>
                 {dataItem?.map((item: any, index: number) => (
                     <option value={isValueInt ? item?.id : item?.code} key={index}>{(item?.name)}</option>
                 ))}

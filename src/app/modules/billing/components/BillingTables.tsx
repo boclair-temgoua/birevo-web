@@ -25,7 +25,7 @@ const BillingTables: React.FC<Props> = ({ className }) => {
   const isEnabled = Boolean(debouncedFilter)
   const fetchDataItems = async (pageItem = 1, debouncedFilter: string) => await
     getBillings({
-      limit: 10,
+      limit: 13,
       sort: 'DESC',
       page: Number(pageItem || 1)
     })
@@ -97,8 +97,6 @@ const BillingTables: React.FC<Props> = ({ className }) => {
           {/* end::Table */}
         </div>
         {/* end::Table container */}
-        <div className="separator"></div>
-        <br />
         <PaginationItem
           data={data}
           setPageItem={setPageItem}

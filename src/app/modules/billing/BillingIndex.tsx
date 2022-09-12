@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FC, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { PageTitle } from '../../../_metronic/layout/core'
 import { useAuth } from '../auth'
 import { HelmetSite } from '../../utility/commons/helmet-site'
 import { BillingTables } from './components/BillingTables'
@@ -9,6 +8,7 @@ import { CreateBillingCoupon } from './hook/coupon/CreateBillingCoupon'
 import { CreateBillingStripe } from './hook/stripe/CreateBillingStripe'
 import { CreateBillingPayPal } from './hook/paypal/CreateBillingPayPal';
 import { BillingBalanceAlert } from './hook/BillingBalanceAlert'
+import { UserAddressCard } from './components/UserAddressCard'
 
 
 const BillingIndex: FC = () => {
@@ -30,11 +30,11 @@ const BillingIndex: FC = () => {
   return (
     <>
       <HelmetSite title={`Billing - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
-      
-      <BillingBalanceAlert/>
+
+      <BillingBalanceAlert />
 
       {/* <PageTitle breadcrumbs={[]}>Billing</PageTitle> */}
-      <div className={`card mb-5 mb-xl-8`}>
+      <div className={`card  mb-5 mb-xl-10`}>
         <div className='card-header border-0 pt-5'>
           <h3 className='card-title align-items-start flex-column'>
             <span className='card-label fw-bolder fs-3 mb-1'>{userItem?.id && (`Billing - ${userItem?.organization?.name}`)}</span>
@@ -64,7 +64,10 @@ const BillingIndex: FC = () => {
           )}
 
 
-          <span className="fs-5 fw-bold text-gray-600 pb-5 d-block">Last 30 day earnings calculated. Apart from arranging the order of topics.</span>
+          <h4 className='card-title align-items-start flex-column'>
+            <span className='card-label fw-bolder fs-4 mb-1'>Estimated costs for this billing period</span>
+          </h4>
+          <span className="fs-5 fw-bold text-gray-600 pb-5 d-block">This is the current costs for your usage this billing period. A breakdown of your costs is available below</span>
           <div className="d-flex flex-wrap justify-content-between pb-6">
             <div className="d-flex flex-wrap">
               <span className="fs-1x fw-bolder text-gray-800 lh-1">
@@ -159,7 +162,8 @@ const BillingIndex: FC = () => {
         </div>
         {/* begin::Body */}
       </div>
-      <BillingTables className='mb-5 mb-xl-8' />
+      {userItem?.uuid && (<UserAddressCard className='m mb-5 mb-xl-10' userItem={userItem} />)}
+      <BillingTables className=' mb-5 mb-xl-10' />
     </>
   )
 }

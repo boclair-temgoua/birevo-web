@@ -13,9 +13,9 @@ const ProfileSettingsPage: FC = () => {
   return (
     <>
       <HelmetSite title={`Profile - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
-      <BillingBalanceAlert/>
-      
-      <ProfileMethodCard />
+      <BillingBalanceAlert />
+
+      {userItem?.uuid && (<ProfileMethodCard userItem={userItem} />)}
       <SignInMethodCard />
       {/* <ConnectedAccounts /> */}
       {/* <EmailPreferences />

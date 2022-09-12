@@ -21,6 +21,7 @@ export const PaginationItem: React.FC<Props> = ({
 }) => {
     return (
         <>
+            <div className='separator separator-dashed my-2'></div>
             {data?.data?.count > 0 && (
 
                 <div className="d-flex flex-center mb-0">

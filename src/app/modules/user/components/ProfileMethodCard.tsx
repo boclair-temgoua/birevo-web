@@ -1,8 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FC } from 'react'
 import { ProfileMethodForm } from '../hook/ProfileMethodForm';
+import { OneUserContextProps } from '../../auth/core/Auth';
 
-const ProfileMethodCard: FC = () => {
+type Props = {
+  userItem: OneUserContextProps
+}
+
+const ProfileMethodCard: FC<Props> = ({ userItem }) => {
 
   return (
     <div className='card mb-5 mb-xl-10'>
@@ -20,7 +25,7 @@ const ProfileMethodCard: FC = () => {
       <div id='kt_account_signin_method' className='collapse show'>
         <div className='card-body border-top p-9'>
 
-          <ProfileMethodForm />
+          <ProfileMethodForm userItem={userItem} />
 
           <div className='separator separator-dashed my-6'></div>
 

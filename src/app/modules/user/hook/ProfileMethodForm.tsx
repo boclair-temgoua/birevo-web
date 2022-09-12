@@ -13,6 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getCurrencies, getCountries } from '../../currency/api/index';
 import { SelectCurrencyInput } from '../../forms/SelectCurrencyInput';
 import { SelectValueIdInput } from '../../forms/SelectValueIdInput';
+import { OneUserContextProps } from '../../auth/core/Auth';
 
 const schema = yup.object().shape({
   fullName: yup.string()
@@ -25,9 +26,12 @@ const schema = yup.object().shape({
     .required('Country is required'),
 })
 
-const ProfileMethodForm: React.FC = () => {
+type Props = {
+  userItem: OneUserContextProps
+}
+
+const ProfileMethodForm: React.FC<Props> = ({userItem}) => {
   const intl = useIntl()
-  const userItem = useAuth();
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const [showForm, setShowForm] = useState<boolean>(false)

@@ -30,7 +30,7 @@ export const SelectValueNameInput: React.FC<Props> = ({
             {labelFlex && (
                 <label className="form-label fw-bolder text-dark fs-6 mb-2">
                     <span className={required}>{labelFlex}</span>
-                    {isRequired && (<i className="fas fa-exclamation-circle ms-2 fs-7"></i>)}
+                    {/* {isRequired && (<i className="fas fa-exclamation-circle ms-2 fs-7"></i>)} */}
                 </label>
             )}
             {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}

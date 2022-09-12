@@ -136,8 +136,6 @@ const CouponsTables: FC = () => {
             {/* end::Table */}
           </div>
           {/* end::Table container */}
-          <div className="separator"></div>
-          <br />
           <PaginationItem
             data={data}
             setPageItem={setPageItem}

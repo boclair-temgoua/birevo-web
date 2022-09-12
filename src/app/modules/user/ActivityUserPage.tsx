@@ -10,6 +10,7 @@ import { EmptyTable } from '../../utility/commons/EmptyTable';
 import { OneActivityResponse } from '../activity/core/_moduls';
 import { ActivityTableList } from '../activity/hook/ActivityTableList';
 import { BillingBalanceAlert } from '../billing/hook/BillingBalanceAlert';
+import { PaginationItem } from '../forms/PaginationItem';
 
 const ActivityUserPage: FC = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -66,8 +67,8 @@ const ActivityUserPage: FC = () => {
   return (
     <>
       <HelmetSite title={`Activities - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
-      <BillingBalanceAlert/>
-      
+      <BillingBalanceAlert />
+
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
@@ -105,39 +106,16 @@ const ActivityUserPage: FC = () => {
             {/* end::Table */}
           </div>
           {/* end::Table container */}
-          <div className="separator"></div>
-          <br />
-          {data?.data?.count > 0 && (
-            <div className="d-flex flex-center mb-0">
-              <ul className="pagination">
-                <li className={`page-item previous ${(isPreviousData || pageItem <= 1) && ('disabled')}`}>
-                  <button type="button"
-                    onClick={() => {
-                      setPageItem(old => Math.max(old - 1, 1))
-                      paginate(pageItem - 1)
-                    }}
-                    className="page-link" >
-                    <i className="previous"></i>
-                  </button>
-                </li>
-                <li className="page-item active">
-                  <button type="button" className="page-link">{pageItem}</button>
-                </li>
-                <li className={`page-item next ${(!isPreviousData && data?.data?.total_pages === pageItem) && ('disabled')}`}>
-                  <button type="button"
-                    onClick={() => {
-                      if (!isPreviousData && data?.data?.total_pages !== pageItem) {
-                        setPageItem(old => old + 1)
-                        paginate(pageItem + 1)
-                      }
-                    }}
-                    className="page-link" >
-                    <i className="next"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
-          )}
+          <PaginationItem
+            data={data}
+            setPageItem={setPageItem}
+            setPreviewPageItem={(old: number) => Math.max(old - 1, 1)}
+            setNextPageItem={(old: number) => old + 1}
+            paginate={paginate}
+            isPreviousData={isPreviousData}
+            pageItem={pageItem}
+          />
+
         </div>
         {/* begin::Body */}
       </div>

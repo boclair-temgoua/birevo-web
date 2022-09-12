@@ -100,8 +100,6 @@ const ActivityTable: React.FC<Props> = ({ className, voucherUuid }) => {
           {/* end::Table */}
         </div>
         {/* end::Table container */}
-        <div className="separator"></div>
-        <br />
         <PaginationItem
             data={data}
             setPageItem={setPageItem}
