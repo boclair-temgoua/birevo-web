@@ -95,6 +95,9 @@ export const UserAddressCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpd
             <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
               <div className="mb-8 text-center">
                 <h1 className="mb-3">{userAddress?.uuid ? 'Update' : 'Create New'} Address</h1>
+                <div className="text-muted fw-bold fs-5">
+                  This address appears on your monthly invoice and should be the legal address of your home or business.
+                </div>
                 {hasErrors && (
                   <div className="text-center alert alert-danger">
                     <div className="d-flex flex-column">
