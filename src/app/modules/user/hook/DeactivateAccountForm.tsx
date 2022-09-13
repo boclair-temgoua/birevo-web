@@ -28,9 +28,9 @@ const DeactivateAccountForm: React.FC = () => {
     setLoading(true);
     setHasErrors(undefined)
     Swal.fire({
-      title: 'Deactivate ?',
+      title: 'Delete ?',
       text: 'Are you sure you want to perform this action?',
-      confirmButtonText: 'Yes, Deactivate',
+      confirmButtonText: 'Yes, Delete',
       cancelButtonText: 'No, Cancel',
       buttonsStyling: false,
       customClass: {
@@ -90,7 +90,7 @@ const DeactivateAccountForm: React.FC = () => {
         aria-controls='kt_account_deactivate'
       >
         <div className='card-title m-0'>
-          <h3 className='fw-bolder m-0'>Deactivate Account</h3>
+          <h3 className='fw-bolder m-0'>Delete Account</h3>
         </div>
       </div>
 
@@ -105,14 +105,10 @@ const DeactivateAccountForm: React.FC = () => {
 
               <div className='d-flex flex-stack flex-grow-1'>
                 <div className='fw-bold'>
-                  <h4 className='text-gray-800 fw-bolder'>You Are Deactivating Your Account</h4>
+                  <h4 className='text-gray-800 fw-bolder'>You Are Deleted Your Account</h4>
                   <div className='fs-6 text-gray-600'>
-                    For extra security, this requires you to confirm your email or phone number when
-                    you reset yousignr password.
-                    <br />
-                    <a className='fw-bolder' href='#'>
-                      Learn more
-                    </a>
+                    Permanently remove your Personal Account and all of its contents from the Vercel platform.
+                    This action is not reversible, so please continue with caution.
                   </div>
                 </div>
               </div>
@@ -126,7 +122,7 @@ const DeactivateAccountForm: React.FC = () => {
                 {...register('confirm')}
               />
               <label className='form-check-label fw-bold ps-2 fs-6' htmlFor='deactivate'>
-                I confirm my account deactivation
+                I confirm my account delete
               </label>
             </div>
             {errors?.confirm && (
@@ -143,7 +139,7 @@ const DeactivateAccountForm: React.FC = () => {
               className='btn btn-danger fw-bold'
               disabled={!isValid}
             >
-              Deactivate Account
+              Delete Account
             </button>
           </div>
         </form>
