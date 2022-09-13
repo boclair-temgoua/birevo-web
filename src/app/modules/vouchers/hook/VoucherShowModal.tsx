@@ -255,7 +255,7 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                   </div>
                 </div>
 
-                {(voucher?.status !== 'USED' && voucher?.status !== 'PENDING') && !voucher?.isExpired && voucher?.voucherType === 'COUPON' && (
+                {(voucher?.status !== 'USED' && voucher?.status !== 'PENDING') && !voucher?.isExpired && voucher?.deliveryType !== 'PERCENT' && voucher?.voucherType === 'COUPON' && (
                   <form id="kt_account_deactivate_form" className="form fv-plugins-bootstrap5 fv-plugins-framework" onSubmit={handleSubmit(onSubmit)}>
                     <input type="hidden"  {...register("status", { value: "USED" })} />
                     <div className='d-flex flex-wrap justify-content-center pb-lg-0'>

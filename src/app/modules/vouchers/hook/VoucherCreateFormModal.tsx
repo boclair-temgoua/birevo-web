@@ -218,7 +218,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                     <div className="col-md-12 fv-row fv-plugins-icon-container">
                       <TextInput
                         className="form-control form-control-lg"
-                        labelFlex="Percent"
+                        labelFlex="Percent %"
                         register={register}
                         errors={errors}
                         name="percent"
@@ -276,8 +276,8 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
 
                 <div className="row mb-6">
                   <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <label htmlFor='expiredAt' className='form-label fs-6 fw-bold mb-2'>
-                      <strong>Started date</strong>
+                    <label htmlFor='startedAt' className="form-label fw-bolder text-dark fs-6 mb-2">
+                      <span className={'required'}>Started date</span>
                     </label>
                     <Controller
                       name={"startedAt"}
@@ -307,8 +307,8 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                     )}
                   </div>
                   <div className="col-md-6 fv-row fv-plugins-icon-container">
-                    <label htmlFor='expiredAt' className='form-label fs-6 fw-bold mb-2'>
-                      <strong>Expired date</strong>
+                    <label htmlFor='expiredAt' className="form-label fw-bolder text-dark fs-6 mb-2">
+                      <span className={'required'}>Expired date</span>
                     </label>
                     <Controller
                       name={"expiredAt"}

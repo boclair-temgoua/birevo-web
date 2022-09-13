@@ -17,6 +17,8 @@ export type typeVoucher = 'COUPON' | 'VOUCHER'
 export type statusOnline = 'ONLINE' | 'OFFLINE' | 'TEST'
 export type statusVoucher = 'ACTIVE' | 'PENDING' | 'USED'
 
+export type deliveryType = 'AMOUNT' | 'PERCENT'
+
 export type VoucherFormRequest = {
   voucherId?: number
   code: string
@@ -25,7 +27,7 @@ export type VoucherFormRequest = {
   currencyId: number
   codeGenerate: boolean
   status?: statusVoucher
-  deliveryType: 'AMOUNT' | 'PERCENT'
+  deliveryType: deliveryType
   expiredAt: Date
   startedAt: Date
   amount: number
@@ -35,7 +37,7 @@ export type VoucherFormRequest = {
 
 export type VoucherDownloadFormRequest = {
   organizationId: number
-  type: 'COUPON' | 'VOUCHER'
+  type: typeVoucher
   statusVoucher?: statusVoucher
   initiationAt: Date
   endAt: Date
@@ -49,6 +51,7 @@ export type OneVoucherResponse = {
   voucherType: typeVoucher
   statusOnline: statusOnline
   status: string
+  deliveryType: deliveryType
   name: string
   email: string
   description: null
