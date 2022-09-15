@@ -211,10 +211,6 @@ export const VoucherShowModal: React.FC<Props> = ({ setOpenModal, voucherItem })
                           </div>
                         )}
 
-
-                        {/* <ContentLoader height="150" width="150" viewBox="0 0 265 300">
-                          <rect x="15" y="50" rx="2" ry="2" width="350" height="150" />
-                        </ContentLoader> */}
                         {voucher?.activity?.view > 0 && (
                           <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-4 mb-3'>
                             <div className='d-flex align-items-center'>
