@@ -32,7 +32,7 @@ export type VoucherFormRequest = {
   startedAt: Date
   amount: number
   percent: number
-  description: Date
+  description: string
 }
 
 export type VoucherDownloadFormRequest = {

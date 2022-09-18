@@ -70,7 +70,7 @@ export const TextInput: React.FC<Props> = ({
             {errors?.name && (
                 <strong className='fv-plugins-message-container text-danger'>
                     <div className='fv-help-block'>
-                        <span role='alert'>{errors?.name.message}</span>
+                        <small role='alert'>{errors?.name.message}</small>
                     </div>
                 </strong>
             )}
