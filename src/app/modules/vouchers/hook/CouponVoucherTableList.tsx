@@ -143,13 +143,13 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
             <KTSVG path='/media/icons/duotune/general/gen032.svg' className='svg-icon-3' />
           </Link>
 
-          {voucher?.status !== 'USED' && (
+          {/* {voucher?.status !== 'USED' && (
             <>
               <button onClick={() => { setOpenCreateOrUpdateModal(true) }} className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'>
                 <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
               </button>
             </>
-          )}
+          )} */}
           <button type='button' onClick={() => { deleteItem(voucher) }} className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'>
             <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
           </button>
