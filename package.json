@@ -19,7 +19,7 @@
     "@tanstack/react-query-devtools": "^4.10.1",
     "animate.css": "^4.1.1",
     "apexcharts": "^3.35.5",
-    "axios": "^1.1.0",
+    "axios": "^0.27.2",
     "axios-mock-adapter": "^1.21.2",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
