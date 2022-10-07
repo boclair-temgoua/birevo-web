@@ -134,5 +134,8 @@
   },
   "eslintIgnore": [
     "dist/*"
+  ],
+  "contributors": [
+    "Boclair Temgoua (https://github.com/boclair-temgoua)"
   ]
 }
