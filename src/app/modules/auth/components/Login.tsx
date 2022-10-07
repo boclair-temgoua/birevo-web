@@ -44,7 +44,7 @@ export function Login() {
         setHasErrors(false);
         setLoading(false)
         dispatch({
-          type: '/login',
+          type: '/dashboard',
           payload: response.data,
         });
         const user: any = jwt_decode(response.data)

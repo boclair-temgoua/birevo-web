@@ -129,7 +129,7 @@ export const CouponCreateMutation = ({
         await queryClient.removeQueries(queryKey)
         if (onSuccess) {
           Toastify({
-            text: 'Status coupon has been updated.',
+            text: 'Coupon has been saved successfully.',
             className: 'info',
             gravity: 'top', // `top` or `bottom`
             position: 'center', // `left`, `center` or `right`

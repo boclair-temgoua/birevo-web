@@ -5,7 +5,7 @@ import { OneVoucherResponse, DeleteCouponMutation, DeleteVoucherMutation } from 
 import { useState } from 'react';
 import { VoucherShowModal } from './VoucherShowModal';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CouponCreateFormModal } from './CouponCreateFormModal';
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
 import { VoucherCreateFormModal } from './VoucherCreateFormModal';
