@@ -260,6 +260,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
                     </div>
                     <div className="col-md-6 fv-row fv-plugins-icon-container">
                       <SelectCurrencyInput
+                        firstOptionName="Choose value"
                         dataItem={currencies}
                         isValueInt={true}
                         className="form-control form-select select2-hidden-accessible"

@@ -151,6 +151,7 @@ const ProfileMethodCard: FC = () => {
                     <div className='col-lg-6 mb-4 mb-lg-0'>
                       <div className='fv-row mb-0'>
                         <SelectValueIdInput
+                          firstOptionName="Choose value"
                           dataItem={countries}
                           isValueInt={true}
                           className="form-control form-select select2-hidden-accessible"
@@ -171,6 +172,7 @@ const ProfileMethodCard: FC = () => {
                     <div className='col-lg-6 mb-4 mb-lg-0'>
                       <div className='fv-row mb-0'>
                         <SelectCurrencyInput
+                          firstOptionName="Choose value"
                           dataItem={currencies}
                           isValueInt={true}
                           className="form-control form-select select2-hidden-accessible"

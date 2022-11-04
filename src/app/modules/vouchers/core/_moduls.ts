@@ -13,6 +13,17 @@ export const optionsStatusVouchers = [
   // {id: 3, name: 'USED'},
 ]
 
+export const optionsNumberGenerateCoupons = [
+  {id: 1, name: '1'},
+  {id: 5, name: '5'},
+  {id: 10, name: '10'},
+  {id: 30, name: '30'},
+  {id: 50, name: '50'},
+  {id: 100, name: '100'},
+  {id: 150, name: '150'},
+  {id: 200, name: '200'},
+]
+
 export type typeVoucher = 'COUPON' | 'VOUCHER'
 export type statusOnline = 'ONLINE' | 'OFFLINE' | 'TEST'
 export type statusVoucher = 'ACTIVE' | 'PENDING' | 'USED'
@@ -25,6 +36,7 @@ export type VoucherFormRequest = {
   email: string
   name: string
   currencyId: number
+  numberGenerate: number
   codeGenerate: boolean
   status?: statusVoucher
   deliveryType: deliveryType

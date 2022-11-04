@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
-import { OneVoucherResponse, VoucherFormRequest, optionsStatusVouchers, CouponCreateMutation } from '../core/_moduls';
+import { OneVoucherResponse, VoucherFormRequest, optionsStatusVouchers, CouponCreateMutation, optionsNumberGenerateCoupons } from '../core/_moduls';
 import { TextInput } from '../../forms/TextInput';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,6 +13,7 @@ import dayjs from 'dayjs';
 import { TextRadioInput } from '../../forms';
 import { getCurrencies } from '../../currency/api/index';
 import { useQuery } from '@tanstack/react-query';
+import { SelectValueIdInput } from '../../forms/SelectValueIdInput';
 
 interface Props {
   setOpenCreateOrUpdateModal: any,
@@ -20,13 +21,13 @@ interface Props {
 }
 
 const schema = yup
-  .object({
+  .object().shape({
     deliveryType: yup.string().required(),
+    numberGenerate: yup.string().required(),
     status: yup.string().min(3, 'Minimum 3 symbols').required(),
     startedAt: yup.date().min(new Date(), 'Please choose future date').required(),
     expiredAt: yup.date().min(yup.ref("startedAt"), "End date has to be more than start date").required(),
-  })
-  .required();
+  });
 
 export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateModal, voucherItem }) => {
   const [loading, setLoading] = useState(false)
@@ -34,7 +35,6 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
   const { control, watch, register, handleSubmit, setValue,
     formState: { errors, isDirty, isValid }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
-  const watchCodeGenerate = watch("codeGenerate", false);
   const watchAmount = watch('deliveryType', 'AMOUNT');
   const watchPercent = watch('deliveryType', 'PERCENT');
 
@@ -261,6 +261,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                       <SelectCurrencyInput
                         dataItem={currencies}
                         isValueInt={true}
+                        firstOptionName="Choose currency"
                         className="form-control form-select select2-hidden-accessible"
                         labelFlex="Currency"
                         register={register}
@@ -342,32 +343,35 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                   <div className='form-check form-check-solid fv-row'>
                     <input
                       className='form-check-input'
-                      type='checkbox' {...register('codeGenerate')}
+                      type='checkbox' {...register('isGenerate')}
                     />
                     <label className='form-check-label fw-bold ps-2 fs-6' htmlFor='deactivate'>
-                      Insert code or generate automatically
+                      Auto generate multiple coupon
                     </label>
                   </div>
+                  {errors?.isGenerate && (
+                    <div className='fv-plugins-message-container'>
+                      <div className='fv-help-block'>{errors.isGenerate?.message}</div>
+                    </div>
+                  )}
                 </div> */}
 
-                {watchCodeGenerate && (
-                  <div className="row mb-6">
-                    <div className="col-md-12 fv-row fv-plugins-icon-container">
-                      <TextInput
-                        className="form-control form-control-lg"
-                        labelFlex="Code coupon or voucher"
-                        register={register}
-                        errors={errors}
-                        name="code"
-                        type="text"
-                        autoComplete="off"
-                        placeholder="Enter code (optional)"
-                        validation={{ required: false }}
-                        isRequired={false}
-                      />
-                    </div>
+                <div className="row mb-6">
+                  <div className="col-md-12 fv-row fv-plugins-icon-container">
+                    <SelectValueIdInput
+                      firstOptionName="Choose value"
+                      dataItem={optionsNumberGenerateCoupons}
+                      isValueInt={true}
+                      className="form-control form-select select2-hidden-accessible"
+                      labelFlex="Coupon autogenerate"
+                      register={register}
+                      errors={errors}
+                      name="numberGenerate"
+                      validation={{ required: true }}
+                      isRequired={true}
+                    />
                   </div>
-                )}
+                </div>
 
                 <div className="d-flex flex-column mb-8">
                   <TextareaInput
@@ -381,7 +385,7 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
                   />
                 </div>
                 <div className="text-center">
-                  <button type="button" onClick={() => { setOpenCreateOrUpdateModal(false) }} className="btn btn-light me-3">Cancel</button>
+                  <button type="button" onClick={() => { setOpenCreateOrUpdateModal(false) }} className="btn btn-light me-3">Close</button>
                   <button type='submit' className='btn btn-lg btn-primary fw-bolder'
                     disabled={!isDirty || !isValid || loading}
                   >

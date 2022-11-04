@@ -129,6 +129,7 @@ export const UserAddressCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpd
                 <div className="row mb-6">
                   <div className='fv-row mb-0'>
                     <SelectValueIdInput
+                      firstOptionName="Choose value"
                       dataItem={countries}
                       isValueInt={true}
                       className="form-control form-select select2-hidden-accessible"

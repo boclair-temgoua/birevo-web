@@ -10,6 +10,7 @@ interface Props {
     labelFlex?: string;
     required?: string;
     className: string;
+    firstOptionName: string;
     validation?: { [key: string]: any };
     errors: { [key: string]: any };
 }
@@ -24,6 +25,7 @@ export const SelectCurrencyInput: React.FC<Props> = ({
     isValueInt,
     required,
     className,
+    firstOptionName,
     validation = {},
     errors,
 }) => {
@@ -38,7 +40,7 @@ export const SelectCurrencyInput: React.FC<Props> = ({
             {label && (<label htmlFor={name} className={`${required} form-label`}>{label}</label>)}
             <select className={`${className} ${errors?.[name] ? "is-invalid" : ""
                 }`} {...register(name, validation)} required={isRequired}>
-                <option value="">Choose currency</option>
+                <option value="">{firstOptionName}</option>
                 {dataItem?.map((item: any, index: number) => (
                     <option value={isValueInt ? item?.id : item?.code} key={index}>{item?.code} - {(item?.name)}</option>
                 ))}

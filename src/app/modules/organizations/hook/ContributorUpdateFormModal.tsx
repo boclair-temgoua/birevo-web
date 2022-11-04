@@ -79,6 +79,7 @@ export const ContributorUpdateFormModal: React.FC<Props> = ({ setOpenModal, subs
               <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
                 <div className="fv-row fv-plugins-icon-container">
                   <SelectValueIdInput
+                    firstOptionName="Choose value"
                     dataItem={optionsRoles}
                     isValueInt={true}
                     className="form-control"

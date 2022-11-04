@@ -131,6 +131,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
           </div>
           <div className="col-md-4 fv-row fv-plugins-icon-container">
             <SelectCurrencyInput
+             firstOptionName="Choose currency"
               dataItem={currencies}
               isValueInt={false}
               className="form-control form-select select2-hidden-accessible"
@@ -157,6 +158,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
             />
           </div>
         </div>
+       
         <div className="d-flex flex-column mb-8">
           <TextareaInput
             label="Description"
