@@ -63,6 +63,12 @@ const CouponVoucherTableList: React.FC<Props> = ({ voucher }) => {
       <tr key={voucher?.id}>
         <td>
           <div className='d-flex align-items-center'>
+            {/* <div className='form-check form-check-solid fv-row'>
+              <input
+                className='form-check-input'
+                type='checkbox'
+              />
+            </div> */}
             <div className='symbol symbol-35px me-2'>
               <img alt={`66`} src={toAbsoluteUrl(voucher?.qrCode?.image)} />
             </div>
