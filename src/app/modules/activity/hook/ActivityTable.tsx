@@ -83,7 +83,7 @@ const ActivityTable: React.FC<Props> = ({ className, voucherUuid }) => {
             <thead>
               <tr className='fw-bolder text-muted'>
                 <th className='min-w-150px'>Action</th>
-                <th className='min-w-120px'>IP Address</th>
+                <th className='min-w-120px'>Device IP Address</th>
                 <th className='min-w-120px'>Country Code</th>
                 <th className='min-w-120px'>City</th>
                 <th className='min-w-120px'>Creation Date</th>

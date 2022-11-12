@@ -2,8 +2,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { RechargeStripeForm } from './RechargeStripeForm';
 
-const PUBLIC_KEY = `${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`
-const stripeTestPromise = loadStripe(PUBLIC_KEY)
+const stripeTestPromise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`)
 
 export const CreateBillingStripe: React.FC<{ userItem: any }> = ({ userItem }) => {
 

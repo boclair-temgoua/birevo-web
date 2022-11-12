@@ -57,7 +57,7 @@ export const ContributorCreateMutation = ({
       },
       onSuccess: async () => {
         await queryClient.invalidateQueries(queryKey)
-        await queryClient.removeQueries(queryKey)
+        await queryClient.removeQueries(queryKey) 
         await queryClient.refetchQueries(queryKey)
         if (onSuccess) {
           Toastify({
