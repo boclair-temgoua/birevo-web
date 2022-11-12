@@ -21,6 +21,7 @@ export interface OneUserContextProps {
   organizationTotal: number;
   projectTotal: number;
   profile: {} | any | undefined;
+  role: {} | any | undefined;
   billing: {} | any | undefined;
   balance: {} | any | undefined;
   currency: {} | any | undefined;

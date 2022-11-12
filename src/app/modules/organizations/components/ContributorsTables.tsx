@@ -3,7 +3,6 @@ import { HelmetSite } from '../../../utility/commons/helmet-site'
 import { useAuth } from '../../auth';
 import { ContributorSubscribeTableList } from '../hook/ContributorSubscribeTableList'
 import { KTSVG } from '../../../../_metronic/helpers';
-import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import queryString from 'query-string';
 import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -77,7 +76,7 @@ const ContributorsTables: FC = () => {
   return (
     <>
       <HelmetSite title={`Contributors - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
-      <BillingBalanceAlert/>
+      <BillingBalanceAlert />
       <div className={`card mb-5 mb-xl-8`}>
         {/* begin::Header */}
         <div className='card-header border-0 pt-5'>
@@ -85,15 +84,17 @@ const ContributorsTables: FC = () => {
             <span className='card-label fw-bolder fs-3 mb-1'>{userItem?.id && (`Contributors - ${userItem?.organization?.name}`)}</span>
             <span className='text-muted mt-1 fw-bold fs-7'>Over {organization?.contributorTotal} {pluralName({ lengthItem: organization?.contributorTotal, word: 'members' })} </span>
           </h3>
-          <div className="d-flex align-items-center py-1">
-            <button type='button'
-              onClick={() => { setOpenModal(true) }}
-              className='btn btn-sm btn-flex btn-light-primary fw-bolder'
-            >
-              <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-              New Contributor
-            </button>
-          </div>
+          {userItem?.role?.name === 'ADMIN' && (
+            <div className="d-flex align-items-center py-1">
+              <button type='button'
+                onClick={() => { setOpenModal(true) }}
+                className='btn btn-sm btn-flex btn-light-primary fw-bolder'
+              >
+                <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+                New Contributor
+              </button>
+            </div>
+          )}
         </div>
         {/* end::Header */}
         {/* begin::Body */}
@@ -114,7 +115,9 @@ const ContributorsTables: FC = () => {
                 <tr className='fw-bolder text-muted'>
                   <th className='min-w-150px'>Contributors</th>
                   <th className='min-w-120px'>Role</th>
-                  <th className='min-w-100px text-end'>Actions</th>
+                  {userItem?.role?.name === 'ADMIN' && (
+                    <th className='min-w-100px text-end'>Actions</th>
+                  )}
                 </tr>
               </thead>
               {/* end::Table head */}
