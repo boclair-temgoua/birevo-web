@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker';
 import dayjs from 'dayjs';
 import { TextRadioInput } from '../../forms';
 import { OneUserContextProps } from '../../auth/core/Auth';
+import { createDownloadVoucher } from '../api/index';
 
 interface Props {
   setOpenDownloadExcelModal: any,
@@ -44,10 +45,18 @@ export const DownloadVoucherModal: React.FC<Props> = ({ setOpenDownloadExcelModa
       organizationId: userItem?.organizationInUtilizationId
     }
     setTimeout(async () => {
-      setHasErrors(false);
-      setLoading(false)
-      window.location.href = `${process.env.REACT_APP_SERVER_URL}/vouchers/download-xlsx?statusVoucher=${payload?.statusVoucher}&organizationId=${Number(payload?.organizationId)}&type=${payload?.type}&initiationAt=${payload?.initiationAt}&endAt=${payload?.endAt}`
-      setOpenDownloadExcelModal(false)
+      await createDownloadVoucher(payload)
+        .then(({ data }) => {
+          setHasErrors(false);
+          setLoading(false)
+          window.location.href = data?.Location
+          setOpenDownloadExcelModal(false)
+        })
+        .catch((error) => {
+          setHasErrors(true)
+          setLoading(false)
+          setHasErrors(error.response.data.message);
+        });
     }, 1000)
 
   };

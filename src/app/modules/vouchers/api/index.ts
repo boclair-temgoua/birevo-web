@@ -15,9 +15,7 @@ export const createOrUpdateOneVoucher = (payload: VoucherFormRequest) => {
 }
 
 export const createDownloadVoucher = (payload: VoucherDownloadFormRequest) => {
-  dyaxios.get(
-    `/vouchers/download-xlsx?organizationId=${payload?.organizationId}&type=${payload?.type}&initiationAt=${payload?.initiationAt}&endAt=${payload?.endAt}`
-  )
+  return dyaxios.post(`/vouchers/download-xlsx`, payload)
 }
 
 export const deleteOneVoucher = (options: {code: string}) => {
