@@ -32,8 +32,7 @@ const QuickLinks: FC = () => (
       </div>
 
       <div className='col-6'>
-        <a
-          href='#'
+        <Link to='/organizations/contributors'
           className='d-flex flex-column flex-center h-100 p-6 bg-hover-light border-bottom'
         >
           <KTSVG
@@ -42,7 +41,7 @@ const QuickLinks: FC = () => (
           />
           <span className='fs-5 fw-bold text-gray-800 mb-0'>Administration</span>
           <span className='fs-7 text-gray-400'>Console</span>
-        </a>
+        </Link>
       </div>
 
       <div className='col-6'>
