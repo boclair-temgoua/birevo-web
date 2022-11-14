@@ -12,6 +12,7 @@ import jwt_decode from 'jwt-decode';
 import { LoginModel } from '../core/_models';
 import { useIntl } from 'react-intl';
 import Toastify from 'toastify-js'
+import { InputType } from '../../forms';
 
 const schema = yup.object().shape({
   email: yup.string().email()
@@ -27,6 +28,8 @@ const schema = yup.object().shape({
 export function Login() {
   const intl = useIntl()
   const [loading, setLoading] = useState(false)
+  const [showHirePwd, setShowHidePwd] = useState(false);
+  const [passwordType, setPasswordType] = useState<InputType>("password");
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -75,6 +78,11 @@ export function Login() {
         }).showToast()
       });
   };
+
+  const handleOnShowHidePwd = () => {
+    setShowHidePwd(!showHirePwd);
+    setPasswordType(showHirePwd ? "password" : "text");
+  }
 
   return (
     <>
@@ -132,13 +140,14 @@ export function Login() {
             register={register}
             errors={errors}
             name="password"
-            type="password"
+            type={passwordType}
             autoComplete="off"
             placeholder={intl.formatMessage({ id: 'AUTH.INPUT.PASSWORD' })}
             validation={{ required: true }}
             isRequired={true}
             required="required"
           />
+          <i onClick={handleOnShowHidePwd} className={`birevo-show-hide-pwd fas fa-${showHirePwd ? "unlock-alt" : "lock"}`}></i>
           <div className="d-flex flex-stack mb-2">
             <label className="form-label fw-bolder text-dark fs-6 mb-0"></label>
             <Link to={`/forgot-password/new`} className="link-primary fs-6 fw-bolder">Forgot Password ?</Link>

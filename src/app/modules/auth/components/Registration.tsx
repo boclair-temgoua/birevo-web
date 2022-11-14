@@ -13,6 +13,7 @@ import { useIntl } from 'react-intl';
 import Toastify from 'toastify-js'
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
 import queryString from 'query-string';
+import { InputType } from '../../forms';
 
 
 const schema = yup.object().shape({
@@ -44,6 +45,10 @@ export function Registration() {
   const { codeVoucher } = queryString.parse(location.search);
   const intl = useIntl()
   const [loading, setLoading] = useState(false)
+  const [showHirePwd, setShowHidePwd] = useState(false);
+  const [passwordType, setPasswordType] = useState<InputType>("password");
+  const [showHireConfirmPwd, setShowHideConfirmPwd] = useState(false);
+  const [confirmPwdType, setConfirmPwdType] = useState<InputType>("password");
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
   const navigate = useNavigate();
   const { register, handleSubmit,
@@ -78,6 +83,16 @@ export function Registration() {
       });
   };
 
+  const handleOnShowHidePwd = (type: string) => {
+    if(type === "pwd") {
+      setShowHidePwd(!showHirePwd);
+      setPasswordType(showHirePwd ? "password" : "text");
+    } else {
+      setShowHideConfirmPwd(!showHireConfirmPwd);
+      setConfirmPwdType(showHireConfirmPwd ? "password" : "text");
+    }
+  }
+
 
   return (
     <>
@@ -97,8 +112,8 @@ export function Registration() {
           {/* begin::Link */}
           <div className='text-gray-400 fw-bold fs-4'>
             Already have an account?
-            <Link to='/forgot-password/new' className='link-primary fw-bolder' style={{ marginLeft: '5px' }}>
-              Forgot Password ?
+            <Link to='/login' className='link-primary fw-bolder' style={{ marginLeft: '5px' }}>
+              Login
             </Link>
           </div>
           {/* end::Link */}
@@ -177,13 +192,14 @@ export function Registration() {
             register={register}
             errors={errors}
             name="password"
-            type="password"
+            type={passwordType}
             autoComplete="off"
             placeholder={intl.formatMessage({ id: 'AUTH.INPUT.PASSWORD' })}
             validation={{ required: true }}
             isRequired={true}
             required="required"
           />
+          <i onClick={() => handleOnShowHidePwd("pwd")} className={`birevo-show-hide-pwd fas fa-${showHirePwd ? "unlock-alt" : "lock"}`}></i>
         </div>
 
         <div className='fv-row mb-5'>
@@ -193,13 +209,14 @@ export function Registration() {
             register={register}
             errors={errors}
             name="passwordConfirm"
-            type="password"
+            type={confirmPwdType}
             autoComplete="off"
             placeholder={intl.formatMessage({ id: 'AUTH.INPUT.PASSWORD' })}
             validation={{ required: true }}
             isRequired={true}
             required="required"
           />
+          <i onClick={() => handleOnShowHidePwd("confirm")} className={`birevo-show-hide-pwd fas fa-${showHireConfirmPwd ? "unlock-alt" : "lock"}`}></i>
         </div>
 
         {/* begin::Form group */}
