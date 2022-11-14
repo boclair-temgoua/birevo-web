@@ -60,6 +60,50 @@ const NotificationIndex: FC = () => {
                     </a>
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <div className='d-flex justify-content-start flex-column'>
+                      <a href={void (0)} className='text-dark fw-bolder text-hover-primary fs-6'>
+                        By default, jest tries to parse css imports
+                      </a>
+                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                        By default, jest tries to parse css imports as JavaScript. In order to ignore all things css, some extra...
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                      05/28/2020
+                    </a>
+                  </td>
+                  <td className='text-end'>
+                    <a href='#' className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'>
+                      <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div className='d-flex justify-content-start flex-column'>
+                      <a href={void (0)} className='text-dark fw-bolder text-hover-primary fs-6'>
+                        By default, jest tries to parse css imports
+                      </a>
+                      <span className='text-muted fw-bold text-muted d-block fs-7'>
+                        By default, jest tries to parse css imports as JavaScript. In order to ignore all things css, some extra...
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <a href='#' className='text-dark fw-bolder text-hover-primary d-block mb-1 fs-6'>
+                      05/28/2020
+                    </a>
+                  </td>
+                  <td className='text-end'>
+                    <a href='#' className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'>
+                      <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                    </a>
+                  </td>
+                </tr>
               </tbody>
               {/* end::Table body */}
             </table>

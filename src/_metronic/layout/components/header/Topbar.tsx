@@ -11,6 +11,7 @@ import {
 } from '../../../partials'
 import { useLayout } from '../../core'
 import { capitalizeOneFirstLetter } from '../../../../app/utility/commons/capitalize-first-letter';
+import { useNavigate } from 'react-router-dom';
 
 const toolbarButtonMarginClass = 'ms-1 ms-lg-3',
   toolbarButtonHeightClass = 'w-30px h-30px w-md-40px h-md-40px',
@@ -18,19 +19,20 @@ const toolbarButtonMarginClass = 'ms-1 ms-lg-3',
   toolbarButtonIconSizeClass = 'svg-icon-1'
 
 const Topbar: FC = () => {
+  const navigate = useNavigate();
   const userItem = useAuth();
   const { config } = useLayout()
 
   return (
     <div className='d-flex align-items-stretch flex-shrink-0'>
       {/* Search */}
-      <div className={clsx('d-flex align-items-stretch', toolbarButtonMarginClass)}>
+      {/* <div className={clsx('d-flex align-items-stretch', toolbarButtonMarginClass)}>
         <Search />
-      </div>
+      </div> */}
       {/* Activities */}
       <div className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}>
         {/* begin::Drawer toggle */}
-        <div
+        {/* <div
           className={clsx(
             'btn btn-icon btn-active-light-primary btn-custom',
             toolbarButtonHeightClass
@@ -41,14 +43,14 @@ const Topbar: FC = () => {
             path='/media/icons/duotune/general/gen032.svg'
             className={toolbarButtonIconSizeClass}
           />
-        </div>
+        </div> */}
         {/* end::Drawer toggle */}
       </div>
 
       {/* NOTIFICATIONS */}
       <div className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}>
         {/* begin::Menu- wrapper */}
-        <div
+        {/* <div
           className={clsx(
             'btn btn-icon btn-active-light-primary btn-custom',
             toolbarButtonHeightClass
@@ -62,15 +64,27 @@ const Topbar: FC = () => {
             path='/media/icons/duotune/general/gen022.svg'
             className={toolbarButtonIconSizeClass}
           />
+        </div> */}
+        {/* <HeaderNotificationsMenu /> */}
+        <div
+          className={clsx(
+            'btn btn-icon btn-active-light-primary btn-custom',
+            toolbarButtonHeightClass
+          )}
+          onClick={() => navigate(`/notifications`, { replace: true })}
+        >
+          <KTSVG
+            path='/media/icons/duotune/general/gen022.svg'
+            className={toolbarButtonIconSizeClass}
+          />
         </div>
-        <HeaderNotificationsMenu />
         {/* end::Menu wrapper */}
       </div>
 
       {/* CHAT */}
       <div className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}>
         {/* begin::Menu wrapper */}
-        <div
+        {/* <div
           className={clsx(
             'btn btn-icon btn-active-light-primary btn-custom position-relative',
             toolbarButtonHeightClass
@@ -83,7 +97,7 @@ const Topbar: FC = () => {
           />
 
           <span className='bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink'></span>
-        </div>
+        </div> */}
         {/* end::Menu wrapper */}
       </div>
 
