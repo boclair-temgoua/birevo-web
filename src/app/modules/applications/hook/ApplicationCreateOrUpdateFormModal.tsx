@@ -65,7 +65,7 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
         aria-modal='true'
       >
         {/* begin::Modal dialog */}
-        <div className='modal-dialog modal-dialog-centered mw-650px modal-dialog-scrollable'>
+        <div className='modal-dialog mw-650px modal-dialog-scrollable'>
           {/* begin::Modal content */}
           <div className='modal-content'>
             <div className="modal-header">
@@ -101,7 +101,7 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
                     isRequired={true}
                   />
                 </div>
-                <div className="fv-row fv-plugins-icon-container">
+                {/* <div className="fv-row fv-plugins-icon-container">
                   <SelectValueNameInput
                     dataItem={optionsStatusOnline}
                     className="form-control"
@@ -113,7 +113,7 @@ export const ApplicationCreateOrUpdateFormModal: React.FC<Props> = ({ setOpenMod
                     isRequired={true}
                     required="required"
                   />
-                </div>
+                </div> */}
               </div>
               {/* end::Modal body */}
               <div className="modal-footer flex-center">
