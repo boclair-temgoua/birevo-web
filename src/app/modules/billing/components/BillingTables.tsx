@@ -85,6 +85,7 @@ const BillingTables: React.FC<Props> = ({ className }) => {
                 <th className='min-w-140px'>Description</th>
                 <th className='min-w-120px'>Amount</th>
                 <th className='min-w-120px'>Date</th>
+                <th className='min-w-120px'></th>
               </tr>
             </thead>
             {/* end::Table head */}
