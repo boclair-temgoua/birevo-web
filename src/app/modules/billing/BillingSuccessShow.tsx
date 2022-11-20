@@ -38,6 +38,12 @@ const BillingSuccessShow: FC = () => {
             <span className='card-label fw-bolder fs-3 mb-1'>{userItem?.id && (`Billing success - ${userItem?.organization?.name}`)}</span>
             {/* <span className='text-muted mt-1 fw-bold fs-7'>Over {userItem?.organizationTotal} organizations</span> */}
           </h3>
+          <div className="d-flex align-items-center py-1">
+            <a href={`${amount?.urlPdf}`} className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'>
+              <KTSVG path='/media/svg/files/pdf.svg' className='svg-icon-1' />
+            </a>
+          </div>
+
           {/* <div className="d-flex align-items-center py-1">
             <button type='button'
               className='btn btn-sm btn-flex btn-light-primary fw-bolder'

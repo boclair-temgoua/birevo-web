@@ -52,6 +52,7 @@ export type OneAmountResponse = {
   token: string
   currency: string
   type: string
+  urlPdf: string
   description: string
   paymentMethod: paymentMethodType
   organizationId: number

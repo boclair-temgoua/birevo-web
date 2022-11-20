@@ -59,6 +59,7 @@ export const VoucherCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateM
     onSuccess: () => {
       setHasErrors(false);
       setLoading(false)
+      setOpenCreateOrUpdateModal(false)
     },
     onError: (error?: any) => {
       setHasErrors(true);
