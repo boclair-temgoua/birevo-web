@@ -154,7 +154,7 @@ export function AsideMenuMain() {
           <span className='menu-title'>Api developers</span>
         </Link>
       </div>
-      <div className='menu-item'>
+      {/* <div className='menu-item'>
         <a
           target='_blank'
           className='menu-link'
@@ -165,7 +165,7 @@ export function AsideMenuMain() {
           </span>
           <span className='menu-title'>Changelog {process.env.REACT_APP_VERSION}</span>
         </a>
-      </div>
+      </div> */}
     </>
   )
 }
