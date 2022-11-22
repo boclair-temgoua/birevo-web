@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   ReactNode,
+  useEffect,
 } from 'react'
 import { getCurrentUserFormToken } from '../../../utility'
 import { useQuery } from '@tanstack/react-query';
@@ -46,6 +47,11 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     // staleTime: 60_000,
   })
   const user: any = data?.data
+
+
+  useEffect(() => {
+    setAuth(auth)
+  }, [])
 
   const logout = () => {
     // saveAuth(undefined)
