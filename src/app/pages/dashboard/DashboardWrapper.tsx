@@ -22,6 +22,8 @@ import { VoucherActivityTables } from '../../modules/activity/components/Voucher
 import { useAuth } from '../../modules/auth'
 import { BillingBalanceAlert } from '../../modules/billing/hook/BillingBalanceAlert'
 import { HelmetSite } from '../../utility/commons/helmet-site';
+import { Link } from 'react-router-dom';
+import { OrganizationNavActivityList } from '../../modules/organizations/hook/OrganizationNavActivityList'
 
 const DashboardPage: FC = () => (
 
@@ -99,6 +101,7 @@ const DashboardPage: FC = () => (
 const DashboardWrapper: FC = () => {
   const userItem = useAuth()
   const intl = useIntl()
+  
   return (
     <>
       <HelmetSite title={`${intl.formatMessage({ id: 'MENU.DASHBOARD' })} - ${userItem?.organization?.name || process.env.REACT_APP_NAME}`} />
@@ -107,8 +110,12 @@ const DashboardWrapper: FC = () => {
 
       <BillingBalanceAlert />
 
-      {userItem && (<VoucherActivityTables userItem={userItem} className='mb-5 mb-xl-8 ' />)}
 
+
+      
+      {userItem && (<OrganizationNavActivityList userItem={userItem} />)}
+
+      {userItem && (<VoucherActivityTables userItem={userItem} className='mb-5 mb-xl-8' />)}
 
     </>
   )

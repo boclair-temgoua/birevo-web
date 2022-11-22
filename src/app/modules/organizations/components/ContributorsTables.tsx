@@ -12,7 +12,7 @@ import { OneContributorSubscribeResponse } from '../../subscribes/core/_models';
 import { EmptyTable } from '../../../utility/commons/EmptyTable';
 import { pluralName } from '../../../utility/commons/plural-name';
 import { InviteContributorModalForm } from '../hook/InviteContributorModalForm';
-import { getOneOrganizationApi } from '../api';
+import { getOneByUUIDOrganizationApi } from '../api';
 import { PaginationItem } from '../../forms/PaginationItem';
 import { BillingBalanceAlert } from '../../billing/hook/BillingBalanceAlert';
 
@@ -21,7 +21,7 @@ const ContributorsTables: FC = () => {
   const { page } = queryString.parse(location.search);
   const userItem = useAuth();
   const [openModal, setOpenModal] = useState<boolean>(false)
-  const fetchOneOrganization = async () => await getOneOrganizationApi({ organization_uuid: userItem?.organization?.uuid })
+  const fetchOneOrganization = async () => await getOneByUUIDOrganizationApi({ organization_uuid: userItem?.organization?.uuid })
   const { data: itemOrganization } = useQuery(['organization'], () => fetchOneOrganization())
   const organization: any = itemOrganization?.data
 

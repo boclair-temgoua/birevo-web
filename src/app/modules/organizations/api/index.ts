@@ -1,9 +1,16 @@
 import dyaxios from '../../../utility/commons/dyaxios'
 import {UpdateOrganizationRequest} from '../core/_models'
 
-export const getOneOrganizationApi = (options: {organization_uuid: string}) => {
+export const getOneByUUIDOrganizationApi = (options: {organization_uuid: string}) => {
   const {organization_uuid} = options
-  return dyaxios.get<{organization_uuid: string}>(`/organizations/show/${organization_uuid}`)
+  return dyaxios.get<{organization_uuid: string}>(
+    `/organizations/show_by_uuid/${organization_uuid}`
+  )
+}
+
+export const getOneByIdOrganizationApi = (options: {organization_uuid: string}) => {
+  const {organization_uuid} = options
+  return dyaxios.get<{organization_uuid: string}>(`/organizations/show_by_id/${organization_uuid}`)
 }
 
 export const createOrUpdateOneOrganizationApi = (payload: any) => {
