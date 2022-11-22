@@ -71,7 +71,17 @@ const VoucherActivityList: React.FC<Props> = ({ activity }) => {
           </a>
         </td>
         {/* <td><span className={`badge badge-light-${activity?.color}`}> {activity?.action}</span></td> */}
-        <td><strong> {activity?.action}</strong></td>
+        <td>
+          {activity?.action === 'VOUCHER-VIEW' && (
+            <span className='badge badge-light-primary'>{activity?.action}</span>
+          )}
+          {activity?.action === 'VOUCHER-USED' && (
+            <span className='badge badge-light-success'>{activity?.action}</span>
+          )}
+          {activity?.action === 'VOUCHER-NEW' && (
+            <span className='badge badge-light-info'>{activity?.action}</span>
+          )}
+        </td>
         <td>
           <div className='d-flex align-items-center'>
             <div className='symbol symbol-35px symbol-circle me-2'>

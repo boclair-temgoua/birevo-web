@@ -1,7 +1,4 @@
-import { FC, useEffect, useState } from 'react'
-import { OneActivityResponse } from '../core/_moduls';
-import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
-import { useAuth } from '../../auth';
+import { useEffect, useState } from 'react'
 import queryString from 'query-string';
 import { useDebounce } from '../../../utility/commons/useDebounce';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
