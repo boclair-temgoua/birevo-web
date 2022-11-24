@@ -1,28 +1,27 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useIntl } from 'react-intl'
-import { KTSVG } from '../../../_metronic/helpers'
+// import { KTSVG } from '../../../_metronic/helpers'
 import { PageTitle } from '../../../_metronic/layout/core'
-import {
-  MixedWidget1,
-  MixedWidget2,
-  MixedWidget10,
-  MixedWidget11,
-  ListsWidget2,
-  ListsWidget3,
-  ListsWidget4,
-  ListsWidget5,
-  MixedWidget15,
-  ListsWidget6,
-  TablesWidget5,
-  TablesWidget10,
-  MixedWidget8,
-} from '../../../_metronic/partials/widgets'
+// import {
+//   MixedWidget1,
+//   MixedWidget2,
+//   MixedWidget10,
+//   MixedWidget11,
+//   ListsWidget2,
+//   ListsWidget3,
+//   ListsWidget4,
+//   ListsWidget5,
+//   MixedWidget15,
+//   ListsWidget6,
+//   TablesWidget5,
+//   TablesWidget10,
+//   MixedWidget8,
+// } from '../../../_metronic/partials/widgets'
 import { VoucherActivityTables } from '../../modules/activity/components/VoucherActivityTables'
 import { useAuth } from '../../modules/auth'
 import { BillingBalanceAlert } from '../../modules/billing/hook/BillingBalanceAlert'
 import { HelmetSite } from '../../utility/commons/helmet-site';
-import { Link } from 'react-router-dom';
 import { OrganizationNavActivityList } from '../../modules/organizations/hook/OrganizationNavActivityList'
 
 const DashboardPage: FC = () => (
@@ -42,7 +41,7 @@ const DashboardPage: FC = () => (
         <ListsWidget5 className='card-xxl-stretch' />
       </div> */}
 
-      <div className='col-xxl-4'>
+      {/* <div className='col-xxl-4'>
         <MixedWidget10
           className='card-xxl-stretch-50 mb-5 mb-xl-8'
           chartColor='primary'
@@ -53,7 +52,7 @@ const DashboardPage: FC = () => (
           chartColor='primary'
           chartHeight='175px'
         />
-      </div>
+      </div> */}
     </div>
     {/* end::Row */}
 

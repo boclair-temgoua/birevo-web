@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { KTSVG } from '../../../../_metronic/helpers';
 import { getOneByIdOrganizationApi } from '../api/index';
 import { useQuery } from '@tanstack/react-query';
-import ContentLoader from 'react-content-loader';
 
 
 type Props = {

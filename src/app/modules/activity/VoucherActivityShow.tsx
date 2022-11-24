@@ -37,11 +37,11 @@ const VoucherActivityShow: FC = (props) => {
   return (
     <>
       <HelmetSite title={`${capitalizeName(String(type))} - ${voucher?.organization?.name || process.env.REACT_APP_NAME}`} />
-      <BillingBalanceAlert/>
-      
+      <BillingBalanceAlert />
+
+
       <div className='card mb-5 mb-xl-10'>
         <div className='card-body pt-9 pb-0'>
-
           {voucher?.id ? '' : <ContentLoader viewBox="0 0 700 200" height={200} width={700}>
             <rect x="20" y="15" rx="20" ry="20" width="150" height="150" />
             <rect x="180" y="17" rx="10" ry="10" width="420" height="15" />
@@ -214,13 +214,6 @@ const VoucherActivityShow: FC = (props) => {
                           {voucher?.profileOwner?.email}
                         </span>
                       </div>
-
-                      {/* <button
-                        type='button'
-                        className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
-                        onClick={() => { navigate(-1) }}>
-                        <KTSVG path='/media/icons/duotune/arrows/arr063.svg' className='svg-icon-2' />
-                      </button> */}
                     </>
                   )}
                 </div>
@@ -229,6 +222,11 @@ const VoucherActivityShow: FC = (props) => {
           </div>
         </div>
       </div>
+      <a href={void (0)} className='btn-flex btn-light-primary fw-bolder'
+        onClick={() => { navigate(-1) }} style={{ cursor: 'pointer' }}>
+        <KTSVG path='/media/icons/duotune/arrows/arr063.svg' className='svg-icon-2' />
+        Return to voucher
+      </a>
       <ActivityTable voucherUuid={voucher_uuid} className='mb-5 mb-xl-8' />
     </>
   )

@@ -1,7 +1,5 @@
 import { formateDateDayjs } from '../../../utility/commons/formate-date-dayjs';
-import { OneVoucherResponse } from '../../vouchers/core/_moduls';
 import { toAbsoluteUrl } from '../../../../_metronic/helpers/AssetHelpers';
-import { capitalizeName } from '../../../utility/commons/capitalized-name';
 import { capitalizeOneFirstLetter } from '../../../utility/commons/capitalize-first-letter';
 
 
