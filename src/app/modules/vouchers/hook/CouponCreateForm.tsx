@@ -25,7 +25,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const [hasErrors, setHasErrors] = useState<boolean | string | undefined>(undefined)
-  const { register, handleSubmit, reset,
+  const { register, handleSubmit,
     setValue,
     formState: { errors, isSubmitted }
   } = useForm<VoucherFormRequest>({ resolver: yupResolver(schema), mode: "onChange" });
@@ -38,14 +38,14 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
       await dispatch(loadAllCurrencies())
     }
     loadItems()
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (voucher) {
-      const fields = ['name', 'description', 'email', 'amount', 'currency', 'status', 'expiredAt'];
+      const fields = ['name', 'description', 'email', 'amount', 'currency', 'maxUse', 'status', 'expiredAt'];
       fields?.forEach((field: any) => setValue(field, voucher[field]));
     }
-  }, [voucher]);
+  }, [voucher, setValue]);
 
   const onSubmit = async (data: VoucherFormRequest) => {
     setLoading(true);
@@ -131,7 +131,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
           </div>
           <div className="col-md-4 fv-row fv-plugins-icon-container">
             <SelectCurrencyInput
-             firstOptionName="Choose currency"
+              firstOptionName="Choose currency"
               dataItem={currencies}
               isValueInt={false}
               className="form-control form-select select2-hidden-accessible"
@@ -158,7 +158,7 @@ export const CouponCreateForm: FC<{ voucher: OneVoucherResponse | any }> = ({ vo
             />
           </div>
         </div>
-       
+
         <div className="d-flex flex-column mb-8">
           <TextareaInput
             label="Description"

@@ -45,10 +45,10 @@ export const CouponCreateFormModal: React.FC<Props> = ({ setOpenCreateOrUpdateMo
 
   useEffect(() => {
     if (voucherItem) {
-      const fields = ['name', 'description', 'email', 'amount', 'currencyId', 'status', 'percent', 'deliveryType', 'startedAt', 'expiredAt'];
+      const fields = ['name', 'description', 'email', 'amount', 'currencyId', 'status', 'percent', 'maxUse', 'deliveryType', 'startedAt', 'expiredAt'];
       fields?.forEach((field: any) => setValue(field, voucherItem[field]));
     }
-  }, [voucherItem]);
+  }, [voucherItem, setValue]);
 
   const saveMutation = CouponCreateMutation({
     onSuccess: () => {

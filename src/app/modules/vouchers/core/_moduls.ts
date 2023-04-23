@@ -35,6 +35,7 @@ export type VoucherFormRequest = {
   code: string
   email: string
   name: string
+  maxUse: number
   currencyId: number
   numberGenerate: number
   codeGenerate: boolean
