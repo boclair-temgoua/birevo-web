@@ -13,12 +13,7 @@ const schema = yup
   .object({
     password: yup.string().required().min(8).max(200),
     passwordConfirm: yup.string()
-      .required('Password confirmation is required')
-      .min(8)
-      .when('password', {
-        is: (val: string) => (val && val.length > 0 ? true : false),
-        then: yup.string().oneOf([yup.ref('password')], "Password and Confirm Password didn't match"),
-      }),
+    .oneOf([yup.ref('password')], 'Passwords must match'),
   })
   .required();
 

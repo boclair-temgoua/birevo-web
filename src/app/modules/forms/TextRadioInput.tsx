@@ -10,7 +10,7 @@ interface Props {
     value: string;
     checked?: boolean;
     validation?: { [key: string]: any };
-    errors: { [key: string]: FieldError };
+    errors: { [key: string]: any };
 }
 
 export const TextRadioInput: React.FC<Props> = ({

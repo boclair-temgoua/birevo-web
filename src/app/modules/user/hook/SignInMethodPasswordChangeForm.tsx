@@ -22,7 +22,7 @@ const schema = yup.object().shape({
     .min(8, 'Minimum 8 symbols')
     .max(100, 'Maximum 100 symbols')
     .required('Password is required')
-    .oneOf([yup.ref('newPassword'), null], 'Passwords must match'),
+    .oneOf([yup.ref('newPassword')], 'Passwords must match'),
 })
 
 const SignInMethodPasswordChangeForm: React.FC = () => {

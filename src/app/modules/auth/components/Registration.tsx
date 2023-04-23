@@ -31,11 +31,7 @@ const schema = yup.object().shape({
     .max(50, 'Maximum 50 symbols')
     .required('Password is required'),
   passwordConfirm: yup.string()
-    .required('Password confirmation is required')
-    .when('password', {
-      is: (val: string) => (val && val.length > 0 ? true : false),
-      then: yup.string().oneOf([yup.ref('password')], "Password and Confirm Password didn't match"),
-    }),
+    .oneOf([yup.ref('password')], 'Passwords must match'),
   confirm: yup.boolean().oneOf([true], 'Please check the box to deactivate your account').required(),
 })
 
@@ -84,7 +80,7 @@ export function Registration() {
   };
 
   const handleOnShowHidePwd = (type: string) => {
-    if(type === "pwd") {
+    if (type === "pwd") {
       setShowHidePwd(!showHirePwd);
       setPasswordType(showHirePwd ? "password" : "text");
     } else {
@@ -96,7 +92,7 @@ export function Registration() {
 
   return (
     <>
-     <HelmetSite title={`Register`} />
+      <HelmetSite title={`Register`} />
       <form
         className='form w-100 fv-plugins-bootstrap5 fv-plugins-framework'
         noValidate
