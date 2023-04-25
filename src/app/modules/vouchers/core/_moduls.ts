@@ -311,15 +311,13 @@ export const DeleteCouponMutation = ({
     },
     {
       onMutate: async () => {
-        await queryClient.invalidateQueries(queryKey)
-        await queryClient.removeQueries(queryKey)
+        await queryClient.invalidateQueries({queryKey})
         if (onSuccess) {
           onSuccess()
         }
       },
       onSuccess: async () => {
-        await queryClient.invalidateQueries(queryKey)
-        await queryClient.removeQueries(queryKey)
+        await queryClient.invalidateQueries({queryKey})
         if (onSuccess) {
           Toastify({
             text: 'Voucher has been deleted.',
@@ -334,8 +332,7 @@ export const DeleteCouponMutation = ({
         }
       },
       onError: async (error) => {
-        await queryClient.invalidateQueries(queryKey)
-        await queryClient.removeQueries(queryKey)
+        await queryClient.invalidateQueries({queryKey})
         if (onError) {
           Toastify({
             text: 'An error has occurred.',
@@ -371,15 +368,13 @@ export const DeleteVoucherMutation = ({
     },
     {
       onMutate: async () => {
-        await queryClient.invalidateQueries(queryKey)
-        await queryClient.removeQueries(queryKey)
+        await queryClient.invalidateQueries({queryKey})
         if (onSuccess) {
           onSuccess()
         }
       },
       onSuccess: async () => {
-        await queryClient.invalidateQueries(queryKey)
-        await queryClient.removeQueries(queryKey)
+        await queryClient.invalidateQueries({queryKey})
         if (onSuccess) {
           Toastify({
             text: 'Voucher has been deleted.',
@@ -394,8 +389,7 @@ export const DeleteVoucherMutation = ({
         }
       },
       onError: async (error) => {
-        await queryClient.invalidateQueries(queryKey)
-        await queryClient.removeQueries(queryKey)
+        await queryClient.invalidateQueries({queryKey})
         if (onError) {
           Toastify({
             text: 'An error has occurred.',
